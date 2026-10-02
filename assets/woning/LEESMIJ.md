@@ -1,6 +1,10 @@
-# Renders van de voorbeeldwoning
+# Beelden van de voorbeeldwoning
 
-Zet hier de fotorealistische renders (zie REDESIGN.md §4b), minimaal 2400×1500, als AVIF:
+Nu staan hier schetsen (SVG), gemaakt met `python3 tests/woning-schetsen.py`. Ze tonen
+dezelfde woning per stap, zonder warmtepomp. De site gebruikt ze tot de fotorealistische
+renders er zijn (REDESIGN.md §4b).
+
+Renders aanleveren: minimaal 2400×1500 (16:10), AVIF, dezelfde compositie als de schetsen:
 
 - woning-stap-0-start.avif
 - woning-stap-1-kozijnen.avif
@@ -8,10 +12,7 @@ Zet hier de fotorealistische renders (zie REDESIGN.md §4b), minimaal 2400×1500
 - woning-stap-3-zonnepanelen.avif
 - woning-stap-4-thuisbatterij.avif
 - woning-stap-5-laadpaal.avif
-
-Geen warmtepomp op de renders.
 - woning-totaal.avif (homepage, met airco, thuisbatterij en laadpaal)
 
-De namen staan in steps.json (`render`) en content/home.json (`comfort.render`).
-Ontbreekt een bestand, dan toont de site een gelabelde placeholder.
-Na het toevoegen: `cd tests && npm run screenshot:gripplan`.
+Zet daarna in steps.json (`render`) en content/home.json (`comfort.render`) de .avif-namen
+in plaats van de .svg-namen, en draai `cd tests && npm run screenshot:gripplan`.

@@ -10,7 +10,7 @@
       "startLabel": "C",
       "validated": false
     },
-    "renders": "Renders per stap in assets/woning/ (zie REDESIGN.md §4b en assets/woning/LEESMIJ.md). Ontbreekt een bestand, dan toont de site een gelabelde placeholder.",
+    "renders": "Beelden per stap in assets/woning/. Nu nog schetsen (tests/woning-schetsen.py); vervang ze door fotorealistische renders (REDESIGN.md §4b) en pas dan de bestandsnaam hier aan.",
     "recalculate": "De warmtepomp is uit het stappenplan gehaald (besluit Marco). De labels en bedragen van zonnepanelen, thuisbatterij en laadpaal waren berekend mét warmtepomp en moeten opnieuw worden berekend door een EP-adviseur (recalculate: true)."
   },
   "labelScale": [
@@ -52,7 +52,7 @@
         ]
       },
       "validated": false,
-      "render": "assets/woning/woning-stap-0-start.avif"
+      "render": "assets/woning/woning-stap-0-start.svg"
     },
     {
       "id": "kozijnen",
@@ -78,7 +78,7 @@
         ]
       },
       "validated": false,
-      "render": "assets/woning/woning-stap-1-kozijnen.avif"
+      "render": "assets/woning/woning-stap-1-kozijnen.svg"
     },
     {
       "id": "isolatie",
@@ -104,7 +104,7 @@
         ]
       },
       "validated": false,
-      "render": "assets/woning/woning-stap-2-isolatie.avif"
+      "render": "assets/woning/woning-stap-2-isolatie.svg"
     },
     {
       "id": "zonnepanelen",
@@ -130,7 +130,7 @@
         ]
       },
       "validated": false,
-      "render": "assets/woning/woning-stap-3-zonnepanelen.avif",
+      "render": "assets/woning/woning-stap-3-zonnepanelen.svg",
       "recalculate": true
     },
     {
@@ -157,7 +157,7 @@
         ]
       },
       "validated": false,
-      "render": "assets/woning/woning-stap-4-thuisbatterij.avif",
+      "render": "assets/woning/woning-stap-4-thuisbatterij.svg",
       "recalculate": true
     },
     {
@@ -186,7 +186,7 @@
         ]
       },
       "validated": false,
-      "render": "assets/woning/woning-stap-5-laadpaal.avif",
+      "render": "assets/woning/woning-stap-5-laadpaal.svg",
       "recalculate": true
     }
   ]

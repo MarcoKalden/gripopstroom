@@ -79,19 +79,14 @@ zwartpunt licht opgetild) en levert drie breedtes. De pagina-achtergrond (`--gos
 `--gos-sand`, `--gos-line`) is daar op afgestemd: koel lichtgrijs-groen in plaats van crème.
 De bronnen zijn 1672 px breed; 2400 px uit REDESIGN.md kan pas met grotere bronbestanden.
 
-### Renders van de voorbeeldwoning
+### Beelden van de voorbeeldwoning
 
-Het platte huisje is weg. Op de plekken waar de renders komen, staat nu een duidelijk
-gelabelde placeholder met de verwachte bestandsnaam. Zet de renders in `assets/woning/`
-met de namen uit `steps.json` (`render`) en `content/home.json` (`comfort.render`); de site
-pakt ze dan vanzelf op. Daarna:
-
-```sh
-cd tests && npm run screenshot:gripplan
-```
-
-om de screenshot op de homepage te vernieuwen. Zonder renders geeft de browser per
-ontbrekend bestand een 404 in de console; dat is verwacht.
+Het stappenplan en het blok "Comfort dat je voelt" tonen nu schetsen van de voorbeeldwoning
+(SVG in `assets/woning/`, gemaakt met `python3 tests/woning-schetsen.py`): dezelfde woning per
+stap, zonder warmtepomp. Komen er fotorealistische renders (REDESIGN.md §4b), zet ze dan in
+`assets/woning/`, pas de bestandsnamen aan in `steps.json` (`render`) en `content/home.json`
+(`comfort.render`) en draai `cd tests && npm run screenshot:gripplan`. Ontbreekt een bestand,
+dan toont de site een gelabelde placeholder.
 
 ### Contactformulier
 
@@ -126,8 +121,7 @@ waarin alles met `enabled: false` tijdelijk aan staat. Schermafdrukken komen in
 `tests/screenshots/`.
 
 Lighthouse (mobiel, lokale server zonder compressie): homepage 95 / 100 / 96 / 100,
-Zo werkt het 97 / 100 / 96 / 100, Pakketten 96 / 100 / 100 / 100. De 96 voor Best practices
-komt alleen door de 404's van de nog ontbrekende renders. LCP homepage circa 2,8 s; met
+Zo werkt het 97 / 100 / 96 / 100, Pakketten 96 / 100 / 100 / 100. LCP homepage circa 2,8 s; met
 compressie op de echte hosting moet die onder 2,5 s komen.
 
 ## Voor livegang

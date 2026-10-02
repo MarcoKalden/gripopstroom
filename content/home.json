@@ -32,9 +32,9 @@
     "eyebrow": "Eén plan voor je hele huis",
     "title": "Comfort dat je voelt",
     "text": "Een fijn huis is warm in de winter, koel in de zomer en slim met stroom. Wij zetten de techniek die daarbij hoort in de goede volgorde, zodat elke stap de volgende beter maakt.",
-    "renderAlt": "Voorbeeldwoning met alle onderdelen: airco, thuisbatterij en laadpaal.",
+    "renderAlt": "Tekening van de voorbeeldwoning met zonnepanelen, thuisbatterij, airco en laadpaal.",
     "renderLabel": "Voorbeeldwoning · tussenwoning 1980 · 120 m²",
-    "render": "assets/woning/woning-totaal.avif",
+    "render": "assets/woning/woning-totaal.svg",
     "placeholder": "Render volgt",
     "items": [
       {
@@ -43,8 +43,8 @@
         "title": "Airco",
         "text": "Een koel huis op warme dagen.",
         "href": "pakketten.html#volledige-grip",
-        "x": "18%",
-        "y": "58%"
+        "x": "78%",
+        "y": "48%"
       },
       {
         "id": "batterij",
@@ -52,8 +52,8 @@
         "title": "Thuisbatterij",
         "text": "Een thuisbatterij bewaart je zonnestroom, zodat je hem later zelf gebruikt.",
         "href": "zo-werkt-het.html?stap=batterij",
-        "x": "74%",
-        "y": "62%"
+        "x": "58%",
+        "y": "50%"
       },
       {
         "id": "laadpaal",
@@ -61,7 +61,7 @@
         "title": "Laadpaal",
         "text": "Met een laadpaal laad je je auto thuis, het liefst met je eigen zonnestroom.",
         "href": "zo-werkt-het.html?stap=laadpaal",
-        "x": "52%",
+        "x": "20%",
         "y": "76%"
       }
     ],

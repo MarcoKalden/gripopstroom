@@ -60,9 +60,11 @@ if (!site.contactForm.endpoint) add('content/site.json', 'contactForm.endpoint',
 const exists = (rel) => fs.existsSync(path.join(root, rel));
 read('steps.json').steps.filter((st) => st.enabled !== false).forEach((st) => {
   if (st.render && !exists(st.render)) add('steps.json', st.id, 'render ontbreekt: ' + st.render);
+  else if (/\.svg$/.test(st.render)) add('steps.json', st.id, 'nog een schets, geen render: ' + st.render);
 });
 const homeContent = read('content/home.json');
 if (homeContent.comfort && !exists(homeContent.comfort.render)) add('content/home.json', 'comfort.render', 'totaalbeeld ontbreekt: ' + homeContent.comfort.render);
+else if (homeContent.comfort && /\.svg$/.test(homeContent.comfort.render)) add('content/home.json', 'comfort.render', 'nog een schets, geen render');
 // Na het weghalen van de warmtepomp moeten deze cijfers opnieuw berekend worden.
 read('steps.json').steps.filter((st) => st.recalculate).forEach((st) => {
   add('steps.json', st.id, 'label en bedragen opnieuw berekenen zonder warmtepomp');
