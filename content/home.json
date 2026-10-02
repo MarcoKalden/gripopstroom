@@ -42,7 +42,8 @@
       "numberLabel": "Huisnummer",
       "submit": "Bekijk mijn woning",
       "privacyNote": "We gebruiken je adres alleen om openbare gegevens over je woning op te zoeken."
-    }
+    },
+    "exampleCaption": "Voorbeeldwoning: tussenwoning, circa 1980, circa 120 m²[[voorbeeldwoning]]"
   },
   "approach": {
     "eyebrow": "Waarom een plan",

@@ -7,7 +7,7 @@
     </a>
     <nav class="site-nav" id="site-nav" data-text-aria="nav.label" aria-label="Hoofdmenu">
       <ul class="site-nav__list" data-list="nav.items">
-        <template><li><a data-item-text="text" data-item-href="href"></a></li></template>
+        <template><li><a data-item-href="href"><span class="nav-long" data-item-text="text"></span><span class="nav-short" data-item-text="shortText" aria-hidden="true"></span></a></li></template>
         <li><a href="zo-werkt-het.html">Zo werkt het</a></li>
         <li><a href="zo-werkt-het.html#pakketten">Pakketten</a></li>
         <li><a href="over-ons.html">Over ons</a></li>
@@ -27,9 +27,5 @@
       </span>
     </a>
     <a class="btn btn--primary btn--small site-header__cta" href="index.html#gripscan" data-cta="header-gripscan" data-href="links.gripscan" data-text="nav.cta">Start je Gripscan</a>
-    <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
-      <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-menu"></use></svg>
-      <span class="sr-only" data-menu-label>Menu</span>
-    </button>
   </div>
 </header>

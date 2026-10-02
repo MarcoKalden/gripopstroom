@@ -70,8 +70,11 @@ Het resultaat staat gewoon in de HTML en gaat mee in de commit. Zet je `siteUrl`
 
 ## Gedrag
 
+- Het menu staat altijd zichtbaar, ook op mobiel (geen hamburgermenu). Op smalle schermen
+  staat het als rij onder logo en knop, met korte namen uit `nav.items[].shortText`.
 - Header blijft boven in beeld, wordt compact bij scrollen, verdwijnt bij omlaag scrollen
   en komt terug bij omhoog scrollen. Boven de labelanimatie blijft hij weg.
+- Elke woningafbeelding is gemarkeerd als voorbeeldwoning.
 - Op mobiel verschijnt onderin een balk met de Gripscan-knop (en een belknop zodra er
   een telefoonnummer is) als de hero uit beeld is. Bij de animatie, de afsluiting en de footer
   verdwijnt hij.
@@ -90,8 +93,8 @@ cd tests && npm install && npm test
 
 De tests controleren alle pagina's op 360, 768, 1024 en 1440 px (geen horizontaal
 scrollen, geen consolefouten, geen verzoeken naar andere domeinen), axe (WCAG 2.2 AA),
-de labelanimatie (scroll op desktop, knoppen en toetsen op mobiel), de teaser, het mobiele
-menu, minder beweging, en een ronde waarin alles met `enabled: false` tijdelijk aan staat.
+de labelanimatie (scroll op desktop, knoppen en toetsen op mobiel), de teaser, het menu
+op smalle schermen, minder beweging, en een ronde waarin alles met `enabled: false` tijdelijk aan staat.
 Schermafdrukken komen in `tests/screenshots/`.
 
 Lighthouse (mobiel, lokale server zonder compressie): Prestaties 97, Toegankelijkheid 100,

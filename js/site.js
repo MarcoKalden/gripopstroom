@@ -293,7 +293,7 @@
     }
   }
 
-  /* ---------- Header, menu en mobiele balk ---------- */
+  /* ---------- Header en mobiele balk ---------- */
 
   function markCurrentNav() {
     var here = location.pathname.split('/').pop() || 'index.html';
@@ -301,43 +301,6 @@
       var href = a.getAttribute('href') || '';
       if (href.indexOf('#') === -1 && href === here) a.setAttribute('aria-current', 'page');
     });
-  }
-
-  function setupMenu(content) {
-    var btn = document.querySelector('[data-menu-toggle]');
-    var nav = document.getElementById('site-nav');
-    if (!btn || !nav) return;
-    var label = btn.querySelector('[data-menu-label]');
-    var focusables = function () {
-      return [btn].concat(Array.prototype.slice.call(nav.querySelectorAll('a')));
-    };
-    var setOpen = function (open) {
-      btn.setAttribute('aria-expanded', String(open));
-      body.classList.toggle('menu-open', open);
-      setIcon(btn, open ? 'close' : 'menu');
-      if (label) label.textContent = open ? content.ui.menuClose : content.ui.menuOpen;
-    };
-    btn.addEventListener('click', function () {
-      setOpen(btn.getAttribute('aria-expanded') !== 'true');
-    });
-    nav.addEventListener('click', function (e) {
-      if (e.target.closest('a')) setOpen(false);
-    });
-    document.addEventListener('keydown', function (e) {
-      if (btn.getAttribute('aria-expanded') !== 'true') return;
-      if (e.key === 'Escape') {
-        setOpen(false);
-        btn.focus();
-      } else if (e.key === 'Tab') {
-        // Focus blijft in het geopende menu.
-        var list = focusables();
-        var first = list[0];
-        var last = list[list.length - 1];
-        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-      }
-    });
-    window.matchMedia('(min-width: 1024px)').addEventListener('change', function () { setOpen(false); });
   }
 
   // Header wordt compact bij scrollen, verdwijnt bij omlaag scrollen en komt terug bij omhoog scrollen.
@@ -351,7 +314,6 @@
     var update = function () {
       ticking = false;
       var y = window.scrollY;
-      var menuOpen = body.classList.contains('menu-open');
       header.classList.toggle('is-scrolled', y > 8);
       var covered = covers.some(function (el) {
         if (!el.classList.contains('is-scroll-mode')) return false;
@@ -359,7 +321,7 @@
         return r.top <= 1 && r.bottom >= window.innerHeight;
       });
       var down = y > lastY && y > 240;
-      header.classList.toggle('is-hidden', !menuOpen && (covered || down));
+      header.classList.toggle('is-hidden', covered || down);
       if (Math.abs(y - lastY) > 4) lastY = y;
     };
     window.addEventListener('scroll', function () {
@@ -511,7 +473,6 @@
       });
 
       markCurrentNav();
-      setupMenu(content);
       body.classList.add('is-ready');
       resolveReady({ content: content, steps: stepsConfig, sources: sources, svg: svg });
       // Pas na andere pagina-scripts meten, zodat de animatie zijn scroll-modus heeft gekozen.

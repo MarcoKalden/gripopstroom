@@ -39,7 +39,7 @@
       </a>
       <nav class="site-nav" id="site-nav" data-text-aria="nav.label" aria-label="Hoofdmenu">
         <ul class="site-nav__list" data-list="nav.items">
-          <template><li><a data-item-text="text" data-item-href="href"></a></li></template>
+          <template><li><a data-item-href="href"><span class="nav-long" data-item-text="text"></span><span class="nav-short" data-item-text="shortText" aria-hidden="true"></span></a></li></template>
           <li><a href="zo-werkt-het.html">Zo werkt het</a></li>
           <li><a href="zo-werkt-het.html#pakketten">Pakketten</a></li>
           <li><a href="over-ons.html">Over ons</a></li>
@@ -59,10 +59,6 @@
         </span>
       </a>
       <a class="btn btn--primary btn--small site-header__cta" href="index.html#gripscan" data-cta="header-gripscan" data-href="links.gripscan" data-text="nav.cta">Start je Gripscan</a>
-      <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
-        <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-menu"></use></svg>
-        <span class="sr-only" data-menu-label>Menu</span>
-      </button>
     </div>
   </header>
   <!-- header:end -->
@@ -82,6 +78,7 @@
         </div>
         <figure class="hero__figure">
           <div class="hero__house" data-hero-house role="img" data-text-aria="hero.figureLabel"></div>
+          <p class="house-caption" data-rich="hero.exampleCaption"></p>
           <figcaption class="label-chip label-chip--c" data-rich="hero.labelBadge"></figcaption>
         </figure>
       </div>
@@ -110,6 +107,7 @@
 
             <div class="anim__grid">
               <div class="anim__figure" tabindex="0" role="group" data-figure data-text-aria="animation.figureLabel">
+                <span class="house-tag" data-text="animation.exampleLabel"></span>
                 <div class="anim__house" data-house></div>
                 <p class="anim__swipe-hint" data-text="animation.controls.swipeHint"></p>
               </div>

@@ -4,7 +4,7 @@
    - geen fouten in de console, geen verzoeken naar andere domeinen
    - geen axe-fouten (WCAG 2.2 AA)
    - labelanimatie: scroll op desktop, knoppen en pijltjestoetsen op mobiel
-   - teaser op de homepage
+   - teaser op de homepage en het menu op smalle schermen
    - met prefers-reduced-motion beweegt er niets automatisch
    - alles met enabled: false tijdelijk aan (alleen in de test) en dan nog steeds netjes
    Schermafdrukken komen in tests/screenshots/.
@@ -138,13 +138,14 @@ async function testHome(browser) {
   const ld = await page.$$eval('script[type="application/ld+json"]', (s) => s.map((x) => JSON.parse(x.textContent)['@type']));
   if (!ld.includes('FAQPage') || !ld.includes('HomeAndConstructionBusiness')) fail('structured data ontbreekt: ' + ld);
   else ok('structured data: ' + ld.join(', '));
-  // Mobiel menu
-  await page.setViewportSize({ width: 390, height: 800 });
-  await page.click('[data-menu-toggle]');
-  const open = await page.isVisible('#site-nav');
-  await page.keyboard.press('Escape');
-  const closed = !(await page.isVisible('#site-nav'));
-  if (!open || !closed) fail('mobiel menu opent of sluit niet'); else ok('mobiel menu: openen en sluiten met Escape');
+  // Menu staat op mobiel gewoon zichtbaar, zonder hamburgerknop, en past op één rij.
+  for (const w of [320, 390]) {
+    await page.setViewportSize({ width: w, height: 800 });
+    const visible = await page.$$eval('#site-nav a', (as) => as.filter((a) => a.getBoundingClientRect().width > 0).length);
+    const overflow = await page.$eval('.site-nav__list', (el) => el.scrollWidth - el.clientWidth);
+    if (visible < 5 || overflow > 0) fail(`menu @${w}: ${visible} links zichtbaar, ${overflow}px te breed`);
+    else ok(`menu @${w}: alle links zichtbaar`);
+  }
   await context.close();
 }
 
