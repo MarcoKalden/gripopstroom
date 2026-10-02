@@ -1,0 +1,58 @@
+{
+  "_note": "Alle teksten zijn voorstellen. Pas ze hier aan zonder de code te raken. Een bronverwijzing schrijf je als [[bron-id]], met een id uit sources.json.",
+  "meta": {
+    "title": "Grip op Stroom | Jouw huis, jouw pad, jouw tempo",
+    "description": "Grip op Stroom maakt met openbare data een analyse van jouw woning en stelt samen met jou een gefaseerd gripplan op."
+  },
+  "brand": {
+    "name": "Grip op Stroom"
+  },
+  "animation": {
+    "eyebrow": "Stap voor stap sterker",
+    "title": "Elke stap maakt je woning sterker",
+    "intro": "Bekijk hoe een voorbeeldwoning verandert. Je ziet per stap wat er gebeurt met het energielabel, de energiekosten en de woningwaarde.",
+    "exampleLabel": "Voorbeeldwoning",
+    "exampleSpecs": "Tussenwoning, circa 1980, circa 120 m², label C[[voorbeeldwoning]]",
+    "disclaimer": "Indicatief voorbeeld. Jouw situatie berekenen we in de Gripscan.",
+    "stepsLabel": "Stappen",
+    "stepCounter": "Stap {n} van {total}",
+    "figureLabel": "Illustratie van de voorbeeldwoning. Gebruik de pijltjestoetsen om door de stappen te gaan.",
+    "meters": {
+      "label": {
+        "title": "Energielabel",
+        "markerText": "Nu",
+        "howTitle": "Hoe rekenen we dit?",
+        "how": "Het label van de voorbeeldwoning is een inschatting volgens NTA 8800, de methode die EP-adviseurs gebruiken[[nta-8800]]. Het officiële label van jouw woning staat in EP-Online[[ep-online]]. Een thuisbatterij, energiemanagement en een laadpaal tellen voor zover bekend niet mee in de labelberekening. Een gecertificeerde EP-adviseur stelt jouw label vast."
+      },
+      "cost": {
+        "title": "Energiekosten per jaar",
+        "prefix": "circa",
+        "howTitle": "Hoe rekenen we dit?",
+        "how": "We rekenen met het gemiddelde verbruik van een vergelijkbare woning en gemiddelde energieprijzen[[milieu-centraal]]. Jouw kosten hangen af van je verbruik, je huishouden en je contract. De bedragen zijn afgerond. De balk begint bij nul."
+      },
+      "value": {
+        "title": "Indicatieve woningwaarde",
+        "prefix": "circa",
+        "unchanged": "Blijft gelijk",
+        "deltaText": "Circa {delta} hoger dan de uitgangssituatie",
+        "howTitle": "Hoe rekenen we dit?",
+        "how": "We rekenen met circa 2% hogere waarde per labelstap[[kadaster]]. Dat volgt uit cijfers van het Kadaster: woningen met label B verkopen gemiddeld circa 2,1% lager dan woningen met label A of beter[[kadaster]]. We kiezen bewust de voorzichtige kant. Locatie en onderhoud bepalen de woningwaarde sterker dan het label. De balk begint bij nul."
+      }
+    },
+    "controls": {
+      "prev": "Vorige",
+      "next": "Volgende",
+      "play": "Afspelen",
+      "pause": "Pauze",
+      "swipeHint": "Veeg of gebruik de knoppen om door de stappen te gaan."
+    },
+    "live": "Stap {n} van {total}: {name}. Energielabel {label}. Energiekosten circa {cost} per jaar. Woningwaarde circa {value}.",
+    "liveNoLabelEffect": "Het label verandert niet.",
+    "cta": "Bereken dit voor jouw woning",
+    "ctaHref": "#gripscan"
+  },
+  "footer": {
+    "sourcesTitle": "Bronnen",
+    "sourcesIntro": "De nummers bij de cijfers op deze pagina verwijzen naar deze bronnen."
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "validated": false,
+  "note": "Controleer per bron de exacte URL en publicatiedatum voor livegang.",
+  "sources": [
+    {
+      "id": "voorbeeldwoning",
+      "title": "Uitgangspunten voorbeeldwoning: tussenwoning, bouwjaar circa 1980, circa 120 m², label C",
+      "publisher": "Grip op Stroom B.V., op basis van BAG en EP-Online",
+      "url": "https://bagviewer.kadaster.nl",
+      "validated": false
+    },
+    {
+      "id": "ep-online",
+      "title": "Energielabels van woningen",
+      "publisher": "EP-Online, Rijksdienst voor Ondernemend Nederland",
+      "url": "https://www.ep-online.nl",
+      "validated": false
+    },
+    {
+      "id": "nta-8800",
+      "title": "Bepalingsmethode energieprestatie van gebouwen (NTA 8800), inschatting labelsprong door een gecertificeerde EP-adviseur",
+      "publisher": "Rijksdienst voor Ondernemend Nederland",
+      "url": "https://www.rvo.nl/onderwerpen/wetten-en-regels-gebouwen/energielabel-woningen",
+      "validated": false
+    },
+    {
+      "id": "milieu-centraal",
+      "title": "Gemiddeld energieverbruik en energieprijzen",
+      "publisher": "Milieu Centraal",
+      "url": "https://www.milieucentraal.nl/energie-besparen/inzicht-in-je-energierekening/gemiddeld-energieverbruik/",
+      "validated": false
+    },
+    {
+      "id": "kadaster",
+      "title": "Verkoopprijs van woningen naar energielabel: label B verkoopt gemiddeld circa 2,1% lager dan label A of beter",
+      "publisher": "Kadaster",
+      "url": "https://www.kadaster.nl/zakelijk/vastgoedinformatie/vastgoedcijfers",
+      "validated": false
+    }
+  ]
+}

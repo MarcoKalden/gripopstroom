@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 92 640 388" class="gos-house" focusable="false" aria-hidden="true">
+  <defs>
+    <pattern id="gos-soil" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="10" height="10" fill="#EFEAE2"/>
+      <line x1="0" y1="0" x2="0" y2="10" stroke="#DDD5C9" stroke-width="3"/>
+    </pattern>
+    <pattern id="gos-insul" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="8" height="8" fill="#F7E7A6"/>
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#D8B548" stroke-width="2"/>
+    </pattern>
+    <g id="gos-panel">
+      <rect width="56" height="32" rx="2" fill="#02275B"/>
+      <path d="M18.7 2V30M37.3 2V30M2 16H54" stroke="#48B4BA" stroke-width="1" opacity=".75"/>
+    </g>
+  </defs>
+
+  <!-- Buurwoningen: grijs en afgesneden, zodat het een tussenwoning is -->
+  <g id="buren">
+    <rect x="-20" y="110" width="680" height="88" fill="#D9DEE4"/>
+    <rect x="-20" y="198" width="170" height="202" fill="#EEF1F4" stroke="#C9D2DC" stroke-width="2"/>
+    <rect x="490" y="198" width="170" height="202" fill="#EEF1F4" stroke="#C9D2DC" stroke-width="2"/>
+    <rect x="22" y="216" width="104" height="66" fill="#E1E7ED"/>
+    <rect x="22" y="312" width="104" height="66" fill="#E1E7ED"/>
+    <rect x="514" y="216" width="104" height="66" fill="#E1E7ED"/>
+    <rect x="514" y="312" width="104" height="66" fill="#E1E7ED"/>
+  </g>
+
+  <!-- Grond in doorsnede met kruipruimte -->
+  <g id="grond">
+    <rect x="-20" y="400" width="680" height="80" fill="url(#gos-soil)"/>
+    <rect x="150" y="400" width="340" height="52" fill="#FBF9F5"/>
+    <rect x="150" y="400" width="340" height="8" fill="#C7BEB2"/>
+    <rect x="150" y="400" width="10" height="56" fill="#C7BEB2"/>
+    <rect x="480" y="400" width="10" height="56" fill="#C7BEB2"/>
+    <line x1="-20" y1="400" x2="660" y2="400" stroke="#9AA6B4" stroke-width="2"/>
+    <path d="M150 400V456H490V400" fill="none" stroke="#02275B" stroke-width="2" stroke-dasharray="6 5"/>
+  </g>
+
+  <!-- De woning zelf -->
+  <g id="woning">
+    <rect x="146" y="110" width="348" height="88" fill="#A9A39C" stroke="#02275B" stroke-width="3"/>
+    <path d="M146 132H494M146 154H494M146 176H494" stroke="#968F88" stroke-width="2"/>
+    <rect x="150" y="198" width="340" height="202" fill="#F3EEE6" stroke="#02275B" stroke-width="3"/>
+    <rect x="168" y="314" width="46" height="86" rx="2" fill="#E4EBF3" stroke="#02275B" stroke-width="3"/>
+    <rect x="178" y="326" width="26" height="22" fill="#DCE9F2" stroke="#02275B" stroke-width="2"/>
+    <circle cx="206" cy="362" r="2.5" fill="#02275B"/>
+    <g id="oude-kozijnen" fill="#DCE9F2" stroke="#9A8E80" stroke-width="4">
+      <rect x="172" y="216" width="128" height="66"/>
+      <rect x="326" y="216" width="136" height="66"/>
+      <rect x="232" y="312" width="124" height="66"/>
+      <path d="M236 216V282M394 216V282M294 312V378" stroke-width="3"/>
+    </g>
+    <path d="M168 286H304M322 286H466M228 382H360" stroke="#02275B" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- 1. Kozijnen met HR++ of triple glas -->
+  <g id="kozijnen" data-component="kozijnen">
+    <g fill="#D3ECEE" stroke="#02275B" stroke-width="6">
+      <rect x="172" y="216" width="128" height="66"/>
+      <rect x="326" y="216" width="136" height="66"/>
+      <rect x="232" y="312" width="124" height="66"/>
+    </g>
+    <g fill="none" stroke="#48B4BA" stroke-width="1.5">
+      <rect x="179" y="223" width="114" height="52"/>
+      <rect x="333" y="223" width="122" height="52"/>
+      <rect x="239" y="319" width="110" height="52"/>
+    </g>
+    <path d="M236 216V282M394 216V282M294 312V378" stroke="#02275B" stroke-width="4"/>
+  </g>
+
+  <!-- 2. Dak- en vloerisolatie -->
+  <g id="isolatie" data-component="isolatie">
+    <rect x="151.5" y="199.5" width="337" height="11" fill="url(#gos-insul)"/>
+    <rect x="160" y="408" width="320" height="12" fill="url(#gos-insul)"/>
+    <path d="M151.5 210.5H488.5M160 420H480" stroke="#D8B548" stroke-width="1.5"/>
+  </g>
+
+  <!-- 3. Warmtepomp -->
+  <g id="warmtepomp" data-component="warmtepomp">
+    <path d="M447 346V336H482" fill="none" stroke="#48B4BA" stroke-width="4" stroke-linecap="round"/>
+    <rect x="410" y="346" width="74" height="50" rx="4" fill="#FFFFFF" stroke="#02275B" stroke-width="3"/>
+    <circle cx="436" cy="371" r="17" fill="#EAF6F7" stroke="#02275B" stroke-width="2"/>
+    <path d="M436 371L436 357M436 371L448 378M436 371L424 378" stroke="#0E979D" stroke-width="3" stroke-linecap="round"/>
+    <path d="M462 356V386M468 356V386M474 356V386" stroke="#02275B" stroke-width="1.5"/>
+    <rect x="414" y="396" width="10" height="4" fill="#02275B"/>
+    <rect x="470" y="396" width="10" height="4" fill="#02275B"/>
+  </g>
+
+  <!-- 4. Zonnepanelen met omvormer -->
+  <g id="zonnepanelen" data-component="zonnepanelen">
+    <use href="#gos-panel" x="166" y="120"/>
+    <use href="#gos-panel" x="228" y="120"/>
+    <use href="#gos-panel" x="290" y="120"/>
+    <use href="#gos-panel" x="352" y="120"/>
+    <use href="#gos-panel" x="414" y="120"/>
+    <use href="#gos-panel" x="166" y="158"/>
+    <use href="#gos-panel" x="228" y="158"/>
+    <use href="#gos-panel" x="290" y="158"/>
+    <use href="#gos-panel" x="352" y="158"/>
+    <use href="#gos-panel" x="414" y="158"/>
+    <path d="M476 192V284" stroke="#48B4BA" stroke-width="3" stroke-linecap="round"/>
+    <rect x="466" y="284" width="20" height="16" rx="2" fill="#FFFFFF" stroke="#02275B" stroke-width="2"/>
+  </g>
+
+  <!-- 5. Thuisbatterij met energiemanagement -->
+  <g id="batterij" data-component="batterij">
+    <path d="M476 300V324H402" fill="none" stroke="#48B4BA" stroke-width="3" stroke-dasharray="5 4" stroke-linecap="round"/>
+    <rect x="372" y="314" width="30" height="48" rx="4" fill="#FFFFFF" stroke="#02275B" stroke-width="3"/>
+    <rect x="379" y="346" width="16" height="6" rx="1" fill="#7CBA74"/>
+    <rect x="379" y="337" width="16" height="6" rx="1" fill="#7CBA74"/>
+    <rect x="379" y="328" width="16" height="6" rx="1" fill="#7CBA74"/>
+    <circle cx="387" cy="321" r="2.5" fill="#0E979D"/>
+  </g>
+
+  <!-- Optioneel: laadpaal -->
+  <g id="laadpaal" data-component="laadpaal">
+    <path d="M114 362C94 368 92 384 102 396" fill="none" stroke="#02275B" stroke-width="2.5" stroke-linecap="round"/>
+    <rect x="104" y="318" width="20" height="82" rx="3" fill="#FFFFFF" stroke="#02275B" stroke-width="3"/>
+    <rect x="108" y="328" width="12" height="10" rx="1" fill="#48B4BA"/>
+  </g>
+</svg>

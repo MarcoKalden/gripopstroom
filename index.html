@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grip op Stroom</title>
+  <meta name="description" content="">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script src="animation.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Naar de inhoud</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <!-- Vervang door assets/Logo_GOS.jpeg zodra het logo is aangeleverd -->
+      <a class="brand" href="#top" data-text="brand.name">Grip op Stroom</a>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- Labelanimatie -->
+    <section class="anim" id="labelanimatie" aria-labelledby="anim-title" data-label-animation>
+      <div class="anim__track">
+        <div class="anim__sticky">
+          <div class="container anim__inner">
+
+            <header class="anim__head">
+              <p class="eyebrow" data-text="animation.eyebrow"></p>
+              <h2 class="anim__title" id="anim-title" data-text="animation.title"></h2>
+              <p class="anim__example">
+                <span class="anim__example-tag" data-text="animation.exampleLabel"></span>
+                <span data-rich="animation.exampleSpecs"></span>
+              </p>
+            </header>
+
+            <nav class="steps" data-text-aria="animation.stepsLabel">
+              <ol class="steps__list" data-steps></ol>
+              <p class="steps__current" data-counter></p>
+            </nav>
+
+            <div class="anim__grid">
+              <div class="anim__figure" tabindex="0" role="group" data-figure data-text-aria="animation.figureLabel">
+                <div class="anim__house" data-house></div>
+                <p class="anim__swipe-hint" data-text="animation.controls.swipeHint"></p>
+              </div>
+
+              <div class="anim__meters">
+                <div class="meter meter--label">
+                  <h3 class="meter__title"><span data-text="animation.meters.label.title"></span><span data-refs="label"></span></h3>
+                  <div class="ladder" data-ladder aria-hidden="true">
+                    <ol class="ladder__list" data-ladder-list></ol>
+                    <span class="ladder__marker" data-ladder-marker></span>
+                  </div>
+                  <p class="sr-only" data-label-sr></p>
+                  <p class="meter__note" data-label-note hidden></p>
+                  <details class="how">
+                    <summary data-text="animation.meters.label.howTitle"></summary>
+                    <p data-rich="animation.meters.label.how"></p>
+                  </details>
+                </div>
+
+                <div class="meter meter--cost">
+                  <h3 class="meter__title" data-text="animation.meters.cost.title"></h3>
+                  <p class="meter__value">
+                    <span class="meter__prefix" data-text="animation.meters.cost.prefix"></span>
+                    <span class="meter__number" data-cost></span><span data-refs="cost"></span>
+                  </p>
+                  <div class="bar bar--cost" aria-hidden="true"><span class="bar__fill" data-cost-bar></span></div>
+                  <details class="how">
+                    <summary data-text="animation.meters.cost.howTitle"></summary>
+                    <p data-rich="animation.meters.cost.how"></p>
+                  </details>
+                </div>
+
+                <div class="meter meter--value">
+                  <h3 class="meter__title" data-text="animation.meters.value.title"></h3>
+                  <p class="meter__value">
+                    <span class="meter__prefix" data-text="animation.meters.value.prefix"></span>
+                    <span class="meter__number" data-value></span><span data-refs="value"></span>
+                    <span class="meter__tag" data-value-unchanged hidden></span>
+                  </p>
+                  <div class="bar bar--value" aria-hidden="true"><span class="bar__fill" data-value-bar></span></div>
+                  <p class="meter__delta" data-value-delta></p>
+                  <details class="how">
+                    <summary data-text="animation.meters.value.howTitle"></summary>
+                    <p data-rich="animation.meters.value.how"></p>
+                  </details>
+                </div>
+
+                <p class="anim__explanation" data-explanation></p>
+                <p class="sr-only" aria-live="polite" aria-atomic="true" data-live></p>
+              </div>
+            </div>
+
+            <div class="anim__footer">
+              <div class="controls">
+                <button type="button" class="btn btn--ghost" data-prev data-text="animation.controls.prev"></button>
+                <button type="button" class="btn btn--ghost" data-play aria-pressed="false"></button>
+                <button type="button" class="btn btn--ghost" data-next data-text="animation.controls.next"></button>
+              </div>
+              <a class="btn btn--primary anim__cta" data-cta="labelanimatie-einde" data-href="animation.ctaHref" data-text="animation.cta" hidden></a>
+            </div>
+
+            <p class="anim__disclaimer" data-text="animation.disclaimer"></p>
+          </div>
+        </div>
+        <div class="anim__sentinels" data-sentinels aria-hidden="true"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <section class="sources" aria-labelledby="bronnen-title">
+        <h2 class="sources__title" id="bronnen-title" data-text="footer.sourcesTitle"></h2>
+        <p data-text="footer.sourcesIntro"></p>
+        <ol class="sources__list" id="bronnen" data-sources></ol>
+      </section>
+    </div>
+  </footer>
+</body>
+</html>
