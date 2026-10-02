@@ -1,0 +1,53 @@
+{
+  "_note": "Teksten voor Over ons. Alles met \"enabled\": false verschijnt niet. Gebruik alleen echte foto's, namen en gegevens.",
+  "meta": {
+    "title": "Over ons | Grip op Stroom",
+    "description": "Wie is Grip op Stroom, waarom bestaan we en hoe werken we? Eén plan voor je hele woning, met een bron bij elk cijfer."
+  },
+  "page": {
+    "eyebrow": "Over ons",
+    "title": "Grip op je woning, grip op elke beslissing",
+    "lead": "Verduurzamen is een grote stap. Wij maken er een reeks overzichtelijke stappen van, in jouw tempo."
+  },
+  "why": {
+    "title": "Waarom Grip op Stroom bestaat",
+    "paragraphs": [
+      "Veel woningeigenaren willen verduurzamen, maar weten niet waar ze moeten beginnen. Ze krijgen losse offertes en adviezen die elkaar tegenspreken.",
+      "Wij kijken naar je hele huis en niet naar één product. Elke stap bouwt voort op de vorige. Daarom maken we één plan, en jij bepaalt het tempo."
+    ],
+    "story": {
+      "_note": "Persoonlijk verhaal van Marco: waarom hij Grip op Stroom begon. Alleen invullen met zijn eigen woorden.",
+      "enabled": false,
+      "text": ""
+    }
+  },
+  "values": {
+    "title": "Hoe we werken",
+    "items": [
+      { "icon": "route", "title": "Eén plan voor je hele woning", "text": "We zetten de stappen in de goede volgorde, zodat elke stap de volgende zuiniger maakt." },
+      { "icon": "book", "title": "Een bron bij elk cijfer", "text": "Bij elk cijfer laten we zien waar het vandaan komt. Zo kun je het zelf controleren." },
+      { "icon": "door", "title": "Jij neemt het initiatief", "text": "We verkopen niet aan de deur en niet via de telefoon." },
+      { "icon": "badge", "title": "Gecertificeerde EP-adviseurs", "text": "Een gecertificeerde EP-adviseur neemt je energielabel op." }
+    ]
+  },
+  "team": {
+    "_note": "Alleen echte foto's en namen. Foto's in assets/team/, bij voorkeur 800×1000 px.",
+    "enabled": false,
+    "title": "Met wie je te maken hebt",
+    "items": [
+      { "name": "Marco", "role": "Oprichter", "quote": "", "photo": "", "enabled": false }
+    ]
+  },
+  "execution": {
+    "_note": "Wie voert het werk uit: eigen mensen of vaste, gecertificeerde partners? Hoe selecteren we ze? In welk gebied werken we?",
+    "enabled": false,
+    "title": "Wie het werk uitvoert",
+    "text": "",
+    "area": ""
+  },
+  "cta": {
+    "title": "Benieuwd wat dit voor jouw woning betekent?",
+    "text": "Start je Gripscan. Vrijblijvend, je zit nergens aan vast.",
+    "button": "Start je Gripscan"
+  }
+}

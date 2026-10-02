@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Klachten | Grip op Stroom</title>
+  <meta name="description" content="Zo dien je een klacht in bij Grip op Stroom.">
+  <meta name="robots" content="noindex">
+  <link rel="preload" href="content/juridisch.json" as="fetch" crossorigin>
+  <link rel="preload" href="content/site.json" as="fetch" crossorigin>
+  <link rel="preload" href="steps.json" as="fetch" crossorigin>
+  <link rel="preload" href="sources.json" as="fetch" crossorigin>
+  <link rel="preload" href="assets/house.svg" as="fetch" crossorigin>
+  <!-- head:start -->
+  <script>document.documentElement.classList.add("js")</script>
+  <meta name="theme-color" content="#02275B">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/source-sans-3-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <meta property="og:site_name" content="Grip op Stroom">
+  <meta property="og:locale" content="nl_NL">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- head:end -->
+  <script src="js/site.js" defer></script>
+</head>
+<body data-page="klachten" data-content="content/juridisch.json">
+  <!-- header:start -->
+  <a class="skip-link" href="#main" data-text="ui.skipLink">Naar de inhoud</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html" data-text-aria="ui.homeLabel" aria-label="Grip op Stroom, naar de homepage">
+        <img class="brand__logo" src="assets/logo-gos-small.png" width="126" height="144" alt="Grip op Stroom">
+      </a>
+      <nav class="site-nav" id="site-nav" data-text-aria="nav.label" aria-label="Hoofdmenu">
+        <ul class="site-nav__list" data-list="nav.items">
+          <template><li><a data-item-text="text" data-item-href="href"></a></li></template>
+          <li><a href="zo-werkt-het.html">Zo werkt het</a></li>
+          <li><a href="zo-werkt-het.html#pakketten">Pakketten</a></li>
+          <li><a href="over-ons.html">Over ons</a></li>
+          <li><a href="index.html#vragen">Veelgestelde vragen</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a class="site-nav__phone" data-if="contact.phone" data-href="contact.phone.href" hidden>
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-phone"></use></svg>
+          <span data-text="contact.phone.display"></span>
+        </a>
+      </nav>
+      <a class="header-phone" data-if="contact.phone" data-href="contact.phone.href" hidden>
+        <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-phone"></use></svg>
+        <span class="header-phone__text">
+          <span class="header-phone__number" data-text="contact.phone.display"></span>
+          <span class="header-phone__hours" data-text="contact.phone.hours"></span>
+        </span>
+      </a>
+      <a class="btn btn--primary btn--small site-header__cta" href="index.html#gripscan" data-cta="header-gripscan" data-href="links.gripscan" data-text="nav.cta">Start je Gripscan</a>
+      <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
+        <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-menu"></use></svg>
+        <span class="sr-only" data-menu-label>Menu</span>
+      </button>
+    </div>
+  </header>
+  <!-- header:end -->
+
+  <main id="main">
+    <section class="page-hero hero" aria-labelledby="page-title">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="container">
+        <h1 class="page-hero__title" id="page-title" data-text="klachten.title"></h1>
+        <p class="page-hero__lead" data-text="klachten.lead"></p>
+      </div>
+    </section>
+
+    <section class="section section--tight" aria-label="Inhoud">
+      <div class="container">
+        <div class="notice" data-if-not="klachten.ready">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-clock"></use></svg>
+          <p><span data-text="pending"></span> <a href="contact.html" data-text="contactLink"></a></p>
+        </div>
+        <div class="prose" data-if="klachten.ready" data-list="klachten.body" hidden>
+          <template>
+            <section>
+              <h2 data-item-text="heading"></h2>
+              <p data-item-rich="text"></p>
+            </section>
+          </template>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- footer:start -->
+  <div class="mobile-bar" data-mobile-bar>
+    <a class="btn btn--primary mobile-bar__cta" href="index.html#gripscan" data-cta="mobilebar-gripscan" data-href="links.gripscan" data-text="mobileBar.cta">Start je Gripscan</a>
+    <a class="btn btn--ghost mobile-bar__call" data-if="contact.phone" data-href="contact.phone.href" data-cta="mobilebar-bellen" hidden>
+      <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-phone"></use></svg>
+      <span data-text="mobileBar.call">Bellen</span>
+    </a>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div class="site-footer__company">
+          <img class="site-footer__logo" src="assets/logo-gos-small.png" width="126" height="144" alt="">
+          <p class="site-footer__name" data-text="company.legalName">Grip op Stroom B.V.</p>
+          <p class="site-footer__tagline" data-text="company.tagline"></p>
+          <dl class="site-footer__details" data-list="company.details">
+            <template><div><dt data-item-text="label"></dt><dd data-item-text="value"></dd></div></template>
+          </dl>
+        </div>
+
+        <div class="site-footer__col">
+          <h2 class="site-footer__title" data-text="footer.contactTitle">Contact</h2>
+          <ul class="site-footer__links">
+            <li data-if="contact.phone" hidden><a data-href="contact.phone.href" data-text="contact.phone.display"></a> <span class="site-footer__muted" data-text="contact.phone.hours"></span></li>
+            <li data-if="contact.email" hidden><a data-href="contact.email.href" data-text="contact.email.display"></a></li>
+            <li data-if="contact.whatsapp" hidden><a data-href="contact.whatsapp.href" data-text="contact.whatsapp.label"></a></li>
+            <li data-if-not="contact.phone contact.email contact.whatsapp"><span data-text="footer.noContact"></span></li>
+            <li><a href="contact.html">Alle contactmogelijkheden</a></li>
+          </ul>
+          <ul class="site-footer__credentials" data-if="credentials" data-list="credentials.items" hidden>
+            <template>
+              <li><a data-item-href="verifyUrl" rel="noopener"><img data-item-if="logo" data-item-src="logo" alt="" height="40"><span data-item-text="name"></span></a></li>
+            </template>
+          </ul>
+        </div>
+
+        <div class="site-footer__col">
+          <h2 class="site-footer__title" data-text="footer.legalTitle">Goed om te weten</h2>
+          <ul class="site-footer__links" data-list="footer.legal">
+            <template><li><a data-item-href="href" data-item-text="text"></a></li></template>
+            <li><a href="privacy.html">Privacyverklaring</a></li>
+            <li><a href="cookies.html">Cookieverklaring</a></li>
+            <li><a href="voorwaarden.html">Algemene voorwaarden</a></li>
+            <li><a href="klachten.html">Klachten</a></li>
+            <li><a href="toegankelijkheid.html">Toegankelijkheid</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <section class="sources" aria-labelledby="bronnen-title" data-if="_sources" hidden>
+        <h2 class="sources__title" id="bronnen-title" data-text="footer.sourcesTitle">Bronnen</h2>
+        <p data-text="footer.sourcesIntro"></p>
+        <ol class="sources__list" id="bronnen" data-sources></ol>
+      </section>
+    </div>
+  </footer>
+  <!-- footer:end -->
+</body>
+</html>

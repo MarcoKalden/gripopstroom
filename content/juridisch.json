@@ -1,0 +1,40 @@
+{
+  "_note": "Juridische pagina's. De teksten volgen van Marco of een jurist. Schrijf hier geen juridische tekst zonder controle. Zet een pagina op ready: true en vul body in zodra de tekst er is; haal dan ook de noindex-regel uit de HTML.",
+  "pending": "Deze tekst volgt. Heb je nu een vraag? Neem dan contact met ons op.",
+  "contactLink": "Naar contact",
+  "privacy": {
+    "meta": { "title": "Privacyverklaring | Grip op Stroom", "description": "Hoe Grip op Stroom omgaat met je persoonsgegevens." },
+    "title": "Privacyverklaring",
+    "lead": "Hoe we omgaan met je gegevens: welke gegevens we gebruiken, waarom, hoe lang we ze bewaren en wat je rechten zijn.",
+    "ready": false,
+    "body": []
+  },
+  "cookies": {
+    "meta": { "title": "Cookieverklaring | Grip op Stroom", "description": "Welke cookies Grip op Stroom gebruikt." },
+    "title": "Cookieverklaring",
+    "lead": "Welke cookies en vergelijkbare technieken deze website gebruikt.",
+    "ready": false,
+    "body": []
+  },
+  "voorwaarden": {
+    "meta": { "title": "Algemene voorwaarden | Grip op Stroom", "description": "De algemene voorwaarden van Grip op Stroom." },
+    "title": "Algemene voorwaarden",
+    "lead": "De afspraken die gelden als je met ons een opdracht aangaat.",
+    "ready": false,
+    "body": []
+  },
+  "klachten": {
+    "meta": { "title": "Klachten | Grip op Stroom", "description": "Zo dien je een klacht in bij Grip op Stroom." },
+    "title": "Klachten",
+    "lead": "Ben je ergens niet tevreden over? Hier lees je hoe je een klacht indient en wat je kunt doen als we er samen niet uitkomen.",
+    "ready": false,
+    "body": []
+  },
+  "toegankelijkheid": {
+    "meta": { "title": "Toegankelijkheid | Grip op Stroom", "description": "Toegankelijkheidsverklaring van de website van Grip op Stroom." },
+    "title": "Toegankelijkheid",
+    "lead": "We willen dat iedereen deze website goed kan gebruiken. We bouwen volgens WCAG 2.2 niveau AA.",
+    "ready": false,
+    "body": []
+  }
+}
