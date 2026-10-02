@@ -7,6 +7,42 @@
   "brand": {
     "name": "Grip op Stroom"
   },
+  "links": {
+    "_note": "Vervang gripscan door de echte link naar de Gripscan zodra die er is.",
+    "gripscan": "#gripscan",
+    "privacy": "#privacy"
+  },
+  "nav": {
+    "label": "Hoofdmenu",
+    "items": [
+      {
+        "text": "Gripplan",
+        "href": "#gripplan"
+      },
+      {
+        "text": "Pakketten",
+        "href": "#pakketten"
+      },
+      {
+        "text": "Griptegoed",
+        "href": "#griptegoed"
+      },
+      {
+        "text": "Vertrouwen",
+        "href": "#vertrouwen"
+      }
+    ],
+    "cta": "Start je Gripscan"
+  },
+  "hero": {
+    "title": "Jouw huis, jouw pad, jouw tempo.",
+    "lead": "Grip op Stroom helpt woningeigenaren hun huis stap voor stap te verduurzamen. Je krijgt grip op je energie en grip op elke beslissing.",
+    "ctaPrimary": "Start je Gripscan",
+    "ctaSecondary": "Zo werkt het gripplan",
+    "ctaSecondaryHref": "#gripplan",
+    "labelBadge": "Nu: label C[[voorbeeldwoning]]",
+    "figureLabel": "Illustratie van een tussenwoning met energielabel C, het vertrekpunt van de voorbeeldwoning."
+  },
   "animation": {
     "eyebrow": "Stap voor stap sterker",
     "title": "Elke stap maakt je woning sterker",
@@ -51,7 +87,141 @@
     "cta": "Bereken dit voor jouw woning",
     "ctaHref": "#gripscan"
   },
+  "plan": {
+    "eyebrow": "Hoe het gripplan werkt",
+    "title": "Drie stappen naar een sterkere woning",
+    "intro": "Elke stap bouwt voort op de vorige. Isolatie maakt je warmtepomp zuiniger. Zonnepanelen leveren stroom voor je warmtepomp. Je batterij bewaart wat je overhoudt. Daarom maken we één plan voor je hele woning.",
+    "steps": [
+      {
+        "title": "Gripscan",
+        "text": "We analyseren jouw woning met openbare data: het woonoppervlak uit de BAG[[bag]], het bouwjaar met het bouwbesluit dat daarbij hoort, je energielabel uit EP-Online[[ep-online]] en de maatregelen die je al hebt genomen."
+      },
+      {
+        "title": "Gripplan",
+        "text": "Samen bepalen we welke stappen je zet en in welke volgorde. Jij kiest het tempo en de manier van betalen. Dit noemen we Versterk je gripplan."
+      },
+      {
+        "title": "Uitvoering in jouw tempo",
+        "text": "We voeren elke stap uit met zo min mogelijk overlast. Kozijnen meten we bijvoorbeeld in op basis van foto's die je zelf maakt."
+      }
+    ]
+  },
+  "offer": {
+    "title": "Wat we voor je regelen",
+    "items": [
+      "Kozijnen",
+      "Isolatie",
+      "Warmtepompen",
+      "Airco's",
+      "Zonnepanelen",
+      "Thuisbatterijen",
+      "Laadpalen",
+      "Energiemanagement",
+      "Energiecontracten"
+    ]
+  },
+  "packages": {
+    "_note": "Labeleffecten gelden voor de voorbeeldwoning en moeten door een EP-adviseur worden gevalideerd. Prijzen volgen zodra ze zijn vastgesteld.",
+    "eyebrow": "Pakketten",
+    "title": "Kies hoeveel grip je wilt",
+    "intro": "Elk pakket is een vertrekpunt. In je gripplan stemmen we de stappen af op jouw woning.",
+    "measuresLabel": "Maatregelen",
+    "effectLabel": "Verwacht labeleffect in de voorbeeldwoning",
+    "priceNote": "De prijs hoort bij jouw woning. Die krijg je na de Gripscan.",
+    "items": [
+      {
+        "name": "Ferme grip",
+        "summary": "Je woning houdt de warmte beter vast.",
+        "measures": [
+          "Kozijnen met HR++ of triple glas",
+          "Dak- en vloerisolatie"
+        ],
+        "labelFrom": "C",
+        "labelTo": "A",
+        "effectText": "Van C naar A[[nta-8800]]"
+      },
+      {
+        "name": "Stevige grip",
+        "summary": "Je verwarmt zuinig en maakt je eigen stroom.",
+        "measures": [
+          "Alles uit Ferme grip",
+          "Warmtepomp",
+          "Zonnepanelen"
+        ],
+        "labelFrom": "C",
+        "labelTo": "A++",
+        "effectText": "Van C naar A++[[nta-8800]]"
+      },
+      {
+        "name": "Volledige grip",
+        "summary": "Je gebruikt je eigen stroom op het slimste moment.",
+        "measures": [
+          "Alles uit Stevige grip",
+          "Thuisbatterij met energiemanagement",
+          "Dynamisch energiecontract",
+          "Laadpaal of airco als je dat wilt"
+        ],
+        "labelFrom": "C",
+        "labelTo": "A++",
+        "effectText": "Van C naar A++. De extra stappen verlagen vooral je kosten[[nta-8800]]"
+      }
+    ]
+  },
+  "credit": {
+    "eyebrow": "Griptegoed",
+    "title": "Je spaart voor je volgende stap",
+    "text": "Je betaalt een stap uit eigen middelen of met een abonnement. Met het abonnement zet je elke maand een vast bedrag opzij. Dat bedrag blijft van jou tot je samen met ons besluit over je volgende investering.",
+    "points": [
+      "Je tegoed blijft jouw eigendom",
+      "Jij beslist wanneer je de volgende stap zet",
+      "Je ziet altijd hoeveel je hebt opgebouwd"
+    ],
+    "exampleLabel": "Voorbeeld",
+    "progressFrom": "Ferme grip gerealiseerd",
+    "progressTo": "Volgende stap: warmtepomp",
+    "progressAria": "Voorbeeld van een voortgangsbalk. Je griptegoed groeit richting je volgende stap, een warmtepomp."
+  },
+  "trust": {
+    "eyebrow": "Vertrouwen",
+    "title": "Waarom je ons kunt vertrouwen",
+    "items": [
+      {
+        "title": "Gecertificeerde EP-adviseurs",
+        "text": "Een gecertificeerde EP-adviseur neemt je energielabel op. Zo weet je dat je label klopt."
+      },
+      {
+        "title": "Een bron bij elk cijfer",
+        "text": "Bij elk cijfer op deze pagina staat een klein nummer. Dat nummer verwijst naar de bron onderaan de pagina."
+      },
+      {
+        "title": "14 dagen bedenktijd[[bedenktijd]]",
+        "text": "Na je akkoord heb je 14 dagen bedenktijd[[bedenktijd]]. Je kunt in die tijd zonder kosten afzien van de opdracht."
+      },
+      {
+        "title": "Jij neemt het initiatief",
+        "text": "Wij verkopen niet aan de deur en niet via de telefoon. Jij neemt contact op wanneer het jou uitkomt."
+      }
+    ],
+    "reviews": {
+      "_note": "Zet enabled op true zodra er echte reviews zijn. Vul nooit voorbeeldreviews in.",
+      "enabled": false,
+      "title": "Ervaringen van deelnemers",
+      "items": []
+    }
+  },
+  "closing": {
+    "title": "Benieuwd wat dit voor jouw woning betekent?",
+    "text": "Start je Gripscan en zie welke stappen bij jouw huis passen.",
+    "cta": "Start je Gripscan",
+    "reassurance": "De Gripscan is vrijblijvend en je zit nergens aan vast."
+  },
   "footer": {
+    "company": "Grip op Stroom B.V.",
+    "companyLines": [
+      "Grip op Stroom richt zich op woningeigenaren in Nederland.",
+      "KvK-nummer: [volgt]"
+    ],
+    "privacy": "Privacyverklaring",
     "sourcesTitle": "Bronnen",
     "sourcesIntro": "De nummers bij de cijfers op deze pagina verwijzen naar deze bronnen."
   }

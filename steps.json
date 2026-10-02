@@ -24,7 +24,7 @@
       "homeValue": 400000,
       "labelEffect": null,
       "labelNote": "",
-      "explanation": "Dit is de voorbeeldwoning zoals ze nu is: een tussenwoning uit circa 1980 met label C.",
+      "explanation": "Dit is de voorbeeldwoning zoals ze nu is: een tussenwoning uit circa 1980 met label C[[voorbeeldwoning]].",
       "sources": { "label": ["voorbeeldwoning", "ep-online"], "cost": ["milieu-centraal"], "value": ["kadaster"] },
       "validated": false
     },

@@ -6,6 +6,13 @@
       "id": "voorbeeldwoning",
       "title": "Uitgangspunten voorbeeldwoning: tussenwoning, bouwjaar circa 1980, circa 120 m², label C",
       "publisher": "Grip op Stroom B.V., op basis van BAG en EP-Online",
+      "url": "",
+      "validated": false
+    },
+    {
+      "id": "bag",
+      "title": "Basisregistratie Adressen en Gebouwen (BAG): woonoppervlak en bouwjaar",
+      "publisher": "Kadaster",
       "url": "https://bagviewer.kadaster.nl",
       "validated": false
     },
@@ -35,6 +42,13 @@
       "title": "Verkoopprijs van woningen naar energielabel: label B verkoopt gemiddeld circa 2,1% lager dan label A of beter",
       "publisher": "Kadaster",
       "url": "https://www.kadaster.nl/zakelijk/vastgoedinformatie/vastgoedcijfers",
+      "validated": false
+    },
+    {
+      "id": "bedenktijd",
+      "title": "Bedenktijd van 14 dagen bij koop op afstand en buiten de winkel",
+      "publisher": "ConsuWijzer, Autoriteit Consument & Markt",
+      "url": "https://www.consuwijzer.nl/kopen-op-afstand/bedenktijd",
       "validated": false
     }
   ]

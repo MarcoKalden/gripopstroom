@@ -110,17 +110,88 @@
     sources.forEach(function (source) {
       var li = document.createElement('li');
       li.id = 'bron-' + source.id;
-      li.appendChild(document.createTextNode(source.publisher + '. ' + source.title + '. '));
-      var a = document.createElement('a');
-      a.href = source.url;
-      a.rel = 'noopener';
-      a.textContent = source.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
-      li.appendChild(a);
+      li.appendChild(document.createTextNode(source.publisher + '. ' + source.title + '.'));
+      if (source.url) {
+        var a = document.createElement('a');
+        a.href = source.url;
+        a.rel = 'noopener';
+        a.textContent = source.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+        li.appendChild(document.createTextNode(' '));
+        li.appendChild(a);
+      }
       listEl.appendChild(li);
     });
   }
 
   /* ---------- Teksten uit content.json ---------- */
+
+  // Klasse voor de labelkleur: A++ wordt a2, C wordt c.
+  function labelSlug(label) {
+    var plus = (String(label).match(/\+/g) || []).length;
+    return String(label).charAt(0).toLowerCase() + (plus ? plus : '');
+  }
+
+  function itemValue(item, path) {
+    return path === '.' ? item : getPath(item, path);
+  }
+
+  // Vult een lijst vanuit content.json met de <template> in de lijst.
+  function renderList(container, items, content) {
+    var tpl = container.querySelector(':scope > template');
+    if (!tpl || !Array.isArray(items)) return;
+    Array.prototype.slice.call(container.children).forEach(function (child) {
+      if (child !== tpl) child.remove();
+    });
+    items.forEach(function (item) {
+      var frag = tpl.content.cloneNode(true);
+      frag.querySelectorAll('[data-item-text]').forEach(function (el) {
+        el.textContent = itemValue(item, el.getAttribute('data-item-text'));
+      });
+      frag.querySelectorAll('[data-item-rich]').forEach(function (el) {
+        renderRich(el, itemValue(item, el.getAttribute('data-item-rich')));
+      });
+      frag.querySelectorAll('[data-item-href]').forEach(function (el) {
+        el.setAttribute('href', itemValue(item, el.getAttribute('data-item-href')));
+      });
+      frag.querySelectorAll('[data-item-label]').forEach(function (el) {
+        var label = itemValue(item, el.getAttribute('data-item-label'));
+        el.textContent = label;
+        el.classList.add('label-chip--' + labelSlug(label));
+      });
+      frag.querySelectorAll('[data-ref-text]').forEach(function (el) {
+        el.textContent = getPath(content, el.getAttribute('data-ref-text'));
+      });
+      // Geneste lijsten als laatste, zodat hun items niet opnieuw worden gevuld.
+      frag.querySelectorAll('[data-item-list]').forEach(function (el) {
+        renderList(el, itemValue(item, el.getAttribute('data-item-list')), content);
+      });
+      container.appendChild(frag);
+    });
+  }
+
+  function renderLists(root, content) {
+    root.querySelectorAll('[data-list]').forEach(function (el) {
+      renderList(el, getPath(content, el.getAttribute('data-list')), content);
+    });
+  }
+
+  // Reviews alleen tonen als ze echt zijn ingevuld en aangezet.
+  function toggleReviews(content) {
+    var el = document.querySelector('[data-reviews]');
+    var reviews = getPath(content, 'trust.reviews');
+    if (el) el.hidden = !(reviews && reviews.enabled && reviews.items && reviews.items.length);
+  }
+
+  // De uitgangswoning in de hero: dezelfde SVG zonder componenten, met eigen id's.
+  function mountHeroHouse(svgText) {
+    var holder = document.querySelector('[data-hero-house]');
+    if (!holder || !svgText) return;
+    holder.innerHTML = svgText
+      .replace(/id="/g, 'id="hero-')
+      .replace(/url\(#/g, 'url(#hero-')
+      .replace(/href="#/g, 'href="#hero-');
+    holder.querySelectorAll('[data-component]').forEach(function (g) { g.remove(); });
+  }
 
   function applyContent(root, content) {
     root.querySelectorAll('[data-text]').forEach(function (el) {
@@ -198,9 +269,10 @@
     this.bindControls();
     this.bindKeyboard();
     this.bindSwipe();
-    this.setupScrollMode();
     this.updatePlayButton();
     this.render(0, { instant: true, silent: true });
+    // Pas na de eerste weergave meten, als alle teksten en waarden er staan.
+    this.setupScrollMode();
   }
 
   LabelAnimation.prototype.mountHouse = function (svgText) {
@@ -316,9 +388,15 @@
       this.el.sentinels.appendChild(s);
     }
 
+    var inner = this.root.querySelector('.anim__inner');
     var apply = function () {
       var on = scrollModeQuery.matches && 'IntersectionObserver' in window;
       self.root.classList.toggle('is-scroll-mode', on);
+      // Alleen meescrollen als de hele sectie in één schermhoogte past.
+      if (on && self.tallestStep(inner) > window.innerHeight) {
+        on = false;
+        self.root.classList.remove('is-scroll-mode');
+      }
       if (self.observer) {
         self.observer.disconnect();
         self.observer = null;
@@ -336,7 +414,25 @@
       });
     };
     apply();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(apply);
     scrollModeQuery.addEventListener('change', apply);
+    var resizeTimer = null;
+    window.addEventListener('resize', function () {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(apply, 150);
+    });
+  };
+
+  // Meet de hoogste stap (zonder animatie) en zet daarna de huidige stap terug.
+  LabelAnimation.prototype.tallestStep = function (inner) {
+    var current = this.current;
+    var max = 0;
+    for (var i = 0; i < this.steps.length; i++) {
+      this.render(i, { instant: true, silent: true });
+      max = Math.max(max, inner.offsetHeight);
+    }
+    this.render(current, { instant: true, silent: true });
+    return max;
   };
 
   LabelAnimation.prototype.isScrollMode = function () {
@@ -496,7 +592,7 @@
     });
 
     // Uitleg, stapindicator en bediening
-    this.el.explanation.textContent = step.explanation;
+    renderRich(this.el.explanation, step.explanation);
     this.stepButtons.forEach(function (btn, i) {
       if (i === index) btn.setAttribute('aria-current', 'step');
       else btn.removeAttribute('aria-current');
@@ -532,13 +628,16 @@
       loadJSON(FILES.content),
       loadJSON(FILES.steps),
       loadJSON(FILES.sources),
-      animRoot ? loadText(FILES.house) : Promise.resolve('')
+      loadText(FILES.house)
     ]).then(function (results) {
       var content = results[0];
       var stepsConfig = results[1];
       var sources = results[2].sources;
       indexSources(sources);
+      renderLists(document, content);
       applyContent(document, content);
+      toggleReviews(content);
+      mountHeroHouse(results[3]);
       renderSourceList(document.querySelector('[data-sources]'), sources);
       if (animRoot) {
         animRoot.labelAnimation = new LabelAnimation(animRoot, {

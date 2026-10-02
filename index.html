@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="styles.css">
   <script src="animation.js" defer></script>
 </head>
-<body>
+<body id="top">
   <a class="skip-link" href="#main">Naar de inhoud</a>
 
   <header class="site-header">
@@ -19,10 +19,34 @@
       <a class="brand" href="#top">
         <img class="brand__logo" src="assets/logo-gos.png" width="525" height="600" alt="Grip op Stroom">
       </a>
+      <nav class="site-nav" data-text-aria="nav.label">
+        <ul class="site-nav__list" data-list="nav.items">
+          <template><li><a data-item-text="text" data-item-href="href"></a></li></template>
+        </ul>
+      </nav>
+      <a class="btn btn--primary btn--small site-header__cta" data-cta="header-gripscan" data-href="links.gripscan" data-text="nav.cta"></a>
     </div>
   </header>
 
   <main id="main">
+
+    <!-- 1. Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero__inner">
+        <div class="hero__text">
+          <h1 class="hero__title" id="hero-title" data-text="hero.title"></h1>
+          <p class="hero__lead" data-text="hero.lead"></p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" data-cta="hero-gripscan" data-href="links.gripscan" data-text="hero.ctaPrimary"></a>
+            <a class="text-link" data-href="hero.ctaSecondaryHref" data-text="hero.ctaSecondary"></a>
+          </div>
+        </div>
+        <figure class="hero__figure" role="img" data-text-aria="hero.figureLabel">
+          <div class="hero__house" data-hero-house aria-hidden="true"></div>
+          <figcaption class="label-chip label-chip--c" data-rich="hero.labelBadge"></figcaption>
+        </figure>
+      </div>
+    </section>
 
     <!-- Labelanimatie -->
     <section class="anim" id="labelanimatie" aria-labelledby="anim-title" data-label-animation>
@@ -33,6 +57,7 @@
             <header class="anim__head">
               <p class="eyebrow" data-text="animation.eyebrow"></p>
               <h2 class="anim__title" id="anim-title" data-text="animation.title"></h2>
+              <p class="anim__intro" data-text="animation.intro"></p>
               <p class="anim__example">
                 <span class="anim__example-tag" data-text="animation.exampleLabel"></span>
                 <span data-rich="animation.exampleSpecs"></span>
@@ -114,10 +139,142 @@
       </div>
     </section>
 
+
+    <!-- 3. Hoe het gripplan werkt -->
+    <section class="section" id="gripplan" aria-labelledby="plan-title">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow" data-text="plan.eyebrow"></p>
+          <h2 class="section__title" id="plan-title" data-text="plan.title"></h2>
+          <p class="section__intro" data-text="plan.intro"></p>
+        </div>
+        <ol class="plan-steps" data-list="plan.steps">
+          <template>
+            <li class="plan-step">
+              <span class="plan-step__nr" aria-hidden="true"></span>
+              <h3 class="plan-step__title" data-item-text="title"></h3>
+              <p data-item-rich="text"></p>
+            </li>
+          </template>
+        </ol>
+        <div class="offer">
+          <h3 class="offer__title" data-text="offer.title"></h3>
+          <ul class="offer__list" data-list="offer.items">
+            <template><li data-item-text="."></li></template>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Pakketten -->
+    <section class="section section--surface" id="pakketten" aria-labelledby="packages-title">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow" data-text="packages.eyebrow"></p>
+          <h2 class="section__title" id="packages-title" data-text="packages.title"></h2>
+          <p class="section__intro" data-text="packages.intro"></p>
+        </div>
+        <ul class="packages" data-list="packages.items">
+          <template>
+            <li class="package">
+              <h3 class="package__name" data-item-text="name"></h3>
+              <p class="package__summary" data-item-text="summary"></p>
+              <p class="package__label" data-ref-text="packages.measuresLabel"></p>
+              <ul class="package__measures" data-item-list="measures">
+                <template><li data-item-text="."></li></template>
+              </ul>
+              <div class="package__effect">
+                <p class="package__label" data-ref-text="packages.effectLabel"></p>
+                <p class="package__chips">
+                  <span class="label-chip" data-item-label="labelFrom"></span>
+                  <span class="package__arrow" aria-hidden="true">&rarr;</span>
+                  <span class="label-chip" data-item-label="labelTo"></span>
+                </p>
+                <p class="package__effect-text" data-item-rich="effectText"></p>
+              </div>
+            </li>
+          </template>
+        </ul>
+        <p class="packages__note" data-text="packages.priceNote"></p>
+      </div>
+    </section>
+
+    <!-- 5. Griptegoed -->
+    <section class="section" id="griptegoed" aria-labelledby="credit-title">
+      <div class="container credit">
+        <div class="credit__text">
+          <p class="eyebrow" data-text="credit.eyebrow"></p>
+          <h2 class="section__title" id="credit-title" data-text="credit.title"></h2>
+          <p data-text="credit.text"></p>
+          <ul class="checklist" data-list="credit.points">
+            <template><li data-item-text="."></li></template>
+          </ul>
+        </div>
+        <div class="credit__card">
+          <span class="credit__tag" data-text="credit.exampleLabel"></span>
+          <div class="progress" role="img" data-text-aria="credit.progressAria">
+            <div class="progress__track"><span class="progress__fill"></span></div>
+            <div class="progress__labels" aria-hidden="true">
+              <span data-text="credit.progressFrom"></span>
+              <span data-text="credit.progressTo"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Vertrouwen -->
+    <section class="section section--surface" id="vertrouwen" aria-labelledby="trust-title">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow" data-text="trust.eyebrow"></p>
+          <h2 class="section__title" id="trust-title" data-text="trust.title"></h2>
+        </div>
+        <ul class="trust" data-list="trust.items">
+          <template>
+            <li class="trust__item">
+              <h3 class="trust__title" data-item-rich="title"></h3>
+              <p data-item-rich="text"></p>
+            </li>
+          </template>
+        </ul>
+        <!-- Reviews: verborgen tot er echte reviews zijn (trust.reviews.enabled) -->
+        <div class="reviews" data-reviews hidden>
+          <h3 class="reviews__title" data-text="trust.reviews.title"></h3>
+          <ul class="reviews__list" data-list="trust.reviews.items">
+            <template>
+              <li class="review">
+                <blockquote data-item-text="quote"></blockquote>
+                <p class="review__author" data-item-text="author"></p>
+              </li>
+            </template>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Afsluiting -->
+    <section class="section closing" id="gripscan" aria-labelledby="closing-title">
+      <div class="container closing__inner">
+        <h2 class="closing__title" id="closing-title" data-text="closing.title"></h2>
+        <p class="closing__text" data-text="closing.text"></p>
+        <a class="btn btn--primary btn--large" data-cta="closing-gripscan" data-href="links.gripscan" data-text="closing.cta"></a>
+        <p class="closing__reassurance" data-text="closing.reassurance"></p>
+      </div>
+    </section>
   </main>
 
+  <!-- 8. Footer -->
   <footer class="site-footer">
-    <div class="container">
+    <div class="container site-footer__inner">
+      <div class="site-footer__company">
+        <img class="site-footer__logo" src="assets/logo-gos.png" width="525" height="600" alt="">
+        <p class="site-footer__name" data-text="footer.company"></p>
+        <ul class="site-footer__lines" data-list="footer.companyLines">
+          <template><li data-item-text="."></li></template>
+        </ul>
+        <p><a data-href="links.privacy" data-text="footer.privacy"></a></p>
+      </div>
       <section class="sources" aria-labelledby="bronnen-title">
         <h2 class="sources__title" id="bronnen-title" data-text="footer.sourcesTitle"></h2>
         <p data-text="footer.sourcesIntro"></p>
