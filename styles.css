@@ -129,7 +129,10 @@ a { color: var(--gos-link); }
 
 /* Header en footer (voorlopig minimaal) */
 .site-header { border-bottom: 1px solid var(--gos-line); }
-.site-header__inner { display: flex; align-items: center; min-height: 64px; }
+.site-header__inner { display: flex; align-items: center; min-height: 72px; padding-top: 8px; padding-bottom: 8px; }
+.brand { display: inline-flex; }
+.brand__logo { display: block; height: 56px; width: auto; }
+@media (min-width: 1024px) { .brand__logo { height: 64px; } }
 .brand {
   color: var(--gos-navy);
   font-weight: 700;

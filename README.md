@@ -21,6 +21,7 @@ python3 -m http.server 8000
 | `content.json` | Alle teksten. Bronverwijzing: `[[bron-id]]` |
 | `steps.json` | Stappen, labels en bedragen (placeholders, `"validated": false`) |
 | `sources.json` | Bronnenlijst; nummering volgt de volgorde in dit bestand |
+| `assets/logo-gos.png` | Logo zonder "B.V.", transparante achtergrond |
 | `assets/house.svg` | Woning met componentgroepen `#kozijnen`, `#isolatie`, `#warmtepomp`, `#zonnepanelen`, `#batterij`, `#laadpaal` |
 
 De optionele laadpaalstap staat in `steps.json` met `"enabled": false`. Zet hem op `true` om hem te tonen.
@@ -30,4 +31,3 @@ De optionele laadpaalstap staat in `steps.json` met `"enabled": false`. Zet hem 
 - Stappen, bedragen en labelsprongen valideren met een EP-adviseur.
 - Bevestigen dat batterij, energiemanagement en laadpaal niet meetellen in NTA 8800.
 - Bron-URL's in `sources.json` controleren.
-- Logo `assets/Logo_GOS.jpeg` toevoegen in de header.
