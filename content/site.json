@@ -58,7 +58,7 @@
     "cta": "Start je Gripscan"
   },
   "contact": {
-    "_note": "Gegevens volgens REDESIGN.md §7. E-mailadres staat uit tot Marco het bevestigt (open punt §10.1).",
+    "_note": "Gegevens volgens REDESIGN.md §7, e-mailadres bevestigd door Marco.",
     "address": {
       "enabled": true,
       "name": "Grip op Stroom B.V.",
@@ -75,11 +75,10 @@
       "hours": "Iedere werkdag van 08:00 tot 17:00"
     },
     "email": {
-      "enabled": false,
+      "enabled": true,
       "label": "Mail ons",
-      "display": "",
-      "href": "",
-      "_note": "Open punt: klantenservice@solarisprime.nl of een eigen adres op het Grip op Stroom-domein?"
+      "display": "info@gripopstroom.nl",
+      "href": "mailto:info@gripopstroom.nl"
     },
     "whatsapp": {
       "enabled": false,
@@ -136,7 +135,7 @@
         "validated": false
       },
       {
-        "name": "F-gassencertificaat voor warmtepompen",
+        "name": "F-gassencertificaat voor airco's",
         "logo": "",
         "verifyUrl": "",
         "enabled": false,

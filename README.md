@@ -137,11 +137,12 @@ script niets meer meldt.
 
 Open punten uit REDESIGN.md §10 (eerst bevestigen, niet zelf invullen):
 
-1. E-mailadres: `klantenservice@solarisprime.nl` of een eigen adres → `content/site.json → contact.email`.
+1. ~~E-mailadres~~: info@gripopstroom.nl (bevestigd).
 2. KvK-nummer van Grip op Stroom B.V. → `content/site.json → company.details`.
-3. Warmtepomp: blijft hij in pakket *Stevige grip* en in het stappenplan? Hij staat er nu nog
-   in, omdat de cijfers en labels erop gebaseerd zijn. Een airco-stap ontbreekt, omdat er geen
-   cijfers voor zijn.
+3. ~~Warmtepomp~~: weggehaald uit stappenplan, pakketten en teksten. De labels en bedragen van
+   zonnepanelen, thuisbatterij en laadpaal en de labeleffecten van Stevige en Volledige grip
+   waren berekend mét warmtepomp en moeten opnieuw berekend worden (`recalculate: true`).
+   Een airco-stap ontbreekt nog, omdat er geen cijfers voor zijn.
 4. Renders: wie maakt ze en wanneer? Advies: niet live met placeholders.
 5. Logo als SVG aanleveren.
 

@@ -63,9 +63,13 @@ read('steps.json').steps.filter((st) => st.enabled !== false).forEach((st) => {
 });
 const homeContent = read('content/home.json');
 if (homeContent.comfort && !exists(homeContent.comfort.render)) add('content/home.json', 'comfort.render', 'totaalbeeld ontbreekt: ' + homeContent.comfort.render);
-if (read('steps.json').steps.some((st) => st.id === 'warmtepomp' && st.enabled !== false)) {
-  add('steps.json', 'warmtepomp', 'open punt REDESIGN.md §10.3: blijft de warmtepomp in pakket en stappenplan?');
-}
+// Na het weghalen van de warmtepomp moeten deze cijfers opnieuw berekend worden.
+read('steps.json').steps.filter((st) => st.recalculate).forEach((st) => {
+  add('steps.json', st.id, 'label en bedragen opnieuw berekenen zonder warmtepomp');
+});
+read('content/pakketten.json').packages.items.filter((it) => it.recalculate).forEach((it) => {
+  add('content/pakketten.json', it.name, 'labeleffect opnieuw berekenen zonder warmtepomp');
+});
 for (const [k, v] of Object.entries(read('content/juridisch.json'))) {
   if (v && typeof v === 'object' && 'ready' in v && !v.ready) add('content/juridisch.json', k, 'juridische tekst ontbreekt');
 }

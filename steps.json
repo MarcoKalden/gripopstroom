@@ -10,7 +10,8 @@
       "startLabel": "C",
       "validated": false
     },
-    "renders": "Renders per stap in assets/woning/ (zie REDESIGN.md §4b). Ontbreekt een bestand, dan toont de site een gelabelde placeholder. Open punt: de warmtepomp-stap blijft tot Marco beslist (REDESIGN.md §10.3); een render ervan komt er niet."
+    "renders": "Renders per stap in assets/woning/ (zie REDESIGN.md §4b en assets/woning/LEESMIJ.md). Ontbreekt een bestand, dan toont de site een gelabelde placeholder.",
+    "recalculate": "De warmtepomp is uit het stappenplan gehaald (besluit Marco). De labels en bedragen van zonnepanelen, thuisbatterij en laadpaal waren berekend mét warmtepomp en moeten opnieuw worden berekend door een EP-adviseur (recalculate: true)."
   },
   "labelScale": [
     "A++++",
@@ -106,32 +107,6 @@
       "render": "assets/woning/woning-stap-2-isolatie.avif"
     },
     {
-      "id": "warmtepomp",
-      "enabled": true,
-      "component": "warmtepomp",
-      "shortName": "Warmtepomp",
-      "name": "Warmtepomp",
-      "label": "A+",
-      "energyCostPerYear": 1350,
-      "homeValue": 424000,
-      "labelEffect": true,
-      "labelNote": "",
-      "explanation": "Een warmtepomp verwarmt je huis zuinig met elektriciteit. Je gasverbruik daalt sterk.",
-      "sources": {
-        "label": [
-          "nta-8800"
-        ],
-        "cost": [
-          "milieu-centraal"
-        ],
-        "value": [
-          "kadaster"
-        ]
-      },
-      "validated": false,
-      "render": "assets/woning/woning-stap-3-warmtepomp.avif"
-    },
-    {
       "id": "zonnepanelen",
       "enabled": true,
       "component": "zonnepanelen",
@@ -142,7 +117,7 @@
       "homeValue": 432000,
       "labelEffect": true,
       "labelNote": "",
-      "explanation": "Zonnepanelen wekken stroom op voor je eigen woning, ook voor je warmtepomp.",
+      "explanation": "Zonnepanelen wekken stroom op voor je eigen woning.",
       "sources": {
         "label": [
           "nta-8800"
@@ -155,7 +130,8 @@
         ]
       },
       "validated": false,
-      "render": "assets/woning/woning-stap-4-zonnepanelen.avif"
+      "render": "assets/woning/woning-stap-3-zonnepanelen.avif",
+      "recalculate": true
     },
     {
       "id": "batterij",
@@ -181,7 +157,8 @@
         ]
       },
       "validated": false,
-      "render": "assets/woning/woning-stap-5-thuisbatterij.avif"
+      "render": "assets/woning/woning-stap-4-thuisbatterij.avif",
+      "recalculate": true
     },
     {
       "id": "laadpaal",
@@ -209,7 +186,8 @@
         ]
       },
       "validated": false,
-      "render": "assets/woning/woning-stap-6-laadpaal.avif"
+      "render": "assets/woning/woning-stap-5-laadpaal.avif",
+      "recalculate": true
     }
   ]
 }

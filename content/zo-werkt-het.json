@@ -59,7 +59,7 @@
   "plan": {
     "eyebrow": "Hoe het gripplan werkt",
     "title": "Drie stappen naar een sterkere woning",
-    "intro": "Elke stap bouwt voort op de vorige. Isolatie maakt je warmtepomp zuiniger. Zonnepanelen leveren stroom voor je warmtepomp. Je batterij bewaart wat je overhoudt. Daarom maken we één plan voor je hele woning.",
+    "intro": "Elke stap bouwt voort op de vorige. Isolatie zorgt dat je minder warmte kwijtraakt. Zonnepanelen leveren stroom voor je eigen huis. Je batterij bewaart wat je overhoudt. Daarom maken we één plan voor je hele woning.",
     "steps": [
       {
         "title": "Gripscan",
@@ -106,7 +106,6 @@
     "items": [
       "Kozijnen",
       "Isolatie",
-      "Warmtepompen",
       "Airco's",
       "Zonnepanelen",
       "Thuisbatterijen",

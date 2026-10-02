@@ -5,10 +5,11 @@ Zet hier de fotorealistische renders (zie REDESIGN.md §4b), minimaal 2400×1500
 - woning-stap-0-start.avif
 - woning-stap-1-kozijnen.avif
 - woning-stap-2-isolatie.avif
-- woning-stap-3-warmtepomp.avif (open punt §10.3: op de render geen warmtepomp-buitenunit)
-- woning-stap-4-zonnepanelen.avif
-- woning-stap-5-thuisbatterij.avif
-- woning-stap-6-laadpaal.avif
+- woning-stap-3-zonnepanelen.avif
+- woning-stap-4-thuisbatterij.avif
+- woning-stap-5-laadpaal.avif
+
+Geen warmtepomp op de renders.
 - woning-totaal.avif (homepage, met airco, thuisbatterij en laadpaal)
 
 De namen staan in steps.json (`render`) en content/home.json (`comfort.render`).

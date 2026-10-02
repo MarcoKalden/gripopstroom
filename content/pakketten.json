@@ -1,5 +1,5 @@
 {
-  "_note": "Pakketten, griptegoed en financiering. Gedeeld door de homepage en de pakkettenpagina. Labeleffecten gelden voor de voorbeeldwoning en moeten door een EP-adviseur worden gevalideerd.",
+  "_note": "Pakketten, griptegoed en financiering. Gedeeld door de homepage en de pakkettenpagina. Labeleffecten gelden voor de voorbeeldwoning en moeten door een EP-adviseur worden gevalideerd. Na het weghalen van de warmtepomp moeten de labeleffecten van Stevige en Volledige grip opnieuw berekend worden (recalculate: true).",
   "packages": {
     "eyebrow": "Pakketten",
     "title": "Kies hoeveel grip je wilt",
@@ -24,10 +24,9 @@
       },
       {
         "name": "Stevige grip",
-        "summary": "Je verwarmt zuinig en maakt je eigen stroom.",
+        "summary": "Je maakt je eigen stroom.",
         "measures": [
           "Alles uit Ferme grip",
-          "Warmtepomp",
           "Zonnepanelen"
         ],
         "labelFrom": "C",
@@ -36,7 +35,8 @@
         "id": "stevige-grip",
         "photo": "keuken-senioren",
         "photoAlt": "Ouder stel in een zonnige keuken; hij snijdt brood, zij drinkt koffie aan tafel.",
-        "featured": true
+        "featured": true,
+        "recalculate": true
       },
       {
         "name": "Volledige grip",
@@ -52,7 +52,8 @@
         "effectText": "Van C naar A++. De extra stappen verlagen vooral je kosten[[nta-8800]]",
         "id": "volledige-grip",
         "photo": "bank-stel",
-        "photoAlt": "Stel ontspant met koffie op de bank in een modern ingerichte woonkamer."
+        "photoAlt": "Stel ontspant met koffie op de bank in een modern ingerichte woonkamer.",
+        "recalculate": true
       }
     ],
     "more": "Bekijk alle pakketten",
@@ -76,14 +77,6 @@
           "measure": "Dak- en vloerisolatie",
           "values": [
             "yes",
-            "yes",
-            "yes"
-          ]
-        },
-        {
-          "measure": "Warmtepomp",
-          "values": [
-            "no",
             "yes",
             "yes"
           ]
@@ -167,7 +160,7 @@
       {
         "icon": "landmark",
         "title": "ISDE-subsidie",
-        "text": "Voor onder meer een warmtepomp en isolatie kun je als woningeigenaar mogelijk subsidie krijgen via de ISDE van de Rijksdienst voor Ondernemend Nederland[[isde]]."
+        "text": "Voor onder meer isolatie kun je als woningeigenaar mogelijk subsidie krijgen via de ISDE van de Rijksdienst voor Ondernemend Nederland[[isde]]."
       },
       {
         "icon": "piggy",
