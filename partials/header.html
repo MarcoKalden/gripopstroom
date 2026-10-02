@@ -1,0 +1,35 @@
+<a class="skip-link" href="#main" data-text="ui.skipLink">Naar de inhoud</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="index.html" data-text-aria="ui.homeLabel" aria-label="Grip op Stroom, naar de homepage">
+      <img class="brand__logo" src="assets/logo-gos-small.png" width="126" height="144" alt="Grip op Stroom">
+    </a>
+    <nav class="site-nav" id="site-nav" data-text-aria="nav.label" aria-label="Hoofdmenu">
+      <ul class="site-nav__list" data-list="nav.items">
+        <template><li><a data-item-text="text" data-item-href="href"></a></li></template>
+        <li><a href="zo-werkt-het.html">Zo werkt het</a></li>
+        <li><a href="zo-werkt-het.html#pakketten">Pakketten</a></li>
+        <li><a href="over-ons.html">Over ons</a></li>
+        <li><a href="index.html#vragen">Veelgestelde vragen</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a class="site-nav__phone" data-if="contact.phone" data-href="contact.phone.href" hidden>
+        <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-phone"></use></svg>
+        <span data-text="contact.phone.display"></span>
+      </a>
+    </nav>
+    <a class="header-phone" data-if="contact.phone" data-href="contact.phone.href" hidden>
+      <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-phone"></use></svg>
+      <span class="header-phone__text">
+        <span class="header-phone__number" data-text="contact.phone.display"></span>
+        <span class="header-phone__hours" data-text="contact.phone.hours"></span>
+      </span>
+    </a>
+    <a class="btn btn--primary btn--small site-header__cta" href="index.html#gripscan" data-cta="header-gripscan" data-href="links.gripscan" data-text="nav.cta">Start je Gripscan</a>
+    <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
+      <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-menu"></use></svg>
+      <span class="sr-only" data-menu-label>Menu</span>
+    </button>
+  </div>
+</header>

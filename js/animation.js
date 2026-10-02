@@ -1,15 +1,14 @@
-/* Grip op Stroom: teksten laden en labelanimatie.
-   Vanilla JavaScript, geen framework. Alle teksten staan in content.json,
-   alle stappen en bedragen in steps.json, alle bronnen in sources.json. */
+/* Grip op Stroom: de labelanimatie op Zo werkt het.
+   Gebruikt de hulpfuncties en gegevens uit js/site.js (window.GOS).
+   Alle stappen en bedragen staan in steps.json, de teksten in content/zo-werkt-het.json. */
 (function () {
   'use strict';
 
-  var FILES = {
-    content: 'content.json',
-    steps: 'steps.json',
-    sources: 'sources.json',
-    house: 'assets/house.svg'
-  };
+  var G = window.GOS;
+  var template = G.template;
+  var renderRich = G.renderRich;
+  var makeRefs = G.makeRefs;
+  var formatEUR = G.formatEUR;
 
   var TIMING = {
     componentIn: 500,   // fade en kleine verschuiving van een component
@@ -19,203 +18,8 @@
   };
   var EASE_OUT = 'cubic-bezier(.22, .61, .36, 1)';
 
-  var currency = new Intl.NumberFormat('nl-NL', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: 0
-  });
-  var formatEUR = function (n) { return currency.format(n); };
-
-  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var reducedMotion = G.reducedMotion;
   var scrollModeQuery = window.matchMedia('(min-width: 1024px) and (min-height: 760px)');
-
-  /* ---------- Hulpfuncties ---------- */
-
-  function getPath(obj, path) {
-    return path.split('.').reduce(function (o, key) {
-      return o == null ? undefined : o[key];
-    }, obj);
-  }
-
-  function template(str, vars) {
-    return String(str).replace(/\{(\w+)\}/g, function (match, key) {
-      return Object.prototype.hasOwnProperty.call(vars, key) ? vars[key] : match;
-    });
-  }
-
-  function loadText(url) {
-    return fetch(url).then(function (res) {
-      if (!res.ok) throw new Error('Kan ' + url + ' niet laden (' + res.status + ')');
-      return res.text();
-    });
-  }
-
-  function loadJSON(url) {
-    return loadText(url).then(JSON.parse);
-  }
-
-  /* ---------- Bronnen ---------- */
-
-  var sourceIndex = {}; // id -> { n, source }
-
-  function indexSources(list) {
-    list.forEach(function (source, i) {
-      sourceIndex[source.id] = { n: i + 1, source: source };
-    });
-  }
-
-  // Maakt <sup class="ref"> met een of meer genummerde links naar de bronnenlijst.
-  function makeRefs(ids) {
-    var sup = document.createElement('sup');
-    sup.className = 'ref';
-    ids.forEach(function (id, i) {
-      var entry = sourceIndex[id];
-      if (!entry) {
-        console.warn('Onbekende bron: ' + id);
-        return;
-      }
-      if (i > 0) sup.appendChild(document.createTextNode(','));
-      var a = document.createElement('a');
-      a.href = '#bron-' + id;
-      a.textContent = entry.n;
-      a.setAttribute('aria-label', 'Bron ' + entry.n + ': ' + entry.source.publisher);
-      sup.appendChild(a);
-    });
-    return sup;
-  }
-
-  // Zet tekst met [[bron-id]] om naar tekst plus bronverwijzingen.
-  function renderRich(el, text) {
-    el.textContent = '';
-    var parts = String(text).split(/\[\[([\w-]+)\]\]/);
-    var pending = [];
-    var flush = function () {
-      if (pending.length) el.appendChild(makeRefs(pending));
-      pending = [];
-    };
-    parts.forEach(function (part, i) {
-      if (i % 2 === 1) {
-        pending.push(part);
-      } else if (part !== '') {
-        flush();
-        el.appendChild(document.createTextNode(part));
-      }
-    });
-    flush();
-  }
-
-  function renderSourceList(listEl, sources) {
-    if (!listEl) return;
-    listEl.textContent = '';
-    sources.forEach(function (source) {
-      var li = document.createElement('li');
-      li.id = 'bron-' + source.id;
-      li.appendChild(document.createTextNode(source.publisher + '. ' + source.title + '.'));
-      if (source.url) {
-        var a = document.createElement('a');
-        a.href = source.url;
-        a.rel = 'noopener';
-        a.textContent = source.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
-        li.appendChild(document.createTextNode(' '));
-        li.appendChild(a);
-      }
-      listEl.appendChild(li);
-    });
-  }
-
-  /* ---------- Teksten uit content.json ---------- */
-
-  // Klasse voor de labelkleur: A++ wordt a2, C wordt c.
-  function labelSlug(label) {
-    var plus = (String(label).match(/\+/g) || []).length;
-    return String(label).charAt(0).toLowerCase() + (plus ? plus : '');
-  }
-
-  function itemValue(item, path) {
-    return path === '.' ? item : getPath(item, path);
-  }
-
-  // Vult een lijst vanuit content.json met de <template> in de lijst.
-  function renderList(container, items, content) {
-    var tpl = container.querySelector(':scope > template');
-    if (!tpl || !Array.isArray(items)) return;
-    Array.prototype.slice.call(container.children).forEach(function (child) {
-      if (child !== tpl) child.remove();
-    });
-    items.forEach(function (item) {
-      var frag = tpl.content.cloneNode(true);
-      frag.querySelectorAll('[data-item-text]').forEach(function (el) {
-        el.textContent = itemValue(item, el.getAttribute('data-item-text'));
-      });
-      frag.querySelectorAll('[data-item-rich]').forEach(function (el) {
-        renderRich(el, itemValue(item, el.getAttribute('data-item-rich')));
-      });
-      frag.querySelectorAll('[data-item-href]').forEach(function (el) {
-        el.setAttribute('href', itemValue(item, el.getAttribute('data-item-href')));
-      });
-      frag.querySelectorAll('[data-item-label]').forEach(function (el) {
-        var label = itemValue(item, el.getAttribute('data-item-label'));
-        el.textContent = label;
-        el.classList.add('label-chip--' + labelSlug(label));
-      });
-      frag.querySelectorAll('[data-ref-text]').forEach(function (el) {
-        el.textContent = getPath(content, el.getAttribute('data-ref-text'));
-      });
-      // Geneste lijsten als laatste, zodat hun items niet opnieuw worden gevuld.
-      frag.querySelectorAll('[data-item-list]').forEach(function (el) {
-        renderList(el, itemValue(item, el.getAttribute('data-item-list')), content);
-      });
-      container.appendChild(frag);
-    });
-  }
-
-  function renderLists(root, content) {
-    root.querySelectorAll('[data-list]').forEach(function (el) {
-      renderList(el, getPath(content, el.getAttribute('data-list')), content);
-    });
-  }
-
-  // Reviews alleen tonen als ze echt zijn ingevuld en aangezet.
-  function toggleReviews(content) {
-    var el = document.querySelector('[data-reviews]');
-    var reviews = getPath(content, 'trust.reviews');
-    if (el) el.hidden = !(reviews && reviews.enabled && reviews.items && reviews.items.length);
-  }
-
-  // De uitgangswoning in de hero: dezelfde SVG zonder componenten, met eigen id's.
-  function mountHeroHouse(svgText) {
-    var holder = document.querySelector('[data-hero-house]');
-    if (!holder || !svgText) return;
-    holder.innerHTML = svgText
-      .replace(/id="/g, 'id="hero-')
-      .replace(/url\(#/g, 'url(#hero-')
-      .replace(/href="#/g, 'href="#hero-');
-    holder.querySelectorAll('[data-component]').forEach(function (g) { g.remove(); });
-  }
-
-  function applyContent(root, content) {
-    root.querySelectorAll('[data-text]').forEach(function (el) {
-      var value = getPath(content, el.getAttribute('data-text'));
-      if (value != null) el.textContent = value;
-    });
-    root.querySelectorAll('[data-rich]').forEach(function (el) {
-      var value = getPath(content, el.getAttribute('data-rich'));
-      if (value != null) renderRich(el, value);
-    });
-    root.querySelectorAll('[data-text-aria]').forEach(function (el) {
-      var value = getPath(content, el.getAttribute('data-text-aria'));
-      if (value != null) el.setAttribute('aria-label', value);
-    });
-    root.querySelectorAll('[data-href]').forEach(function (el) {
-      var value = getPath(content, el.getAttribute('data-href'));
-      if (value != null) el.setAttribute('href', value);
-    });
-    if (content.meta) {
-      if (content.meta.title) document.title = content.meta.title;
-      var desc = document.querySelector('meta[name="description"]');
-      if (desc && content.meta.description) desc.setAttribute('content', content.meta.description);
-    }
-  }
 
   /* ---------- Labelanimatie ---------- */
 
@@ -622,44 +426,18 @@
 
   /* ---------- Start ---------- */
 
-  function init() {
-    var animRoot = document.querySelector('[data-label-animation]');
-    Promise.all([
-      loadJSON(FILES.content),
-      loadJSON(FILES.steps),
-      loadJSON(FILES.sources),
-      loadText(FILES.house)
-    ]).then(function (results) {
-      var content = results[0];
-      var stepsConfig = results[1];
-      var sources = results[2].sources;
-      indexSources(sources);
-      renderLists(document, content);
-      applyContent(document, content);
-      toggleReviews(content);
-      mountHeroHouse(results[3]);
-      renderSourceList(document.querySelector('[data-sources]'), sources);
-      if (animRoot) {
-        animRoot.labelAnimation = new LabelAnimation(animRoot, {
-          text: content.animation,
-          config: stepsConfig,
-          svg: results[3]
-        });
-      }
-    }).catch(function (err) {
-      console.error(err);
-      if (animRoot) {
-        var p = document.createElement('p');
-        p.className = 'container';
-        p.textContent = 'De animatie kon niet worden geladen. Open de pagina via een webserver.';
-        animRoot.prepend(p);
-      }
+  var animRoot = document.querySelector('[data-label-animation]');
+  if (!animRoot) return;
+  G.ready.then(function (data) {
+    animRoot.labelAnimation = new LabelAnimation(animRoot, {
+      text: data.content.animation,
+      config: data.steps,
+      svg: data.svg
     });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  }).catch(function () {
+    var p = document.createElement('p');
+    p.className = 'container';
+    p.textContent = 'De animatie kon niet worden geladen. Open de pagina via een webserver.';
+    animRoot.prepend(p);
+  });
 })();

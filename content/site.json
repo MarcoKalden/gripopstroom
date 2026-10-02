@@ -1,0 +1,103 @@
+{
+  "_note": "Gedeelde teksten en gegevens voor alle pagina's. Een pagina-bestand (bijvoorbeeld home.json) mag elke waarde hier overschrijven. Alles met \"enabled\": false verschijnt niet op de site. Zet een onderdeel pas aan als de gegevens echt en gecontroleerd zijn.",
+  "brand": {
+    "name": "Grip op Stroom"
+  },
+  "siteUrl": "",
+  "links": {
+    "_note": "Vervang gripscan door de echte link naar de Gripscan zodra die er is. Op de homepage en Zo werkt het verwijst hij nu naar de afsluitende sectie (#gripscan).",
+    "home": "index.html",
+    "gripscan": "index.html#gripscan",
+    "howItWorks": "zo-werkt-het.html",
+    "privacy": "privacy.html",
+    "cookies": "cookies.html",
+    "terms": "voorwaarden.html",
+    "complaints": "klachten.html",
+    "accessibility": "toegankelijkheid.html",
+    "about": "over-ons.html",
+    "contact": "contact.html"
+  },
+  "ui": {
+    "skipLink": "Naar de inhoud",
+    "menuOpen": "Menu",
+    "menuClose": "Menu sluiten",
+    "homeLabel": "Grip op Stroom, naar de homepage"
+  },
+  "nav": {
+    "label": "Hoofdmenu",
+    "items": [
+      { "text": "Zo werkt het", "href": "zo-werkt-het.html" },
+      { "text": "Pakketten", "href": "zo-werkt-het.html#pakketten" },
+      { "text": "Over ons", "href": "over-ons.html" },
+      { "text": "Veelgestelde vragen", "href": "index.html#vragen" },
+      { "text": "Contact", "href": "contact.html" }
+    ],
+    "cta": "Start je Gripscan"
+  },
+  "contact": {
+    "_note": "Vul per kanaal de echte gegevens in en zet enabled op true. Een zichtbaar telefoonnummer is een van de sterkste vertrouwenssignalen.",
+    "phone": {
+      "enabled": false,
+      "label": "Bel ons",
+      "display": "",
+      "href": "",
+      "hours": ""
+    },
+    "email": {
+      "enabled": false,
+      "label": "Mail ons",
+      "display": "",
+      "href": ""
+    },
+    "whatsapp": {
+      "enabled": false,
+      "label": "App ons via WhatsApp",
+      "display": "",
+      "href": ""
+    },
+    "responseTime": {
+      "enabled": false,
+      "text": "We reageren binnen één werkdag."
+    }
+  },
+  "company": {
+    "legalName": "Grip op Stroom B.V.",
+    "tagline": "Grip op Stroom richt zich op woningeigenaren in Nederland.",
+    "_note": "Deze gegevens zijn wettelijk verplicht op de website (art. 3:15d BW). Vul ze in en zet enabled op true.",
+    "details": [
+      { "label": "Vestigingsadres", "value": "", "enabled": false },
+      { "label": "KvK-nummer", "value": "", "enabled": false },
+      { "label": "Btw-nummer", "value": "", "enabled": false }
+    ]
+  },
+  "credentials": {
+    "_note": "Alleen keurmerken en lidmaatschappen die Grip op Stroom echt heeft. Elk item krijgt een link naar het openbare register (verifyUrl) en een logo in assets/logos/. Staat er niets aan, dan verdwijnt de hele balk.",
+    "title": "Erkend en aangesloten",
+    "verifyText": "Controleer in het register",
+    "items": [
+      { "name": "BRL 9500, gecertificeerd EP-adviseur", "logo": "", "verifyUrl": "", "enabled": false, "validated": false },
+      { "name": "InstallQ-erkenning", "logo": "", "verifyUrl": "", "enabled": false, "validated": false },
+      { "name": "F-gassencertificaat voor warmtepompen", "logo": "", "verifyUrl": "", "enabled": false, "validated": false },
+      { "name": "Lid van Techniek Nederland", "logo": "", "verifyUrl": "", "enabled": false, "validated": false },
+      { "name": "Aangesloten bij De Geschillencommissie", "logo": "", "verifyUrl": "", "enabled": false, "validated": false }
+    ]
+  },
+  "mobileBar": {
+    "cta": "Start je Gripscan",
+    "call": "Bellen"
+  },
+  "footer": {
+    "contactTitle": "Contact",
+    "legalTitle": "Goed om te weten",
+    "legal": [
+      { "text": "Privacyverklaring", "href": "privacy.html" },
+      { "text": "Cookieverklaring", "href": "cookies.html" },
+      { "text": "Algemene voorwaarden", "href": "voorwaarden.html" },
+      { "text": "Klachten", "href": "klachten.html" },
+      { "text": "Toegankelijkheid", "href": "toegankelijkheid.html" }
+    ],
+    "sourcesTitle": "Bronnen",
+    "sourcesIntro": "De nummers bij de cijfers op deze pagina verwijzen naar deze bronnen.",
+    "noContact": "Start de Gripscan. Dan nemen wij contact met je op."
+  }
+}

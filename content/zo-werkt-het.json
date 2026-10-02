@@ -1,38 +1,11 @@
 {
   "_note": "Alle teksten zijn voorstellen. Pas ze hier aan zonder de code te raken. Een bronverwijzing schrijf je als [[bron-id]], met een id uit sources.json.",
   "meta": {
-    "title": "Grip op Stroom | Jouw huis, jouw pad, jouw tempo",
+    "title": "Zo werkt het | Grip op Stroom",
     "description": "Grip op Stroom maakt met openbare data een analyse van jouw woning en stelt samen met jou een gefaseerd gripplan op."
   },
-  "brand": {
-    "name": "Grip op Stroom"
-  },
   "links": {
-    "_note": "Vervang gripscan door de echte link naar de Gripscan zodra die er is.",
-    "gripscan": "#gripscan",
-    "privacy": "#privacy"
-  },
-  "nav": {
-    "label": "Hoofdmenu",
-    "items": [
-      {
-        "text": "Gripplan",
-        "href": "#gripplan"
-      },
-      {
-        "text": "Pakketten",
-        "href": "#pakketten"
-      },
-      {
-        "text": "Griptegoed",
-        "href": "#griptegoed"
-      },
-      {
-        "text": "Vertrouwen",
-        "href": "#vertrouwen"
-      }
-    ],
-    "cta": "Start je Gripscan"
+    "gripscan": "#gripscan"
   },
   "hero": {
     "title": "Jouw huis, jouw pad, jouw tempo.",
@@ -214,15 +187,5 @@
     "text": "Start je Gripscan en zie welke stappen bij jouw huis passen.",
     "cta": "Start je Gripscan",
     "reassurance": "De Gripscan is vrijblijvend en je zit nergens aan vast."
-  },
-  "footer": {
-    "company": "Grip op Stroom B.V.",
-    "companyLines": [
-      "Grip op Stroom richt zich op woningeigenaren in Nederland.",
-      "KvK-nummer: [volgt]"
-    ],
-    "privacy": "Privacyverklaring",
-    "sourcesTitle": "Bronnen",
-    "sourcesIntro": "De nummers bij de cijfers op deze pagina verwijzen naar deze bronnen."
   }
 }
