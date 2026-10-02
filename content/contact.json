@@ -7,18 +7,6 @@
   "page": {
     "eyebrow": "Contact",
     "title": "Jij neemt het initiatief",
-    "lead": "Je bepaalt zelf wanneer je contact opneemt. Wij bellen niet ongevraagd en komen niet aan de deur."
-  },
-  "channels": {
-    "title": "Zo bereik je ons",
-    "none": "Start de Gripscan. Dan nemen wij contact met je op."
-  },
-  "company": {
-    "title": "Bedrijfsgegevens"
-  },
-  "cta": {
-    "title": "Weten wat er bij jouw huis past?",
-    "text": "Start je Gripscan. Vrijblijvend, je zit nergens aan vast.",
-    "button": "Start je Gripscan"
+    "lead": "Bel ons, kom langs of stuur een bericht. Jij bepaalt wanneer: wij bellen niet ongevraagd en komen niet aan de deur."
   }
 }

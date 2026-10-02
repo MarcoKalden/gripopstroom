@@ -1,0 +1,8 @@
+{
+  "name": "gripopstroom-contact",
+  "private": true,
+  "description": "Ontvangt het contactformulier en mailt de inzending door. Los van de statische site.",
+  "main": "contact.js",
+  "scripts": { "start": "node contact.js" },
+  "dependencies": { "nodemailer": "^6.9.0" }
+}

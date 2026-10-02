@@ -1,0 +1,97 @@
+{
+  "_note": "Alle veelgestelde vragen. Vragen met home: true staan ook op de homepage (maximaal vijf). Antwoorden die nog niet vaststaan staan uit.",
+  "faq": {
+    "eyebrow": "Veelgestelde vragen",
+    "title": "Goed dat je het vraagt",
+    "allLink": "Alle vragen",
+    "groups": [
+      {
+        "title": "De Gripscan",
+        "items": [
+          {
+            "question": "Zit ik ergens aan vast als ik de Gripscan doe?",
+            "answer": "Nee. De Gripscan is vrijblijvend. Je beslist zelf of en wanneer je een stap zet.",
+            "home": true
+          },
+          {
+            "question": "Welke gegevens gebruiken jullie voor de Gripscan?",
+            "answer": "We gebruiken openbare gegevens: het woonoppervlak en bouwjaar uit de BAG[[bag]] en je energielabel uit EP-Online[[ep-online]]. Daarnaast vragen we welke maatregelen je al hebt genomen.",
+            "home": true
+          }
+        ]
+      },
+      {
+        "title": "Je gripplan en de uitvoering",
+        "items": [
+          {
+            "question": "Moet ik alles in één keer doen?",
+            "answer": "Nee. Je gripplan bestaat uit stappen. Jij kiest het tempo. Je kunt na elke stap rustig kijken wat het oplevert voordat je verder gaat.",
+            "home": true
+          },
+          {
+            "question": "Wie voert de werkzaamheden uit?",
+            "answer": "",
+            "enabled": false
+          },
+          {
+            "question": "In welke regio's werken jullie?",
+            "answer": "",
+            "enabled": false
+          }
+        ]
+      },
+      {
+        "title": "Energielabel en cijfers",
+        "items": [
+          {
+            "question": "Klopt het energielabel uit het voorbeeld ook voor mijn huis?",
+            "answer": "Niet per se. Het voorbeeld is een tussenwoning uit circa 1980. Jouw situatie berekenen we in de Gripscan. Je officiële label stelt een gecertificeerde EP-adviseur vast volgens NTA 8800[[nta-8800]].",
+            "home": true
+          },
+          {
+            "question": "Tellen een thuisbatterij en een laadpaal mee voor mijn energielabel?",
+            "answer": "Voor zover bekend niet[[nta-8800]]. Ze verlagen vooral je energiekosten. Daarom staan ze in je gripplan als aparte stap."
+          }
+        ]
+      },
+      {
+        "title": "Afspraken, garantie en betalen",
+        "items": [
+          {
+            "question": "Kan ik nog terug na mijn akkoord?",
+            "answer": "Ja. Na je akkoord heb je 14 dagen bedenktijd[[bedenktijd]]. In die tijd kun je zonder kosten afzien van de opdracht.",
+            "home": true
+          },
+          {
+            "question": "Wat gebeurt er met mijn griptegoed als ik stop?",
+            "answer": "",
+            "enabled": false
+          },
+          {
+            "question": "Welke garantie krijg ik?",
+            "answer": "",
+            "enabled": false
+          },
+          {
+            "question": "Wat kan ik doen als ik niet tevreden ben?",
+            "answer": "",
+            "enabled": false,
+            "_note": "Klachtenprocedure en geschillencommissie."
+          }
+        ]
+      }
+    ],
+    "searchLabel": "Zoek in de vragen",
+    "searchPlaceholder": "Bijvoorbeeld: bedenktijd",
+    "noResults": "Geen vragen gevonden. Probeer een ander woord of bel ons."
+  },
+  "page": {
+    "eyebrow": "Vragen",
+    "title": "Veelgestelde vragen",
+    "lead": "Staat je vraag er niet bij? Bel ons of stuur een bericht."
+  },
+  "meta": {
+    "title": "Veelgestelde vragen | Grip op Stroom",
+    "description": "Antwoorden op vragen over de Gripscan, je gripplan, het energielabel en de afspraken met Grip op Stroom."
+  }
+}

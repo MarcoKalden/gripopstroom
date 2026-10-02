@@ -49,11 +49,23 @@ if (!/^https?:\/\//.test(site.links.gripscan)) add('content/site.json', 'links.g
 site.company.details.forEach((d, i) => {
   if (d.enabled === false || !d.value) add('content/site.json', 'company.details[' + i + '] ' + d.label, 'verplicht gegeven ontbreekt (art. 3:15d BW)');
 });
-const channels = ['phone', 'email'];
-channels.forEach((c) => {
+['phone', 'email'].forEach((c) => {
   const v = site.contact[c];
   if (v.enabled === false || !v.display || !v.href) add('content/site.json', 'contact.' + c, 'nog niet ingevuld of uitgeschakeld');
 });
+if (!site.contact.address || site.contact.address.enabled === false) add('content/site.json', 'contact.address', 'vestigingsadres staat uit');
+if (!site.contactForm.endpoint) add('content/site.json', 'contactForm.endpoint', 'formulier nog niet gekoppeld (zie server/contact.js)');
+
+// Renders van de voorbeeldwoning (REDESIGN.md §4b)
+const exists = (rel) => fs.existsSync(path.join(root, rel));
+read('steps.json').steps.filter((st) => st.enabled !== false).forEach((st) => {
+  if (st.render && !exists(st.render)) add('steps.json', st.id, 'render ontbreekt: ' + st.render);
+});
+const homeContent = read('content/home.json');
+if (homeContent.comfort && !exists(homeContent.comfort.render)) add('content/home.json', 'comfort.render', 'totaalbeeld ontbreekt: ' + homeContent.comfort.render);
+if (read('steps.json').steps.some((st) => st.id === 'warmtepomp' && st.enabled !== false)) {
+  add('steps.json', 'warmtepomp', 'open punt REDESIGN.md §10.3: blijft de warmtepomp in pakket en stappenplan?');
+}
 for (const [k, v] of Object.entries(read('content/juridisch.json'))) {
   if (v && typeof v === 'object' && 'ready' in v && !v.ready) add('content/juridisch.json', k, 'juridische tekst ontbreekt');
 }
@@ -66,9 +78,8 @@ function emptyEnabled(file, list, where, field) {
     }
   });
 }
-const home = read('content/home.json');
-emptyEnabled('content/home.json', home.faq.items, 'faq.items', 'answer');
-emptyEnabled('content/home.json', home.promises.items, 'promises.items', 'text');
+const vragen = read('content/vragen.json');
+vragen.faq.groups.forEach((g, i) => emptyEnabled('content/vragen.json', g.items, 'faq.groups[' + i + '].items', 'answer'));
 emptyEnabled('content/site.json', site.credentials.items, 'credentials.items', 'verifyUrl');
 
 if (!issues.length) {

@@ -7,7 +7,7 @@
   "links": {
     "_note": "Vervang gripscan door de echte link naar de Gripscan zodra die er is. Op de homepage en Zo werkt het verwijst hij nu naar de afsluitende sectie (#gripscan).",
     "home": "index.html",
-    "gripscan": "index.html#gripscan",
+    "gripscan": "index.html#contact",
     "howItWorks": "zo-werkt-het.html",
     "privacy": "privacy.html",
     "cookies": "cookies.html",
@@ -15,64 +15,84 @@
     "complaints": "klachten.html",
     "accessibility": "toegankelijkheid.html",
     "about": "over-ons.html",
-    "contact": "contact.html"
+    "contact": "contact.html",
+    "steps": "zo-werkt-het.html",
+    "faq": "vragen.html",
+    "packages": "pakketten.html"
   },
   "ui": {
     "skipLink": "Naar de inhoud",
-    "homeLabel": "Grip op Stroom, naar de homepage"
+    "homeLabel": "Grip op Stroom, naar de homepage",
+    "sourcesToggle": "Bekijk de bronnen"
   },
   "nav": {
     "label": "Hoofdmenu",
+    "_note": "shortText is de korte naam op smalle schermen.",
     "items": [
       {
         "text": "Zo werkt het",
-        "href": "zo-werkt-het.html",
-        "shortText": "Zo werkt het"
+        "shortText": "Zo werkt het",
+        "href": "zo-werkt-het.html"
       },
       {
         "text": "Pakketten",
-        "href": "zo-werkt-het.html#pakketten",
-        "shortText": "Pakketten"
+        "shortText": "Pakketten",
+        "href": "pakketten.html"
       },
       {
         "text": "Over ons",
-        "href": "over-ons.html",
-        "shortText": "Over ons"
+        "shortText": "Over ons",
+        "href": "over-ons.html"
       },
       {
-        "text": "Veelgestelde vragen",
-        "href": "index.html#vragen",
-        "shortText": "Vragen"
+        "text": "Vragen",
+        "shortText": "Vragen",
+        "href": "vragen.html"
       },
       {
         "text": "Contact",
-        "href": "contact.html",
-        "shortText": "Contact"
+        "shortText": "Contact",
+        "href": "contact.html"
       }
     ],
-    "cta": "Start je Gripscan",
-    "_note": "shortText is de korte naam die op smalle schermen in het menu staat."
+    "cta": "Start je Gripscan"
   },
   "contact": {
-    "_note": "Vul per kanaal de echte gegevens in en zet enabled op true. Een zichtbaar telefoonnummer is een van de sterkste vertrouwenssignalen.",
+    "_note": "Gegevens volgens REDESIGN.md §7. E-mailadres staat uit tot Marco het bevestigt (open punt §10.1).",
+    "address": {
+      "enabled": true,
+      "name": "Grip op Stroom B.V.",
+      "street": "Handelsweg 14",
+      "postcode": "7041 GX",
+      "city": "'s-Heerenberg"
+    },
     "phone": {
-      "enabled": false,
+      "enabled": true,
       "label": "Bel ons",
-      "display": "",
-      "href": "",
-      "hours": ""
+      "display": "026 205 6179",
+      "href": "tel:+31262056179",
+      "e164": "+31262056179",
+      "hours": "Iedere werkdag van 08:00 tot 17:00"
     },
     "email": {
       "enabled": false,
       "label": "Mail ons",
       "display": "",
-      "href": ""
+      "href": "",
+      "_note": "Open punt: klantenservice@solarisprime.nl of een eigen adres op het Grip op Stroom-domein?"
     },
     "whatsapp": {
       "enabled": false,
       "label": "App ons via WhatsApp",
       "display": "",
       "href": ""
+    },
+    "hours": {
+      "enabled": true,
+      "text": "Iedere werkdag van 08:00 tot 17:00",
+      "schema": [
+        "Mo-Fr 08:00-17:00"
+      ]
     },
     "responseTime": {
       "enabled": false,
@@ -82,13 +102,8 @@
   "company": {
     "legalName": "Grip op Stroom B.V.",
     "tagline": "Grip op Stroom richt zich op woningeigenaren in Nederland.",
-    "_note": "Deze gegevens zijn wettelijk verplicht op de website (art. 3:15d BW). Vul ze in en zet enabled op true.",
+    "_note": "Verplichte gegevens (art. 3:15d BW). KvK en btw pas aanzetten na bevestiging (open punt §10.2).",
     "details": [
-      {
-        "label": "Vestigingsadres",
-        "value": "",
-        "enabled": false
-      },
       {
         "label": "KvK-nummer",
         "value": "",
@@ -143,11 +158,8 @@
       }
     ]
   },
-  "mobileBar": {
-    "cta": "Start je Gripscan",
-    "call": "Bellen"
-  },
   "footer": {
+    "menuTitle": "Menu",
     "contactTitle": "Contact",
     "legalTitle": "Goed om te weten",
     "legal": [
@@ -174,6 +186,40 @@
     ],
     "sourcesTitle": "Bronnen",
     "sourcesIntro": "De nummers bij de cijfers op deze pagina verwijzen naar deze bronnen.",
-    "noContact": "Start de Gripscan. Dan nemen wij contact met je op."
+    "copyright": "Grip op Stroom B.V."
+  },
+  "payoff": "Jouw huis, jouw pad, jouw tempo.",
+  "contactForm": {
+    "_note": "endpoint: URL die de inzending ontvangt (zie server/contact.js). Leeg = formulier nog niet gekoppeld.",
+    "endpoint": "",
+    "title": "Stuur ons een bericht",
+    "fields": {
+      "naam": "Naam",
+      "email": "E-mail",
+      "telefoon": "Telefoon",
+      "postcode": "Postcode",
+      "bericht": "Bericht"
+    },
+    "submit": "Verzenden",
+    "sending": "Bezig met verzenden…",
+    "privacy": "We gebruiken je gegevens alleen om contact met je op te nemen.",
+    "privacyLink": "Lees de privacyverklaring",
+    "errors": {
+      "naam": "Vul je naam in.",
+      "email": "Vul een geldig e-mailadres in, bijvoorbeeld naam@voorbeeld.nl.",
+      "telefoon": "Vul je telefoonnummer in.",
+      "postcode": "Vul een geldige postcode in, bijvoorbeeld 1234 AB.",
+      "bericht": "Schrijf kort waar je vraag over gaat."
+    },
+    "summary": "Controleer de velden met een melding.",
+    "success": "Bedankt. We hebben je bericht ontvangen en nemen contact met je op.",
+    "failure": "Versturen lukte niet. Probeer het later opnieuw of bel ons op 026 205 6179.",
+    "notConnected": "Het formulier is nog niet gekoppeld. Bel ons op 026 205 6179, dan helpen we je direct."
+  },
+  "ctaBand": {
+    "title": "Benieuwd wat dit voor jouw woning betekent?",
+    "text": "Start je Gripscan en zie welke stappen bij jouw huis passen.",
+    "cta": "Start je Gripscan",
+    "reassurance": "De Gripscan is vrijblijvend en je zit nergens aan vast."
   }
 }

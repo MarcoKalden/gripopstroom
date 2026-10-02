@@ -1,21 +1,22 @@
 # Grip op Stroom: website
 
 Statische site (HTML, CSS, vanilla JavaScript). Geen framework, geen buildstap en
-geen npm-afhankelijkheden in de site zelf.
+geen npm-afhankelijkheden in de site zelf. Vormgeving volgens `REDESIGN.md`
+("lekker wonen": warm, rustig, met mensen en sfeer).
 
 | Pagina | Inhoud |
 | --- | --- |
-| `index.html` | Homepage: hero, keurmerken, aanpak, labelsprong-teaser, drie stappen, pakketten, griptegoed, wie zijn wij, beloftes, ervaringen, subsidie, veelgestelde vragen, afsluiting |
-| `zo-werkt-het.html` | De brandingpagina met de labelanimatie, gripplan, pakketten, griptegoed en vertrouwen |
-| `over-ons.html` | Waarom we bestaan, hoe we werken, team en uitvoering |
-| `contact.html` | Contactkanalen en bedrijfsgegevens |
+| `index.html` | Homepage: hero met foto, Comfort dat je voelt (woning met hotspots), Gripplan-blok met screenshot, pakketten, griptegoed, waarom Grip op Stroom, contact met formulier, vijf vragen |
+| `zo-werkt-het.html` | Het stappenplan met de voorbeeldwoning, drie stappen, wat er gebeurt na je aanvraag |
+| `pakketten.html` | Pakketten, vergelijkingstabel, griptegoed, hulp bij het betalen |
+| `vragen.html` | Alle vragen, gegroepeerd, met zoekveld |
+| `over-ons.html` | Waarom we bestaan, hoe we werken, team en uitvoering (staan uit tot er gegevens zijn) |
+| `contact.html` | Adres, telefoon, bereikbaarheid en contactformulier |
 | `privacy.html`, `cookies.html`, `voorwaarden.html`, `klachten.html`, `toegankelijkheid.html` | Sjablonen. De tekst volgt; tot die tijd `noindex` |
-
-De opdracht voor de homepage staat in `docs/instructie-homepage.md`.
 
 ## Bekijken
 
-De pagina's laden JSON en de SVG met `fetch`, dus open ze via een webserver:
+De pagina's laden JSON met `fetch`, dus open ze via een webserver:
 
 ```sh
 python3 -m http.server 8000
@@ -26,63 +27,87 @@ python3 -m http.server 8000
 
 | Bestand | Inhoud |
 | --- | --- |
-| `content/site.json` | Gedeeld: menu, links, contactgegevens, bedrijfsgegevens, keurmerken, footer |
-| `content/home.json`, `zo-werkt-het.json`, `over-ons.json`, `contact.json`, `juridisch.json` | Teksten per pagina. Een paginabestand mag elke waarde uit `site.json` overschrijven |
-| `steps.json` | Stappen, labels en bedragen van de voorbeeldwoning (placeholders, `"validated": false`). De homepage-teaser haalt zijn cijfers hier ook uit |
-| `sources.json` | Bronnenlijst. Elke pagina toont alleen de bronnen die hij aanhaalt, genummerd in de volgorde van dit bestand |
-| `js/site.js` | Laadt en vult alle pagina's, header, menu, mobiele balk, inschuiven, structured data |
-| `js/animation.js` | Alleen de labelanimatie op Zo werkt het |
-| `js/home.js` | Labelsprong-teaser en het (nog uitgeschakelde) adresformulier |
-| `css/styles.css` | Huisstijl (CSS-variabelen op `:root`) en opmaak van alle pagina's |
-| `partials/` | Gedeelde head, header en footer |
-| `assets/` | Logo's, woning-SVG, iconen (Lucide, ISC), lettertype Source Sans 3 (OFL), favicon, OG-afbeelding |
+| `content/site.json` | Gedeeld: menu, links, contact- en bedrijfsgegevens, formulierteksten, footer, CTA-band |
+| `content/pakketten.json` | Pakketten, vergelijkingstabel, griptegoed, financiering (homepage en pakkettenpagina) |
+| `content/vragen.json` | Alle vragen. `home: true` zet een vraag ook op de homepage (maximaal vijf) |
+| `content/home.json`, `zo-werkt-het.json`, `over-ons.json`, `contact.json`, `juridisch.json` | Teksten per pagina |
+| `steps.json` | Stappen van het stappenplan: naam, label, bedragen, bronnen en render (placeholders, `"validated": false`) |
+| `sources.json` | Bronnenlijst. Elke pagina toont alleen de bronnen die hij aanhaalt, in de footer onder "Bronnen" |
+| `js/site.js` | Laadt en vult alle pagina's, header, bronnen, contactformulier, structured data |
+| `js/stappenplan.js` | Het stappenplan op Zo werkt het |
+| `js/home.js`, `js/pakketten.js`, `js/vragen.js` | Hotspots, vergelijkingstabel, zoeken in de vragen |
+| `css/styles.css` | Design tokens (`:root`) en opmaak van alle pagina's |
+| `partials/` | Gedeelde head, header, footer en contactblok |
+| `grip-op-stroom-fotos/` | De vijf aangeleverde foto's (bron) |
+| `assets/foto/` | Bewerkte foto's in AVIF, WebP en JPG, 640/1024/1600 px |
+| `assets/woning/` | Renders van de voorbeeldwoning (nog leeg, zie hieronder) |
+| `assets/gripplan-screenshot.*` | Screenshot van het stappenplan voor de homepage |
+| `assets/fonts/` | Bricolage Grotesque en Figtree (OFL), lokaal |
+| `server/contact.js` | Server-route die het contactformulier doormailt |
 | `scripts/sync-partials.js` | Zet de partials in alle pagina's, plus canonical, `sitemap.xml` en `robots.txt` |
 | `scripts/check-livegang.js` | Meldt alles wat nog moet gebeuren voor livegang |
-| `tests/` | Playwright- en axe-tests |
+| `tests/` | Tests en beeldgereedschap (Playwright, axe, sharp) |
 
 ### Teksten aanpassen
 
-Alle teksten staan in `content/`. In de HTML staat alleen de opbouw, plus een
-terugvaltekst voor de hero, het menu en de Gripscan-knop voor als JavaScript niet laadt.
-Een bronverwijzing schrijf je als `[[bron-id]]`, met een id uit `sources.json`.
+Alle teksten staan in `content/`. Een pagina noemt in `<body data-content="...">` welke
+bestanden hij gebruikt; latere bestanden overschrijven eerdere. Een bronverwijzing schrijf
+je als `[[bron-id]]`, met een id uit `sources.json`.
 
 ### Het `enabled`-patroon
 
 Alles wat nog niet echt bestaat, staat in de JSON met `"enabled": false` en verschijnt
 niet op de site. Lege lijsten en lege teksten verschijnen ook niet. Zo staan er nooit
-verzonnen reviews, keurmerken, garanties of bedrijfsgegevens op de site.
+verzonnen reviews, keurmerken, garanties of bedrijfsgegevens op de site. In de HTML regel je
+dit met `data-if="pad"` en `data-if-not="pad"`.
 
-Een onderdeel aanzetten: vul de echte gegevens in en zet `enabled` op `true`. De pagina
-past zich aan. In de HTML regel je dit met `data-if="pad"` (tonen als het aan staat) en
-`data-if-not="pad"` (het omgekeerde). In lijsten worden items met `enabled: false`
-overgeslagen.
+### Header, footer en contactblok wijzigen
 
-### Header en footer wijzigen
+Pas het bestand in `partials/` aan en draai `node scripts/sync-partials.js`. Het resultaat
+staat gewoon in de HTML en gaat mee in de commit.
 
-Pas `partials/header.html`, `partials/footer.html` of `partials/head.html` aan en draai:
+### Foto's
+
+De bronfoto's staan in `grip-op-stroom-fotos/`. Na een wijziging:
 
 ```sh
-node scripts/sync-partials.js
+cd tests && npm install && npm run photos
 ```
 
-Het resultaat staat gewoon in de HTML en gaat mee in de commit. Zet je `siteUrl` in
-`content/site.json`, dan schrijft hetzelfde script ook canonical, `og:url` en `sitemap.xml`.
+Dat maakt de set iets warmer en matter (saturatie −10%, zwartpunt +4%) in drie breedtes.
+De bronnen zijn 1672 px breed; 2400 px uit REDESIGN.md kan pas met grotere bronbestanden.
+
+### Renders van de voorbeeldwoning
+
+Het platte huisje is weg. Op de plekken waar de renders komen, staat nu een duidelijk
+gelabelde placeholder met de verwachte bestandsnaam. Zet de renders in `assets/woning/`
+met de namen uit `steps.json` (`render`) en `content/home.json` (`comfort.render`); de site
+pakt ze dan vanzelf op. Daarna:
+
+```sh
+cd tests && npm run screenshot:gripplan
+```
+
+om de screenshot op de homepage te vernieuwen. Zonder renders geeft de browser per
+ontbrekend bestand een 404 in de console; dat is verwacht.
+
+### Contactformulier
+
+Het formulier controleert alle velden in de browser (Nederlandse meldingen, focus naar het
+eerste foute veld, honeypot tegen spam). Verzenden gaat naar `content/site.json →
+contactForm.endpoint`. Zolang dat leeg is, krijgt de bezoeker de melding dat het formulier
+nog niet gekoppeld is, met het telefoonnummer. `server/contact.js` is een kleine Node-route
+die de inzending mailt naar `CONTACT_TO` (instellingen staan bovenin het bestand).
 
 ## Gedrag
 
-- Het menu staat altijd zichtbaar, ook op mobiel (geen hamburgermenu). Op smalle schermen
-  staat het als rij onder logo en knop, met korte namen uit `nav.items[].shortText`.
-- Header blijft boven in beeld, wordt compact bij scrollen, verdwijnt bij omlaag scrollen
-  en komt terug bij omhoog scrollen. Boven de labelanimatie blijft hij weg.
-- Elke woningafbeelding is gemarkeerd als voorbeeldwoning.
-- Op mobiel verschijnt onderin een balk met de Gripscan-knop (en een belknop zodra er
-  een telefoonnummer is) als de hero uit beeld is. Bij de animatie, de afsluiting en de footer
-  verdwijnt hij.
-- De labelanimatie loopt op desktop mee met scrollen als de hele sectie in één schermhoogte
-  past. Op lagere schermen en op mobiel werkt hij met knoppen, swipe en pijltjestoetsen.
-  De optionele laadpaalstap staat in `steps.json` met `"enabled": false`.
-- Met `prefers-reduced-motion: reduce` beweegt er niets automatisch.
-- Tussen pagina's een rustige overgang (View Transitions) in browsers die dat ondersteunen.
+- Het menu staat altijd zichtbaar, ook op mobiel (als rij onder logo en knop).
+- De header verdwijnt bij omlaag scrollen en komt terug bij omhoog scrollen.
+- Stappenplan: stappenbalk als tablist, pijltjestoetsen, vegen, afspelen (3 s per stap,
+  stopt bij interactie), crossfade van de renders, cijfers tellen mee, `?stap=batterij` of
+  `?stap=5` in de URL. De hotspots op de homepage linken hierheen.
+- Een klik op een bronnummer klapt de bronnenlijst in de footer open.
+- Met `prefers-reduced-motion: reduce` beweegt er niets en staat Afspelen uit.
 
 ## Testen
 
@@ -91,57 +116,43 @@ python3 -m http.server 8000     # in de hoofdmap, laat draaien
 cd tests && npm install && npm test
 ```
 
-De tests controleren alle pagina's op 360, 768, 1024 en 1440 px (geen horizontaal
-scrollen, geen consolefouten, geen verzoeken naar andere domeinen), axe (WCAG 2.2 AA),
-de labelanimatie (scroll op desktop, knoppen en toetsen op mobiel), de teaser, het menu
-op smalle schermen, minder beweging, en een ronde waarin alles met `enabled: false` tijdelijk aan staat.
-Schermafdrukken komen in `tests/screenshots/`.
+De tests controleren alle pagina's op 390, 768, 1024 en 1440 px (geen horizontaal
+scrollen, geen consolefouten behalve ontbrekende renders, geen externe verzoeken), axe
+(WCAG 2.2 AA), het stappenplan, de homepage (geen stappenplan-module, hotspots, vijf vragen,
+structured data, menu), het formulier, zoeken in de vragen, minder beweging, en een ronde
+waarin alles met `enabled: false` tijdelijk aan staat. Schermafdrukken komen in
+`tests/screenshots/`.
 
-Lighthouse (mobiel, lokale server zonder compressie): Prestaties 97, Toegankelijkheid 100,
-Best practices 100, SEO 100. LCP circa 2,6 s, CLS 0,001.
+Lighthouse (mobiel, lokale server zonder compressie): homepage 95 / 100 / 96 / 100,
+Zo werkt het 97 / 100 / 96 / 100, Pakketten 96 / 100 / 100 / 100. De 96 voor Best practices
+komt alleen door de 404's van de nog ontbrekende renders. LCP homepage circa 2,8 s; met
+compressie op de echte hosting moet die onder 2,5 s komen.
 
 ## Voor livegang
 
-`node scripts/check-livegang.js` meldt alles wat hieronder nog openstaat. Livegang kan
-pas als het script niets meer meldt.
+`node scripts/check-livegang.js` meldt alles wat nog openstaat. Livegang kan pas als het
+script niets meer meldt.
 
-Inhoud en cijfers:
+Open punten uit REDESIGN.md §10 (eerst bevestigen, niet zelf invullen):
 
-- Stappen, bedragen en labelsprongen valideren met een EP-adviseur (`steps.json`).
-- Bevestigen dat batterij, energiemanagement en laadpaal niet meetellen in NTA 8800.
-- Labeleffecten per pakket laten valideren (`content/zo-werkt-het.json` en `content/home.json` → `packages`).
-- Bron-URL's en publicatiedata in `sources.json` controleren, ook de nieuwe bronnen voor ISDE en Warmtefonds.
-- Teksten op de homepage en Over ons laten nalezen door Marco, vooral `about.text` en `why`.
+1. E-mailadres: `klantenservice@solarisprime.nl` of een eigen adres → `content/site.json → contact.email`.
+2. KvK-nummer van Grip op Stroom B.V. → `content/site.json → company.details`.
+3. Warmtepomp: blijft hij in pakket *Stevige grip* en in het stappenplan? Hij staat er nu nog
+   in, omdat de cijfers en labels erop gebaseerd zijn. Een airco-stap ontbreekt, omdat er geen
+   cijfers voor zijn.
+4. Renders: wie maakt ze en wanneer? Advies: niet live met placeholders.
+5. Logo als SVG aanleveren.
 
-Gegevens van Marco (pad in de JSON):
+Verder:
 
-- Vestigingsadres, KvK-nummer, btw-nummer → `content/site.json` → `company.details`.
-- Telefoonnummer met openingstijden, e-mailadres, eventueel WhatsApp → `content/site.json` → `contact`.
-- Reactietermijn → `content/site.json` → `contact.responseTime`.
-- Echte certificeringen en lidmaatschappen met registerlink en logo → `content/site.json` → `credentials.items`.
-- Garantie, geschillencommissie, voorwaarden, vaste contactpersoon, vaste prijs → `content/home.json` → `promises.items`.
-- Wie het werk uitvoert en het werkgebied → `content/home.json` → `about.facts` en `content/over-ons.json` → `execution`.
-- Foto's en teksten van Marco en het team → `about.team` en `content/over-ons.json` → `team` en `why.story`.
-- Doorlooptijden per stap → `content/home.json` → `process.items[].duration`.
-- Antwoorden op de open vragen → `content/home.json` → `faq.items`.
-- Reviewplatform, score en hoe reviews worden gecontroleerd → `content/home.json` → `reviews`.
-- Of we helpen bij ISDE- en Warmtefonds-aanvragen → `content/home.json` → `funding.help`.
-
-Juridisch:
-
-- Juridische toets van het griptegoed: op wiens rekening staat het, wat gebeurt er bij stoppen
-  of faillissement, is er een vergunning nodig? Pas daarna `credit.safety` en de FAQ over het
-  griptegoed aanzetten.
-- Teksten voor privacy, cookies, voorwaarden, klachten en toegankelijkheid →
-  `content/juridisch.json`. Zet per pagina `ready` op `true` en haal de `noindex`-regel uit de HTML.
-
-Techniek:
-
-- De echte link naar de Gripscan → `content/site.json` → `links.gripscan`, en haal de
-  overschrijving `links.gripscan` uit `home.json` en `zo-werkt-het.json` weg.
-  Daarna eventueel het adresformulier aanzetten → `content/home.json` → `hero.addressForm`.
-- Domein invullen → `content/site.json` → `siteUrl`, dan `node scripts/sync-partials.js`.
-- Hosting met HTTPS, HSTS, compressie (gzip of brotli) en een Content-Security-Policy.
-  Let op: `partials/head.html` bevat één klein inline script dat de klasse `js` zet;
-  sta dat toe met een hash in de CSP.
-- Als er statistieken komen: een cookieloze oplossing. De `data-cta`-attributen zijn de meetpunten.
+- Stappen, bedragen en labelsprongen valideren met een EP-adviseur (`steps.json`), ook de laadpaalstap die nu aan staat.
+- Labeleffecten per pakket laten valideren (`content/pakketten.json`).
+- Bron-URL's in `sources.json` controleren.
+- Juridische toets van het griptegoed (rekening, faillissement, terugbetaling, vergunning),
+  vooral omdat de tekst "Je tegoed blijft jouw eigendom" belooft. Pas daarna `credit.safety` aanzetten.
+- Contactformulier koppelen: `server/contact.js` draaien of een bestaande formulierdienst,
+  en de URL in `contactForm.endpoint` zetten.
+- Teksten voor privacy, cookies, voorwaarden, klachten en toegankelijkheid → `content/juridisch.json`.
+- Domein → `content/site.json → siteUrl`, dan `node scripts/sync-partials.js`.
+- Hosting met HTTPS, HSTS, compressie en een Content-Security-Policy (het kleine inline
+  script in `partials/head.html` met een hash toestaan).

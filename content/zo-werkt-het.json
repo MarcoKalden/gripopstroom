@@ -1,21 +1,13 @@
 {
-  "_note": "Alle teksten zijn voorstellen. Pas ze hier aan zonder de code te raken. Een bronverwijzing schrijf je als [[bron-id]], met een id uit sources.json.",
+  "_note": "Teksten voor Zo werkt het. De stappen, bedragen en renders staan in steps.json.",
   "meta": {
     "title": "Zo werkt het | Grip op Stroom",
-    "description": "Grip op Stroom maakt met openbare data een analyse van jouw woning en stelt samen met jou een gefaseerd gripplan op."
+    "description": "Bekijk per stap wat er verandert in een voorbeeldwoning: energielabel, energiekosten en woningwaarde. Met een bron bij elk cijfer."
   },
-  "links": {
-    "gripscan": "#gripscan"
-  },
-  "hero": {
-    "title": "Jouw huis, jouw pad, jouw tempo.",
-    "lead": "Grip op Stroom helpt woningeigenaren hun huis stap voor stap te verduurzamen. Je krijgt grip op je energie en grip op elke beslissing.",
-    "ctaPrimary": "Start je Gripscan",
-    "ctaSecondary": "Zo werkt het gripplan",
-    "ctaSecondaryHref": "#gripplan",
-    "labelBadge": "Nu: label C[[voorbeeldwoning]]",
-    "figureLabel": "Illustratie van een tussenwoning met energielabel C, het vertrekpunt van de voorbeeldwoning.",
-    "exampleCaption": "Voorbeeldwoning: tussenwoning, circa 1980, circa 120 m²[[voorbeeldwoning]]"
+  "page": {
+    "eyebrow": "Zo werkt het · Stappenplan",
+    "title": "Elke stap maakt je woning sterker",
+    "lead": "Bekijk hoe een voorbeeldwoning verandert. Je ziet per stap wat er gebeurt met het energielabel, de energiekosten en de woningwaarde."
   },
   "animation": {
     "eyebrow": "Stap voor stap sterker",
@@ -24,7 +16,7 @@
     "exampleLabel": "Voorbeeldwoning",
     "exampleSpecs": "Tussenwoning, circa 1980, circa 120 m², label C[[voorbeeldwoning]]",
     "disclaimer": "Indicatief voorbeeld. Jouw situatie berekenen we in de Gripscan.",
-    "stepsLabel": "Stappen",
+    "stepsLabel": "Stappen in het stappenplan",
     "stepCounter": "Stap {n} van {total}",
     "figureLabel": "Illustratie van de voorbeeldwoning. Gebruik de pijltjestoetsen om door de stappen te gaan.",
     "meters": {
@@ -59,7 +51,10 @@
     "live": "Stap {n} van {total}: {name}. Energielabel {label}. Energiekosten circa {cost} per jaar. Woningwaarde circa {value}.",
     "liveNoLabelEffect": "Het label verandert niet.",
     "cta": "Bereken dit voor jouw woning",
-    "ctaHref": "#gripscan"
+    "ctaHref": "#gripscan",
+    "renderLabel": "Voorbeeldwoning · tussenwoning 1980 · 120 m²",
+    "placeholder": "Render volgt",
+    "newPart": "Nieuw: {name}"
   },
   "plan": {
     "eyebrow": "Hoe het gripplan werkt",
@@ -80,6 +75,32 @@
       }
     ]
   },
+  "process": {
+    "_note": "Vul bij duration een termijn in zodra Marco die bevestigt. Een lege duration wordt niet getoond.",
+    "title": "Wat gebeurt er na je aanvraag?",
+    "items": [
+      {
+        "title": "Je start de Gripscan",
+        "text": "Je vraagt de Gripscan aan voor je woning.",
+        "duration": ""
+      },
+      {
+        "title": "We bekijken je woning",
+        "text": "We zoeken de openbare gegevens op en zetten de mogelijke stappen op een rij.",
+        "duration": ""
+      },
+      {
+        "title": "We bespreken je gripplan",
+        "text": "Samen kijken we welke stappen bij jou passen, in welke volgorde en in welk tempo.",
+        "duration": ""
+      },
+      {
+        "title": "Jij beslist",
+        "text": "Pas als jij akkoord geeft, plannen we de eerste stap. Daarna heb je 14 dagen bedenktijd[[bedenktijd]].",
+        "duration": ""
+      }
+    ]
+  },
   "offer": {
     "title": "Wat we voor je regelen",
     "items": [
@@ -93,100 +114,5 @@
       "Energiemanagement",
       "Energiecontracten"
     ]
-  },
-  "packages": {
-    "_note": "Labeleffecten gelden voor de voorbeeldwoning en moeten door een EP-adviseur worden gevalideerd. Prijzen volgen zodra ze zijn vastgesteld.",
-    "eyebrow": "Pakketten",
-    "title": "Kies hoeveel grip je wilt",
-    "intro": "Elk pakket is een vertrekpunt. In je gripplan stemmen we de stappen af op jouw woning.",
-    "measuresLabel": "Maatregelen",
-    "effectLabel": "Verwacht labeleffect in de voorbeeldwoning",
-    "priceNote": "De prijs hoort bij jouw woning. Die krijg je na de Gripscan.",
-    "items": [
-      {
-        "name": "Ferme grip",
-        "summary": "Je woning houdt de warmte beter vast.",
-        "measures": [
-          "Kozijnen met HR++ of triple glas",
-          "Dak- en vloerisolatie"
-        ],
-        "labelFrom": "C",
-        "labelTo": "A",
-        "effectText": "Van C naar A[[nta-8800]]"
-      },
-      {
-        "name": "Stevige grip",
-        "summary": "Je verwarmt zuinig en maakt je eigen stroom.",
-        "measures": [
-          "Alles uit Ferme grip",
-          "Warmtepomp",
-          "Zonnepanelen"
-        ],
-        "labelFrom": "C",
-        "labelTo": "A++",
-        "effectText": "Van C naar A++[[nta-8800]]"
-      },
-      {
-        "name": "Volledige grip",
-        "summary": "Je gebruikt je eigen stroom op het slimste moment.",
-        "measures": [
-          "Alles uit Stevige grip",
-          "Thuisbatterij met energiemanagement",
-          "Dynamisch energiecontract",
-          "Laadpaal of airco als je dat wilt"
-        ],
-        "labelFrom": "C",
-        "labelTo": "A++",
-        "effectText": "Van C naar A++. De extra stappen verlagen vooral je kosten[[nta-8800]]"
-      }
-    ]
-  },
-  "credit": {
-    "eyebrow": "Griptegoed",
-    "title": "Je spaart voor je volgende stap",
-    "text": "Je betaalt een stap uit eigen middelen of met een abonnement. Met het abonnement zet je elke maand een vast bedrag opzij. Dat bedrag blijft van jou tot je samen met ons besluit over je volgende investering.",
-    "points": [
-      "Je tegoed blijft jouw eigendom",
-      "Jij beslist wanneer je de volgende stap zet",
-      "Je ziet altijd hoeveel je hebt opgebouwd"
-    ],
-    "exampleLabel": "Voorbeeld",
-    "progressFrom": "Ferme grip gerealiseerd",
-    "progressTo": "Volgende stap: warmtepomp",
-    "progressAria": "Voorbeeld van een voortgangsbalk. Je griptegoed groeit richting je volgende stap, een warmtepomp."
-  },
-  "trust": {
-    "eyebrow": "Vertrouwen",
-    "title": "Waarom je ons kunt vertrouwen",
-    "items": [
-      {
-        "title": "Gecertificeerde EP-adviseurs",
-        "text": "Een gecertificeerde EP-adviseur neemt je energielabel op. Zo weet je dat je label klopt."
-      },
-      {
-        "title": "Een bron bij elk cijfer",
-        "text": "Bij elk cijfer op deze pagina staat een klein nummer. Dat nummer verwijst naar de bron onderaan de pagina."
-      },
-      {
-        "title": "14 dagen bedenktijd[[bedenktijd]]",
-        "text": "Na je akkoord heb je 14 dagen bedenktijd[[bedenktijd]]. Je kunt in die tijd zonder kosten afzien van de opdracht."
-      },
-      {
-        "title": "Jij neemt het initiatief",
-        "text": "Wij verkopen niet aan de deur en niet via de telefoon. Jij neemt contact op wanneer het jou uitkomt."
-      }
-    ],
-    "reviews": {
-      "_note": "Zet enabled op true zodra er echte reviews zijn. Vul nooit voorbeeldreviews in.",
-      "enabled": false,
-      "title": "Ervaringen van deelnemers",
-      "items": []
-    }
-  },
-  "closing": {
-    "title": "Benieuwd wat dit voor jouw woning betekent?",
-    "text": "Start je Gripscan en zie welke stappen bij jouw huis passen.",
-    "cta": "Start je Gripscan",
-    "reassurance": "De Gripscan is vrijblijvend en je zit nergens aan vast."
   }
 }

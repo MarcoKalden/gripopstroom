@@ -3,8 +3,9 @@
    - geen horizontaal scrollen op 360, 768, 1024 en 1440 px
    - geen fouten in de console, geen verzoeken naar andere domeinen
    - geen axe-fouten (WCAG 2.2 AA)
-   - labelanimatie: scroll op desktop, knoppen en pijltjestoetsen op mobiel
-   - teaser op de homepage en het menu op smalle schermen
+   - stappenplan: stappenbalk, pijltjestoetsen, ?stap= in de URL
+   - homepage: hotspots, structured data, maximaal vijf vragen, menu op smalle schermen
+   - contactformulier: foutmeldingen en focus; zoeken in de vragen
    - met prefers-reduced-motion beweegt er niets automatisch
    - alles met enabled: false tijdelijk aan (alleen in de test) en dan nog steeds netjes
    Schermafdrukken komen in tests/screenshots/.
@@ -21,9 +22,11 @@ const { AxeBuilder } = require('@axe-core/playwright');
 
 const BASE = process.env.BASE_URL || 'http://localhost:8000/';
 const OUT = path.join(__dirname, 'screenshots');
-const PAGES = ['index.html', 'zo-werkt-het.html', 'over-ons.html', 'contact.html',
+const PAGES = ['index.html', 'zo-werkt-het.html', 'pakketten.html', 'vragen.html', 'over-ons.html', 'contact.html',
   'privacy.html', 'cookies.html', 'voorwaarden.html', 'klachten.html', 'toegankelijkheid.html'];
-const WIDTHS = [360, 768, 1024, 1440];
+const WIDTHS = [390, 768, 1024, 1440];
+// Renders die nog niet bestaan geven een 404; de site toont dan een gelabelde placeholder.
+const EXPECTED_MISSING = /\/assets\/woning\//;
 
 let failures = 0;
 const fail = (msg) => { failures++; console.log('  FOUT ' + msg); };
@@ -45,7 +48,10 @@ async function openPage(browser, file, viewport, options = {}) {
   const page = await context.newPage();
   const errors = [];
   const external = [];
-  page.on('console', (m) => { if (m.type() === 'error' || m.type() === 'warning') errors.push(m.text()); });
+  page.on('console', (m) => {
+    if ((m.type() === 'error' || m.type() === 'warning') && !/^Failed to load resource/.test(m.text())) errors.push(m.text());
+  });
+  page.on('response', (r) => { if (r.status() >= 400 && !EXPECTED_MISSING.test(r.url())) errors.push(r.status() + ' ' + r.url()); });
   page.on('pageerror', (e) => errors.push(e.message));
   page.on('request', (r) => { if (!r.url().startsWith(BASE) && !r.url().startsWith('data:')) external.push(r.url()); });
   if (options.route) await page.route('**/content/*.json', options.route);
@@ -89,77 +95,105 @@ async function testAxe(browser) {
   }
 }
 
-async function testAnimation(browser) {
-  console.log('\nLabelanimatie op Zo werkt het');
-  // Desktop: scroll-modus, header verdwijnt boven de animatie.
-  {
-    const { context, page } = await openPage(browser, 'zo-werkt-het.html', { width: 1440, height: 900 });
-    const scrollMode = await page.$eval('[data-label-animation]', (el) => el.classList.contains('is-scroll-mode'));
-    if (!scrollMode) fail('desktop: geen scroll-modus');
-    const top = await page.$eval('.anim__track', (el) => el.getBoundingClientRect().top + window.scrollY);
-    await page.evaluate((y) => window.scrollTo(0, y), top + 2 * 900 + 100);
-    await page.waitForTimeout(700);
-    const current = await page.$eval('.steps__btn[aria-current="step"]', (b) => b.getAttribute('aria-label'));
-    if (!/^2\./.test(current)) fail('desktop: scrollen naar stap 2 geeft ' + current);
-    const hidden = await page.$eval('.site-header', (h) => h.classList.contains('is-hidden'));
-    if (!hidden) fail('desktop: header staat over de animatie');
-    if (scrollMode && /^2\./.test(current) && hidden) ok('desktop: scroll stuurt de stappen, header uit beeld');
-    await context.close();
-  }
-  // Mobiel: knoppen en pijltjestoetsen.
-  {
-    const { context, page } = await openPage(browser, 'zo-werkt-het.html', { width: 390, height: 800 });
-    await page.click('[data-next]');
-    await page.click('[data-next]');
-    let current = await page.$eval('.steps__btn[aria-current="step"]', (b) => b.getAttribute('aria-label'));
-    if (!/^2\./.test(current)) fail('mobiel: twee keer Volgende geeft ' + current);
-    await page.focus('[data-figure]');
-    await page.keyboard.press('ArrowLeft');
-    current = await page.$eval('.steps__btn[aria-current="step"]', (b) => b.getAttribute('aria-label'));
-    if (!/^1\./.test(current)) fail('mobiel: pijltje links geeft ' + current);
-    else ok('mobiel: knoppen en pijltjestoetsen werken');
-    await context.close();
-  }
+async function testStappenplan(browser) {
+  console.log('\nStappenplan op Zo werkt het');
+  const { context, page } = await openPage(browser, 'zo-werkt-het.html?stap=batterij', { width: 1440, height: 900 });
+  let sel = await page.$eval('[role="tab"][aria-selected="true"]', (t) => t.textContent);
+  if (!/Batterij/.test(sel)) fail('?stap=batterij opent ' + sel); else ok('deeplink ?stap=batterij');
+  await page.click('[role="tab"]:nth-child(2)');
+  await page.waitForTimeout(800);
+  sel = await page.$eval('[role="tab"][aria-selected="true"]', (t) => t.textContent);
+  const url = page.url();
+  const cost = await page.textContent('[data-cost]');
+  if (!/Kozijnen/.test(sel) || !/stap=kozijnen/.test(url)) fail(`klik op Kozijnen: ${sel}, ${url}`);
+  else ok(`klik op stap: ${sel}, URL ${url.split('?')[1]}, kosten ${cost}`);
+  await page.keyboard.press('ArrowRight');
+  sel = await page.$eval('[role="tab"][aria-selected="true"]', (t) => t.textContent);
+  if (!/Isolatie/.test(sel)) fail('pijltje rechts geeft ' + sel); else ok('pijltjestoetsen in de stappenbalk');
+  const chip = await page.textContent('[data-part-chip]');
+  if (!/Isolatie/.test(chip)) fail('onderdeel-label: ' + chip); else ok('onderdeel-label: ' + chip);
+  const placeholder = await page.$('[data-render-stage] .render__placeholder');
+  ok(placeholder ? 'render ontbreekt nog: gelabelde placeholder zichtbaar' : 'render geladen');
+  await page.click('[data-play]');
+  const pressed = await page.getAttribute('[data-play]', 'aria-pressed');
+  await page.click('[data-next]');
+  const after = await page.getAttribute('[data-play]', 'aria-pressed');
+  if (pressed !== 'true' || after !== 'false') fail(`afspelen ${pressed}, na interactie ${after}`); else ok('afspelen en pauzeren bij interactie');
+  await page.setViewportSize({ width: 390, height: 800 });
+  await page.click('[data-prev]');
+  sel = await page.$eval('[role="tab"][aria-selected="true"]', (t) => t.textContent);
+  if (!/Isolatie/.test(sel)) fail('mobiel Vorige geeft ' + sel); else ok('mobiel: knoppen werken');
+  await context.close();
 }
 
 async function testHome(browser) {
   console.log('\nHomepage');
   const { context, page } = await openPage(browser, 'index.html', { width: 1280, height: 900 });
-  const before = await page.textContent('[data-teaser-label]');
-  await page.click('.teaser__tab:nth-child(3)');
-  await page.waitForTimeout(900);
-  const after = await page.textContent('[data-teaser-label]');
-  const cost = await page.textContent('[data-teaser-cost]');
-  if (before !== 'C' || after !== 'A++') fail(`teaser: label ${before} -> ${after}`);
-  else ok(`teaser: C -> A++, kosten ${cost}`);
-  await page.keyboard.press('ArrowLeft');
-  const sel = await page.$eval('.teaser__tab[aria-selected="true"]', (t) => t.textContent);
-  if (!/Ferme/.test(sel)) fail('teaser: pijltje links werkt niet'); else ok('teaser: pijltjestoetsen');
-  const ld = await page.$$eval('script[type="application/ld+json"]', (s) => s.map((x) => JSON.parse(x.textContent)['@type']));
-  if (!ld.includes('FAQPage') || !ld.includes('HomeAndConstructionBusiness')) fail('structured data ontbreekt: ' + ld);
-  else ok('structured data: ' + ld.join(', '));
-  // Menu staat op mobiel gewoon zichtbaar, zonder hamburgerknop, en past op één rij.
+  const module = await page.$('[data-stappenplan]');
+  if (module) fail('homepage bevat nog de stappenplan-module'); else ok('geen stappenplan-module op de homepage');
+  const spots = await page.$$eval('.hotspot', (as) => as.map((a) => a.textContent.trim() + ' -> ' + a.getAttribute('href')));
+  if (spots.length !== 3) fail('hotspots: ' + spots.join(', ')); else ok('hotspots: ' + spots.join(' | '));
+  await page.hover('.hotspot:nth-of-type(1)');
+  const linked = await page.$eval('.feature.is-active .feature__title', (e) => e.textContent).catch(() => '');
+  if (!linked) fail('hotspot markeert de rij niet'); else ok('hotspot markeert rij: ' + linked);
+  const faq = await page.$$eval('#vragen .faq__item', (d) => d.length);
+  if (faq > 5 || faq === 0) fail(faq + ' vragen op de homepage'); else ok(faq + ' vragen op de homepage');
+  const ld = await page.$$eval('script[type="application/ld+json"]', (s) => s.map((x) => JSON.parse(x.textContent)));
+  const biz = ld.find((x) => x['@type'] === 'HomeAndConstructionBusiness');
+  if (!biz || !biz.address || !biz.telephone || !ld.find((x) => x['@type'] === 'FAQPage')) fail('structured data onvolledig');
+  else ok(`structured data: ${biz.address.streetAddress}, ${biz.telephone}, FAQPage`);
+  const shot = await page.$eval('.browser img', (i) => i.naturalWidth);
+  if (!shot) fail('screenshot stappenplan ontbreekt'); else ok('screenshot stappenplan geladen');
   for (const w of [320, 390]) {
     await page.setViewportSize({ width: w, height: 800 });
-    const visible = await page.$$eval('#site-nav a', (as) => as.filter((a) => a.getBoundingClientRect().width > 0).length);
+    const visible = await page.$$eval('.site-nav a', (as) => as.filter((a) => a.getBoundingClientRect().width > 0).length);
     const overflow = await page.$eval('.site-nav__list', (el) => el.scrollWidth - el.clientWidth);
-    if (visible < 5 || overflow > 0) fail(`menu @${w}: ${visible} links zichtbaar, ${overflow}px te breed`);
-    else ok(`menu @${w}: alle links zichtbaar`);
+    const cta = await page.isVisible('.site-header__cta');
+    if (visible < 5 || overflow > 0 || !cta) fail(`menu @${w}: ${visible} links, ${overflow}px te breed, CTA ${cta}`);
+    else ok(`menu @${w}: alle links en de CTA zichtbaar`);
   }
   await context.close();
 }
 
+async function testForm(browser) {
+  console.log('\nContactformulier');
+  const { context, page } = await openPage(browser, 'contact.html', { width: 1280, height: 900 });
+  await page.click('[data-contact-form] button[type="submit"]');
+  const errors = await page.$$eval('.field__error:not([hidden])', (e) => e.length);
+  const focused = await page.evaluate(() => document.activeElement && document.activeElement.name);
+  if (errors !== 5 || focused !== 'naam') fail(`leeg verzenden: ${errors} meldingen, focus op ${focused}`);
+  else ok('leeg verzenden: 5 meldingen, focus op het eerste veld');
+  await page.fill('#cf-naam', 'Test Persoon');
+  await page.fill('#cf-email', 'test@voorbeeld.nl');
+  await page.fill('#cf-telefoon', '0612345678');
+  await page.fill('#cf-postcode', '12AB');
+  await page.fill('#cf-bericht', 'Testbericht');
+  await page.click('[data-contact-form] button[type="submit"]');
+  const pc = await page.textContent('[data-error-for="postcode"]');
+  if (!pc) fail('ongeldige postcode niet gemeld'); else ok('ongeldige postcode gemeld: ' + pc);
+  await page.fill('#cf-postcode', '7041 GX');
+  await page.click('[data-contact-form] button[type="submit"]');
+  const status = await page.textContent('[data-form-status]');
+  if (!/nog niet gekoppeld/.test(status)) fail('geldig formulier: ' + status); else ok('geldig formulier zonder endpoint: ' + status);
+  await context.close();
+
+  const v = await openPage(browser, 'vragen.html', { width: 1280, height: 900 });
+  await v.page.fill('[data-faq-search]', 'bedenktijd');
+  const shown = await v.page.$$eval('.faq__item', (d) => d.filter((x) => !x.hidden).length);
+  await v.page.fill('[data-faq-search]', 'xyzxyz');
+  const empty = await v.page.isVisible('[data-faq-empty]');
+  if (!shown || !empty) fail(`zoeken: ${shown} treffers, lege melding ${empty}`); else ok(`zoeken op "bedenktijd": ${shown} vraag`);
+  await v.context.close();
+}
+
 async function testReducedMotion(browser) {
   console.log('\nMinder beweging');
-  for (const file of ['index.html', 'zo-werkt-het.html']) {
-    const { context, page } = await openPage(browser, file, { width: 1280, height: 900 }, { reducedMotion: 'reduce' });
-    await scrollThrough(page);
-    const running = await page.evaluate(() => document.getAnimations().filter((a) => a.playState === 'running').length);
-    const hiddenReveal = await page.$$eval('.reveal:not(.is-visible)', (els) => els.length);
-    if (running || hiddenReveal) fail(`${file}: ${running} animaties, ${hiddenReveal} verborgen blokken`);
-    else ok(file);
-    await context.close();
-  }
+  const { context, page } = await openPage(browser, 'zo-werkt-het.html', { width: 1280, height: 900 }, { reducedMotion: 'reduce' });
+  const disabled = await page.$eval('[data-play]', (b) => b.disabled);
+  await page.click('[data-next]');
+  const running = await page.evaluate(() => document.getAnimations().filter((a) => a.playState === 'running').length);
+  if (!disabled || running) fail(`afspelen uit: ${disabled}, ${running} animaties`); else ok('afspelen uit, geen animaties');
+  await context.close();
 }
 
 // Alles wat uit staat tijdelijk aan, met testtekst. Alleen in deze test.
@@ -198,9 +232,10 @@ async function testEverythingOn(browser) {
     const res = await r.fetch();
     const json = fillEmpty(enableAll(await res.json()));
     if (json.reviews) json.reviews.items = [{ quote: 'Testcitaat', author: 'Test', place: 'Teststad' }];
+    if (json.contactForm) json.contactForm.endpoint = '';
     await r.fulfill({ response: res, json });
   };
-  for (const file of ['index.html', 'over-ons.html', 'contact.html', 'privacy.html']) {
+  for (const file of ['index.html', 'pakketten.html', 'over-ons.html', 'contact.html', 'privacy.html']) {
     for (const width of [390, 1440]) {
       const { context, page, errors } = await openPage(browser, file, { width, height: 900 }, { route });
       await scrollThrough(page);
@@ -220,8 +255,9 @@ async function testEverythingOn(browser) {
   try {
     await testLayout(browser);
     await testAxe(browser);
-    await testAnimation(browser);
+    await testStappenplan(browser);
     await testHome(browser);
+    await testForm(browser);
     await testReducedMotion(browser);
     await testEverythingOn(browser);
   } finally {

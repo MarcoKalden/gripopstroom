@@ -1,0 +1,193 @@
+{
+  "_note": "Pakketten, griptegoed en financiering. Gedeeld door de homepage en de pakkettenpagina. Labeleffecten gelden voor de voorbeeldwoning en moeten door een EP-adviseur worden gevalideerd.",
+  "packages": {
+    "eyebrow": "Pakketten",
+    "title": "Kies hoeveel grip je wilt",
+    "intro": "Elk pakket is een vertrekpunt. In je gripplan stemmen we de stappen af op jouw woning.",
+    "measuresLabel": "Maatregelen",
+    "effectLabel": "Verwacht labeleffect in de voorbeeldwoning",
+    "priceNote": "De prijs hoort bij jouw woning. Die krijg je na de Gripscan.",
+    "items": [
+      {
+        "name": "Ferme grip",
+        "summary": "Je woning houdt de warmte beter vast.",
+        "measures": [
+          "Kozijnen met HR++ of triple glas",
+          "Dak- en vloerisolatie"
+        ],
+        "labelFrom": "C",
+        "labelTo": "A",
+        "effectText": "Van C naar A[[nta-8800]]",
+        "id": "ferme-grip",
+        "photo": "ontbijt-gezin",
+        "photoAlt": "Gezin aan de ontbijttafel in een zonnige keuken."
+      },
+      {
+        "name": "Stevige grip",
+        "summary": "Je verwarmt zuinig en maakt je eigen stroom.",
+        "measures": [
+          "Alles uit Ferme grip",
+          "Warmtepomp",
+          "Zonnepanelen"
+        ],
+        "labelFrom": "C",
+        "labelTo": "A++",
+        "effectText": "Van C naar A++[[nta-8800]]",
+        "id": "stevige-grip",
+        "photo": "keuken-senioren",
+        "photoAlt": "Ouder stel in een zonnige keuken; hij snijdt brood, zij drinkt koffie aan tafel.",
+        "featured": true
+      },
+      {
+        "name": "Volledige grip",
+        "summary": "Je gebruikt je eigen stroom op het slimste moment.",
+        "measures": [
+          "Alles uit Stevige grip",
+          "Thuisbatterij met energiemanagement",
+          "Dynamisch energiecontract",
+          "Laadpaal of airco als je dat wilt"
+        ],
+        "labelFrom": "C",
+        "labelTo": "A++",
+        "effectText": "Van C naar A++. De extra stappen verlagen vooral je kosten[[nta-8800]]",
+        "id": "volledige-grip",
+        "photo": "bank-stel",
+        "photoAlt": "Stel ontspant met koffie op de bank in een modern ingerichte woonkamer."
+      }
+    ],
+    "more": "Bekijk alle pakketten",
+    "compare": {
+      "title": "Pakketten naast elkaar",
+      "caption": "Welke maatregelen in welk pakket zitten",
+      "measureCol": "Maatregel",
+      "yes": "Inbegrepen",
+      "no": "Niet inbegrepen",
+      "optional": "Als je dat wilt",
+      "rows": [
+        {
+          "measure": "Kozijnen met HR++ of triple glas",
+          "values": [
+            "yes",
+            "yes",
+            "yes"
+          ]
+        },
+        {
+          "measure": "Dak- en vloerisolatie",
+          "values": [
+            "yes",
+            "yes",
+            "yes"
+          ]
+        },
+        {
+          "measure": "Warmtepomp",
+          "values": [
+            "no",
+            "yes",
+            "yes"
+          ]
+        },
+        {
+          "measure": "Zonnepanelen",
+          "values": [
+            "no",
+            "yes",
+            "yes"
+          ]
+        },
+        {
+          "measure": "Thuisbatterij met energiemanagement",
+          "values": [
+            "no",
+            "no",
+            "yes"
+          ]
+        },
+        {
+          "measure": "Dynamisch energiecontract",
+          "values": [
+            "no",
+            "no",
+            "yes"
+          ]
+        },
+        {
+          "measure": "Laadpaal of airco",
+          "values": [
+            "no",
+            "no",
+            "optional"
+          ]
+        }
+      ],
+      "labelRow": "Verwacht labeleffect in de voorbeeldwoning"
+    }
+  },
+  "credit": {
+    "eyebrow": "Griptegoed",
+    "title": "Je spaart voor je volgende stap",
+    "text": "Je betaalt een stap uit eigen middelen of met een abonnement. Met het abonnement zet je elke maand een vast bedrag opzij. Dat bedrag blijft van jou tot je samen met ons besluit over je volgende investering.",
+    "points": [
+      "Je tegoed blijft jouw eigendom",
+      "Jij beslist wanneer je de volgende stap zet",
+      "Je ziet altijd hoeveel je hebt opgebouwd"
+    ],
+    "exampleLabel": "Voorbeeld",
+    "progressFrom": "Ferme grip gerealiseerd",
+    "progressTo": "Volgende stap: thuisbatterij",
+    "progressAria": "Voorbeeld van een voortgangsbalk. Je griptegoed groeit richting je volgende stap, een thuisbatterij.",
+    "safety": {
+      "_note": "Blijft uit tot er een juridische toets is gedaan: op wiens rekening staat het tegoed, wat gebeurt er bij stoppen of faillissement, is er een vergunning nodig?",
+      "enabled": false,
+      "title": "Waar staat je geld?",
+      "items": [
+        {
+          "question": "Op welke rekening staat je tegoed?",
+          "answer": ""
+        },
+        {
+          "question": "Wat gebeurt er als je stopt?",
+          "answer": ""
+        },
+        {
+          "question": "Wat gebeurt er bij een faillissement?",
+          "answer": ""
+        }
+      ]
+    },
+    "cta": "Meer over het griptegoed",
+    "ctaHref": "pakketten.html#griptegoed"
+  },
+  "funding": {
+    "eyebrow": "Subsidie en financiering",
+    "title": "Hulp bij het betalen",
+    "intro": "Voor een deel van de stappen bestaan regelingen van de overheid. De voorwaarden veranderen regelmatig. Kijk daarom altijd bij de bron.",
+    "items": [
+      {
+        "icon": "landmark",
+        "title": "ISDE-subsidie",
+        "text": "Voor onder meer een warmtepomp en isolatie kun je als woningeigenaar mogelijk subsidie krijgen via de ISDE van de Rijksdienst voor Ondernemend Nederland[[isde]]."
+      },
+      {
+        "icon": "piggy",
+        "title": "Lenen via het Warmtefonds",
+        "text": "Bij het Nationaal Warmtefonds kun je geld lenen om je woning te verduurzamen[[warmtefonds]]."
+      }
+    ],
+    "help": {
+      "_note": "Alleen aanzetten als Grip op Stroom echt helpt bij de aanvraag.",
+      "enabled": false,
+      "text": "Wij helpen je bij de aanvraag."
+    }
+  },
+  "page": {
+    "eyebrow": "Pakketten",
+    "title": "Kies hoeveel grip je wilt",
+    "lead": "Elk pakket is een vertrekpunt. In je gripplan stemmen we de stappen af op jouw woning."
+  },
+  "meta": {
+    "title": "Pakketten | Grip op Stroom",
+    "description": "Ferme grip, Stevige grip of Volledige grip: bekijk wat elk pakket doet, hoe het griptegoed werkt en welke regelingen er zijn."
+  }
+}

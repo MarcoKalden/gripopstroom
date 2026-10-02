@@ -10,7 +10,7 @@ const fs = require('fs');
 const path = require('path');
 
 const root = path.join(__dirname, '..');
-const parts = ['head', 'header', 'footer'].map((name) => ({
+const parts = ['head', 'header', 'contact', 'footer'].map((name) => ({
   name,
   html: fs.readFileSync(path.join(root, 'partials', name + '.html'), 'utf8').trimEnd()
 }));

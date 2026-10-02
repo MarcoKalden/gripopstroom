@@ -1,42 +1,44 @@
-<div class="mobile-bar" data-mobile-bar>
-  <a class="btn btn--primary mobile-bar__cta" href="index.html#gripscan" data-cta="mobilebar-gripscan" data-href="links.gripscan" data-text="mobileBar.cta">Start je Gripscan</a>
-  <a class="btn btn--ghost mobile-bar__call" data-if="contact.phone" data-href="contact.phone.href" data-cta="mobilebar-bellen" hidden>
-    <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-phone"></use></svg>
-    <span data-text="mobileBar.call">Bellen</span>
-  </a>
-</div>
-
 <footer class="site-footer">
   <div class="container">
     <div class="site-footer__grid">
-      <div class="site-footer__company">
+      <div>
         <img class="site-footer__logo" src="assets/logo-gos-small.png" width="126" height="144" alt="">
-        <p class="site-footer__name" data-text="company.legalName">Grip op Stroom B.V.</p>
-        <p class="site-footer__tagline" data-text="company.tagline"></p>
+        <p class="site-footer__payoff" data-text="payoff">Jouw huis, jouw pad, jouw tempo.</p>
+        <p data-text="company.tagline">Grip op Stroom richt zich op woningeigenaren in Nederland.</p>
+      </div>
+
+      <nav aria-labelledby="footer-menu-title">
+        <h2 id="footer-menu-title" data-text="footer.menuTitle">Menu</h2>
+        <ul data-list="nav.items">
+          <template><li><a data-item-href="href" data-item-text="text"></a></li></template>
+          <li><a href="zo-werkt-het.html">Zo werkt het</a></li>
+          <li><a href="pakketten.html">Pakketten</a></li>
+          <li><a href="over-ons.html">Over ons</a></li>
+          <li><a href="vragen.html">Vragen</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h2 data-text="footer.contactTitle">Contact</h2>
+        <address data-if="contact.address">
+          <span data-text="contact.address.name">Grip op Stroom B.V.</span><br>
+          <span data-text="contact.address.street">Handelsweg 14</span><br>
+          <span data-text="contact.address.postcode">7041 GX</span> <span data-text="contact.address.city">'s-Heerenberg</span>
+        </address>
+        <ul>
+          <li data-if="contact.phone"><a href="tel:+31262056179" data-href="contact.phone.href" data-text="contact.phone.display">026 205 6179</a></li>
+          <li data-if="contact.email" hidden><a data-href="contact.email.href" data-text="contact.email.display"></a></li>
+          <li data-if="contact.hours"><span data-text="contact.hours.text">Iedere werkdag van 08:00 tot 17:00</span></li>
+        </ul>
         <dl class="site-footer__details" data-list="company.details">
           <template><div><dt data-item-text="label"></dt><dd data-item-text="value"></dd></div></template>
         </dl>
       </div>
 
-      <div class="site-footer__col">
-        <h2 class="site-footer__title" data-text="footer.contactTitle">Contact</h2>
-        <ul class="site-footer__links">
-          <li data-if="contact.phone" hidden><a data-href="contact.phone.href" data-text="contact.phone.display"></a> <span class="site-footer__muted" data-text="contact.phone.hours"></span></li>
-          <li data-if="contact.email" hidden><a data-href="contact.email.href" data-text="contact.email.display"></a></li>
-          <li data-if="contact.whatsapp" hidden><a data-href="contact.whatsapp.href" data-text="contact.whatsapp.label"></a></li>
-          <li data-if-not="contact.phone contact.email contact.whatsapp"><span data-text="footer.noContact"></span></li>
-          <li><a href="contact.html">Alle contactmogelijkheden</a></li>
-        </ul>
-        <ul class="site-footer__credentials" data-if="credentials" data-list="credentials.items" hidden>
-          <template>
-            <li><a data-item-href="verifyUrl" rel="noopener"><img data-item-if="logo" data-item-src="logo" alt="" height="40"><span data-item-text="name"></span></a></li>
-          </template>
-        </ul>
-      </div>
-
-      <div class="site-footer__col">
-        <h2 class="site-footer__title" data-text="footer.legalTitle">Goed om te weten</h2>
-        <ul class="site-footer__links" data-list="footer.legal">
+      <div>
+        <h2 data-text="footer.legalTitle">Goed om te weten</h2>
+        <ul data-list="footer.legal">
           <template><li><a data-item-href="href" data-item-text="text"></a></li></template>
           <li><a href="privacy.html">Privacyverklaring</a></li>
           <li><a href="cookies.html">Cookieverklaring</a></li>
@@ -47,10 +49,15 @@
       </div>
     </div>
 
-    <section class="sources" aria-labelledby="bronnen-title" data-if="_sources" hidden>
-      <h2 class="sources__title" id="bronnen-title" data-text="footer.sourcesTitle">Bronnen</h2>
+    <details class="sources" id="bronnen" data-if="_sources" hidden>
+      <summary>
+        <span data-text="footer.sourcesTitle">Bronnen</span>
+        <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-chevron"></use></svg>
+      </summary>
       <p data-text="footer.sourcesIntro"></p>
-      <ol class="sources__list" id="bronnen" data-sources></ol>
-    </section>
+      <ol class="sources__list" data-sources></ol>
+    </details>
+
+    <p class="site-footer__bottom">© <span data-text="footer.copyright">Grip op Stroom B.V.</span></p>
   </div>
 </footer>

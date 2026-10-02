@@ -7,7 +7,9 @@
   "page": {
     "eyebrow": "Over ons",
     "title": "Grip op je woning, grip op elke beslissing",
-    "lead": "Verduurzamen is een grote stap. Wij maken er een reeks overzichtelijke stappen van, in jouw tempo."
+    "lead": "Verduurzamen is een grote stap. Wij maken er een reeks overzichtelijke stappen van, in jouw tempo.",
+    "photo": "spelavond-gezin",
+    "photoAlt": "Gezin speelt een bordspel aan een lage tafel in een sfeervol verlichte woonkamer, met thee en kaarsen."
   },
   "why": {
     "title": "Waarom Grip op Stroom bestaat",
@@ -24,10 +26,26 @@
   "values": {
     "title": "Hoe we werken",
     "items": [
-      { "icon": "route", "title": "Eén plan voor je hele woning", "text": "We zetten de stappen in de goede volgorde, zodat elke stap de volgende zuiniger maakt." },
-      { "icon": "book", "title": "Een bron bij elk cijfer", "text": "Bij elk cijfer laten we zien waar het vandaan komt. Zo kun je het zelf controleren." },
-      { "icon": "door", "title": "Jij neemt het initiatief", "text": "We verkopen niet aan de deur en niet via de telefoon." },
-      { "icon": "badge", "title": "Gecertificeerde EP-adviseurs", "text": "Een gecertificeerde EP-adviseur neemt je energielabel op." }
+      {
+        "icon": "route",
+        "title": "Eén plan voor je hele woning",
+        "text": "We zetten de stappen in de goede volgorde, zodat elke stap de volgende zuiniger maakt."
+      },
+      {
+        "icon": "book",
+        "title": "Een bron bij elk cijfer",
+        "text": "Bij elk cijfer laten we zien waar het vandaan komt. Zo kun je het zelf controleren."
+      },
+      {
+        "icon": "door",
+        "title": "Jij neemt het initiatief",
+        "text": "We verkopen niet aan de deur en niet via de telefoon."
+      },
+      {
+        "icon": "badge",
+        "title": "Gecertificeerde EP-adviseurs",
+        "text": "Een gecertificeerde EP-adviseur neemt je energielabel op."
+      }
     ]
   },
   "team": {
@@ -35,7 +53,13 @@
     "enabled": false,
     "title": "Met wie je te maken hebt",
     "items": [
-      { "name": "Marco", "role": "Oprichter", "quote": "", "photo": "", "enabled": false }
+      {
+        "name": "Marco",
+        "role": "Oprichter",
+        "quote": "",
+        "photo": "",
+        "enabled": false
+      }
     ]
   },
   "execution": {

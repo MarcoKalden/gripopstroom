@@ -9,9 +9,22 @@
       "floorArea": 120,
       "startLabel": "C",
       "validated": false
-    }
+    },
+    "renders": "Renders per stap in assets/woning/ (zie REDESIGN.md §4b). Ontbreekt een bestand, dan toont de site een gelabelde placeholder. Open punt: de warmtepomp-stap blijft tot Marco beslist (REDESIGN.md §10.3); een render ervan komt er niet."
   },
-  "labelScale": ["A++++", "A+++", "A++", "A+", "A", "B", "C", "D", "E", "F", "G"],
+  "labelScale": [
+    "A++++",
+    "A+++",
+    "A++",
+    "A+",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G"
+  ],
   "steps": [
     {
       "id": "start",
@@ -25,8 +38,20 @@
       "labelEffect": null,
       "labelNote": "",
       "explanation": "Dit is de voorbeeldwoning zoals ze nu is: een tussenwoning uit circa 1980 met label C[[voorbeeldwoning]].",
-      "sources": { "label": ["voorbeeldwoning", "ep-online"], "cost": ["milieu-centraal"], "value": ["kadaster"] },
-      "validated": false
+      "sources": {
+        "label": [
+          "voorbeeldwoning",
+          "ep-online"
+        ],
+        "cost": [
+          "milieu-centraal"
+        ],
+        "value": [
+          "kadaster"
+        ]
+      },
+      "validated": false,
+      "render": "assets/woning/woning-stap-0-start.avif"
     },
     {
       "id": "kozijnen",
@@ -40,8 +65,19 @@
       "labelEffect": true,
       "labelNote": "",
       "explanation": "Nieuwe kozijnen met beter glas houden de warmte binnen.",
-      "sources": { "label": ["nta-8800"], "cost": ["milieu-centraal"], "value": ["kadaster"] },
-      "validated": false
+      "sources": {
+        "label": [
+          "nta-8800"
+        ],
+        "cost": [
+          "milieu-centraal"
+        ],
+        "value": [
+          "kadaster"
+        ]
+      },
+      "validated": false,
+      "render": "assets/woning/woning-stap-1-kozijnen.avif"
     },
     {
       "id": "isolatie",
@@ -55,8 +91,19 @@
       "labelEffect": true,
       "labelNote": "",
       "explanation": "Isolatie van dak en vloer zorgt dat je minder warmte kwijtraakt.",
-      "sources": { "label": ["nta-8800"], "cost": ["milieu-centraal"], "value": ["kadaster"] },
-      "validated": false
+      "sources": {
+        "label": [
+          "nta-8800"
+        ],
+        "cost": [
+          "milieu-centraal"
+        ],
+        "value": [
+          "kadaster"
+        ]
+      },
+      "validated": false,
+      "render": "assets/woning/woning-stap-2-isolatie.avif"
     },
     {
       "id": "warmtepomp",
@@ -70,8 +117,19 @@
       "labelEffect": true,
       "labelNote": "",
       "explanation": "Een warmtepomp verwarmt je huis zuinig met elektriciteit. Je gasverbruik daalt sterk.",
-      "sources": { "label": ["nta-8800"], "cost": ["milieu-centraal"], "value": ["kadaster"] },
-      "validated": false
+      "sources": {
+        "label": [
+          "nta-8800"
+        ],
+        "cost": [
+          "milieu-centraal"
+        ],
+        "value": [
+          "kadaster"
+        ]
+      },
+      "validated": false,
+      "render": "assets/woning/woning-stap-3-warmtepomp.avif"
     },
     {
       "id": "zonnepanelen",
@@ -85,8 +143,19 @@
       "labelEffect": true,
       "labelNote": "",
       "explanation": "Zonnepanelen wekken stroom op voor je eigen woning, ook voor je warmtepomp.",
-      "sources": { "label": ["nta-8800"], "cost": ["milieu-centraal"], "value": ["kadaster"] },
-      "validated": false
+      "sources": {
+        "label": [
+          "nta-8800"
+        ],
+        "cost": [
+          "milieu-centraal"
+        ],
+        "value": [
+          "kadaster"
+        ]
+      },
+      "validated": false,
+      "render": "assets/woning/woning-stap-4-zonnepanelen.avif"
     },
     {
       "id": "batterij",
@@ -100,12 +169,23 @@
       "labelEffect": false,
       "labelNote": "Je label blijft A++. Deze stap verlaagt vooral je kosten.",
       "explanation": "Een thuisbatterij bewaart je zonnestroom. Energiemanagement en een dynamisch contract laten je stroom gebruiken op de goedkoopste momenten.",
-      "sources": { "label": ["nta-8800"], "cost": ["milieu-centraal"], "value": ["kadaster"] },
-      "validated": false
+      "sources": {
+        "label": [
+          "nta-8800"
+        ],
+        "cost": [
+          "milieu-centraal"
+        ],
+        "value": [
+          "kadaster"
+        ]
+      },
+      "validated": false,
+      "render": "assets/woning/woning-stap-5-thuisbatterij.avif"
     },
     {
       "id": "laadpaal",
-      "enabled": false,
+      "enabled": true,
       "optional": true,
       "countsTowardHomeEnergy": false,
       "component": "laadpaal",
@@ -117,8 +197,19 @@
       "labelEffect": false,
       "labelNote": "Je label blijft A++. Een laadpaal hoort bij je auto en telt niet mee in de energiekosten van je woning.",
       "explanation": "Met een laadpaal laad je je auto thuis, het liefst met je eigen zonnestroom.",
-      "sources": { "label": ["nta-8800"], "cost": ["milieu-centraal"], "value": ["kadaster"] },
-      "validated": false
+      "sources": {
+        "label": [
+          "nta-8800"
+        ],
+        "cost": [
+          "milieu-centraal"
+        ],
+        "value": [
+          "kadaster"
+        ]
+      },
+      "validated": false,
+      "render": "assets/woning/woning-stap-6-laadpaal.avif"
     }
   ]
 }
