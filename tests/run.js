@@ -110,8 +110,9 @@ async function testStappenplan(browser) {
   await page.keyboard.press('ArrowRight');
   sel = await page.$eval('[role="tab"][aria-selected="true"]', (t) => t.textContent);
   if (!/Isolatie/.test(sel)) fail('pijltje rechts geeft ' + sel); else ok('pijltjestoetsen in de stappenbalk');
-  const chip = await page.textContent('[data-part-chip]');
-  if (!/Isolatie/.test(chip)) fail('onderdeel-label: ' + chip); else ok('onderdeel-label: ' + chip);
+  // Isolatie heeft een beeld met eigen nummer en titel: dan geen extra onderdeel-label.
+  const chipHidden = await page.$eval('[data-part-chip]', (c) => c.hidden);
+  if (!chipHidden) fail('onderdeel-label staat over een beeld met eigen titel'); else ok('beeld met eigen titel: geen extra label');
   const placeholder = await page.$('[data-render-stage] .render__placeholder');
   ok(placeholder ? 'render ontbreekt nog: gelabelde placeholder zichtbaar' : 'render geladen');
   await page.click('[data-play]');

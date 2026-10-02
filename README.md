@@ -81,9 +81,9 @@ De bronnen zijn 1672 px breed; 2400 px uit REDESIGN.md kan pas met grotere bronb
 
 ### Beelden van de voorbeeldwoning
 
-Stap 3 tot en met 6 en het totaalbeeld op de homepage zijn aangeleverde beelden (originelen in
-`grip-op-stroom-renders/`, voor de site als WebP in `assets/woning/`). Stap 0 tot en met 2 zijn
-nog schetsen (`python3 tests/woning-schetsen.py`). Zie `assets/woning/LEESMIJ.md` voor de status
+Stap 1 tot en met 6 en het totaalbeeld op de homepage zijn aangeleverde beelden (originelen in
+`grip-op-stroom-renders/`, voor de site als WebP in `assets/woning/`). Stap 0 (Start) is
+nog een schets (`python3 tests/woning-schetsen.py`). Zie `assets/woning/LEESMIJ.md` voor de status
 en hoe je beelden vervangt.
 
 De airco-stap ("Airco die ook verwarmt") heeft nog geen cijfers: de site toont "Volgt" bij label

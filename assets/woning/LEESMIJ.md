@@ -3,8 +3,8 @@
 | Stap | Bestand | Status |
 | --- | --- | --- |
 | 0 Start | woning-stap-0-start.svg | schets, beeld nodig |
-| 1 Kozijnen | woning-stap-1-kozijnen.svg | schets, beeld nodig |
-| 2 Isolatie | woning-stap-2-isolatie.svg | schets, beeld nodig |
+| 1 Kozijnen | woning-stap-1-kozijnen.webp | aangeleverd |
+| 2 Isolatie | woning-stap-2-isolatie.webp | aangeleverd |
 | 3 Zonnepanelen | woning-stap-3-zonnepanelen.webp | aangeleverd |
 | 4 Thuisbatterij | woning-stap-4-thuisbatterij.webp | aangeleverd |
 | 5 Laadpaal | woning-stap-5-laadpaal.webp | aangeleverd |
