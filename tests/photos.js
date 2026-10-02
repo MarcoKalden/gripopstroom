@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-/* Verwerkt de foto's uit grip-op-stroom-fotos/ tot één set voor de site:
-   iets warmer, iets matter (zwartpunt +4%), saturatie -10%.
+/* Verwerkt de foto's uit grip-op-stroom-fotos/ tot één set voor de site, in de
+   richting van de huisstijl: minder warm, iets naar blauw en groen getrokken,
+   iets matter (zwartpunt opgetild), saturatie -15%.
    Levert AVIF, WebP en JPG in 640, 1024 en 1600 px breed in assets/foto/.
    (De bronfoto's zijn 1672 px breed; groter dan dat maken we niet.)
    Gebruik: cd tests && npm run photos */
@@ -19,8 +20,8 @@ const WIDTHS = [640, 1024, 1600];
   for (const file of fs.readdirSync(src).filter((f) => /\.jpe?g$/i.test(f))) {
     const name = file.replace(/\.jpe?g$/i, '');
     const base = sharp(path.join(src, file))
-      .modulate({ saturation: 0.9 })
-      .linear([0.98, 0.96, 0.93], [12, 10, 8]);
+      .modulate({ saturation: 0.85 })
+      .linear([0.90, 0.98, 1.0], [2, 10, 16]);
     const graded = await base.toBuffer();
     for (const w of WIDTHS) {
       const img = sharp(graded).resize({ width: w, withoutEnlargement: true });

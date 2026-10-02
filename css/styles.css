@@ -16,17 +16,18 @@
   --gos-ink: #10233F;
   --gos-text: #3A4A60;
   --gos-muted: #5B6B80;
-  --gos-ground: #FBF8F3;
+  --gos-ground: #F2F6F5;
   --gos-surface: #FFFFFF;
-  --gos-sand: #EFE8DC;
-  --gos-line: #E2DACB;
+  --gos-sand: #E3ECEA;
+  --gos-line: #D3DFDC;
   --gos-green: #1F7A63;
-  --gos-green-soft: #E3EFE8;
+  --gos-green-soft: #DCEBE4;
   --gos-green-strong: #17604E; /* groene tekst op zachtgroen vlak (AA) */
   --gos-leaf: #7FB069;
   --gos-on-navy: #D6DEEA;      /* tekst op donkerblauw */
   --gos-on-navy-accent: #9FD3BF;
   --gos-error: #B3261E;
+  --gos-field: #7D9592;       /* rand van invoervelden (3:1) */
 
   /* Officiële energielabelkleuren (iets gedempt). Tekstkleur per label gecontroleerd op AA. */
   --label-a4: #1B6B3A;
@@ -162,7 +163,7 @@ img { max-width: 100%; }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(251, 248, 243, .92);
+  background: rgba(242, 246, 245, .92);
   -webkit-backdrop-filter: saturate(1.4) blur(12px);
   backdrop-filter: saturate(1.4) blur(12px);
   border-bottom: 1px solid var(--gos-line);
@@ -392,13 +393,13 @@ a:hover .photo img, .photo:hover img { transform: scale(1.03); }
 .numbered p { margin: 0; font-size: .9375rem; }
 .browser {
   border-radius: var(--radius-md);
-  background: #F3EFE8;
+  background: var(--gos-ground);
   box-shadow: 0 40px 80px rgba(0, 0, 0, .35);
   overflow: hidden;
   transform: rotate(-1.5deg);
 }
-.browser__bar { display: flex; gap: 6px; padding: 12px 14px; background: #E9E3D8; }
-.browser__bar span { width: 10px; height: 10px; border-radius: 50%; background: #CFC6B6; }
+.browser__bar { display: flex; gap: 6px; padding: 12px 14px; background: var(--gos-sand); }
+.browser__bar span { width: 10px; height: 10px; border-radius: 50%; background: #B7C8C5; }
 .browser img { display: block; width: 100%; height: auto; }
 @media (min-width: 1024px) {
   .gripplan { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 64px; padding: 64px; }
@@ -523,7 +524,7 @@ a:hover .photo img, .photo:hover img { transform: scale(1.03); }
   font: inherit;
   color: var(--gos-ink);
   background: var(--gos-ground);
-  border: 1.5px solid #B9AE9B;
+  border: 1.5px solid var(--gos-field);
   border-radius: var(--radius-sm);
 }
 .field textarea { resize: vertical; min-height: 140px; }
@@ -575,7 +576,7 @@ a:hover .photo img, .photo:hover img { transform: scale(1.03); }
 .faq__item p { margin: 0; padding: 0 24px 22px; }
 .faq__group + .faq__group { margin-top: 40px; }
 .faq__group h2 { font-size: 1.5rem; margin-bottom: 16px; }
-.faq-search { display: flex; align-items: center; gap: 10px; max-width: 32rem; margin-bottom: 40px; padding: 0 16px; border-radius: var(--radius-pill); background: var(--gos-surface); border: 1.5px solid #B9AE9B; }
+.faq-search { display: flex; align-items: center; gap: 10px; max-width: 32rem; margin-bottom: 40px; padding: 0 16px; border-radius: var(--radius-pill); background: var(--gos-surface); border: 1.5px solid var(--gos-field); }
 .faq-search:focus-within { outline: 3px solid var(--gos-green); outline-offset: 2px; }
 .faq-search .icon { color: var(--gos-muted); }
 .faq-search input { flex: 1 1 auto; min-width: 0; min-height: 52px; border: 0; background: transparent; font: inherit; color: var(--gos-ink); outline: none; }

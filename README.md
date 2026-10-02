@@ -2,7 +2,7 @@
 
 Statische site (HTML, CSS, vanilla JavaScript). Geen framework, geen buildstap en
 geen npm-afhankelijkheden in de site zelf. Vormgeving volgens `REDESIGN.md`
-("lekker wonen": warm, rustig, met mensen en sfeer).
+("lekker wonen": rustig, met mensen en sfeer), met foto's en achtergrond in de koele huisstijlkleuren.
 
 | Pagina | Inhoud |
 | --- | --- |
@@ -74,7 +74,9 @@ De bronfoto's staan in `grip-op-stroom-fotos/`. Na een wijziging:
 cd tests && npm install && npm run photos
 ```
 
-Dat maakt de set iets warmer en matter (saturatie −10%, zwartpunt +4%) in drie breedtes.
+Dat trekt de set naar de huisstijl (minder warm, iets naar blauw en groen, saturatie −15%,
+zwartpunt licht opgetild) en levert drie breedtes. De pagina-achtergrond (`--gos-ground`,
+`--gos-sand`, `--gos-line`) is daar op afgestemd: koel lichtgrijs-groen in plaats van crème.
 De bronnen zijn 1672 px breed; 2400 px uit REDESIGN.md kan pas met grotere bronbestanden.
 
 ### Renders van de voorbeeldwoning
