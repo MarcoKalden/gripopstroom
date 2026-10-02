@@ -73,6 +73,10 @@ css/styles.css             tokens, basis, componenten
 assets/
 ```
 
+> Uitgevoerd met twee kleine afwijkingen: de juridische pagina's staan plat in de
+> hoofdmap (`privacy.html` enzovoort) zodat alle paden gelijk blijven, en
+> `scripts/sync-partials.js` houdt de gedeelde head, header en footer gelijk in alle pagina's.
+
 Regels voor de verhuizing:
 
 - Splits de rendercode uit `animation.js` in `js/site.js` (laden, `applyContent`,
