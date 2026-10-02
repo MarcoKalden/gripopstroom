@@ -14,6 +14,7 @@
     if (!c || !render || !list) return;
 
     render.appendChild(G.renderLayer(c.render, c.renderAlt, c.placeholder, c.renderLabel));
+    render.classList.toggle('has-own-label', Boolean(c.renderHasLabel));
 
     var pairs = [];
     var mark = function (i, on) {

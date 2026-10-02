@@ -32,19 +32,19 @@
     "eyebrow": "Eén plan voor je hele huis",
     "title": "Comfort dat je voelt",
     "text": "Een fijn huis is warm in de winter, koel in de zomer en slim met stroom. Wij zetten de techniek die daarbij hoort in de goede volgorde, zodat elke stap de volgende beter maakt.",
-    "renderAlt": "Tekening van de voorbeeldwoning met zonnepanelen, thuisbatterij, airco en laadpaal.",
+    "renderAlt": "Voorbeeldwoning met alle onderdelen: zonnepanelen, nieuwe kozijnen, isolatie, laadpaal met auto, airco en thuisbatterijen.",
     "renderLabel": "Voorbeeldwoning · tussenwoning 1980 · 120 m²",
-    "render": "assets/woning/woning-totaal.svg",
+    "render": "assets/woning/woning-totaal.webp",
     "placeholder": "Render volgt",
     "items": [
       {
         "id": "airco",
         "icon": "snowflake",
         "title": "Airco",
-        "text": "Een koel huis op warme dagen.",
-        "href": "pakketten.html#volledige-grip",
-        "x": "78%",
-        "y": "48%"
+        "text": "Een airco koelt je huis op warme dagen en kan het ook verwarmen.",
+        "href": "zo-werkt-het.html?stap=airco",
+        "x": "86%",
+        "y": "47%"
       },
       {
         "id": "batterij",
@@ -52,8 +52,8 @@
         "title": "Thuisbatterij",
         "text": "Een thuisbatterij bewaart je zonnestroom, zodat je hem later zelf gebruikt.",
         "href": "zo-werkt-het.html?stap=batterij",
-        "x": "58%",
-        "y": "50%"
+        "x": "84%",
+        "y": "90%"
       },
       {
         "id": "laadpaal",
@@ -61,11 +61,12 @@
         "title": "Laadpaal",
         "text": "Met een laadpaal laad je je auto thuis, het liefst met je eigen zonnestroom.",
         "href": "zo-werkt-het.html?stap=laadpaal",
-        "x": "20%",
-        "y": "76%"
+        "x": "35%",
+        "y": "63%"
       }
     ],
-    "more": "Ook: kozijnen, isolatie, zonnepanelen, energiemanagement en energiecontracten."
+    "more": "Ook: kozijnen, isolatie, zonnepanelen, energiemanagement en energiecontracten.",
+    "renderHasLabel": true
   },
   "gripplan": {
     "eyebrow": "Het Gripplan",

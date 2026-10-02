@@ -67,7 +67,7 @@ if (homeContent.comfort && !exists(homeContent.comfort.render)) add('content/hom
 else if (homeContent.comfort && /\.svg$/.test(homeContent.comfort.render)) add('content/home.json', 'comfort.render', 'nog een schets, geen render');
 // Na het weghalen van de warmtepomp moeten deze cijfers opnieuw berekend worden.
 read('steps.json').steps.filter((st) => st.recalculate).forEach((st) => {
-  add('steps.json', st.id, 'label en bedragen opnieuw berekenen zonder warmtepomp');
+  add('steps.json', st.id, st.pending ? 'label en bedragen nog berekenen (site toont "Volgt")' : 'label en bedragen opnieuw berekenen zonder warmtepomp');
 });
 read('content/pakketten.json').packages.items.filter((it) => it.recalculate).forEach((it) => {
   add('content/pakketten.json', it.name, 'labeleffect opnieuw berekenen zonder warmtepomp');

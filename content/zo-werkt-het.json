@@ -54,7 +54,9 @@
     "ctaHref": "#gripscan",
     "renderLabel": "Voorbeeldwoning · tussenwoning 1980 · 120 m²",
     "placeholder": "Render volgt",
-    "newPart": "Nieuw: {name}"
+    "newPart": "Nieuw: {name}",
+    "pendingValue": "Volgt",
+    "livePending": "Stap {n} van {total}: {name}. Label en bedragen worden nog berekend."
   },
   "plan": {
     "eyebrow": "Hoe het gripplan werkt",

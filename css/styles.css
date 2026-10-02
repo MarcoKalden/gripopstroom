@@ -836,3 +836,17 @@ html.js body:not(.is-ready) .site-footer {
 
 /* Groene tekst op zachtgroene vlakken een tint donkerder voor voldoende contrast */
 .section--green .eyebrow, .section--green a, .notice a, .cta-band a:not(.btn) { color: var(--gos-green-strong); }
+
+/* Aangeleverde beelden van de woning: altijd helemaal zichtbaar (contain).
+   Beelden met een eigen stapnummer en titel krijgen het voorbeeldwoning-label onderin. */
+.render img { object-fit: contain; }
+.has-own-label > .render__label { top: auto; bottom: 16px; }
+.comfort .render.has-own-label { aspect-ratio: 575 / 493; }
+@media (max-width: 639px) {
+  .plan-render .render { aspect-ratio: 1 / 1; }
+}
+.ladder.is-pending .ladder__marker { display: none; }
+@media (max-width: 639px) {
+  .render__label { font-size: 11px; padding: 5px 10px; white-space: nowrap; top: 10px; left: 10px; }
+  .has-own-label > .render__label { bottom: 10px; }
+}

@@ -1,18 +1,20 @@
 # Beelden van de voorbeeldwoning
 
-Nu staan hier schetsen (SVG), gemaakt met `python3 tests/woning-schetsen.py`. Ze tonen
-dezelfde woning per stap, zonder warmtepomp. De site gebruikt ze tot de fotorealistische
-renders er zijn (REDESIGN.md §4b).
+| Stap | Bestand | Status |
+| --- | --- | --- |
+| 0 Start | woning-stap-0-start.svg | schets, beeld nodig |
+| 1 Kozijnen | woning-stap-1-kozijnen.svg | schets, beeld nodig |
+| 2 Isolatie | woning-stap-2-isolatie.svg | schets, beeld nodig |
+| 3 Zonnepanelen | woning-stap-3-zonnepanelen.webp | aangeleverd |
+| 4 Thuisbatterij | woning-stap-4-thuisbatterij.webp | aangeleverd |
+| 5 Laadpaal | woning-stap-5-laadpaal.webp | aangeleverd |
+| 6 Airco | woning-stap-6-airco.webp | aangeleverd |
+| Totaal (homepage) | woning-totaal.webp | aangeleverd |
 
-Renders aanleveren: minimaal 2400×1500 (16:10), AVIF, dezelfde compositie als de schetsen:
+De aangeleverde beelden (originelen in grip-op-stroom-renders/) zijn 391 tot 575 px breed.
+Voor scherpe weergave op grote schermen: graag versies van minimaal 1200 px breed, in
+dezelfde stijl met nummer en titel in het beeld.
 
-- woning-stap-0-start.avif
-- woning-stap-1-kozijnen.avif
-- woning-stap-2-isolatie.avif
-- woning-stap-3-zonnepanelen.avif
-- woning-stap-4-thuisbatterij.avif
-- woning-stap-5-laadpaal.avif
-- woning-totaal.avif (homepage, met airco, thuisbatterij en laadpaal)
-
-Zet daarna in steps.json (`render`) en content/home.json (`comfort.render`) de .avif-namen
-in plaats van de .svg-namen, en draai `cd tests && npm run screenshot:gripplan`.
+Nieuwe beelden: zet ze hier neer en pas de naam aan in steps.json (`render`) of
+content/home.json (`comfort.render`). Heeft het beeld zelf al een nummer en titel, zet dan
+`renderHasLabel: true`. Daarna `cd tests && npm run screenshot:gripplan`.

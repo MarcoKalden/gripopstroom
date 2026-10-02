@@ -81,12 +81,13 @@ De bronnen zijn 1672 px breed; 2400 px uit REDESIGN.md kan pas met grotere bronb
 
 ### Beelden van de voorbeeldwoning
 
-Het stappenplan en het blok "Comfort dat je voelt" tonen nu schetsen van de voorbeeldwoning
-(SVG in `assets/woning/`, gemaakt met `python3 tests/woning-schetsen.py`): dezelfde woning per
-stap, zonder warmtepomp. Komen er fotorealistische renders (REDESIGN.md §4b), zet ze dan in
-`assets/woning/`, pas de bestandsnamen aan in `steps.json` (`render`) en `content/home.json`
-(`comfort.render`) en draai `cd tests && npm run screenshot:gripplan`. Ontbreekt een bestand,
-dan toont de site een gelabelde placeholder.
+Stap 3 tot en met 6 en het totaalbeeld op de homepage zijn aangeleverde beelden (originelen in
+`grip-op-stroom-renders/`, voor de site als WebP in `assets/woning/`). Stap 0 tot en met 2 zijn
+nog schetsen (`python3 tests/woning-schetsen.py`). Zie `assets/woning/LEESMIJ.md` voor de status
+en hoe je beelden vervangt.
+
+De airco-stap ("Airco die ook verwarmt") heeft nog geen cijfers: de site toont "Volgt" bij label
+en bedragen tot een EP-adviseur ze berekend heeft (`pending: true` in `steps.json`).
 
 ### Contactformulier
 

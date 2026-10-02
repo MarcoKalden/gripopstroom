@@ -241,7 +241,9 @@
 
     // Render en onderdeel-label
     this.swapRender(step, animate);
-    if (step.component) {
+    // Heeft het beeld zelf al een stapnummer en titel, dan geen extra label erover.
+    this.el.stage.classList.toggle('has-own-label', Boolean(step.renderHasLabel));
+    if (step.component && !step.renderHasLabel) {
       this.el.chip.textContent = G.template(t.newPart, { name: step.shortName });
       this.el.chip.hidden = false;
       this.el.chip.classList.remove('is-pulse');
@@ -251,18 +253,31 @@
     }
 
     // Energielabel
-    var labelIndex = this.scale.indexOf(step.label);
-    this.el.ladder.style.setProperty('--active', labelIndex);
+    // Stap zonder berekende cijfers (pending): geen label of bedragen tonen, maar "Volgt".
+    var pending = Boolean(step.pending);
+    var labelIndex = pending ? -1 : this.scale.indexOf(step.label);
+    this.el.ladder.style.setProperty('--active', Math.max(labelIndex, 0));
+    this.el.ladder.classList.toggle('is-pending', pending);
     this.el.ladderList.querySelectorAll('.ladder__rung').forEach(function (li, i) {
       li.classList.toggle('is-active', i === labelIndex);
     });
-    this.el.labelSr.textContent = t.meters.label.title + ': ' + step.label;
+    this.el.labelSr.textContent = t.meters.label.title + ': ' + (pending ? t.pendingValue : step.label);
 
     // Cijfers
-    this.countTo(this.el.cost, step.energyCostPerYear, animate);
-    this.countTo(this.el.value, step.homeValue, animate);
-    var delta = step.homeValue - first.homeValue;
-    this.el.valueDelta.textContent = delta > 0 ? G.template(t.meters.value.deltaText, { delta: G.formatEUR(delta) }) : '';
+    if (pending) {
+      [this.el.cost, this.el.value].forEach(function (el) {
+        if (el._raf) cancelAnimationFrame(el._raf);
+        el._value = null;
+        el.textContent = t.pendingValue;
+      });
+      this.el.valueDelta.textContent = '';
+    } else {
+      this.countTo(this.el.cost, step.energyCostPerYear, animate);
+      this.countTo(this.el.value, step.homeValue, animate);
+      var delta = step.homeValue - first.homeValue;
+      this.el.valueDelta.textContent = delta > 0 ? G.template(t.meters.value.deltaText, { delta: G.formatEUR(delta) }) : '';
+    }
+    this.root.querySelectorAll('.data-card__prefix').forEach(function (el) { el.hidden = pending; });
     ['label', 'cost', 'value'].forEach(function (key) {
       var holder = self.el.refs[key];
       holder.textContent = '';
@@ -273,7 +288,7 @@
     // Toelichting
     this.el.stepName.textContent = index === 0 ? step.name : G.template(t.stepCounter, { n: index, total: this.steps.length - 1 }) + ': ' + step.name;
     G.renderRich(this.el.explanation, step.explanation);
-    if (step.labelEffect === false && step.labelNote) {
+    if ((step.labelEffect === false || pending) && step.labelNote) {
       this.el.labelNote.textContent = step.labelNote;
       this.el.labelNote.hidden = false;
     } else {
@@ -289,7 +304,9 @@
       history.replaceState(null, '', url);
     }
 
-    if (!opts.silent) {
+    if (!opts.silent && pending) {
+      this.el.live.textContent = G.template(t.livePending, { n: index, total: this.steps.length - 1, name: step.name });
+    } else if (!opts.silent) {
       var msg = G.template(t.live, {
         n: index, total: this.steps.length - 1, name: step.name, label: step.label,
         cost: G.formatEUR(step.energyCostPerYear), value: G.formatEUR(step.homeValue)
