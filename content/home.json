@@ -1,5 +1,5 @@
 {
-  "_note": "Teksten voor de homepage. Pakketten, Grippunten en financiering staan in pakketten.json, de vragen in vragen.json, gedeelde teksten in site.json. Bronverwijzing: [[bron-id]].",
+  "_note": "Teksten voor de homepage, opgebouwd volgens de golden circle: eerst waarom (hero), dan hoe (Gripplan), dan wat (de installaties). Pakketten, Grippunten en financiering staan in pakketten.json, de vragen in vragen.json, gedeelde teksten in site.json. Bronverwijzing: [[bron-id]].",
   "meta": {
     "title": "Grip op Stroom | Jouw huis, jouw pad, jouw tempo",
     "description": "Kozijnen, isolatie, zonnepanelen, thuisbatterij, laadpaal, airco of warmtepomp: Grip op Stroom regelt het in één plan voor je hele woning. Start je vrijblijvende Gripscan."
@@ -7,7 +7,7 @@
   "hero": {
     "badge": "Lekker wonen, slim verduurzamen",
     "title": "Jouw huis, jouw pad, jouw tempo.",
-    "lead": "Van kozijnen tot warmtepomp: Grip op Stroom regelt alle duurzame installaties voor je huis, in één plan. Jij kiest welke stap je zet en wanneer. Zo houd je grip op je energie en op elke beslissing.",
+    "lead": "Energieprijzen kun je niet sturen. Hoeveel energie je huis nodig heeft, wanneer je die gebruikt en hoe afhankelijk je blijft van de markt wel. Grip op Stroom helpt je die invloed stap voor stap te vergroten.",
     "ctaPrimary": "Start je Gripscan",
     "ctaSecondary": "Bekijk het stappenplan",
     "ctaSecondaryHref": "zo-werkt-het.html",
@@ -32,7 +32,7 @@
     "_note": "Alle installaties in de volgorde van het stappenplan, zodat de nummers gelijk zijn aan de nummers in de beelden. x en y: plek van het nummer op het totaalbeeld. side: \"left\" laat het label bij aanwijzen naar links uitklappen (voor nummers aan de rechterkant van het beeld).",
     "eyebrow": "Alles onder één dak",
     "title": "Comfort dat je voelt",
-    "text": "Een fijn huis is warm in de winter, koel in de zomer en slim met stroom. Voor alle techniek die daarbij hoort, kun je bij ons terecht. Wij zetten de stappen in de goede volgorde, zodat elke stap de volgende beter maakt.",
+    "text": "Uit je Gripplan volgt welke oplossingen bij je huis passen. Wij leveren ze en begeleiden de uitvoering, in één aanpak die technisch en financieel op elkaar aansluit. Voor alle techniek in een fijn huis kun je bij ons terecht.",
     "renderAlt": "Voorbeeldwoning met alle onderdelen: nieuwe kozijnen, dakisolatie, zonnepanelen, een thuisbatterij, een laadpaal met auto, en een airco en een warmtepomp op het platte dak van de carport.",
     "renderLabel": "Voorbeeldwoning · hoekwoning 1980 · 120 m²",
     "render": "assets/woning/woning-totaal.webp",
@@ -42,7 +42,7 @@
         "id": "kozijnen",
         "icon": "window",
         "title": "Kozijnen",
-        "text": "Nieuwe kozijnen met HR++ of triple glas houden de warmte binnen.",
+        "text": "Nieuwe kozijnen met HR++ glas houden de warmte binnen.",
         "href": "zo-werkt-het.html?stap=kozijnen",
         "x": "46%",
         "y": "40%"
@@ -111,7 +111,7 @@
   "gripplan": {
     "eyebrow": "Het Gripplan",
     "title": "Zie per stap wat er verandert in jouw huis.",
-    "text": "In het stappenplan zie je bij een voorbeeldwoning wat elke stap doet met het energielabel, de energiekosten en de woningwaarde. Met een bron bij elk cijfer.",
+    "text": "We beginnen bij je woning en maken een persoonlijk plan voordat we een maatregel adviseren. Met het Gripplan brengen we je woning, je energieverbruik en de mogelijkheden in kaart. Jij bepaalt het tempo, het Gripplan bewaakt de samenhang en het einddoel. In het stappenplan zie je per stap wat er gebeurt, met een bron bij elk cijfer.",
     "steps": [
       {
         "title": "Gripscan",

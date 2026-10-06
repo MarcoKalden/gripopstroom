@@ -490,6 +490,7 @@ a:hover .photo img, .photo:hover img { transform: scale(1.03); }
 .checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .checklist li { display: flex; gap: 10px; font-weight: 600; color: var(--gos-ink); }
 .checklist .icon { color: var(--gos-green); margin-top: 2px; }
+.checklist--cols { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px 32px; }
 .points { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
 .points__card { background: var(--gos-surface); border-radius: var(--radius-lg); padding: 28px 24px; box-shadow: var(--shadow-soft); }
 .points__label { margin: 18px 0 4px; font-size: .8125rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gos-green); }

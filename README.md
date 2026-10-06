@@ -6,11 +6,11 @@ geen npm-afhankelijkheden in de site zelf. Vormgeving volgens `REDESIGN.md`
 
 | Pagina | Inhoud |
 | --- | --- |
-| `index.html` | Homepage: hero met foto, Alles onder één dak (totaalbeeld met een hotspot per installatie), Gripplan-blok met screenshot, pakketten, Grippunten, waarom Grip op Stroom, contact met formulier, vijf vragen |
+| `index.html` | Homepage volgens de golden circle (waarom, hoe, wat): hero met foto, Gripplan-blok met screenshot, Alles onder één dak (totaalbeeld met een hotspot per installatie), pakketten, Grippunten, waarom Grip op Stroom, contact met formulier, vijf vragen |
 | `zo-werkt-het.html` | Het stappenplan met de voorbeeldwoning, drie stappen, wat er gebeurt na je aanvraag |
 | `pakketten.html` | Pakketten, vergelijkingstabel, Grippunten, hulp bij het betalen |
 | `vragen.html` | Alle vragen, gegroepeerd, met zoekveld |
-| `over-ons.html` | Waarom we bestaan, hoe we werken, team en uitvoering (staan uit tot er gegevens zijn) |
+| `over-ons.html` | Waarom we bestaan, hoe we werken, wat we doen, team en uitvoering (staan uit tot er gegevens zijn) |
 | `contact.html` | Adres, telefoon, bereikbaarheid en contactformulier |
 | `privacy.html`, `cookies.html`, `voorwaarden.html`, `klachten.html`, `toegankelijkheid.html` | Sjablonen. De tekst volgt; tot die tijd `noindex` |
 
