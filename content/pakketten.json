@@ -1,5 +1,5 @@
 {
-  "_note": "Pakketten, Grippunten en financiering. Gedeeld door de homepage en de pakkettenpagina. Labeleffecten gelden voor de voorbeeldwoning en moeten door een EP-adviseur worden gevalideerd. De labeleffecten van Stevige en Volledige grip waren berekend met de warmtepomp als vaste stap en moeten opnieuw berekend worden (recalculate: true). De warmtepomp zit nu, net als laadpaal en airco, als keuze in Volledige grip.",
+  "_note": "Pakketten, Grippunten en financiering. Gedeeld door de homepage en de pakkettenpagina. Labeleffecten gelden voor de voorbeeldwoning en moeten door een EP-adviseur worden gevalideerd. De labeleffecten van Stevige en Volledige grip waren berekend met de warmtepomp als vaste stap en moeten opnieuw berekend worden (recalculate: true). De warmtepomp zit, net als laadpaal en airco, als keuze in Volledige grip (bevestigd door Marco).",
   "packages": {
     "eyebrow": "Pakketten",
     "title": "Kies hoeveel grip je wilt",
@@ -134,7 +134,7 @@
     }
   },
   "grippunten": {
-    "_note": "Het puntensysteem vervangt het abonnement (besluit Marco, oktober 2026). De toekenning, de waarde per punt, de geldigheidsduur en de voorwaarden worden nog uitgewerkt. Zolang dat zo is, staat dat in pending en meldt scripts/check-livegang.js het. Noem geen aantallen punten of bedragen voordat ze vaststaan.",
+    "_note": "Het puntensysteem vervangt het abonnement (besluit Marco, oktober 2026). De toekenning, de waarde per punt, de geldigheidsduur en de voorwaarden worden nog uitgewerkt. Zolang dat zo is, staat dat in pending en meldt scripts/check-livegang.js het. Noem geen aantallen punten of bedragen voordat ze vaststaan. Vergelijk het puntensysteem niet met ING of een ander merk (besluit Marco).",
     "eyebrow": "Grippunten",
     "title": "Hoe meer je bij ons doet, hoe meer voordeel je opbouwt",
     "text": "Bij alles wat je bij Grip op Stroom afneemt, spaar je automatisch Grippunten. Die wissel je in voor voordeel op je volgende stap.",

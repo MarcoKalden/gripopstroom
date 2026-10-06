@@ -104,7 +104,8 @@ woningeigenaar aanbrengen, en wisselen die in voor korting op een volgende stap 
 Betalen gaat uit eigen middelen of met een financiering. Hoeveel punten er bij een stap horen,
 wat een punt waard is, hoe lang punten geldig zijn en welke voorwaarden gelden, wordt nog
 uitgewerkt. Tot die tijd staat dat in `grippunten.pending` en meldt `scripts/check-livegang.js` het.
-Noem geen aantallen punten of bedragen voordat ze vaststaan.
+Noem geen aantallen punten of bedragen voordat ze vaststaan, en vergelijk het puntensysteem
+niet met ING of een ander merk (besluit Marco).
 
 ### Contactformulier
 
@@ -156,7 +157,7 @@ Open punten uit REDESIGN.md §10 (eerst bevestigen, niet zelf invullen):
 1. ~~E-mailadres~~: info@gripopstroom.nl (bevestigd).
 2. KvK-nummer van Grip op Stroom B.V. → `content/site.json → company.details`.
 3. ~~Warmtepomp~~: terug als stap 7, na de airco, met een eigen beeld (oktober 2026). In de
-   pakketten zit hij, net als laadpaal en airco, als keuze in Volledige grip. De labels en
+   pakketten zit hij, net als laadpaal en airco, als keuze in Volledige grip (bevestigd). De labels en
    bedragen van zonnepanelen, thuisbatterij en laadpaal en de labeleffecten van Stevige en
    Volledige grip waren berekend met de warmtepomp als stap 3 en moeten opnieuw berekend worden
    (`recalculate: true`). Airco en warmtepomp hebben nog geen cijfers (`pending: true`).
