@@ -14,9 +14,11 @@ De voorbeeldwoning is een hoekwoning uit circa 1980 van circa 120 m².
 | 7 Warmtepomp | woning-stap-7-warmtepomp.webp | 7-warmtepomp.webp | aangeleverd |
 | Totaal (homepage, 8) | woning-totaal.webp | 8-totaal.webp | aangeleverd |
 
-Alle beelden zijn groot genoeg (1122 tot 1586 px breed). Stap 1 tot en met 7 en het totaalbeeld
-staan rechtop, ongeveer 4:5; de startfoto is liggend (16:10). Voor de site zijn ze opgeslagen
-als WebP (maximaal 1280 tot 1400 px breed, kwaliteit 75 tot 78).
+Alle beelden zijn liggend, 1586 × 992 px (16:10), zodat ze het kader van het stappenplan en het
+totaalbeeld op de homepage helemaal vullen, ook op mobiel. Houd voor nieuwe beelden dezelfde
+verhouding en dezelfde camerapositie aan, zodat alleen het nieuwe onderdeel verandert. Laat de
+hoek linksonder vrij: daar zet de site het label "Voorbeeldwoning". Voor de site zijn de beelden
+opgeslagen als WebP (maximaal 1280 tot 1400 px breed, kwaliteit 75 tot 76).
 
 Nieuwe beelden: zet ze hier neer en pas de naam aan in steps.json (`render`) of
 content/home.json (`comfort.render`). Heeft het beeld zelf al een nummer en titel, zet dan

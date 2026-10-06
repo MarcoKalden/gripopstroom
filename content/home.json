@@ -33,7 +33,7 @@
     "eyebrow": "Alles onder één dak",
     "title": "Comfort dat je voelt",
     "text": "Uit je Gripplan volgt welke oplossingen bij je huis passen. Wij leveren ze en begeleiden de uitvoering, in één aanpak die technisch en financieel op elkaar aansluit. Voor alle techniek in een fijn huis kun je bij ons terecht.",
-    "renderAlt": "Voorbeeldwoning met alle onderdelen: nieuwe kozijnen, dakisolatie, zonnepanelen, een thuisbatterij, een laadpaal met auto, en een airco en een warmtepomp op het platte dak van de carport.",
+    "renderAlt": "Voorbeeldwoning met alle onderdelen: nieuwe kozijnen, dak- en vloerisolatie, zonnepanelen, een thuisbatterij, een laadpaal met auto, en een airco en een warmtepomp op het platte dak van de carport.",
     "renderLabel": "Voorbeeldwoning · hoekwoning 1980 · 120 m²",
     "render": "assets/woning/woning-totaal.webp",
     "placeholder": "Render volgt",
@@ -45,7 +45,7 @@
         "text": "Nieuwe kozijnen met HR++ glas houden de warmte binnen.",
         "href": "zo-werkt-het.html?stap=kozijnen",
         "x": "46%",
-        "y": "40%"
+        "y": "44%"
       },
       {
         "id": "isolatie",
@@ -53,8 +53,8 @@
         "title": "Isolatie",
         "text": "Isolatie van dak en vloer zorgt dat je minder warmte kwijtraakt.",
         "href": "zo-werkt-het.html?stap=isolatie",
-        "x": "74%",
-        "y": "21%"
+        "x": "68%",
+        "y": "22%"
       },
       {
         "id": "zonnepanelen",
@@ -62,8 +62,8 @@
         "title": "Zonnepanelen",
         "text": "Zonnepanelen wekken stroom op voor je eigen woning.",
         "href": "zo-werkt-het.html?stap=zonnepanelen",
-        "x": "42%",
-        "y": "24%"
+        "x": "45%",
+        "y": "27%"
       },
       {
         "id": "batterij",
@@ -71,8 +71,9 @@
         "title": "Thuisbatterij",
         "text": "Een thuisbatterij bewaart je zonnestroom, zodat je hem later zelf gebruikt.",
         "href": "zo-werkt-het.html?stap=batterij",
-        "x": "76%",
-        "y": "77%"
+        "x": "70.5%",
+        "y": "71%",
+        "side": "left"
       },
       {
         "id": "laadpaal",
@@ -80,8 +81,8 @@
         "title": "Laadpaal",
         "text": "Met een laadpaal laad je je auto thuis, het liefst met je eigen zonnestroom.",
         "href": "zo-werkt-het.html?stap=laadpaal",
-        "x": "63.5%",
-        "y": "63%",
+        "x": "82%",
+        "y": "64%",
         "side": "left"
       },
       {
@@ -90,8 +91,8 @@
         "title": "Airco",
         "text": "Een airco koelt je huis op warme dagen en kan het ook verwarmen.",
         "href": "zo-werkt-het.html?stap=airco",
-        "x": "92.5%",
-        "y": "51.5%",
+        "x": "80.5%",
+        "y": "39%",
         "side": "left"
       },
       {
@@ -100,8 +101,8 @@
         "title": "Warmtepomp",
         "text": "Een warmtepomp verwarmt je huis zuinig met elektriciteit, zodat je veel minder gas gebruikt.",
         "href": "zo-werkt-het.html?stap=warmtepomp",
-        "x": "81%",
-        "y": "34%",
+        "x": "91%",
+        "y": "33%",
         "side": "left"
       }
     ],
