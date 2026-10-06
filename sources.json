@@ -4,7 +4,7 @@
   "sources": [
     {
       "id": "voorbeeldwoning",
-      "title": "Uitgangspunten voorbeeldwoning: tussenwoning, bouwjaar circa 1980, circa 120 m², label C",
+      "title": "Uitgangspunten voorbeeldwoning: hoekwoning, bouwjaar circa 1980, circa 120 m², label C",
       "publisher": "Grip op Stroom B.V., op basis van BAG en EP-Online",
       "url": "",
       "validated": false
@@ -49,6 +49,20 @@
       "title": "Bedenktijd van 14 dagen bij koop op afstand en buiten de winkel",
       "publisher": "ConsuWijzer, Autoriteit Consument & Markt",
       "url": "https://www.consuwijzer.nl/kopen-op-afstand/bedenktijd",
+      "validated": false
+    },
+    {
+      "id": "isde",
+      "title": "ISDE: subsidie voor woningeigenaren, onder meer voor warmtepompen en isolatie",
+      "publisher": "Rijksdienst voor Ondernemend Nederland",
+      "url": "https://www.rvo.nl/subsidies-financiering/isde/woningeigenaren",
+      "validated": false
+    },
+    {
+      "id": "warmtefonds",
+      "title": "Lenen voor het verduurzamen van je woning",
+      "publisher": "Nationaal Warmtefonds",
+      "url": "https://www.warmtefonds.nl",
       "validated": false
     }
   ]

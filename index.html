@@ -3,284 +3,412 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Grip op Stroom</title>
-  <meta name="description" content="">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap">
-  <link rel="stylesheet" href="styles.css">
-  <script src="animation.js" defer></script>
+  <title>Grip op Stroom | Jouw huis, jouw pad, jouw tempo</title>
+  <meta name="description" content="Kozijnen, isolatie, zonnepanelen, thuisbatterij, laadpaal, airco of warmtepomp: Grip op Stroom regelt het in één plan voor je hele woning. Start je vrijblijvende Gripscan.">
+  <meta property="og:title" content="Grip op Stroom | Jouw huis, jouw pad, jouw tempo">
+  <meta property="og:description" content="Van kozijnen tot warmtepomp: alle duurzame installaties in één plan voor je hele woning. Jij kiest welke stap je zet en wanneer.">
+  <link rel="preload" as="image" type="image/avif" href="assets/foto/woonkamer-gezin-1024.avif" imagesrcset="assets/foto/woonkamer-gezin-640.avif 640w, assets/foto/woonkamer-gezin-1024.avif 1024w, assets/foto/woonkamer-gezin-1600.avif 1600w" imagesizes="(min-width: 1304px) 1240px, calc(100vw - 32px)" fetchpriority="high">
+  <link rel="preload" href="content/site.json" as="fetch" crossorigin>
+  <link rel="preload" href="content/pakketten.json" as="fetch" crossorigin>
+  <link rel="preload" href="content/vragen.json" as="fetch" crossorigin>
+  <link rel="preload" href="content/home.json" as="fetch" crossorigin>
+  <link rel="preload" href="steps.json" as="fetch" crossorigin>
+  <link rel="preload" href="sources.json" as="fetch" crossorigin>
+  <!-- head:start -->
+  <script>document.documentElement.classList.add("js")</script>
+  <meta name="theme-color" content="#0A2A5E">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preload" href="assets/fonts/figtree-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/figtree-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <meta property="og:site_name" content="Grip op Stroom">
+  <meta property="og:locale" content="nl_NL">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- head:end -->
+  <script src="js/site.js" defer></script>
+  <script src="js/home.js" defer></script>
 </head>
-<body id="top">
-  <a class="skip-link" href="#main">Naar de inhoud</a>
+<body id="top" data-page="home" data-content="content/pakketten.json content/vragen.json content/home.json">
+  <!-- header:start -->
+  <a class="skip-link" href="#main" data-text="ui.skipLink">Naar de inhoud</a>
 
   <header class="site-header">
     <div class="container site-header__inner">
-      <a class="brand" href="#top">
-        <img class="brand__logo" src="assets/logo-gos.png" width="525" height="600" alt="Grip op Stroom">
+      <a class="brand" href="index.html" data-text-aria="ui.homeLabel" aria-label="Grip op Stroom, naar de homepage">
+        <img class="brand__logo" src="assets/logo-gos-small.png" width="126" height="144" alt="Grip op Stroom">
       </a>
-      <nav class="site-nav" data-text-aria="nav.label">
+      <nav class="site-nav" data-text-aria="nav.label" aria-label="Hoofdmenu">
         <ul class="site-nav__list" data-list="nav.items">
-          <template><li><a data-item-text="text" data-item-href="href"></a></li></template>
+          <template><li><a data-item-href="href"><span class="nav-long" data-item-text="text"></span><span class="nav-short" data-item-text="shortText" aria-hidden="true"></span></a></li></template>
+          <li><a href="zo-werkt-het.html">Zo werkt het</a></li>
+          <li><a href="pakketten.html">Pakketten</a></li>
+          <li><a href="over-ons.html">Over ons</a></li>
+          <li><a href="vragen.html">Vragen</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
-      <a class="btn btn--primary btn--small site-header__cta" data-cta="header-gripscan" data-href="links.gripscan" data-text="nav.cta"></a>
+      <a class="btn btn--primary btn--small site-header__cta" href="index.html#contact" data-cta="header-gripscan" data-href="links.gripscan" data-text="nav.cta">Start je Gripscan</a>
     </div>
   </header>
+  <!-- header:end -->
 
   <main id="main">
 
-    <!-- 1. Hero -->
+    <!-- 1. Hero: foto met crème kaart -->
     <section class="hero" aria-labelledby="hero-title">
-      <div class="container hero__inner">
-        <div class="hero__text">
-          <h1 class="hero__title" id="hero-title" data-text="hero.title"></h1>
-          <p class="hero__lead" data-text="hero.lead"></p>
+      <div class="container hero__media">
+        <div class="photo hero__photo">
+          <picture>
+            <source type="image/avif" srcset="assets/foto/woonkamer-gezin-640.avif 640w, assets/foto/woonkamer-gezin-1024.avif 1024w, assets/foto/woonkamer-gezin-1600.avif 1600w" sizes="(min-width: 1304px) 1240px, calc(100vw - 32px)">
+            <source type="image/webp" srcset="assets/foto/woonkamer-gezin-640.webp 640w, assets/foto/woonkamer-gezin-1024.webp 1024w, assets/foto/woonkamer-gezin-1600.webp 1600w" sizes="(min-width: 1304px) 1240px, calc(100vw - 32px)">
+            <img src="assets/foto/woonkamer-gezin-1024.jpg" srcset="assets/foto/woonkamer-gezin-640.jpg 640w, assets/foto/woonkamer-gezin-1024.jpg 1024w, assets/foto/woonkamer-gezin-1600.jpg 1600w" sizes="(min-width: 1304px) 1240px, calc(100vw - 32px)" width="1600" height="900" alt="Gezin in een warme woonkamer bij schemer: vader met koffie op de bank, dochter tekent op het kleed, moeder loopt binnen met een mok." loading="eager" fetchpriority="high">
+          </picture>
+        </div>
+        <div class="hero__card">
+          <p class="hero__badge" data-text="hero.badge">Lekker wonen, slim verduurzamen</p>
+          <h1 id="hero-title" data-text="hero.title">Jouw huis, jouw pad, jouw tempo.</h1>
+          <p class="lead" data-text="hero.lead">Van kozijnen tot warmtepomp: Grip op Stroom regelt alle duurzame installaties voor je huis, in één plan. Jij kiest welke stap je zet en wanneer. Zo houd je grip op je energie en op elke beslissing.</p>
           <div class="hero__actions">
-            <a class="btn btn--primary" data-cta="hero-gripscan" data-href="links.gripscan" data-text="hero.ctaPrimary"></a>
-            <a class="text-link" data-href="hero.ctaSecondaryHref" data-text="hero.ctaSecondary"></a>
+            <a class="btn btn--primary" href="#contact" data-cta="hero-gripscan" data-href="links.gripscan" data-text="hero.ctaPrimary">Start je Gripscan</a>
+            <a class="btn btn--outline" href="zo-werkt-het.html" data-href="hero.ctaSecondaryHref" data-text="hero.ctaSecondary">Bekijk het stappenplan</a>
           </div>
         </div>
-        <figure class="hero__figure" role="img" data-text-aria="hero.figureLabel">
-          <div class="hero__house" data-hero-house aria-hidden="true"></div>
-          <figcaption class="label-chip label-chip--c" data-rich="hero.labelBadge"></figcaption>
-        </figure>
       </div>
-    </section>
-
-    <!-- Labelanimatie -->
-    <section class="anim" id="labelanimatie" aria-labelledby="anim-title" data-label-animation>
-      <div class="anim__track">
-        <div class="anim__sticky">
-          <div class="container anim__inner">
-
-            <header class="anim__head">
-              <p class="eyebrow" data-text="animation.eyebrow"></p>
-              <h2 class="anim__title" id="anim-title" data-text="animation.title"></h2>
-              <p class="anim__intro" data-text="animation.intro"></p>
-              <p class="anim__example">
-                <span class="anim__example-tag" data-text="animation.exampleLabel"></span>
-                <span data-rich="animation.exampleSpecs"></span>
-              </p>
-            </header>
-
-            <nav class="steps" data-text-aria="animation.stepsLabel">
-              <ol class="steps__list" data-steps></ol>
-              <p class="steps__current" data-counter></p>
-            </nav>
-
-            <div class="anim__grid">
-              <div class="anim__figure" tabindex="0" role="group" data-figure data-text-aria="animation.figureLabel">
-                <div class="anim__house" data-house></div>
-                <p class="anim__swipe-hint" data-text="animation.controls.swipeHint"></p>
-              </div>
-
-              <div class="anim__meters">
-                <div class="meter meter--label">
-                  <h3 class="meter__title"><span data-text="animation.meters.label.title"></span><span data-refs="label"></span></h3>
-                  <div class="ladder" data-ladder aria-hidden="true">
-                    <ol class="ladder__list" data-ladder-list></ol>
-                    <span class="ladder__marker" data-ladder-marker></span>
-                  </div>
-                  <p class="sr-only" data-label-sr></p>
-                  <p class="meter__note" data-label-note hidden></p>
-                  <details class="how">
-                    <summary data-text="animation.meters.label.howTitle"></summary>
-                    <p data-rich="animation.meters.label.how"></p>
-                  </details>
-                </div>
-
-                <div class="meter meter--cost">
-                  <h3 class="meter__title" data-text="animation.meters.cost.title"></h3>
-                  <p class="meter__value">
-                    <span class="meter__prefix" data-text="animation.meters.cost.prefix"></span>
-                    <span class="meter__number" data-cost></span><span data-refs="cost"></span>
-                  </p>
-                  <div class="bar bar--cost" aria-hidden="true"><span class="bar__fill" data-cost-bar></span></div>
-                  <details class="how">
-                    <summary data-text="animation.meters.cost.howTitle"></summary>
-                    <p data-rich="animation.meters.cost.how"></p>
-                  </details>
-                </div>
-
-                <div class="meter meter--value">
-                  <h3 class="meter__title" data-text="animation.meters.value.title"></h3>
-                  <p class="meter__value">
-                    <span class="meter__prefix" data-text="animation.meters.value.prefix"></span>
-                    <span class="meter__number" data-value></span><span data-refs="value"></span>
-                    <span class="meter__tag" data-value-unchanged hidden></span>
-                  </p>
-                  <div class="bar bar--value" aria-hidden="true"><span class="bar__fill" data-value-bar></span></div>
-                  <p class="meter__delta" data-value-delta></p>
-                  <details class="how">
-                    <summary data-text="animation.meters.value.howTitle"></summary>
-                    <p data-rich="animation.meters.value.how"></p>
-                  </details>
-                </div>
-
-                <p class="anim__explanation" data-explanation></p>
-                <p class="sr-only" aria-live="polite" aria-atomic="true" data-live></p>
-              </div>
-            </div>
-
-            <div class="anim__footer">
-              <div class="controls">
-                <button type="button" class="btn btn--ghost" data-prev data-text="animation.controls.prev"></button>
-                <button type="button" class="btn btn--ghost" data-play aria-pressed="false"></button>
-                <button type="button" class="btn btn--ghost" data-next data-text="animation.controls.next"></button>
-              </div>
-              <a class="btn btn--primary anim__cta" data-cta="labelanimatie-einde" data-href="animation.ctaHref" data-text="animation.cta" hidden></a>
-            </div>
-
-            <p class="anim__disclaimer" data-text="animation.disclaimer"></p>
-          </div>
-        </div>
-        <div class="anim__sentinels" data-sentinels aria-hidden="true"></div>
-      </div>
-    </section>
-
-
-    <!-- 3. Hoe het gripplan werkt -->
-    <section class="section" id="gripplan" aria-labelledby="plan-title">
       <div class="container">
-        <div class="section__head">
-          <p class="eyebrow" data-text="plan.eyebrow"></p>
-          <h2 class="section__title" id="plan-title" data-text="plan.title"></h2>
-          <p class="section__intro" data-text="plan.intro"></p>
+        <ul class="checks" data-text-aria="hero.trustLabel" data-list="hero.trust" aria-label="Waarom Grip op Stroom">
+          <template><li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-tick"></use></svg><span data-item-rich="text"></span></li></template>
+          <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-tick"></use></svg><span>Vrijblijvende Gripscan</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-tick"></use></svg><span>Gecertificeerde EP-adviseurs</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-tick"></use></svg><span>14 dagen bedenktijd</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-tick"></use></svg><span>Geen verkoop aan de deur</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 2. Comfort dat je voelt -->
+    <section class="section section--white" id="comfort" aria-labelledby="comfort-title" data-wait>
+      <div class="container comfort">
+        <div class="comfort__visual">
+          <div class="render" data-render data-src-path="comfort.render" data-alt-path="comfort.renderAlt">
+            <span class="render__label" data-text="comfort.renderLabel"></span>
+          </div>
+          <div data-hotspots></div>
         </div>
-        <ol class="plan-steps" data-list="plan.steps">
-          <template>
-            <li class="plan-step">
-              <span class="plan-step__nr" aria-hidden="true"></span>
-              <h3 class="plan-step__title" data-item-text="title"></h3>
-              <p data-item-rich="text"></p>
-            </li>
-          </template>
-        </ol>
-        <div class="offer">
-          <h3 class="offer__title" data-text="offer.title"></h3>
-          <ul class="offer__list" data-list="offer.items">
-            <template><li data-item-text="."></li></template>
-          </ul>
+        <div>
+          <p class="eyebrow" data-text="comfort.eyebrow"></p>
+          <h2 id="comfort-title" data-text="comfort.title"></h2>
+          <p data-text="comfort.text"></p>
+          <ol class="feature-list" data-features></ol>
+          <p class="note" data-text="comfort.more"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Gripplan-blok met screenshot van het stappenplan -->
+    <section class="section" id="gripplan" aria-labelledby="gripplan-title" data-wait>
+      <div class="container">
+        <div class="gripplan">
+          <div>
+            <p class="eyebrow" data-text="gripplan.eyebrow"></p>
+            <h2 id="gripplan-title" data-text="gripplan.title"></h2>
+            <p data-text="gripplan.text"></p>
+            <ol class="numbered" data-list="gripplan.steps">
+              <template><li><h3 data-item-text="title"></h3><p data-item-rich="text"></p></li></template>
+            </ol>
+            <a class="btn btn--light" data-href="gripplan.ctaHref" data-cta="gripplan-stappenplan">
+              <span data-text="gripplan.cta"></span>
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow"></use></svg>
+            </a>
+          </div>
+          <figure class="browser" aria-hidden="true">
+            <div class="browser__bar"><span></span><span></span><span></span></div>
+            <picture>
+              <source type="image/avif" srcset="assets/gripplan-screenshot.avif">
+              <source type="image/webp" srcset="assets/gripplan-screenshot.webp">
+              <img src="assets/gripplan-screenshot.png" width="1600" height="798" alt="" loading="lazy">
+            </picture>
+          </figure>
         </div>
       </div>
     </section>
 
     <!-- 4. Pakketten -->
-    <section class="section section--surface" id="pakketten" aria-labelledby="packages-title">
+    <section class="section section--white" id="pakketten" aria-labelledby="packages-title" data-wait>
       <div class="container">
-        <div class="section__head">
-          <p class="eyebrow" data-text="packages.eyebrow"></p>
-          <h2 class="section__title" id="packages-title" data-text="packages.title"></h2>
-          <p class="section__intro" data-text="packages.intro"></p>
+        <div class="section__head section__head--split">
+          <div>
+            <p class="eyebrow" data-text="packages.eyebrow"></p>
+            <h2 id="packages-title" data-text="packages.title"></h2>
+          </div>
+          <p class="lead" data-text="packages.intro"></p>
         </div>
-        <ul class="packages" data-list="packages.items">
+        <ul class="pkg-grid" data-list="packages.items">
           <template>
-            <li class="package">
-              <h3 class="package__name" data-item-text="name"></h3>
-              <p class="package__summary" data-item-text="summary"></p>
-              <p class="package__label" data-ref-text="packages.measuresLabel"></p>
-              <ul class="package__measures" data-item-list="measures">
-                <template><li data-item-text="."></li></template>
-              </ul>
-              <div class="package__effect">
-                <p class="package__label" data-ref-text="packages.effectLabel"></p>
-                <p class="package__chips">
-                  <span class="label-chip" data-item-label="labelFrom"></span>
-                  <span class="package__arrow" aria-hidden="true">&rarr;</span>
-                  <span class="label-chip" data-item-label="labelTo"></span>
-                </p>
-                <p class="package__effect-text" data-item-rich="effectText"></p>
+            <li class="pkg" data-item-class="featured:is-featured" data-item-id="id">
+              <div class="photo pkg__photo" data-item-photo="photo" data-sizes="(min-width: 900px) 400px, 100vw"></div>
+              <div class="pkg__body">
+                <h3 class="pkg__name" data-item-text="name"></h3>
+                <p class="pkg__summary" data-item-text="summary"></p>
+                <p class="pkg__label" data-ref-text="packages.measuresLabel"></p>
+                <ul class="pkg__measures" data-item-list="measures"><template><li data-item-text="."></li></template></ul>
+                <div class="pkg__effect">
+                  <p class="pkg__label" data-ref-text="packages.effectLabel"></p>
+                  <p class="pkg__chips">
+                    <span class="label-chip" data-item-label="labelFrom"></span>
+                    <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow"></use></svg>
+                    <span class="label-chip" data-item-label="labelTo"></span>
+                  </p>
+                  <p class="pkg__effect-text" data-item-rich="effectText"></p>
+                </div>
               </div>
             </li>
           </template>
         </ul>
-        <p class="packages__note" data-text="packages.priceNote"></p>
+        <p class="note" data-text="packages.priceNote"></p>
+        <p class="section__more">
+          <a class="text-link" data-href="links.packages"><span data-text="packages.more"></span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow"></use></svg></a>
+        </p>
       </div>
     </section>
 
-    <!-- 5. Griptegoed -->
-    <section class="section" id="griptegoed" aria-labelledby="credit-title">
-      <div class="container credit">
-        <div class="credit__text">
-          <p class="eyebrow" data-text="credit.eyebrow"></p>
-          <h2 class="section__title" id="credit-title" data-text="credit.title"></h2>
-          <p data-text="credit.text"></p>
-          <ul class="checklist" data-list="credit.points">
-            <template><li data-item-text="."></li></template>
-          </ul>
-        </div>
-        <div class="credit__card">
-          <span class="credit__tag" data-text="credit.exampleLabel"></span>
-          <div class="progress" role="img" data-text-aria="credit.progressAria">
-            <div class="progress__track"><span class="progress__fill"></span></div>
-            <div class="progress__labels" aria-hidden="true">
-              <span data-text="credit.progressFrom"></span>
-              <span data-text="credit.progressTo"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 6. Vertrouwen -->
-    <section class="section section--surface" id="vertrouwen" aria-labelledby="trust-title">
+    <!-- 5. Grippunten (zachtgroen) -->
+    <section class="section section--green" id="grippunten" aria-labelledby="points-title" data-wait>
       <div class="container">
-        <div class="section__head">
-          <p class="eyebrow" data-text="trust.eyebrow"></p>
-          <h2 class="section__title" id="trust-title" data-text="trust.title"></h2>
+        <div class="section__head section__head--split">
+          <div>
+            <p class="eyebrow" data-text="grippunten.eyebrow"></p>
+            <h2 id="points-title" data-text="grippunten.title"></h2>
+          </div>
+          <p class="lead" data-text="grippunten.text"></p>
         </div>
-        <ul class="trust" data-list="trust.items">
+        <ol class="points" data-list="grippunten.steps" data-text-aria="grippunten.stepsLabel">
           <template>
-            <li class="trust__item">
-              <h3 class="trust__title" data-item-rich="title"></h3>
+            <li class="points__card">
+              <span class="icon-badge"><svg class="icon" aria-hidden="true" data-item-icon="icon"><use href=""></use></svg></span>
+              <p class="points__label" data-item-text="label"></p>
+              <h3 data-item-text="title"></h3>
               <p data-item-rich="text"></p>
             </li>
           </template>
-        </ul>
-        <!-- Reviews: verborgen tot er echte reviews zijn (trust.reviews.enabled) -->
-        <div class="reviews" data-reviews hidden>
-          <h3 class="reviews__title" data-text="trust.reviews.title"></h3>
-          <ul class="reviews__list" data-list="trust.reviews.items">
+        </ol>
+        <div class="points-pay">
+          <div>
+            <h3 data-text="grippunten.payTitle"></h3>
+            <p data-text="grippunten.payText"></p>
+          </div>
+          <ul class="checklist" data-list="grippunten.points">
+            <template><li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-tick"></use></svg><span data-item-text="."></span></li></template>
+          </ul>
+        </div>
+        <p class="note" data-if="grippunten.pending" data-text="grippunten.pending" hidden></p>
+        <p class="section__more">
+          <a class="text-link" data-href="grippunten.ctaHref"><span data-text="grippunten.cta"></span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow"></use></svg></a>
+        </p>
+      </div>
+    </section>
+
+    <!-- 6. Waarom Grip op Stroom -->
+    <section class="section section--white" id="waarom" aria-labelledby="why-title" data-wait>
+      <div class="container why">
+        <div class="photo why__photo" data-photo="why.photo" data-photo-alt="why.photoAlt" data-sizes="(min-width: 1024px) 520px, 100vw"></div>
+        <div>
+          <p class="eyebrow" data-text="why.eyebrow"></p>
+          <h2 id="why-title" data-text="why.title"></h2>
+          <ul class="why__grid" data-list="why.items">
             <template>
-              <li class="review">
-                <blockquote data-item-text="quote"></blockquote>
-                <p class="review__author" data-item-text="author"></p>
+              <li>
+                <svg class="icon" aria-hidden="true" data-item-icon="icon"><use href=""></use></svg>
+                <h3 data-item-rich="title"></h3>
+                <p data-item-rich="text"></p>
               </li>
             </template>
           </ul>
+          <a class="text-link" data-href="why.ctaHref"><span data-text="why.cta"></span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow"></use></svg></a>
         </div>
       </div>
     </section>
 
-    <!-- 7. Afsluiting -->
-    <section class="section closing" id="gripscan" aria-labelledby="closing-title">
-      <div class="container closing__inner">
-        <h2 class="closing__title" id="closing-title" data-text="closing.title"></h2>
-        <p class="closing__text" data-text="closing.text"></p>
-        <a class="btn btn--primary btn--large" data-cta="closing-gripscan" data-href="links.gripscan" data-text="closing.cta"></a>
-        <p class="closing__reassurance" data-text="closing.reassurance"></p>
+    <!-- Ervaringen: verborgen tot er echte reviews zijn -->
+    <section class="section" id="ervaringen" aria-labelledby="reviews-title" data-if="reviews" hidden>
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow" data-text="reviews.eyebrow"></p>
+          <h2 id="reviews-title" data-text="reviews.title"></h2>
+          <p class="note" data-text="reviews.verification"></p>
+        </div>
+        <ul class="pkg-grid" data-list="reviews.items">
+          <template><li class="faq__item review"><blockquote data-item-text="quote"></blockquote><p class="muted"><span data-item-text="author"></span>, <span data-item-text="place"></span></p></li></template>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 7. Contact -->
+    <section class="section" id="contact" aria-labelledby="contact-title" data-wait>
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow" data-text="contactSection.eyebrow"></p>
+          <h2 id="contact-title" data-text="contactSection.title"></h2>
+          <p class="lead" data-text="contactSection.text"></p>
+        </div>
+        <!-- contact:start -->
+        <div class="contact">
+          <div class="address-card">
+            <h3 data-text="contact.address.name">Grip op Stroom B.V.</h3>
+            <address data-if="contact.address">
+              <span data-text="contact.address.street">Handelsweg 14</span><br>
+              <span data-text="contact.address.postcode">7041 GX</span> <span data-text="contact.address.city">'s-Heerenberg</span>
+            </address>
+            <ul class="contact-lines">
+              <li data-if="contact.phone">
+                <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-phone"></use></svg>
+                <div><strong data-text="contact.phone.label">Bel ons</strong><a href="tel:+31262056179" data-href="contact.phone.href" data-text="contact.phone.display" data-cta="contact-bellen">026 205 6179</a></div>
+              </li>
+              <li data-if="contact.email" hidden>
+                <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-mail"></use></svg>
+                <div><strong data-text="contact.email.label">Mail ons</strong><a data-href="contact.email.href" data-text="contact.email.display" data-cta="contact-mail"></a></div>
+              </li>
+              <li data-if="contact.hours">
+                <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-clock"></use></svg>
+                <div><span data-text="contact.hours.text">Iedere werkdag van 08:00 tot 17:00</span></div>
+              </li>
+            </ul>
+          </div>
+
+          <form class="form-card" data-contact-form novalidate>
+            <h3 data-text="contactForm.title">Stuur ons een bericht</h3>
+            <div class="form-grid">
+              <div class="field">
+                <label for="cf-naam" data-text="contactForm.fields.naam">Naam</label>
+                <input id="cf-naam" name="naam" type="text" autocomplete="name" required aria-describedby="cf-naam-err">
+                <p class="field__error" id="cf-naam-err" data-error-for="naam" hidden></p>
+              </div>
+              <div class="field">
+                <label for="cf-email" data-text="contactForm.fields.email">E-mail</label>
+                <input id="cf-email" name="email" type="email" autocomplete="email" required aria-describedby="cf-email-err">
+                <p class="field__error" id="cf-email-err" data-error-for="email" hidden></p>
+              </div>
+              <div class="field">
+                <label for="cf-telefoon" data-text="contactForm.fields.telefoon">Telefoon</label>
+                <input id="cf-telefoon" name="telefoon" type="tel" autocomplete="tel" required aria-describedby="cf-telefoon-err">
+                <p class="field__error" id="cf-telefoon-err" data-error-for="telefoon" hidden></p>
+              </div>
+              <div class="field">
+                <label for="cf-postcode" data-text="contactForm.fields.postcode">Postcode</label>
+                <input id="cf-postcode" name="postcode" type="text" autocomplete="postal-code" required pattern="^[1-9][0-9]{3}\s?[A-Za-z]{2}$" aria-describedby="cf-postcode-err">
+                <p class="field__error" id="cf-postcode-err" data-error-for="postcode" hidden></p>
+              </div>
+              <div class="field field--full">
+                <label for="cf-bericht" data-text="contactForm.fields.bericht">Bericht</label>
+                <textarea id="cf-bericht" name="bericht" rows="5" required aria-describedby="cf-bericht-err"></textarea>
+                <p class="field__error" id="cf-bericht-err" data-error-for="bericht" hidden></p>
+              </div>
+              <div class="honeypot" aria-hidden="true">
+                <label for="cf-website">Laat dit veld leeg</label>
+                <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off">
+              </div>
+              <p class="form-status" data-form-status role="status" aria-live="polite" hidden></p>
+              <div class="form-foot">
+                <button class="btn btn--primary" type="submit" data-cta="contactformulier" data-text="contactForm.submit">Verzenden</button>
+                <p><span data-text="contactForm.privacy">We gebruiken je gegevens alleen om contact met je op te nemen.</span> <a href="privacy.html" data-href="links.privacy" data-text="contactForm.privacyLink">Lees de privacyverklaring</a></p>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- contact:end -->
+      </div>
+    </section>
+
+    <!-- 8. Veelgestelde vragen (maximaal vijf) -->
+    <section class="section section--white" id="vragen" aria-labelledby="faq-title" data-wait>
+      <div class="container faq faq--home">
+        <div>
+          <p class="eyebrow" data-text="faq.eyebrow"></p>
+          <h2 id="faq-title" data-text="faq.title"></h2>
+          <a class="text-link" data-href="links.faq"><span data-text="faq.allLink"></span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow"></use></svg></a>
+        </div>
+        <div class="faq__list" data-list="faq.homeItems" data-faq="faq.homeItems">
+          <template>
+            <details class="faq__item">
+              <summary>
+                <span data-item-text="question"></span>
+                <span class="faq__toggle" aria-hidden="true"><svg class="icon i-plus"><use href="assets/icons.svg#i-plus"></use></svg><svg class="icon i-minus"><use href="assets/icons.svg#i-minus"></use></svg></span>
+              </summary>
+              <p data-item-rich="answer"></p>
+            </details>
+          </template>
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- 8. Footer -->
+  <!-- footer:start -->
   <footer class="site-footer">
-    <div class="container site-footer__inner">
-      <div class="site-footer__company">
-        <img class="site-footer__logo" src="assets/logo-gos.png" width="525" height="600" alt="">
-        <p class="site-footer__name" data-text="footer.company"></p>
-        <ul class="site-footer__lines" data-list="footer.companyLines">
-          <template><li data-item-text="."></li></template>
-        </ul>
-        <p><a data-href="links.privacy" data-text="footer.privacy"></a></p>
+    <div class="container">
+      <div class="site-footer__grid">
+        <div>
+          <img class="site-footer__logo" src="assets/logo-gos-small.png" width="126" height="144" alt="">
+          <p class="site-footer__payoff" data-text="payoff">Jouw huis, jouw pad, jouw tempo.</p>
+          <p data-text="company.tagline">Eén partij voor kozijnen, isolatie, zonnepanelen, thuisbatterijen, laadpalen, airco's en warmtepompen. Voor woningeigenaren in Nederland.</p>
+        </div>
+
+        <nav aria-labelledby="footer-menu-title">
+          <h2 id="footer-menu-title" data-text="footer.menuTitle">Menu</h2>
+          <ul data-list="nav.items">
+            <template><li><a data-item-href="href" data-item-text="text"></a></li></template>
+            <li><a href="zo-werkt-het.html">Zo werkt het</a></li>
+            <li><a href="pakketten.html">Pakketten</a></li>
+            <li><a href="over-ons.html">Over ons</a></li>
+            <li><a href="vragen.html">Vragen</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div>
+          <h2 data-text="footer.contactTitle">Contact</h2>
+          <address data-if="contact.address">
+            <span data-text="contact.address.name">Grip op Stroom B.V.</span><br>
+            <span data-text="contact.address.street">Handelsweg 14</span><br>
+            <span data-text="contact.address.postcode">7041 GX</span> <span data-text="contact.address.city">'s-Heerenberg</span>
+          </address>
+          <ul>
+            <li data-if="contact.phone"><a href="tel:+31262056179" data-href="contact.phone.href" data-text="contact.phone.display">026 205 6179</a></li>
+            <li data-if="contact.email" hidden><a data-href="contact.email.href" data-text="contact.email.display"></a></li>
+            <li data-if="contact.hours"><span data-text="contact.hours.text">Iedere werkdag van 08:00 tot 17:00</span></li>
+          </ul>
+          <dl class="site-footer__details" data-list="company.details">
+            <template><div><dt data-item-text="label"></dt><dd data-item-text="value"></dd></div></template>
+          </dl>
+        </div>
+
+        <div>
+          <h2 data-text="footer.legalTitle">Goed om te weten</h2>
+          <ul data-list="footer.legal">
+            <template><li><a data-item-href="href" data-item-text="text"></a></li></template>
+            <li><a href="privacy.html">Privacyverklaring</a></li>
+            <li><a href="cookies.html">Cookieverklaring</a></li>
+            <li><a href="voorwaarden.html">Algemene voorwaarden</a></li>
+            <li><a href="klachten.html">Klachten</a></li>
+            <li><a href="toegankelijkheid.html">Toegankelijkheid</a></li>
+          </ul>
+        </div>
       </div>
-      <section class="sources" aria-labelledby="bronnen-title">
-        <h2 class="sources__title" id="bronnen-title" data-text="footer.sourcesTitle"></h2>
+
+      <details class="sources" id="bronnen" data-if="_sources" hidden>
+        <summary>
+          <span data-text="footer.sourcesTitle">Bronnen</span>
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-chevron"></use></svg>
+        </summary>
         <p data-text="footer.sourcesIntro"></p>
-        <ol class="sources__list" id="bronnen" data-sources></ol>
-      </section>
+        <ol class="sources__list" data-sources></ol>
+      </details>
+
+      <p class="site-footer__bottom">© <span data-text="footer.copyright">Grip op Stroom B.V.</span></p>
     </div>
   </footer>
+  <!-- footer:end -->
 </body>
 </html>

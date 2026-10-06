@@ -1,0 +1,224 @@
+{
+  "_note": "Gedeelde teksten en gegevens voor alle pagina's. Een pagina-bestand (bijvoorbeeld home.json) mag elke waarde hier overschrijven. Alles met \"enabled\": false verschijnt niet op de site. Zet een onderdeel pas aan als de gegevens echt en gecontroleerd zijn.",
+  "brand": {
+    "name": "Grip op Stroom"
+  },
+  "siteUrl": "",
+  "links": {
+    "_note": "Vervang gripscan door de echte link naar de Gripscan zodra die er is. Op de homepage en Zo werkt het verwijst hij nu naar de afsluitende sectie (#gripscan).",
+    "home": "index.html",
+    "gripscan": "index.html#contact",
+    "howItWorks": "zo-werkt-het.html",
+    "privacy": "privacy.html",
+    "cookies": "cookies.html",
+    "terms": "voorwaarden.html",
+    "complaints": "klachten.html",
+    "accessibility": "toegankelijkheid.html",
+    "about": "over-ons.html",
+    "contact": "contact.html",
+    "steps": "zo-werkt-het.html",
+    "faq": "vragen.html",
+    "packages": "pakketten.html"
+  },
+  "ui": {
+    "skipLink": "Naar de inhoud",
+    "homeLabel": "Grip op Stroom, naar de homepage",
+    "sourcesToggle": "Bekijk de bronnen"
+  },
+  "nav": {
+    "label": "Hoofdmenu",
+    "_note": "shortText is de korte naam op smalle schermen.",
+    "items": [
+      {
+        "text": "Zo werkt het",
+        "shortText": "Zo werkt het",
+        "href": "zo-werkt-het.html"
+      },
+      {
+        "text": "Pakketten",
+        "shortText": "Pakketten",
+        "href": "pakketten.html"
+      },
+      {
+        "text": "Over ons",
+        "shortText": "Over ons",
+        "href": "over-ons.html"
+      },
+      {
+        "text": "Vragen",
+        "shortText": "Vragen",
+        "href": "vragen.html"
+      },
+      {
+        "text": "Contact",
+        "shortText": "Contact",
+        "href": "contact.html"
+      }
+    ],
+    "cta": "Start je Gripscan"
+  },
+  "contact": {
+    "_note": "Gegevens volgens REDESIGN.md §7, e-mailadres bevestigd door Marco.",
+    "address": {
+      "enabled": true,
+      "name": "Grip op Stroom B.V.",
+      "street": "Handelsweg 14",
+      "postcode": "7041 GX",
+      "city": "'s-Heerenberg"
+    },
+    "phone": {
+      "enabled": true,
+      "label": "Bel ons",
+      "display": "026 205 6179",
+      "href": "tel:+31262056179",
+      "e164": "+31262056179",
+      "hours": "Iedere werkdag van 08:00 tot 17:00"
+    },
+    "email": {
+      "enabled": true,
+      "label": "Mail ons",
+      "display": "info@gripopstroom.nl",
+      "href": "mailto:info@gripopstroom.nl"
+    },
+    "whatsapp": {
+      "enabled": false,
+      "label": "App ons via WhatsApp",
+      "display": "",
+      "href": ""
+    },
+    "hours": {
+      "enabled": true,
+      "text": "Iedere werkdag van 08:00 tot 17:00",
+      "schema": [
+        "Mo-Fr 08:00-17:00"
+      ]
+    },
+    "responseTime": {
+      "enabled": false,
+      "text": "We reageren binnen één werkdag."
+    }
+  },
+  "company": {
+    "legalName": "Grip op Stroom B.V.",
+    "tagline": "Eén partij voor kozijnen, isolatie, zonnepanelen, thuisbatterijen, laadpalen, airco's en warmtepompen. Voor woningeigenaren in Nederland.",
+    "_note": "Verplichte gegevens (art. 3:15d BW). KvK en btw pas aanzetten na bevestiging (open punt §10.2).",
+    "details": [
+      {
+        "label": "KvK-nummer",
+        "value": "",
+        "enabled": false
+      },
+      {
+        "label": "Btw-nummer",
+        "value": "",
+        "enabled": false
+      }
+    ]
+  },
+  "credentials": {
+    "_note": "Alleen keurmerken en lidmaatschappen die Grip op Stroom echt heeft. Elk item krijgt een link naar het openbare register (verifyUrl) en een logo in assets/logos/. Staat er niets aan, dan verdwijnt de hele balk.",
+    "title": "Erkend en aangesloten",
+    "verifyText": "Controleer in het register",
+    "items": [
+      {
+        "name": "BRL 9500, gecertificeerd EP-adviseur",
+        "logo": "",
+        "verifyUrl": "",
+        "enabled": false,
+        "validated": false
+      },
+      {
+        "name": "InstallQ-erkenning",
+        "logo": "",
+        "verifyUrl": "",
+        "enabled": false,
+        "validated": false
+      },
+      {
+        "name": "F-gassencertificaat voor airco's en warmtepompen",
+        "logo": "",
+        "verifyUrl": "",
+        "enabled": false,
+        "validated": false
+      },
+      {
+        "name": "Lid van Techniek Nederland",
+        "logo": "",
+        "verifyUrl": "",
+        "enabled": false,
+        "validated": false
+      },
+      {
+        "name": "Aangesloten bij De Geschillencommissie",
+        "logo": "",
+        "verifyUrl": "",
+        "enabled": false,
+        "validated": false
+      }
+    ]
+  },
+  "footer": {
+    "menuTitle": "Menu",
+    "contactTitle": "Contact",
+    "legalTitle": "Goed om te weten",
+    "legal": [
+      {
+        "text": "Privacyverklaring",
+        "href": "privacy.html"
+      },
+      {
+        "text": "Cookieverklaring",
+        "href": "cookies.html"
+      },
+      {
+        "text": "Algemene voorwaarden",
+        "href": "voorwaarden.html"
+      },
+      {
+        "text": "Klachten",
+        "href": "klachten.html"
+      },
+      {
+        "text": "Toegankelijkheid",
+        "href": "toegankelijkheid.html"
+      }
+    ],
+    "sourcesTitle": "Bronnen",
+    "sourcesIntro": "De nummers bij de cijfers op deze pagina verwijzen naar deze bronnen.",
+    "copyright": "Grip op Stroom B.V."
+  },
+  "payoff": "Jouw huis, jouw pad, jouw tempo.",
+  "contactForm": {
+    "_note": "endpoint: URL die de inzending ontvangt (zie server/contact.js). Leeg = formulier nog niet gekoppeld.",
+    "endpoint": "",
+    "title": "Stuur ons een bericht",
+    "fields": {
+      "naam": "Naam",
+      "email": "E-mail",
+      "telefoon": "Telefoon",
+      "postcode": "Postcode",
+      "bericht": "Bericht"
+    },
+    "submit": "Verzenden",
+    "sending": "Bezig met verzenden…",
+    "privacy": "We gebruiken je gegevens alleen om contact met je op te nemen.",
+    "privacyLink": "Lees de privacyverklaring",
+    "errors": {
+      "naam": "Vul je naam in.",
+      "email": "Vul een geldig e-mailadres in, bijvoorbeeld naam@voorbeeld.nl.",
+      "telefoon": "Vul je telefoonnummer in.",
+      "postcode": "Vul een geldige postcode in, bijvoorbeeld 1234 AB.",
+      "bericht": "Schrijf kort waar je vraag over gaat."
+    },
+    "summary": "Controleer de velden met een melding.",
+    "success": "Bedankt. We hebben je bericht ontvangen en nemen contact met je op.",
+    "failure": "Versturen lukte niet. Probeer het later opnieuw of bel ons op 026 205 6179.",
+    "notConnected": "Het formulier is nog niet gekoppeld. Bel ons op 026 205 6179, dan helpen we je direct."
+  },
+  "ctaBand": {
+    "title": "Benieuwd wat dit voor jouw woning betekent?",
+    "text": "Start je Gripscan en zie welke stappen bij jouw huis passen.",
+    "cta": "Start je Gripscan",
+    "reassurance": "De Gripscan is vrijblijvend en je zit nergens aan vast."
+  }
+}

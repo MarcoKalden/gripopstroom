@@ -1,0 +1,180 @@
+{
+  "_note": "Teksten voor de homepage. Pakketten, Grippunten en financiering staan in pakketten.json, de vragen in vragen.json, gedeelde teksten in site.json. Bronverwijzing: [[bron-id]].",
+  "meta": {
+    "title": "Grip op Stroom | Jouw huis, jouw pad, jouw tempo",
+    "description": "Kozijnen, isolatie, zonnepanelen, thuisbatterij, laadpaal, airco of warmtepomp: Grip op Stroom regelt het in één plan voor je hele woning. Start je vrijblijvende Gripscan."
+  },
+  "hero": {
+    "badge": "Lekker wonen, slim verduurzamen",
+    "title": "Jouw huis, jouw pad, jouw tempo.",
+    "lead": "Van kozijnen tot warmtepomp: Grip op Stroom regelt alle duurzame installaties voor je huis, in één plan. Jij kiest welke stap je zet en wanneer. Zo houd je grip op je energie en op elke beslissing.",
+    "ctaPrimary": "Start je Gripscan",
+    "ctaSecondary": "Bekijk het stappenplan",
+    "ctaSecondaryHref": "zo-werkt-het.html",
+    "photoAlt": "Gezin in een warme woonkamer bij schemer: vader met koffie op de bank, dochter tekent op het kleed, moeder loopt binnen met een mok.",
+    "trustLabel": "Waarom Grip op Stroom",
+    "trust": [
+      {
+        "text": "Vrijblijvende Gripscan"
+      },
+      {
+        "text": "Gecertificeerde EP-adviseurs"
+      },
+      {
+        "text": "14 dagen bedenktijd[[bedenktijd]]"
+      },
+      {
+        "text": "Geen verkoop aan de deur"
+      }
+    ]
+  },
+  "comfort": {
+    "_note": "Alle installaties in de volgorde van het stappenplan, zodat de nummers gelijk zijn aan de nummers in de beelden. x en y: plek van het nummer op het totaalbeeld. side: \"left\" laat het label bij aanwijzen naar links uitklappen (voor nummers aan de rechterkant van het beeld).",
+    "eyebrow": "Alles onder één dak",
+    "title": "Comfort dat je voelt",
+    "text": "Een fijn huis is warm in de winter, koel in de zomer en slim met stroom. Voor alle techniek die daarbij hoort, kun je bij ons terecht. Wij zetten de stappen in de goede volgorde, zodat elke stap de volgende beter maakt.",
+    "renderAlt": "Voorbeeldwoning met alle onderdelen: nieuwe kozijnen, dakisolatie, zonnepanelen, een thuisbatterij, een laadpaal met auto, en een airco en een warmtepomp op het platte dak van de carport.",
+    "renderLabel": "Voorbeeldwoning · hoekwoning 1980 · 120 m²",
+    "render": "assets/woning/woning-totaal.webp",
+    "placeholder": "Render volgt",
+    "items": [
+      {
+        "id": "kozijnen",
+        "icon": "window",
+        "title": "Kozijnen",
+        "text": "Nieuwe kozijnen met HR++ of triple glas houden de warmte binnen.",
+        "href": "zo-werkt-het.html?stap=kozijnen",
+        "x": "46%",
+        "y": "40%"
+      },
+      {
+        "id": "isolatie",
+        "icon": "layers",
+        "title": "Isolatie",
+        "text": "Isolatie van dak en vloer zorgt dat je minder warmte kwijtraakt.",
+        "href": "zo-werkt-het.html?stap=isolatie",
+        "x": "74%",
+        "y": "21%"
+      },
+      {
+        "id": "zonnepanelen",
+        "icon": "sun",
+        "title": "Zonnepanelen",
+        "text": "Zonnepanelen wekken stroom op voor je eigen woning.",
+        "href": "zo-werkt-het.html?stap=zonnepanelen",
+        "x": "42%",
+        "y": "24%"
+      },
+      {
+        "id": "batterij",
+        "icon": "battery",
+        "title": "Thuisbatterij",
+        "text": "Een thuisbatterij bewaart je zonnestroom, zodat je hem later zelf gebruikt.",
+        "href": "zo-werkt-het.html?stap=batterij",
+        "x": "76%",
+        "y": "77%"
+      },
+      {
+        "id": "laadpaal",
+        "icon": "plug",
+        "title": "Laadpaal",
+        "text": "Met een laadpaal laad je je auto thuis, het liefst met je eigen zonnestroom.",
+        "href": "zo-werkt-het.html?stap=laadpaal",
+        "x": "63.5%",
+        "y": "63%",
+        "side": "left"
+      },
+      {
+        "id": "airco",
+        "icon": "snowflake",
+        "title": "Airco",
+        "text": "Een airco koelt je huis op warme dagen en kan het ook verwarmen.",
+        "href": "zo-werkt-het.html?stap=airco",
+        "x": "92.5%",
+        "y": "51.5%",
+        "side": "left"
+      },
+      {
+        "id": "warmtepomp",
+        "icon": "heater",
+        "title": "Warmtepomp",
+        "text": "Een warmtepomp verwarmt je huis zuinig met elektriciteit, zodat je veel minder gas gebruikt.",
+        "href": "zo-werkt-het.html?stap=warmtepomp",
+        "x": "81%",
+        "y": "34%",
+        "side": "left"
+      }
+    ],
+    "more": "Ook: energiemanagement en energiecontracten. En wil je maar één installatie? Dat kan ook.",
+    "renderHasLabel": true
+  },
+  "gripplan": {
+    "eyebrow": "Het Gripplan",
+    "title": "Zie per stap wat er verandert in jouw huis.",
+    "text": "In het stappenplan zie je bij een voorbeeldwoning wat elke stap doet met het energielabel, de energiekosten en de woningwaarde. Met een bron bij elk cijfer.",
+    "steps": [
+      {
+        "title": "Gripscan",
+        "text": "We analyseren jouw woning met openbare data: het woonoppervlak uit de BAG[[bag]], het bouwjaar met het bouwbesluit dat daarbij hoort, je energielabel uit EP-Online[[ep-online]] en de maatregelen die je al hebt genomen."
+      },
+      {
+        "title": "Gripplan",
+        "text": "Samen bepalen we welke stappen je zet en in welke volgorde. Jij kiest het tempo en de manier van betalen. Dit noemen we Versterk je gripplan."
+      },
+      {
+        "title": "Uitvoering in jouw tempo",
+        "text": "We voeren elke stap uit met zo min mogelijk overlast. Kozijnen meten we bijvoorbeeld in op basis van foto's die je zelf maakt."
+      }
+    ],
+    "cta": "Bekijk het stappenplan",
+    "ctaHref": "zo-werkt-het.html",
+    "screenshotAlt": "Schermafbeelding van het stappenplan: een voorbeeldwoning met energielabel, energiekosten en woningwaarde per stap."
+  },
+  "why": {
+    "eyebrow": "Waarom Grip op Stroom",
+    "title": "Een vaste partij voor het hele traject",
+    "photoAlt": "Gezin speelt een bordspel aan een lage tafel in een sfeervol verlichte woonkamer, met thee en kaarsen.",
+    "items": [
+      {
+        "icon": "badge",
+        "title": "Gecertificeerde EP-adviseurs",
+        "text": "Een gecertificeerde EP-adviseur neemt je energielabel op. Zo weet je dat je label klopt."
+      },
+      {
+        "icon": "book",
+        "title": "Een bron bij elk cijfer",
+        "text": "Bij elk cijfer staat een klein nummer. Dat verwijst naar de bron, die je onderaan de pagina vindt."
+      },
+      {
+        "icon": "undo",
+        "title": "14 dagen bedenktijd[[bedenktijd]]",
+        "text": "Na je akkoord kun je 14 dagen lang zonder kosten afzien van de opdracht."
+      },
+      {
+        "icon": "door",
+        "title": "Jij neemt het initiatief",
+        "text": "Wij verkopen niet aan de deur en niet via de telefoon. Jij neemt contact op wanneer het jou uitkomt."
+      }
+    ],
+    "cta": "Maak kennis met ons",
+    "ctaHref": "over-ons.html",
+    "photo": "spelavond-gezin"
+  },
+  "contactSection": {
+    "eyebrow": "Contact",
+    "title": "Jij neemt het initiatief",
+    "text": "Stel je vraag of vraag je Gripscan aan. We bellen niet ongevraagd en komen niet aan de deur."
+  },
+  "reviews": {
+    "_note": "Zet enabled op true zodra er echte reviews zijn. Vul nooit voorbeeldreviews in. Vermeld hoe reviews gecontroleerd worden (verplicht).",
+    "enabled": false,
+    "eyebrow": "Ervaringen",
+    "title": "Wat deelnemers zeggen",
+    "score": "",
+    "count": "",
+    "platform": "",
+    "platformUrl": "",
+    "verification": "",
+    "items": []
+  }
+}

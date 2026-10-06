@@ -1,0 +1,12 @@
+{
+  "_note": "Teksten voor de contactpagina. De gegevens zelf staan in site.json onder contact en company.",
+  "meta": {
+    "title": "Contact | Grip op Stroom",
+    "description": "Neem contact op met Grip op Stroom, of start direct je vrijblijvende Gripscan."
+  },
+  "page": {
+    "eyebrow": "Contact",
+    "title": "Jij neemt het initiatief",
+    "lead": "Bel ons, kom langs of stuur een bericht. Jij bepaalt wanneer: wij bellen niet ongevraagd en komen niet aan de deur."
+  }
+}

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Toegankelijkheid | Grip op Stroom</title>
+  <meta name="description" content="Toegankelijkheidsverklaring van de website van Grip op Stroom.">
+  <meta name="robots" content="noindex">
+  <link rel="preload" href="content/site.json" as="fetch" crossorigin>
+  <link rel="preload" href="content/juridisch.json" as="fetch" crossorigin>
+  <link rel="preload" href="steps.json" as="fetch" crossorigin>
+  <link rel="preload" href="sources.json" as="fetch" crossorigin>
+  <!-- head:start -->
+  <script>document.documentElement.classList.add("js")</script>
+  <meta name="theme-color" content="#0A2A5E">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preload" href="assets/fonts/figtree-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/figtree-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <meta property="og:site_name" content="Grip op Stroom">
+  <meta property="og:locale" content="nl_NL">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- head:end -->
+  <script src="js/site.js" defer></script>
+</head>
+<body data-page="toegankelijkheid" data-content="content/juridisch.json">
+  <!-- header:start -->
+  <a class="skip-link" href="#main" data-text="ui.skipLink">Naar de inhoud</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html" data-text-aria="ui.homeLabel" aria-label="Grip op Stroom, naar de homepage">
+        <img class="brand__logo" src="assets/logo-gos-small.png" width="126" height="144" alt="Grip op Stroom">
+      </a>
+      <nav class="site-nav" data-text-aria="nav.label" aria-label="Hoofdmenu">
+        <ul class="site-nav__list" data-list="nav.items">
+          <template><li><a data-item-href="href"><span class="nav-long" data-item-text="text"></span><span class="nav-short" data-item-text="shortText" aria-hidden="true"></span></a></li></template>
+          <li><a href="zo-werkt-het.html">Zo werkt het</a></li>
+          <li><a href="pakketten.html">Pakketten</a></li>
+          <li><a href="over-ons.html">Over ons</a></li>
+          <li><a href="vragen.html">Vragen</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn--primary btn--small site-header__cta" href="index.html#contact" data-cta="header-gripscan" data-href="links.gripscan" data-text="nav.cta">Start je Gripscan</a>
+    </div>
+  </header>
+  <!-- header:end -->
+
+  <main id="main">
+    <section class="page-head" aria-labelledby="page-title">
+      <div class="container">
+        <h1 id="page-title" data-text="toegankelijkheid.title"></h1>
+        <p class="lead" data-text="toegankelijkheid.lead"></p>
+      </div>
+    </section>
+
+    <section class="section section--white" aria-label="Inhoud" data-wait>
+      <div class="container">
+        <div class="notice" data-if-not="toegankelijkheid.ready">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-clock"></use></svg>
+          <p><span data-text="pending"></span> <a href="contact.html" data-text="contactLink"></a></p>
+        </div>
+        <div class="prose" data-if="toegankelijkheid.ready" data-list="toegankelijkheid.body" hidden>
+          <template><section><h2 data-item-text="heading"></h2><p data-item-rich="text"></p></section></template>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- footer:start -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div>
+          <img class="site-footer__logo" src="assets/logo-gos-small.png" width="126" height="144" alt="">
+          <p class="site-footer__payoff" data-text="payoff">Jouw huis, jouw pad, jouw tempo.</p>
+          <p data-text="company.tagline">Eén partij voor kozijnen, isolatie, zonnepanelen, thuisbatterijen, laadpalen, airco's en warmtepompen. Voor woningeigenaren in Nederland.</p>
+        </div>
+
+        <nav aria-labelledby="footer-menu-title">
+          <h2 id="footer-menu-title" data-text="footer.menuTitle">Menu</h2>
+          <ul data-list="nav.items">
+            <template><li><a data-item-href="href" data-item-text="text"></a></li></template>
+            <li><a href="zo-werkt-het.html">Zo werkt het</a></li>
+            <li><a href="pakketten.html">Pakketten</a></li>
+            <li><a href="over-ons.html">Over ons</a></li>
+            <li><a href="vragen.html">Vragen</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div>
+          <h2 data-text="footer.contactTitle">Contact</h2>
+          <address data-if="contact.address">
+            <span data-text="contact.address.name">Grip op Stroom B.V.</span><br>
+            <span data-text="contact.address.street">Handelsweg 14</span><br>
+            <span data-text="contact.address.postcode">7041 GX</span> <span data-text="contact.address.city">'s-Heerenberg</span>
+          </address>
+          <ul>
+            <li data-if="contact.phone"><a href="tel:+31262056179" data-href="contact.phone.href" data-text="contact.phone.display">026 205 6179</a></li>
+            <li data-if="contact.email" hidden><a data-href="contact.email.href" data-text="contact.email.display"></a></li>
+            <li data-if="contact.hours"><span data-text="contact.hours.text">Iedere werkdag van 08:00 tot 17:00</span></li>
+          </ul>
+          <dl class="site-footer__details" data-list="company.details">
+            <template><div><dt data-item-text="label"></dt><dd data-item-text="value"></dd></div></template>
+          </dl>
+        </div>
+
+        <div>
+          <h2 data-text="footer.legalTitle">Goed om te weten</h2>
+          <ul data-list="footer.legal">
+            <template><li><a data-item-href="href" data-item-text="text"></a></li></template>
+            <li><a href="privacy.html">Privacyverklaring</a></li>
+            <li><a href="cookies.html">Cookieverklaring</a></li>
+            <li><a href="voorwaarden.html">Algemene voorwaarden</a></li>
+            <li><a href="klachten.html">Klachten</a></li>
+            <li><a href="toegankelijkheid.html">Toegankelijkheid</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <details class="sources" id="bronnen" data-if="_sources" hidden>
+        <summary>
+          <span data-text="footer.sourcesTitle">Bronnen</span>
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-chevron"></use></svg>
+        </summary>
+        <p data-text="footer.sourcesIntro"></p>
+        <ol class="sources__list" data-sources></ol>
+      </details>
+
+      <p class="site-footer__bottom">© <span data-text="footer.copyright">Grip op Stroom B.V.</span></p>
+    </div>
+  </footer>
+  <!-- footer:end -->
+</body>
+</html>

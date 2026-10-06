@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Over ons | Grip op Stroom</title>
+  <meta name="description" content="Wie is Grip op Stroom, waarom bestaan we en hoe werken we? Eén plan voor je hele woning, met een bron bij elk cijfer.">
+  <link rel="preload" href="content/site.json" as="fetch" crossorigin>
+  <link rel="preload" href="content/over-ons.json" as="fetch" crossorigin>
+  <link rel="preload" href="steps.json" as="fetch" crossorigin>
+  <link rel="preload" href="sources.json" as="fetch" crossorigin>
+  <!-- head:start -->
+  <script>document.documentElement.classList.add("js")</script>
+  <meta name="theme-color" content="#0A2A5E">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preload" href="assets/fonts/figtree-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/figtree-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <meta property="og:site_name" content="Grip op Stroom">
+  <meta property="og:locale" content="nl_NL">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- head:end -->
+  <script src="js/site.js" defer></script>
+</head>
+<body data-page="over-ons" data-content="content/over-ons.json">
+  <!-- header:start -->
+  <a class="skip-link" href="#main" data-text="ui.skipLink">Naar de inhoud</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html" data-text-aria="ui.homeLabel" aria-label="Grip op Stroom, naar de homepage">
+        <img class="brand__logo" src="assets/logo-gos-small.png" width="126" height="144" alt="Grip op Stroom">
+      </a>
+      <nav class="site-nav" data-text-aria="nav.label" aria-label="Hoofdmenu">
+        <ul class="site-nav__list" data-list="nav.items">
+          <template><li><a data-item-href="href"><span class="nav-long" data-item-text="text"></span><span class="nav-short" data-item-text="shortText" aria-hidden="true"></span></a></li></template>
+          <li><a href="zo-werkt-het.html">Zo werkt het</a></li>
+          <li><a href="pakketten.html">Pakketten</a></li>
+          <li><a href="over-ons.html">Over ons</a></li>
+          <li><a href="vragen.html">Vragen</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn--primary btn--small site-header__cta" href="index.html#contact" data-cta="header-gripscan" data-href="links.gripscan" data-text="nav.cta">Start je Gripscan</a>
+    </div>
+  </header>
+  <!-- header:end -->
+
+  <main id="main">
+    <section class="page-head" aria-labelledby="page-title">
+      <div class="container page-photo">
+        <div>
+          <p class="eyebrow" data-text="page.eyebrow">Over ons</p>
+          <h1 id="page-title" data-text="page.title"></h1>
+          <p class="lead" data-text="page.lead"></p>
+        </div>
+        <div class="photo" data-photo="page.photo" data-photo-alt="page.photoAlt" data-sizes="(min-width: 1024px) 600px, 100vw" data-eager></div>
+      </div>
+    </section>
+
+    <section class="section section--white" aria-labelledby="why-title" data-wait>
+      <div class="container">
+        <h2 id="why-title" data-text="why.title"></h2>
+        <div class="two-col" data-list="why.paragraphs"><template><p data-item-text="."></p></template></div>
+        <p data-if="why.story" data-text="why.story.text" hidden></p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="values-title" data-wait>
+      <div class="container">
+        <div class="section__head"><h2 id="values-title" data-text="values.title"></h2></div>
+        <ul class="icon-grid icon-grid--4" data-list="values.items">
+          <template>
+            <li>
+              <span class="icon-badge"><svg class="icon" aria-hidden="true" data-item-icon="icon"><use href=""></use></svg></span>
+              <h3 data-item-text="title"></h3>
+              <p data-item-text="text"></p>
+            </li>
+          </template>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--white" aria-labelledby="team-title" data-if="team" hidden>
+      <div class="container">
+        <div class="section__head"><h2 id="team-title" data-text="team.title"></h2></div>
+        <ul class="icon-grid" data-list="team.items">
+          <template>
+            <li>
+              <img class="photo" data-item-if="photo" data-item-src="photo" alt="" width="400" height="500" loading="lazy">
+              <h3 data-item-text="name"></h3>
+              <p data-item-text="role"></p>
+            </li>
+          </template>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="exec-title" data-if="execution" hidden>
+      <div class="container prose">
+        <h2 id="exec-title" data-text="execution.title"></h2>
+        <p data-text="execution.text"></p>
+        <p data-text="execution.area"></p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="cta-title" data-wait>
+      <div class="container">
+        <div class="cta-band">
+          <div>
+            <h2 id="cta-title" data-text="ctaBand.title"></h2>
+            <p data-text="ctaBand.reassurance"></p>
+          </div>
+          <a class="btn btn--primary" href="index.html#contact" data-href="links.gripscan" data-cta="over-ons-gripscan" data-text="ctaBand.cta">Start je Gripscan</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- footer:start -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div>
+          <img class="site-footer__logo" src="assets/logo-gos-small.png" width="126" height="144" alt="">
+          <p class="site-footer__payoff" data-text="payoff">Jouw huis, jouw pad, jouw tempo.</p>
+          <p data-text="company.tagline">Eén partij voor kozijnen, isolatie, zonnepanelen, thuisbatterijen, laadpalen, airco's en warmtepompen. Voor woningeigenaren in Nederland.</p>
+        </div>
+
+        <nav aria-labelledby="footer-menu-title">
+          <h2 id="footer-menu-title" data-text="footer.menuTitle">Menu</h2>
+          <ul data-list="nav.items">
+            <template><li><a data-item-href="href" data-item-text="text"></a></li></template>
+            <li><a href="zo-werkt-het.html">Zo werkt het</a></li>
+            <li><a href="pakketten.html">Pakketten</a></li>
+            <li><a href="over-ons.html">Over ons</a></li>
+            <li><a href="vragen.html">Vragen</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div>
+          <h2 data-text="footer.contactTitle">Contact</h2>
+          <address data-if="contact.address">
+            <span data-text="contact.address.name">Grip op Stroom B.V.</span><br>
+            <span data-text="contact.address.street">Handelsweg 14</span><br>
+            <span data-text="contact.address.postcode">7041 GX</span> <span data-text="contact.address.city">'s-Heerenberg</span>
+          </address>
+          <ul>
+            <li data-if="contact.phone"><a href="tel:+31262056179" data-href="contact.phone.href" data-text="contact.phone.display">026 205 6179</a></li>
+            <li data-if="contact.email" hidden><a data-href="contact.email.href" data-text="contact.email.display"></a></li>
+            <li data-if="contact.hours"><span data-text="contact.hours.text">Iedere werkdag van 08:00 tot 17:00</span></li>
+          </ul>
+          <dl class="site-footer__details" data-list="company.details">
+            <template><div><dt data-item-text="label"></dt><dd data-item-text="value"></dd></div></template>
+          </dl>
+        </div>
+
+        <div>
+          <h2 data-text="footer.legalTitle">Goed om te weten</h2>
+          <ul data-list="footer.legal">
+            <template><li><a data-item-href="href" data-item-text="text"></a></li></template>
+            <li><a href="privacy.html">Privacyverklaring</a></li>
+            <li><a href="cookies.html">Cookieverklaring</a></li>
+            <li><a href="voorwaarden.html">Algemene voorwaarden</a></li>
+            <li><a href="klachten.html">Klachten</a></li>
+            <li><a href="toegankelijkheid.html">Toegankelijkheid</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <details class="sources" id="bronnen" data-if="_sources" hidden>
+        <summary>
+          <span data-text="footer.sourcesTitle">Bronnen</span>
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-chevron"></use></svg>
+        </summary>
+        <p data-text="footer.sourcesIntro"></p>
+        <ol class="sources__list" data-sources></ol>
+      </details>
+
+      <p class="site-footer__bottom">© <span data-text="footer.copyright">Grip op Stroom B.V.</span></p>
+    </div>
+  </footer>
+  <!-- footer:end -->
+</body>
+</html>

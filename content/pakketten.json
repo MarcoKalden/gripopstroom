@@ -1,0 +1,204 @@
+{
+  "_note": "Pakketten, Grippunten en financiering. Gedeeld door de homepage en de pakkettenpagina. Labeleffecten gelden voor de voorbeeldwoning en moeten door een EP-adviseur worden gevalideerd. De labeleffecten van Stevige en Volledige grip waren berekend met de warmtepomp als vaste stap en moeten opnieuw berekend worden (recalculate: true). De warmtepomp zit, net als laadpaal en airco, als keuze in Volledige grip (bevestigd door Marco).",
+  "packages": {
+    "eyebrow": "Pakketten",
+    "title": "Kies hoeveel grip je wilt",
+    "intro": "Elk pakket is een vertrekpunt. In je gripplan stemmen we de stappen af op jouw woning. Liever één installatie? Dat kan ook.",
+    "measuresLabel": "Maatregelen",
+    "effectLabel": "Verwacht labeleffect in de voorbeeldwoning",
+    "priceNote": "De prijs hoort bij jouw woning. Die krijg je na de Gripscan.",
+    "items": [
+      {
+        "name": "Ferme grip",
+        "summary": "Je woning houdt de warmte beter vast.",
+        "measures": [
+          "Kozijnen met HR++ of triple glas",
+          "Dak- en vloerisolatie"
+        ],
+        "labelFrom": "C",
+        "labelTo": "A",
+        "effectText": "Van C naar A[[nta-8800]]",
+        "id": "ferme-grip",
+        "photo": "ontbijt-gezin",
+        "photoAlt": "Gezin aan de ontbijttafel in een zonnige keuken."
+      },
+      {
+        "name": "Stevige grip",
+        "summary": "Je maakt je eigen stroom.",
+        "measures": [
+          "Alles uit Ferme grip",
+          "Zonnepanelen"
+        ],
+        "labelFrom": "C",
+        "labelTo": "A++",
+        "effectText": "Van C naar A++[[nta-8800]]",
+        "id": "stevige-grip",
+        "photo": "keuken-senioren",
+        "photoAlt": "Ouder stel in een zonnige keuken; hij snijdt brood, zij drinkt koffie aan tafel.",
+        "featured": true,
+        "recalculate": true
+      },
+      {
+        "name": "Volledige grip",
+        "summary": "Je gebruikt je eigen stroom op het slimste moment.",
+        "measures": [
+          "Alles uit Stevige grip",
+          "Thuisbatterij met energiemanagement",
+          "Dynamisch energiecontract",
+          "Laadpaal, airco en warmtepomp als je dat wilt"
+        ],
+        "labelFrom": "C",
+        "labelTo": "A++",
+        "effectText": "Van C naar A++. De extra stappen verlagen vooral je kosten[[nta-8800]]",
+        "id": "volledige-grip",
+        "photo": "bank-stel",
+        "photoAlt": "Stel ontspant met koffie op de bank in een modern ingerichte woonkamer.",
+        "recalculate": true
+      }
+    ],
+    "more": "Bekijk alle pakketten",
+    "compare": {
+      "title": "Pakketten naast elkaar",
+      "caption": "Welke maatregelen in welk pakket zitten",
+      "measureCol": "Maatregel",
+      "yes": "Inbegrepen",
+      "no": "Niet inbegrepen",
+      "optional": "Als je dat wilt",
+      "rows": [
+        {
+          "measure": "Kozijnen met HR++ of triple glas",
+          "values": [
+            "yes",
+            "yes",
+            "yes"
+          ]
+        },
+        {
+          "measure": "Dak- en vloerisolatie",
+          "values": [
+            "yes",
+            "yes",
+            "yes"
+          ]
+        },
+        {
+          "measure": "Zonnepanelen",
+          "values": [
+            "no",
+            "yes",
+            "yes"
+          ]
+        },
+        {
+          "measure": "Thuisbatterij met energiemanagement",
+          "values": [
+            "no",
+            "no",
+            "yes"
+          ]
+        },
+        {
+          "measure": "Dynamisch energiecontract",
+          "values": [
+            "no",
+            "no",
+            "yes"
+          ]
+        },
+        {
+          "measure": "Laadpaal",
+          "values": [
+            "no",
+            "no",
+            "optional"
+          ]
+        },
+        {
+          "measure": "Airco die ook verwarmt",
+          "values": [
+            "no",
+            "no",
+            "optional"
+          ]
+        },
+        {
+          "measure": "Warmtepomp",
+          "values": [
+            "no",
+            "no",
+            "optional"
+          ]
+        }
+      ],
+      "labelRow": "Verwacht labeleffect in de voorbeeldwoning"
+    }
+  },
+  "grippunten": {
+    "_note": "Het puntensysteem vervangt het abonnement (besluit Marco, oktober 2026). De toekenning, de waarde per punt, de geldigheidsduur en de voorwaarden worden nog uitgewerkt. Zolang dat zo is, staat dat in pending en meldt scripts/check-livegang.js het. Noem geen aantallen punten of bedragen voordat ze vaststaan. Vergelijk het puntensysteem niet met ING of een ander merk (besluit Marco).",
+    "eyebrow": "Grippunten",
+    "title": "Hoe meer je bij ons doet, hoe meer voordeel je opbouwt",
+    "text": "Bij alles wat je bij Grip op Stroom afneemt, spaar je automatisch Grippunten. Die wissel je in voor voordeel op je volgende stap.",
+    "stepsLabel": "Zo werken de Grippunten",
+    "steps": [
+      {
+        "icon": "star",
+        "label": "Sparen",
+        "title": "Automatisch bij elke stap",
+        "text": "Je krijgt punten voor een maatregel die we bij je uitvoeren, voor een lopend energiecontract of energiemanagement, en als je een andere woningeigenaar bij ons aanbrengt. Je hoeft er niets voor te doen."
+      },
+      {
+        "icon": "trending",
+        "label": "Opbouwen",
+        "title": "Meer doen levert meer op",
+        "text": "Voer je meerdere stappen van je gripplan bij ons uit? Dan bouw je sneller punten op dan met één losse maatregel. Zo loont het om meerdere jaren met ons verder te gaan."
+      },
+      {
+        "icon": "percent",
+        "label": "Inwisselen",
+        "title": "Korting op je volgende stap",
+        "text": "Met je punten betaal je minder voor een volgende maatregel. Of je krijgt er extra service voor, zoals een nieuwe labelopname of uitgebreider energiemanagement. Punten zijn geen geld: je kunt ze niet laten uitbetalen."
+      }
+    ],
+    "payTitle": "Zo betaal je",
+    "payText": "Je betaalt een stap uit eigen middelen of met een financiering. Je Grippunten maken je volgende stap voordeliger. Hoe meer je bij ons doet, hoe groter je voordeel.",
+    "points": [
+      "Sparen gaat automatisch en kost niets extra",
+      "Je punten zijn persoonlijk en een vaste tijd geldig",
+      "Je ziet je voordeel zodra je kiest voor een volgende stap"
+    ],
+    "pending": "Hoeveel punten je krijgt, wat een punt waard is en welke voorwaarden gelden, werken we nog uit.",
+    "cta": "Meer over Grippunten en betalen",
+    "ctaHref": "pakketten.html#grippunten"
+  },
+  "funding": {
+    "eyebrow": "Subsidie en financiering",
+    "title": "Hulp bij het betalen",
+    "intro": "Voor een deel van de stappen bestaan regelingen van de overheid. De voorwaarden veranderen regelmatig. Kijk daarom altijd bij de bron.",
+    "items": [
+      {
+        "icon": "landmark",
+        "title": "ISDE-subsidie",
+        "text": "Voor onder meer een warmtepomp en isolatie kun je als woningeigenaar mogelijk subsidie krijgen via de ISDE van de Rijksdienst voor Ondernemend Nederland[[isde]]."
+      },
+      {
+        "icon": "piggy",
+        "title": "Lenen via het Warmtefonds",
+        "text": "Bij het Nationaal Warmtefonds kun je geld lenen om je woning te verduurzamen[[warmtefonds]]."
+      }
+    ],
+    "help": {
+      "_note": "Alleen aanzetten als Grip op Stroom echt helpt bij de aanvraag.",
+      "enabled": false,
+      "text": "Wij helpen je bij de aanvraag."
+    }
+  },
+  "page": {
+    "eyebrow": "Pakketten",
+    "title": "Kies hoeveel grip je wilt",
+    "lead": "Elk pakket is een vertrekpunt. In je gripplan stemmen we de stappen af op jouw woning. Liever één installatie? Dat kan ook."
+  },
+  "meta": {
+    "title": "Pakketten | Grip op Stroom",
+    "description": "Ferme grip, Stevige grip of Volledige grip: bekijk wat elk pakket doet, hoe je Grippunten spaart en welke regelingen er zijn."
+  }
+}

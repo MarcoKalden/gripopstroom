@@ -1,0 +1,106 @@
+{
+  "_note": "Teksten voor Zo werkt het. De stappen, bedragen en renders staan in steps.json.",
+  "meta": {
+    "title": "Zo werkt het | Grip op Stroom",
+    "description": "Bekijk per stap wat er verandert in een voorbeeldwoning, van nieuwe kozijnen tot een warmtepomp: energielabel, energiekosten en woningwaarde. Met een bron bij elk cijfer."
+  },
+  "page": {
+    "eyebrow": "Zo werkt het · Stappenplan",
+    "title": "Elke stap maakt je woning sterker",
+    "lead": "Bekijk hoe een voorbeeldwoning stap voor stap verandert, van nieuwe kozijnen tot een warmtepomp. Je ziet per stap wat er gebeurt met het energielabel, de energiekosten en de woningwaarde."
+  },
+  "animation": {
+    "eyebrow": "Stap voor stap sterker",
+    "title": "Elke stap maakt je woning sterker",
+    "intro": "Bekijk hoe een voorbeeldwoning stap voor stap verandert, van nieuwe kozijnen tot een warmtepomp. Je ziet per stap wat er gebeurt met het energielabel, de energiekosten en de woningwaarde.",
+    "exampleLabel": "Voorbeeldwoning",
+    "exampleSpecs": "Hoekwoning, circa 1980, circa 120 m², label C[[voorbeeldwoning]]",
+    "disclaimer": "Indicatief voorbeeld. Jouw situatie berekenen we in de Gripscan.",
+    "stepsLabel": "Stappen in het stappenplan",
+    "stepCounter": "Stap {n} van {total}",
+    "figureLabel": "Illustratie van de voorbeeldwoning. Gebruik de pijltjestoetsen om door de stappen te gaan.",
+    "meters": {
+      "label": {
+        "title": "Energielabel",
+        "markerText": "Nu",
+        "howTitle": "Hoe rekenen we dit?",
+        "how": "Het label van de voorbeeldwoning is een inschatting volgens NTA 8800, de methode die EP-adviseurs gebruiken[[nta-8800]]. Het officiële label van jouw woning staat in EP-Online[[ep-online]]. Een thuisbatterij, energiemanagement en een laadpaal tellen voor zover bekend niet mee in de labelberekening. Een gecertificeerde EP-adviseur stelt jouw label vast."
+      },
+      "cost": {
+        "title": "Energiekosten per jaar",
+        "prefix": "circa",
+        "howTitle": "Hoe rekenen we dit?",
+        "how": "We rekenen met het gemiddelde verbruik van een vergelijkbare woning en gemiddelde energieprijzen[[milieu-centraal]]. Jouw kosten hangen af van je verbruik, je huishouden en je contract. De bedragen zijn afgerond. De balk begint bij nul."
+      },
+      "value": {
+        "title": "Indicatieve woningwaarde",
+        "prefix": "circa",
+        "unchanged": "Blijft gelijk",
+        "deltaText": "Circa {delta} hoger dan de uitgangssituatie",
+        "howTitle": "Hoe rekenen we dit?",
+        "how": "We rekenen met circa 2% hogere waarde per labelstap[[kadaster]]. Dat volgt uit cijfers van het Kadaster: woningen met label B verkopen gemiddeld circa 2,1% lager dan woningen met label A of beter[[kadaster]]. We kiezen bewust de voorzichtige kant. Locatie en onderhoud bepalen de woningwaarde sterker dan het label. De balk begint bij nul."
+      }
+    },
+    "controls": {
+      "prev": "Vorige",
+      "next": "Volgende",
+      "play": "Afspelen",
+      "pause": "Pauze",
+      "swipeHint": "Veeg of gebruik de knoppen om door de stappen te gaan."
+    },
+    "live": "Stap {n} van {total}: {name}. Energielabel {label}. Energiekosten circa {cost} per jaar. Woningwaarde circa {value}.",
+    "liveNoLabelEffect": "Het label verandert niet.",
+    "cta": "Bereken dit voor jouw woning",
+    "ctaHref": "#gripscan",
+    "renderLabel": "Voorbeeldwoning · hoekwoning 1980 · 120 m²",
+    "placeholder": "Render volgt",
+    "newPart": "Nieuw: {name}",
+    "pendingValue": "Volgt",
+    "livePending": "Stap {n} van {total}: {name}. Label en bedragen worden nog berekend."
+  },
+  "plan": {
+    "eyebrow": "Hoe het gripplan werkt",
+    "title": "Drie stappen naar een sterkere woning",
+    "intro": "Elke stap bouwt voort op de vorige. Isolatie zorgt dat je minder warmte kwijtraakt, zodat een warmtepomp zuiniger werkt. Zonnepanelen leveren stroom voor je eigen huis, ook voor je airco en warmtepomp. Je batterij bewaart wat je overhoudt. Daarom maken we één plan voor je hele woning.",
+    "steps": [
+      {
+        "title": "Gripscan",
+        "text": "We analyseren jouw woning met openbare data: het woonoppervlak uit de BAG[[bag]], het bouwjaar met het bouwbesluit dat daarbij hoort, je energielabel uit EP-Online[[ep-online]] en de maatregelen die je al hebt genomen."
+      },
+      {
+        "title": "Gripplan",
+        "text": "Samen bepalen we welke stappen je zet en in welke volgorde. Jij kiest het tempo en de manier van betalen. Dit noemen we Versterk je gripplan."
+      },
+      {
+        "title": "Uitvoering in jouw tempo",
+        "text": "We voeren elke stap uit met zo min mogelijk overlast. Kozijnen meten we bijvoorbeeld in op basis van foto's die je zelf maakt."
+      }
+    ]
+  },
+  "process": {
+    "_note": "Vul bij duration een termijn in zodra Marco die bevestigt. Een lege duration wordt niet getoond.",
+    "title": "Wat gebeurt er na je aanvraag?",
+    "items": [
+      {
+        "title": "Je start de Gripscan",
+        "text": "Je vraagt de Gripscan aan voor je woning.",
+        "duration": ""
+      },
+      {
+        "title": "We bekijken je woning",
+        "text": "We zoeken de openbare gegevens op en zetten de mogelijke stappen op een rij.",
+        "duration": ""
+      },
+      {
+        "title": "We bespreken je gripplan",
+        "text": "Samen kijken we welke stappen bij jou passen, in welke volgorde en in welk tempo.",
+        "duration": ""
+      },
+      {
+        "title": "Jij beslist",
+        "text": "Pas als jij akkoord geeft, plannen we de eerste stap. Daarna heb je 14 dagen bedenktijd[[bedenktijd]].",
+        "duration": ""
+      }
+    ]
+  }
+}
