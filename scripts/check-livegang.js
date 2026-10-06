@@ -65,13 +65,18 @@ read('steps.json').steps.filter((st) => st.enabled !== false).forEach((st) => {
 const homeContent = read('content/home.json');
 if (homeContent.comfort && !exists(homeContent.comfort.render)) add('content/home.json', 'comfort.render', 'totaalbeeld ontbreekt: ' + homeContent.comfort.render);
 else if (homeContent.comfort && /\.svg$/.test(homeContent.comfort.render)) add('content/home.json', 'comfort.render', 'nog een schets, geen render');
-// Na het weghalen van de warmtepomp moeten deze cijfers opnieuw berekend worden.
+// Cijfers die berekend waren met de warmtepomp als stap 3 (nu stap 7), en stappen die nog geen cijfers hebben.
 read('steps.json').steps.filter((st) => st.recalculate).forEach((st) => {
-  add('steps.json', st.id, st.pending ? 'label en bedragen nog berekenen (site toont "Volgt")' : 'label en bedragen opnieuw berekenen zonder warmtepomp');
+  add('steps.json', st.id, st.pending ? 'label en bedragen nog berekenen (site toont "Volgt")' : 'label en bedragen opnieuw berekenen (waren berekend met de warmtepomp als stap 3)');
 });
-read('content/pakketten.json').packages.items.filter((it) => it.recalculate).forEach((it) => {
-  add('content/pakketten.json', it.name, 'labeleffect opnieuw berekenen zonder warmtepomp');
+const pakketten = read('content/pakketten.json');
+pakketten.packages.items.filter((it) => it.recalculate).forEach((it) => {
+  add('content/pakketten.json', it.name, 'labeleffect opnieuw berekenen (was berekend met de warmtepomp als vaste stap)');
 });
+// Grippunten: het puntensysteem is nog niet helemaal uitgewerkt.
+if (pakketten.grippunten && pakketten.grippunten.pending) {
+  add('content/pakketten.json', 'grippunten.pending', 'puntensysteem uitwerken: toekenning, waarde per punt, geldigheidsduur en voorwaarden (juridisch laten toetsen); daarna deze zin aanpassen of leegmaken');
+}
 for (const [k, v] of Object.entries(read('content/juridisch.json'))) {
   if (v && typeof v === 'object' && 'ready' in v && !v.ready) add('content/juridisch.json', k, 'juridische tekst ontbreekt');
 }

@@ -6,6 +6,20 @@
     "allLink": "Alle vragen",
     "groups": [
       {
+        "title": "Wat we voor je regelen",
+        "items": [
+          {
+            "question": "Waarvoor kan ik bij Grip op Stroom terecht?",
+            "answer": "Voor alle duurzame installaties in je huis: kozijnen, isolatie, zonnepanelen, thuisbatterijen, laadpalen, airco's en warmtepompen. Ook energiemanagement en een energiecontract regelen we voor je. We maken één plan voor je hele woning, en jij kiest welke stap je zet.",
+            "home": true
+          },
+          {
+            "question": "Kan ik ook één installatie bij jullie laten plaatsen?",
+            "answer": "Ja. Je kunt voor één installatie bij ons terecht of voor je hele huis. Doe je meer stappen bij ons, dan spaar je meer Grippunten voor korting op je volgende stap."
+          }
+        ]
+      },
+      {
         "title": "De Gripscan",
         "items": [
           {
@@ -45,7 +59,7 @@
         "items": [
           {
             "question": "Klopt het energielabel uit het voorbeeld ook voor mijn huis?",
-            "answer": "Niet per se. Het voorbeeld is een tussenwoning uit circa 1980. Jouw situatie berekenen we in de Gripscan. Je officiële label stelt een gecertificeerde EP-adviseur vast volgens NTA 8800[[nta-8800]].",
+            "answer": "Niet per se. Het voorbeeld is een hoekwoning uit circa 1980. Jouw situatie berekenen we in de Gripscan. Je officiële label stelt een gecertificeerde EP-adviseur vast volgens NTA 8800[[nta-8800]].",
             "home": true
           },
           {
@@ -55,17 +69,41 @@
         ]
       },
       {
-        "title": "Afspraken, garantie en betalen",
+        "title": "Betalen en Grippunten",
+        "items": [
+          {
+            "question": "Hoe betaal ik een stap?",
+            "answer": "Je betaalt uit eigen middelen of met een financiering, bijvoorbeeld een lening van het Nationaal Warmtefonds[[warmtefonds]]. Met je Grippunten wordt je volgende stap voordeliger."
+          },
+          {
+            "question": "Hoe werken de Grippunten?",
+            "answer": "Bij alles wat je bij ons afneemt, spaar je automatisch Grippunten. Bijvoorbeeld bij een uitgevoerde maatregel, een lopend energiecontract of als je een andere woningeigenaar bij ons aanbrengt. Je punten wissel je in voor korting op een volgende stap of voor extra service."
+          },
+          {
+            "question": "Kan ik mijn Grippunten laten uitbetalen?",
+            "answer": "Nee. Grippunten zijn geen geld. Je gebruikt ze voor korting op een volgende stap of voor extra service, zoals een nieuwe labelopname of uitgebreider energiemanagement."
+          },
+          {
+            "question": "Hoe lang blijven mijn Grippunten geldig?",
+            "answer": "",
+            "enabled": false,
+            "_note": "Punten hebben een vaste geldigheidsduur. Invullen zodra die vaststaat."
+          },
+          {
+            "question": "Wat gebeurt er met mijn Grippunten als ik stop?",
+            "answer": "",
+            "enabled": false,
+            "_note": "Invullen zodra de voorwaarden van het puntensysteem vaststaan."
+          }
+        ]
+      },
+      {
+        "title": "Afspraken en garantie",
         "items": [
           {
             "question": "Kan ik nog terug na mijn akkoord?",
             "answer": "Ja. Na je akkoord heb je 14 dagen bedenktijd[[bedenktijd]]. In die tijd kun je zonder kosten afzien van de opdracht.",
-            "home": true
-          },
-          {
-            "question": "Wat gebeurt er met mijn griptegoed als ik stop?",
-            "answer": "",
-            "enabled": false
+            "home": false
           },
           {
             "question": "Welke garantie krijg ik?",
@@ -92,6 +130,6 @@
   },
   "meta": {
     "title": "Veelgestelde vragen | Grip op Stroom",
-    "description": "Antwoorden op vragen over de Gripscan, je gripplan, het energielabel en de afspraken met Grip op Stroom."
+    "description": "Antwoorden op vragen over wat we voor je regelen, de Gripscan, je gripplan, het energielabel, betalen en Grippunten."
   }
 }

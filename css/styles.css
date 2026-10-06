@@ -1,10 +1,9 @@
 /* Grip op Stroom: huisstijl en opmaak voor alle pagina's (redesign "lekker wonen").
    Mobile first. Breekpunten: 640px, 900px en 1024px.
    Alle kleuren, letters en vormen komen uit de tokens hieronder (REDESIGN.md §2).
-   Lettertypen staan lokaal in assets/fonts (geen verzoeken naar Google). */
+   Koppen en tekst staan in Figtree: dat lettertype ligt het dichtst bij de letters
+   in het logo. Lettertypen staan lokaal in assets/fonts (geen verzoeken naar Google). */
 
-@font-face { font-family: "Bricolage Grotesque"; font-weight: 600; font-display: swap; src: url("../assets/fonts/bricolage-grotesque-latin-600-normal.woff2") format("woff2"); }
-@font-face { font-family: "Bricolage Grotesque"; font-weight: 700; font-display: swap; src: url("../assets/fonts/bricolage-grotesque-latin-700-normal.woff2") format("woff2"); }
 @font-face { font-family: "Figtree"; font-weight: 400; font-display: swap; src: url("../assets/fonts/figtree-latin-400-normal.woff2") format("woff2"); }
 @font-face { font-family: "Figtree"; font-weight: 500; font-display: swap; src: url("../assets/fonts/figtree-latin-500-normal.woff2") format("woff2"); }
 @font-face { font-family: "Figtree"; font-weight: 600; font-display: swap; src: url("../assets/fonts/figtree-latin-600-normal.woff2") format("woff2"); }
@@ -43,7 +42,7 @@
   --label-g: #E57A63;
 
   /* Typografie */
-  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-display: "Figtree", system-ui, sans-serif;
   --font-body: "Figtree", system-ui, sans-serif;
 
   /* Vorm */
@@ -310,36 +309,45 @@ a:hover .photo img, .photo:hover img { transform: scale(1.03); }
 /* ===== Comfort dat je voelt ===== */
 .comfort { display: grid; gap: 40px; align-items: center; }
 .comfort__visual { position: relative; }
+/* Hotspots: een genummerde stip precies op het onderdeel. Bij aanwijzen of focus (en als de
+   bijbehorende rij actief is) klapt het label uit; met side: "left" naar links. */
 .hotspot {
+  --tx: -22px;
   position: absolute;
   z-index: 3;
-  transform: translate(-50%, -50%);
+  transform: translate(var(--tx), -50%);
   display: inline-flex;
   align-items: center;
   gap: 6px;
   min-height: 44px;
-  padding: 0 14px 0 6px;
+  padding: 0 6px;
   border-radius: var(--radius-pill);
   background: var(--gos-surface);
   color: var(--gos-ink);
   font-weight: 600;
   font-size: .875rem;
+  white-space: nowrap;
   text-decoration: none;
   box-shadow: var(--shadow-chip);
   transition: transform .2s var(--ease), background-color .2s var(--ease), color .2s var(--ease);
 }
+.hotspot--left { --tx: calc(-100% + 22px); flex-direction: row-reverse; }
 .hotspot__nr {
   display: inline-flex; align-items: center; justify-content: center;
   width: 32px; height: 32px; border-radius: 50%;
   background: var(--gos-green); color: var(--gos-surface); font-weight: 700;
 }
+.hotspot__label { display: none; }
+.hotspot:hover, .hotspot:focus-visible, .hotspot.is-active { z-index: 4; background: var(--gos-navy); color: var(--gos-surface); transform: translate(var(--tx), -50%) scale(1.05); }
+@media (min-width: 640px) {
+  .hotspot:hover, .hotspot:focus-visible, .hotspot.is-active { padding-right: 14px; }
+  .hotspot--left:hover, .hotspot--left:focus-visible, .hotspot--left.is-active { padding-right: 6px; padding-left: 14px; }
+  .hotspot:hover .hotspot__label, .hotspot:focus-visible .hotspot__label, .hotspot.is-active .hotspot__label { display: inline; }
+}
 @media (max-width: 639px) {
-  .hotspot { padding: 0 6px; }
-  .hotspot span:last-child { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   .render__placeholder span { display: none; }
 }
 .render__placeholder { padding-top: 56px; }
-.hotspot:hover, .hotspot.is-active { background: var(--gos-navy); color: var(--gos-surface); transform: translate(-50%, -50%) scale(1.05); }
 .feature-list { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 8px; }
 .feature {
   display: grid;
@@ -363,7 +371,13 @@ a:hover .photo img, .photo:hover img { transform: scale(1.03); }
 .feature__title { margin: 0; font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: var(--gos-navy); }
 .feature__title .nr { color: var(--gos-green); margin-right: 6px; }
 .feature__text { margin: 0; }
-@media (min-width: 1024px) { .comfort { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 72px; } }
+/* Het totaalbeeld staat rechtop: op tablets niet over de volle breedte, anders wordt het erg hoog. */
+@media (min-width: 640px) and (max-width: 1023px) { .comfort__visual { max-width: 560px; } }
+@media (min-width: 1024px) {
+  .comfort { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 72px; align-items: start; }
+  /* De lijst met installaties is langer dan het beeld: het beeld blijft in beeld tijdens het lezen. */
+  .comfort__visual { position: sticky; top: 96px; }
+}
 
 /* ===== Gripplan-blok (donkerblauw) ===== */
 .gripplan {
@@ -472,21 +486,23 @@ a:hover .photo img, .photo:hover img { transform: scale(1.03); }
 .label-chip--f { background: var(--label-f); }
 .label-chip--g { background: var(--label-g); }
 
-/* ===== Griptegoed (zachtgroen) ===== */
-.credit { display: grid; gap: 40px; align-items: center; }
-.checklist { list-style: none; margin: 0 0 24px; padding: 0; display: grid; gap: 10px; }
+/* ===== Grippunten (zachtgroen) ===== */
+.checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .checklist li { display: flex; gap: 10px; font-weight: 600; color: var(--gos-ink); }
 .checklist .icon { color: var(--gos-green); margin-top: 2px; }
-.progress-card { background: var(--gos-surface); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-soft); }
-.progress-card__tag { display: inline-block; margin-bottom: 20px; padding: 2px 12px; border-radius: var(--radius-pill); background: var(--gos-sand); color: var(--gos-ink); font-size: .8125rem; font-weight: 600; }
-.progress-card__track { height: 14px; border-radius: 7px; background: var(--gos-sand); overflow: hidden; }
-.progress-card__fill { display: block; height: 100%; width: 62%; border-radius: 7px; background: var(--gos-green); }
-.progress-card__labels { display: flex; justify-content: space-between; gap: 16px; margin-top: 12px; font-weight: 600; color: var(--gos-ink); font-size: .9375rem; }
-.progress-card__labels span:last-child { text-align: right; }
-.safety { margin-top: 16px; background: var(--gos-surface); border-radius: var(--radius-lg); padding: 24px 28px; }
-.safety dt { font-weight: 700; color: var(--gos-ink); }
-.safety dd { margin: 0 0 .75rem; }
-@media (min-width: 1024px) { .credit { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 80px; } .progress-card { padding: 40px; } }
+.points { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.points__card { background: var(--gos-surface); border-radius: var(--radius-lg); padding: 28px 24px; box-shadow: var(--shadow-soft); }
+.points__label { margin: 18px 0 4px; font-size: .8125rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gos-green); }
+.points__card h3 { font-size: 1.25rem; margin-bottom: .4em; }
+.points__card p:last-child { margin: 0; }
+.points-pay { display: grid; gap: 20px 56px; align-items: center; margin-top: 16px; padding: 28px 24px; border-radius: var(--radius-lg); background: var(--gos-surface); box-shadow: var(--shadow-soft); }
+.points-pay h3 { font-size: 1.25rem; margin-bottom: .4em; }
+.points-pay p { margin: 0; }
+.section--green .note { color: var(--gos-text); }
+@media (min-width: 900px) {
+  .points { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .points-pay { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); margin-top: 24px; padding: 36px 40px; }
+}
 
 /* ===== Waarom Grip op Stroom ===== */
 .why { display: grid; gap: 40px; align-items: center; }
@@ -747,7 +763,9 @@ a:hover .photo img, .photo:hover img { transform: scale(1.03); }
 .plan-data { display: grid; gap: 12px; }
 .data-card { background: var(--gos-surface); border-radius: var(--radius-md); padding: 18px 20px; box-shadow: var(--shadow-soft); }
 .data-card__title { margin: 0 0 10px; font-family: var(--font-body); font-weight: 600; font-size: .9375rem; color: var(--gos-muted); letter-spacing: 0; }
-.data-card__value { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 6px; margin: 0; }
+/* Gewone tekstregel in plaats van flex: zo blijft het bronnummer altijd bij het bedrag staan
+   (tussen € en het getal staat een vaste spatie). Alleen "circa" mag erboven vallen. */
+.data-card__value { margin: 0; line-height: 1.3; }
 .data-card__prefix { color: var(--gos-muted); font-size: .9375rem; }
 .data-card__number { font-family: var(--font-display); font-weight: 700; font-size: 1.75rem; line-height: 1.1; color: var(--gos-navy); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
 .data-card__delta { margin: 6px 0 0; font-size: .875rem; font-weight: 600; color: var(--gos-green); min-height: 1.4em; }
@@ -841,7 +859,7 @@ html.js body:not(.is-ready) .site-footer {
    Beelden met een eigen stapnummer en titel krijgen het voorbeeldwoning-label onderin. */
 .render img { object-fit: contain; }
 .has-own-label > .render__label { top: auto; bottom: 16px; }
-.comfort .render.has-own-label { aspect-ratio: 575 / 493; }
+.comfort .render.has-own-label { aspect-ratio: 1145 / 1374; }
 @media (max-width: 639px) {
   .plan-render .render { aspect-ratio: 1 / 1; }
 }

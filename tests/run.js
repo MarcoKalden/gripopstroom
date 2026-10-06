@@ -3,8 +3,9 @@
    - geen horizontaal scrollen op 360, 768, 1024 en 1440 px
    - geen fouten in de console, geen verzoeken naar andere domeinen
    - geen axe-fouten (WCAG 2.2 AA)
-   - stappenplan: stappenbalk, pijltjestoetsen, ?stap= in de URL
-   - homepage: hotspots, structured data, maximaal vijf vragen, menu op smalle schermen
+   - stappenplan: stappenbalk, pijltjestoetsen, ?stap= in de URL, de warmtepomp als laatste stap
+   - homepage: een hotspot per installatie, Grippunten (geen abonnement), structured data,
+     maximaal vijf vragen, menu op smalle schermen
    - contactformulier: foutmeldingen en focus; zoeken in de vragen
    - met prefers-reduced-motion beweegt er niets automatisch
    - alles met enabled: false tijdelijk aan (alleen in de test) en dan nog steeds netjes
@@ -125,6 +126,16 @@ async function testStappenplan(browser) {
   sel = await page.$eval('[role="tab"][aria-selected="true"]', (t) => t.textContent);
   if (!/Isolatie/.test(sel)) fail('mobiel Vorige geeft ' + sel); else ok('mobiel: knoppen werken');
   await context.close();
+
+  // Laatste stap: de warmtepomp, nog zonder cijfers ("Volgt").
+  const wp = await openPage(browser, 'zo-werkt-het.html?stap=warmtepomp', { width: 1440, height: 900 });
+  sel = await wp.page.$eval('[role="tab"][aria-selected="true"]', (t) => t.textContent);
+  const wpCost = await wp.page.textContent('[data-cost]');
+  const wpImg = await wp.page.$eval('[data-render-stage] img', (i) => i.naturalWidth).catch(() => 0);
+  const last = await wp.page.$eval('[data-next]', (b) => b.disabled);
+  if (!/Warmtepomp/.test(sel) || wpCost !== 'Volgt' || !wpImg || !last) fail(`?stap=warmtepomp: ${sel}, kosten ${wpCost}, beeld ${wpImg}px, laatste stap ${last}`);
+  else ok('?stap=warmtepomp: laatste stap, beeld geladen, cijfers "Volgt"');
+  await wp.context.close();
 }
 
 async function testHome(browser) {
@@ -132,8 +143,11 @@ async function testHome(browser) {
   const { context, page } = await openPage(browser, 'index.html', { width: 1280, height: 900 });
   const module = await page.$('[data-stappenplan]');
   if (module) fail('homepage bevat nog de stappenplan-module'); else ok('geen stappenplan-module op de homepage');
+  const comfortItems = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'content', 'home.json'), 'utf8'))
+    .comfort.items.filter((i) => i.enabled !== false).length;
   const spots = await page.$$eval('.hotspot', (as) => as.map((a) => a.textContent.trim() + ' -> ' + a.getAttribute('href')));
-  if (spots.length !== 3) fail('hotspots: ' + spots.join(', ')); else ok('hotspots: ' + spots.join(' | '));
+  if (spots.length !== comfortItems) fail(`hotspots: ${spots.length} van ${comfortItems}: ` + spots.join(', '));
+  else ok('hotspots: ' + spots.join(' | '));
   await page.hover('.hotspot:nth-of-type(1)');
   const linked = await page.$eval('.feature.is-active .feature__title', (e) => e.textContent).catch(() => '');
   if (!linked) fail('hotspot markeert de rij niet'); else ok('hotspot markeert rij: ' + linked);
@@ -143,6 +157,11 @@ async function testHome(browser) {
   const biz = ld.find((x) => x['@type'] === 'HomeAndConstructionBusiness');
   if (!biz || !biz.address || !biz.telephone || !ld.find((x) => x['@type'] === 'FAQPage')) fail('structured data onvolledig');
   else ok(`structured data: ${biz.address.streetAddress}, ${biz.telephone}, FAQPage`);
+  // Het abonnement is vervangen door Grippunten.
+  const pointCards = await page.$$eval('#grippunten .points__card', (c) => c.length);
+  const mainText = await page.textContent('main');
+  if (pointCards !== 3 || /abonnement|griptegoed/i.test(mainText)) fail(`Grippunten: ${pointCards} kaarten, abonnement nog genoemd: ${/abonnement|griptegoed/i.test(mainText)}`);
+  else ok('Grippunten: 3 kaarten, geen abonnement meer');
   const shot = await page.$eval('.browser img', (i) => i.naturalWidth);
   if (!shot) fail('screenshot stappenplan ontbreekt'); else ok('screenshot stappenplan geladen');
   for (const w of [320, 390]) {

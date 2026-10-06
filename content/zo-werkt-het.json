@@ -2,19 +2,19 @@
   "_note": "Teksten voor Zo werkt het. De stappen, bedragen en renders staan in steps.json.",
   "meta": {
     "title": "Zo werkt het | Grip op Stroom",
-    "description": "Bekijk per stap wat er verandert in een voorbeeldwoning: energielabel, energiekosten en woningwaarde. Met een bron bij elk cijfer."
+    "description": "Bekijk per stap wat er verandert in een voorbeeldwoning, van nieuwe kozijnen tot een warmtepomp: energielabel, energiekosten en woningwaarde. Met een bron bij elk cijfer."
   },
   "page": {
     "eyebrow": "Zo werkt het · Stappenplan",
     "title": "Elke stap maakt je woning sterker",
-    "lead": "Bekijk hoe een voorbeeldwoning verandert. Je ziet per stap wat er gebeurt met het energielabel, de energiekosten en de woningwaarde."
+    "lead": "Bekijk hoe een voorbeeldwoning stap voor stap verandert, van nieuwe kozijnen tot een warmtepomp. Je ziet per stap wat er gebeurt met het energielabel, de energiekosten en de woningwaarde."
   },
   "animation": {
     "eyebrow": "Stap voor stap sterker",
     "title": "Elke stap maakt je woning sterker",
-    "intro": "Bekijk hoe een voorbeeldwoning verandert. Je ziet per stap wat er gebeurt met het energielabel, de energiekosten en de woningwaarde.",
+    "intro": "Bekijk hoe een voorbeeldwoning stap voor stap verandert, van nieuwe kozijnen tot een warmtepomp. Je ziet per stap wat er gebeurt met het energielabel, de energiekosten en de woningwaarde.",
     "exampleLabel": "Voorbeeldwoning",
-    "exampleSpecs": "Tussenwoning, circa 1980, circa 120 m², label C[[voorbeeldwoning]]",
+    "exampleSpecs": "Hoekwoning, circa 1980, circa 120 m², label C[[voorbeeldwoning]]",
     "disclaimer": "Indicatief voorbeeld. Jouw situatie berekenen we in de Gripscan.",
     "stepsLabel": "Stappen in het stappenplan",
     "stepCounter": "Stap {n} van {total}",
@@ -52,7 +52,7 @@
     "liveNoLabelEffect": "Het label verandert niet.",
     "cta": "Bereken dit voor jouw woning",
     "ctaHref": "#gripscan",
-    "renderLabel": "Voorbeeldwoning · tussenwoning 1980 · 120 m²",
+    "renderLabel": "Voorbeeldwoning · hoekwoning 1980 · 120 m²",
     "placeholder": "Render volgt",
     "newPart": "Nieuw: {name}",
     "pendingValue": "Volgt",
@@ -61,7 +61,7 @@
   "plan": {
     "eyebrow": "Hoe het gripplan werkt",
     "title": "Drie stappen naar een sterkere woning",
-    "intro": "Elke stap bouwt voort op de vorige. Isolatie zorgt dat je minder warmte kwijtraakt. Zonnepanelen leveren stroom voor je eigen huis. Je batterij bewaart wat je overhoudt. Daarom maken we één plan voor je hele woning.",
+    "intro": "Elke stap bouwt voort op de vorige. Isolatie zorgt dat je minder warmte kwijtraakt, zodat een warmtepomp zuiniger werkt. Zonnepanelen leveren stroom voor je eigen huis, ook voor je airco en warmtepomp. Je batterij bewaart wat je overhoudt. Daarom maken we één plan voor je hele woning.",
     "steps": [
       {
         "title": "Gripscan",
@@ -101,19 +101,6 @@
         "text": "Pas als jij akkoord geeft, plannen we de eerste stap. Daarna heb je 14 dagen bedenktijd[[bedenktijd]].",
         "duration": ""
       }
-    ]
-  },
-  "offer": {
-    "title": "Wat we voor je regelen",
-    "items": [
-      "Kozijnen",
-      "Isolatie",
-      "Airco's",
-      "Zonnepanelen",
-      "Thuisbatterijen",
-      "Laadpalen",
-      "Energiemanagement",
-      "Energiecontracten"
     ]
   }
 }

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pakketten | Grip op Stroom</title>
-  <meta name="description" content="Ferme grip, Stevige grip of Volledige grip: bekijk wat elk pakket doet, hoe het griptegoed werkt en welke regelingen er zijn.">
+  <meta name="description" content="Ferme grip, Stevige grip of Volledige grip: bekijk wat elk pakket doet, hoe je Grippunten spaart en welke regelingen er zijn.">
   <link rel="preload" href="content/site.json" as="fetch" crossorigin>
   <link rel="preload" href="content/pakketten.json" as="fetch" crossorigin>
   <link rel="preload" href="steps.json" as="fetch" crossorigin>
@@ -14,7 +14,7 @@
   <meta name="theme-color" content="#0A2A5E">
   <link rel="icon" href="assets/favicon.png" type="image/png">
   <link rel="preload" href="assets/fonts/figtree-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/bricolage-grotesque-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/figtree-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/styles.css">
   <meta property="og:site_name" content="Grip op Stroom">
   <meta property="og:locale" content="nl_NL">
@@ -93,27 +93,35 @@
       </div>
     </section>
 
-    <section class="section section--green" id="griptegoed" aria-labelledby="credit-title" data-wait>
-      <div class="container credit">
-        <div>
-          <p class="eyebrow" data-text="credit.eyebrow"></p>
-          <h2 id="credit-title" data-text="credit.title"></h2>
-          <p data-text="credit.text"></p>
-          <ul class="checklist" data-list="credit.points">
+    <section class="section section--green" id="grippunten" aria-labelledby="points-title" data-wait>
+      <div class="container">
+        <div class="section__head section__head--split">
+          <div>
+            <p class="eyebrow" data-text="grippunten.eyebrow"></p>
+            <h2 id="points-title" data-text="grippunten.title"></h2>
+          </div>
+          <p class="lead" data-text="grippunten.text"></p>
+        </div>
+        <ol class="points" data-list="grippunten.steps" data-text-aria="grippunten.stepsLabel">
+          <template>
+            <li class="points__card">
+              <span class="icon-badge"><svg class="icon" aria-hidden="true" data-item-icon="icon"><use href=""></use></svg></span>
+              <p class="points__label" data-item-text="label"></p>
+              <h3 data-item-text="title"></h3>
+              <p data-item-rich="text"></p>
+            </li>
+          </template>
+        </ol>
+        <div class="points-pay">
+          <div>
+            <h3 data-text="grippunten.payTitle"></h3>
+            <p data-text="grippunten.payText"></p>
+          </div>
+          <ul class="checklist" data-list="grippunten.points">
             <template><li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-tick"></use></svg><span data-item-text="."></span></li></template>
           </ul>
         </div>
-        <div>
-          <div class="progress-card" role="img" data-text-aria="credit.progressAria">
-            <span class="progress-card__tag" aria-hidden="true" data-text="credit.exampleLabel"></span>
-            <div class="progress-card__track" aria-hidden="true"><span class="progress-card__fill"></span></div>
-            <div class="progress-card__labels" aria-hidden="true"><span data-text="credit.progressFrom"></span><span data-text="credit.progressTo"></span></div>
-          </div>
-          <div class="safety" data-if="credit.safety" hidden>
-            <h3 data-text="credit.safety.title"></h3>
-            <dl data-list="credit.safety.items"><template><div><dt data-item-text="question"></dt><dd data-item-rich="answer"></dd></div></template></dl>
-          </div>
-        </div>
+        <p class="note" data-if="grippunten.pending" data-text="grippunten.pending" hidden></p>
       </div>
     </section>
 
@@ -156,7 +164,7 @@
         <div>
           <img class="site-footer__logo" src="assets/logo-gos-small.png" width="126" height="144" alt="">
           <p class="site-footer__payoff" data-text="payoff">Jouw huis, jouw pad, jouw tempo.</p>
-          <p data-text="company.tagline">Grip op Stroom richt zich op woningeigenaren in Nederland.</p>
+          <p data-text="company.tagline">Eén partij voor kozijnen, isolatie, zonnepanelen, thuisbatterijen, laadpalen, airco's en warmtepompen. Voor woningeigenaren in Nederland.</p>
         </div>
 
         <nav aria-labelledby="footer-menu-title">

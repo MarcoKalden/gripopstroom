@@ -21,7 +21,8 @@ const OUT = path.join(__dirname, '..', 'assets', 'gripplan-screenshot');
   const page = await browser.newPage({ viewport: { width: 1280, height: 800 }, deviceScaleFactor: 2, reducedMotion: 'no-preference' });
   await page.goto(BASE + 'zo-werkt-het.html?stap=' + STAP, { waitUntil: 'networkidle' });
   await page.waitForFunction(() => document.body.classList.contains('is-ready'));
-  await page.addStyleTag({ content: '.site-header{display:none}' });
+  // Header weg; de disclaimer onder de knoppen valt anders half buiten de uitsnede.
+  await page.addStyleTag({ content: '.site-header{display:none} .plan-disclaimer{visibility:hidden}' });
   await page.waitForTimeout(1200);
   // Uitsnede: stappenbalk, render, energielabel en de twee cijferkaarten.
   const box = await page.evaluate(() => {

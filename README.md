@@ -6,9 +6,9 @@ geen npm-afhankelijkheden in de site zelf. Vormgeving volgens `REDESIGN.md`
 
 | Pagina | Inhoud |
 | --- | --- |
-| `index.html` | Homepage: hero met foto, Comfort dat je voelt (woning met hotspots), Gripplan-blok met screenshot, pakketten, griptegoed, waarom Grip op Stroom, contact met formulier, vijf vragen |
+| `index.html` | Homepage: hero met foto, Alles onder één dak (totaalbeeld met een hotspot per installatie), Gripplan-blok met screenshot, pakketten, Grippunten, waarom Grip op Stroom, contact met formulier, vijf vragen |
 | `zo-werkt-het.html` | Het stappenplan met de voorbeeldwoning, drie stappen, wat er gebeurt na je aanvraag |
-| `pakketten.html` | Pakketten, vergelijkingstabel, griptegoed, hulp bij het betalen |
+| `pakketten.html` | Pakketten, vergelijkingstabel, Grippunten, hulp bij het betalen |
 | `vragen.html` | Alle vragen, gegroepeerd, met zoekveld |
 | `over-ons.html` | Waarom we bestaan, hoe we werken, team en uitvoering (staan uit tot er gegevens zijn) |
 | `contact.html` | Adres, telefoon, bereikbaarheid en contactformulier |
@@ -28,7 +28,7 @@ python3 -m http.server 8000
 | Bestand | Inhoud |
 | --- | --- |
 | `content/site.json` | Gedeeld: menu, links, contact- en bedrijfsgegevens, formulierteksten, footer, CTA-band |
-| `content/pakketten.json` | Pakketten, vergelijkingstabel, griptegoed, financiering (homepage en pakkettenpagina) |
+| `content/pakketten.json` | Pakketten, vergelijkingstabel, Grippunten, financiering (homepage en pakkettenpagina) |
 | `content/vragen.json` | Alle vragen. `home: true` zet een vraag ook op de homepage (maximaal vijf) |
 | `content/home.json`, `zo-werkt-het.json`, `over-ons.json`, `contact.json`, `juridisch.json` | Teksten per pagina |
 | `steps.json` | Stappen van het stappenplan: naam, label, bedragen, bronnen en render (placeholders, `"validated": false`) |
@@ -40,9 +40,10 @@ python3 -m http.server 8000
 | `partials/` | Gedeelde head, header, footer en contactblok |
 | `grip-op-stroom-fotos/` | De vijf aangeleverde foto's (bron) |
 | `assets/foto/` | Bewerkte foto's in AVIF, WebP en JPG, 640/1024/1600 px |
-| `assets/woning/` | Renders van de voorbeeldwoning (nog leeg, zie hieronder) |
+| `grip-op-stroom-renders/` | De aangeleverde beelden van de voorbeeldwoning (bron) |
+| `assets/woning/` | Beelden van de voorbeeldwoning voor de site, per stap en het totaalbeeld (zie hieronder) |
 | `assets/gripplan-screenshot.*` | Screenshot van het stappenplan voor de homepage |
-| `assets/fonts/` | Bricolage Grotesque en Figtree (OFL), lokaal |
+| `assets/fonts/` | Figtree (OFL), lokaal. Koppen en tekst staan in Figtree, het lettertype dat het dichtst bij het logo ligt |
 | `server/contact.js` | Server-route die het contactformulier doormailt |
 | `scripts/sync-partials.js` | Zet de partials in alle pagina's, plus canonical, `sitemap.xml` en `robots.txt` |
 | `scripts/check-livegang.js` | Meldt alles wat nog moet gebeuren voor livegang |
@@ -81,13 +82,29 @@ De bronnen zijn 1672 px breed; 2400 px uit REDESIGN.md kan pas met grotere bronb
 
 ### Beelden van de voorbeeldwoning
 
-Stap 1 tot en met 6 en het totaalbeeld op de homepage zijn aangeleverde beelden (originelen in
-`grip-op-stroom-renders/`, voor de site als WebP in `assets/woning/`). Stap 0 (Start) is
-nog een schets (`python3 tests/woning-schetsen.py`). Zie `assets/woning/LEESMIJ.md` voor de status
-en hoe je beelden vervangt.
+Alle stappen (Start tot en met 7 Warmtepomp) en het totaalbeeld (8) op de homepage zijn
+aangeleverde beelden (originelen in `grip-op-stroom-renders/`, voor de site als WebP in
+`assets/woning/`). De voorbeeldwoning is een hoekwoning uit circa 1980 van circa 120 m². Zie
+`assets/woning/LEESMIJ.md` voor de status en hoe je beelden vervangt.
 
-De airco-stap ("Airco die ook verwarmt") heeft nog geen cijfers: de site toont "Volgt" bij label
-en bedragen tot een EP-adviseur ze berekend heeft (`pending: true` in `steps.json`).
+Op de homepage staat op het totaalbeeld een genummerde hotspot per installatie, in de volgorde
+van het stappenplan. De plek staat in `content/home.json → comfort.items` (`x`, `y`, en
+`side: "left"` als het label naar links moet uitklappen). Verandert het totaalbeeld, controleer
+dan die plekken.
+
+De stappen "Airco die ook verwarmt" (6) en "Warmtepomp" (7) hebben nog geen cijfers: de site toont
+"Volgt" bij label en bedragen tot een EP-adviseur ze berekend heeft (`pending: true` in `steps.json`).
+
+### Grippunten
+
+Het abonnement is vervangen door een puntensysteem: de Grippunten (`content/pakketten.json →
+grippunten`, op de homepage en op de pakkettenpagina). Klanten sparen automatisch punten bij een
+uitgevoerde maatregel, een lopend energiecontract of energiemanagement en als ze een andere
+woningeigenaar aanbrengen, en wisselen die in voor korting op een volgende stap of extra service.
+Betalen gaat uit eigen middelen of met een financiering. Hoeveel punten er bij een stap horen,
+wat een punt waard is, hoe lang punten geldig zijn en welke voorwaarden gelden, wordt nog
+uitgewerkt. Tot die tijd staat dat in `grippunten.pending` en meldt `scripts/check-livegang.js` het.
+Noem geen aantallen punten of bedragen voordat ze vaststaan.
 
 ### Contactformulier
 
@@ -104,6 +121,9 @@ die de inzending mailt naar `CONTACT_TO` (instellingen staan bovenin het bestand
 - Stappenplan: stappenbalk als tablist, pijltjestoetsen, vegen, afspelen (3 s per stap,
   stopt bij interactie), crossfade van de renders, cijfers tellen mee, `?stap=batterij` of
   `?stap=5` in de URL. De hotspots op de homepage linken hierheen.
+- Homepage: op het totaalbeeld staat een genummerde stip per installatie. Bij aanwijzen of focus
+  klapt het label uit en licht de bijbehorende rij op, en andersom. De afbeelding blijft op
+  desktop staan terwijl je de lijst leest.
 - Een klik op een bronnummer klapt de bronnenlijst in de footer open.
 - Met `prefers-reduced-motion: reduce` beweegt er niets en staat Afspelen uit.
 
@@ -116,7 +136,8 @@ cd tests && npm install && npm test
 
 De tests controleren alle pagina's op 390, 768, 1024 en 1440 px (geen horizontaal
 scrollen, geen consolefouten behalve ontbrekende renders, geen externe verzoeken), axe
-(WCAG 2.2 AA), het stappenplan, de homepage (geen stappenplan-module, hotspots, vijf vragen,
+(WCAG 2.2 AA), het stappenplan (ook de laatste stap, de warmtepomp), de homepage (geen
+stappenplan-module, een hotspot per installatie, Grippunten in plaats van het abonnement, vijf vragen,
 structured data, menu), het formulier, zoeken in de vragen, minder beweging, en een ronde
 waarin alles met `enabled: false` tijdelijk aan staat. Schermafdrukken komen in
 `tests/screenshots/`.
@@ -134,11 +155,12 @@ Open punten uit REDESIGN.md §10 (eerst bevestigen, niet zelf invullen):
 
 1. ~~E-mailadres~~: info@gripopstroom.nl (bevestigd).
 2. KvK-nummer van Grip op Stroom B.V. → `content/site.json → company.details`.
-3. ~~Warmtepomp~~: weggehaald uit stappenplan, pakketten en teksten. De labels en bedragen van
-   zonnepanelen, thuisbatterij en laadpaal en de labeleffecten van Stevige en Volledige grip
-   waren berekend mét warmtepomp en moeten opnieuw berekend worden (`recalculate: true`).
-   Een airco-stap ontbreekt nog, omdat er geen cijfers voor zijn.
-4. Renders: wie maakt ze en wanneer? Advies: niet live met placeholders.
+3. ~~Warmtepomp~~: terug als stap 7, na de airco, met een eigen beeld (oktober 2026). In de
+   pakketten zit hij, net als laadpaal en airco, als keuze in Volledige grip. De labels en
+   bedragen van zonnepanelen, thuisbatterij en laadpaal en de labeleffecten van Stevige en
+   Volledige grip waren berekend met de warmtepomp als stap 3 en moeten opnieuw berekend worden
+   (`recalculate: true`). Airco en warmtepomp hebben nog geen cijfers (`pending: true`).
+4. ~~Renders~~: alle beelden van de voorbeeldwoning zijn aangeleverd.
 5. Logo als SVG aanleveren.
 
 Verder:
@@ -146,8 +168,9 @@ Verder:
 - Stappen, bedragen en labelsprongen valideren met een EP-adviseur (`steps.json`), ook de laadpaalstap die nu aan staat.
 - Labeleffecten per pakket laten valideren (`content/pakketten.json`).
 - Bron-URL's in `sources.json` controleren.
-- Juridische toets van het griptegoed (rekening, faillissement, terugbetaling, vergunning),
-  vooral omdat de tekst "Je tegoed blijft jouw eigendom" belooft. Pas daarna `credit.safety` aanzetten.
+- Grippunten uitwerken: punten per stap, waarde per punt, geldigheidsduur en voorwaarden
+  (`content/pakketten.json → grippunten`). Laat de voorwaarden juridisch toetsen. Vul daarna de
+  twee vragen over Grippunten in `content/vragen.json` in en zet ze aan.
 - Contactformulier koppelen: `server/contact.js` draaien of een bestaande formulierdienst,
   en de URL in `contactForm.endpoint` zetten.
 - Teksten voor privacy, cookies, voorwaarden, klachten en toegankelijkheid → `content/juridisch.json`.

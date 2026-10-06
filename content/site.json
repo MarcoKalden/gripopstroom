@@ -100,7 +100,7 @@
   },
   "company": {
     "legalName": "Grip op Stroom B.V.",
-    "tagline": "Grip op Stroom richt zich op woningeigenaren in Nederland.",
+    "tagline": "Eén partij voor kozijnen, isolatie, zonnepanelen, thuisbatterijen, laadpalen, airco's en warmtepompen. Voor woningeigenaren in Nederland.",
     "_note": "Verplichte gegevens (art. 3:15d BW). KvK en btw pas aanzetten na bevestiging (open punt §10.2).",
     "details": [
       {
@@ -135,7 +135,7 @@
         "validated": false
       },
       {
-        "name": "F-gassencertificaat voor airco's",
+        "name": "F-gassencertificaat voor airco's en warmtepompen",
         "logo": "",
         "verifyUrl": "",
         "enabled": false,

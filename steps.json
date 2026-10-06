@@ -4,14 +4,14 @@
     "note": "Alle waarden zijn placeholders. Marco valideert stappenvolgorde, bedragen en labelsprongen met een EP-adviseur voor livegang. Batterij, energiemanagement en laadpaal tellen voor zover bekend niet mee in de labelberekening volgens NTA 8800; dit wordt bevestigd voor livegang.",
     "valueRule": "Circa 2% hogere woningwaarde per labelstap, afgeleid van het Kadaster-cijfer dat label B gemiddeld ca. 2,1% lager verkoopt dan label A of beter.",
     "exampleHome": {
-      "type": "tussenwoning",
+      "type": "hoekwoning",
       "buildYear": 1980,
       "floorArea": 120,
       "startLabel": "C",
       "validated": false
     },
-    "renders": "Beelden per stap in assets/woning/. Stap 1 t/m 6 en het totaalbeeld zijn aangeleverde beelden (originelen in grip-op-stroom-renders/); stap 0 (Start) is nog een schets (tests/woning-schetsen.py). renderHasLabel: het beeld heeft zelf al een stapnummer en titel.",
-    "recalculate": "De warmtepomp is uit het stappenplan gehaald (besluit Marco). De labels en bedragen van zonnepanelen, thuisbatterij en laadpaal waren berekend mét warmtepomp en moeten opnieuw worden berekend door een EP-adviseur (recalculate: true).",
+    "renders": "Beelden per stap in assets/woning/ (originelen in grip-op-stroom-renders/). Alle stappen en het totaalbeeld zijn aangeleverde beelden. renderHasLabel: het beeld heeft zelf al een stapnummer en titel.",
+    "recalculate": "De warmtepomp was eerst stap 3 en is daarna weggehaald. Hij is terug als stap 7, na de airco (besluit Marco, oktober 2026). De labels en bedragen van zonnepanelen, thuisbatterij en laadpaal waren berekend mét warmtepomp en moeten opnieuw worden berekend door een EP-adviseur (recalculate: true).",
     "pending": "pending: true betekent dat label en bedragen van die stap nog berekend moeten worden; de site toont dan 'Volgt' in plaats van cijfers."
   },
   "labelScale": [
@@ -39,7 +39,7 @@
       "homeValue": 400000,
       "labelEffect": null,
       "labelNote": "",
-      "explanation": "Dit is de voorbeeldwoning zoals ze nu is: een tussenwoning uit circa 1980 met label C[[voorbeeldwoning]].",
+      "explanation": "Dit is de voorbeeldwoning zoals ze nu is: een hoekwoning uit circa 1980 met label C[[voorbeeldwoning]].",
       "sources": {
         "label": [
           "voorbeeldwoning",
@@ -53,7 +53,7 @@
         ]
       },
       "validated": false,
-      "render": "assets/woning/woning-stap-0-start.svg"
+      "render": "assets/woning/woning-stap-0-start.webp"
     },
     {
       "id": "kozijnen",
@@ -216,6 +216,29 @@
       },
       "validated": false,
       "render": "assets/woning/woning-stap-6-airco.webp",
+      "renderHasLabel": true
+    },
+    {
+      "id": "warmtepomp",
+      "enabled": true,
+      "component": "warmtepomp",
+      "shortName": "Warmtepomp",
+      "name": "Warmtepomp",
+      "label": null,
+      "energyCostPerYear": null,
+      "homeValue": null,
+      "labelEffect": null,
+      "pending": true,
+      "recalculate": true,
+      "labelNote": "Het labeleffect en de bedragen van deze stap worden nog berekend.",
+      "explanation": "Een warmtepomp verwarmt je huis zuinig met elektriciteit. Je gasverbruik daalt sterk. Hij werkt het best in een goed geïsoleerd huis, en je zonnepanelen leveren een deel van de stroom.",
+      "sources": {
+        "label": [],
+        "cost": [],
+        "value": []
+      },
+      "validated": false,
+      "render": "assets/woning/woning-stap-7-warmtepomp.webp",
       "renderHasLabel": true
     }
   ]

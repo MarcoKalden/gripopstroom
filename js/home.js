@@ -1,6 +1,6 @@
 /* Grip op Stroom: homepage.
-   "Comfort dat je voelt": render van de voorbeeldwoning met genummerde hotspots.
-   Hotspot en bijbehorende rij markeren elkaar bij aanwijzen of focus. */
+   "Comfort dat je voelt": totaalbeeld van de voorbeeldwoning met een genummerde hotspot
+   per installatie. Hotspot en bijbehorende rij markeren elkaar bij aanwijzen of focus. */
 (function () {
   'use strict';
 
@@ -27,11 +27,11 @@
 
     G.enabledItems(c.items).forEach(function (item, i) {
       var spot = document.createElement('a');
-      spot.className = 'hotspot';
+      spot.className = 'hotspot' + (item.side === 'left' ? ' hotspot--left' : '');
       spot.href = item.href;
       spot.style.left = item.x;
       spot.style.top = item.y;
-      spot.innerHTML = '<span class="hotspot__nr" aria-hidden="true"></span><span></span>';
+      spot.innerHTML = '<span class="hotspot__nr" aria-hidden="true"></span><span class="hotspot__label"></span>';
       spot.firstChild.textContent = i + 1;
       spot.lastChild.textContent = item.title;
       spot.setAttribute('aria-label', (i + 1) + '. ' + item.title);

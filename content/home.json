@@ -1,13 +1,13 @@
 {
-  "_note": "Teksten voor de homepage. Pakketten, griptegoed en financiering staan in pakketten.json, de vragen in vragen.json, gedeelde teksten in site.json. Bronverwijzing: [[bron-id]].",
+  "_note": "Teksten voor de homepage. Pakketten, Grippunten en financiering staan in pakketten.json, de vragen in vragen.json, gedeelde teksten in site.json. Bronverwijzing: [[bron-id]].",
   "meta": {
     "title": "Grip op Stroom | Jouw huis, jouw pad, jouw tempo",
-    "description": "Grip op Stroom helpt woningeigenaren hun huis stap voor stap te verduurzamen, met één plan voor je hele woning. Start je vrijblijvende Gripscan."
+    "description": "Kozijnen, isolatie, zonnepanelen, thuisbatterij, laadpaal, airco of warmtepomp: Grip op Stroom regelt het in één plan voor je hele woning. Start je vrijblijvende Gripscan."
   },
   "hero": {
     "badge": "Lekker wonen, slim verduurzamen",
     "title": "Jouw huis, jouw pad, jouw tempo.",
-    "lead": "Grip op Stroom maakt één plan voor je hele woning. Jij kiest welke stap je zet en wanneer. Zo krijg je grip op je energie en grip op elke beslissing.",
+    "lead": "Van kozijnen tot warmtepomp: Grip op Stroom regelt alle duurzame installaties voor je huis, in één plan. Jij kiest welke stap je zet en wanneer. Zo houd je grip op je energie en op elke beslissing.",
     "ctaPrimary": "Start je Gripscan",
     "ctaSecondary": "Bekijk het stappenplan",
     "ctaSecondaryHref": "zo-werkt-het.html",
@@ -29,22 +29,41 @@
     ]
   },
   "comfort": {
-    "eyebrow": "Eén plan voor je hele huis",
+    "_note": "Alle installaties in de volgorde van het stappenplan, zodat de nummers gelijk zijn aan de nummers in de beelden. x en y: plek van het nummer op het totaalbeeld. side: \"left\" laat het label bij aanwijzen naar links uitklappen (voor nummers aan de rechterkant van het beeld).",
+    "eyebrow": "Alles onder één dak",
     "title": "Comfort dat je voelt",
-    "text": "Een fijn huis is warm in de winter, koel in de zomer en slim met stroom. Wij zetten de techniek die daarbij hoort in de goede volgorde, zodat elke stap de volgende beter maakt.",
-    "renderAlt": "Voorbeeldwoning met alle onderdelen: zonnepanelen, nieuwe kozijnen, isolatie, laadpaal met auto, airco en thuisbatterijen.",
-    "renderLabel": "Voorbeeldwoning · tussenwoning 1980 · 120 m²",
+    "text": "Een fijn huis is warm in de winter, koel in de zomer en slim met stroom. Voor alle techniek die daarbij hoort, kun je bij ons terecht. Wij zetten de stappen in de goede volgorde, zodat elke stap de volgende beter maakt.",
+    "renderAlt": "Voorbeeldwoning met alle onderdelen: nieuwe kozijnen, dakisolatie, zonnepanelen, een thuisbatterij, een laadpaal met auto, en een airco en een warmtepomp op het platte dak van de carport.",
+    "renderLabel": "Voorbeeldwoning · hoekwoning 1980 · 120 m²",
     "render": "assets/woning/woning-totaal.webp",
     "placeholder": "Render volgt",
     "items": [
       {
-        "id": "airco",
-        "icon": "snowflake",
-        "title": "Airco",
-        "text": "Een airco koelt je huis op warme dagen en kan het ook verwarmen.",
-        "href": "zo-werkt-het.html?stap=airco",
-        "x": "86%",
-        "y": "47%"
+        "id": "kozijnen",
+        "icon": "window",
+        "title": "Kozijnen",
+        "text": "Nieuwe kozijnen met HR++ of triple glas houden de warmte binnen.",
+        "href": "zo-werkt-het.html?stap=kozijnen",
+        "x": "46%",
+        "y": "40%"
+      },
+      {
+        "id": "isolatie",
+        "icon": "layers",
+        "title": "Isolatie",
+        "text": "Isolatie van dak en vloer zorgt dat je minder warmte kwijtraakt.",
+        "href": "zo-werkt-het.html?stap=isolatie",
+        "x": "74%",
+        "y": "21%"
+      },
+      {
+        "id": "zonnepanelen",
+        "icon": "sun",
+        "title": "Zonnepanelen",
+        "text": "Zonnepanelen wekken stroom op voor je eigen woning.",
+        "href": "zo-werkt-het.html?stap=zonnepanelen",
+        "x": "42%",
+        "y": "24%"
       },
       {
         "id": "batterij",
@@ -52,8 +71,8 @@
         "title": "Thuisbatterij",
         "text": "Een thuisbatterij bewaart je zonnestroom, zodat je hem later zelf gebruikt.",
         "href": "zo-werkt-het.html?stap=batterij",
-        "x": "84%",
-        "y": "90%"
+        "x": "76%",
+        "y": "77%"
       },
       {
         "id": "laadpaal",
@@ -61,11 +80,32 @@
         "title": "Laadpaal",
         "text": "Met een laadpaal laad je je auto thuis, het liefst met je eigen zonnestroom.",
         "href": "zo-werkt-het.html?stap=laadpaal",
-        "x": "35%",
-        "y": "63%"
+        "x": "63.5%",
+        "y": "63%",
+        "side": "left"
+      },
+      {
+        "id": "airco",
+        "icon": "snowflake",
+        "title": "Airco",
+        "text": "Een airco koelt je huis op warme dagen en kan het ook verwarmen.",
+        "href": "zo-werkt-het.html?stap=airco",
+        "x": "92.5%",
+        "y": "51.5%",
+        "side": "left"
+      },
+      {
+        "id": "warmtepomp",
+        "icon": "heater",
+        "title": "Warmtepomp",
+        "text": "Een warmtepomp verwarmt je huis zuinig met elektriciteit, zodat je veel minder gas gebruikt.",
+        "href": "zo-werkt-het.html?stap=warmtepomp",
+        "x": "81%",
+        "y": "34%",
+        "side": "left"
       }
     ],
-    "more": "Ook: kozijnen, isolatie, zonnepanelen, energiemanagement en energiecontracten.",
+    "more": "Ook: energiemanagement en energiecontracten. En wil je maar één installatie? Dat kan ook.",
     "renderHasLabel": true
   },
   "gripplan": {
