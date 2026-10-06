@@ -5,19 +5,20 @@ De voorbeeldwoning is een hoekwoning uit circa 1980 van circa 120 m².
 | Stap | Bestand | Origineel in grip-op-stroom-renders/ | Status |
 | --- | --- | --- | --- |
 | 0 Start | woning-stap-0-start.webp | 0-start.webp | aangeleverd, zonder nummer en titel in beeld |
-| 1 Kozijnen | woning-stap-1-kozijnen.webp | 1-kozijnen.png | aangeleverd |
-| 2 Isolatie | woning-stap-2-isolatie.webp | 2-isolatie.png | aangeleverd |
-| 3 Zonnepanelen | woning-stap-3-zonnepanelen.webp | 3-zonnepanelen.png | aangeleverd |
-| 4 Thuisbatterij | woning-stap-4-thuisbatterij.webp | 4-thuisbatterij.png | aangeleverd |
-| 5 Laadpaal | woning-stap-5-laadpaal.webp | 5-laadpaal.png | aangeleverd |
+| 1 Kozijnen | woning-stap-1-kozijnen.webp | 1-kozijnen.webp | aangeleverd |
+| 2 Isolatie | woning-stap-2-isolatie.webp | 2-isolatie.webp | aangeleverd |
+| 3 Zonnepanelen | woning-stap-3-zonnepanelen.webp | 3-zonnepanelen.webp | aangeleverd |
+| 4 Thuisbatterij | woning-stap-4-thuisbatterij.webp | 4-thuisbatterij.webp | aangeleverd |
+| 5 Laadpaal | woning-stap-5-laadpaal.webp | 5-laadpaal.webp | aangeleverd |
 | 6 Airco | woning-stap-6-airco.webp | 6-airco.webp | aangeleverd, buitenunit op het platte dak |
 | 7 Warmtepomp | woning-stap-7-warmtepomp.webp | 7-warmtepomp.webp | aangeleverd |
 | Totaal (homepage, 8) | woning-totaal.webp | 8-totaal.webp | aangeleverd |
 
-Stap 1 tot en met 5 zijn 391 tot 525 px breed. Voor scherpe weergave op grote schermen: graag
-versies van minimaal 1200 px breed, in dezelfde stijl met nummer en titel in het beeld.
-Start, airco, warmtepomp en het totaalbeeld zijn groot genoeg; voor de site zijn ze opgeslagen
-als WebP (maximaal 1280 tot 1400 px breed, kwaliteit 75 tot 78).
+Alle beelden zijn liggend, 1586 × 992 px (16:10), zodat ze het kader van het stappenplan en het
+totaalbeeld op de homepage helemaal vullen, ook op mobiel. Houd voor nieuwe beelden dezelfde
+verhouding en dezelfde camerapositie aan, zodat alleen het nieuwe onderdeel verandert. Laat de
+hoek linksonder vrij: daar zet de site het label "Voorbeeldwoning". Voor de site zijn de beelden
+opgeslagen als WebP (maximaal 1280 tot 1400 px breed, kwaliteit 75 tot 76).
 
 Nieuwe beelden: zet ze hier neer en pas de naam aan in steps.json (`render`) of
 content/home.json (`comfort.render`). Heeft het beeld zelf al een nummer en titel, zet dan

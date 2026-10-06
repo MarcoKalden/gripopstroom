@@ -1,5 +1,5 @@
 {
-  "_note": "Teksten voor Over ons. Alles met \"enabled\": false verschijnt niet. Gebruik alleen echte foto's, namen en gegevens.",
+  "_note": "Teksten voor Over ons, opgebouwd volgens de golden circle: waarom we bestaan, hoe we werken, wat we doen. Alles met \"enabled\": false verschijnt niet. Gebruik alleen echte foto's, namen en gegevens.",
   "meta": {
     "title": "Over ons | Grip op Stroom",
     "description": "Wie is Grip op Stroom, waarom bestaan we en hoe werken we? Eén plan voor je hele woning, met een bron bij elk cijfer."
@@ -7,15 +7,15 @@
   "page": {
     "eyebrow": "Over ons",
     "title": "Grip op je woning, grip op elke beslissing",
-    "lead": "Verduurzamen is een grote stap. Wij maken er een reeks overzichtelijke stappen van, in jouw tempo.",
+    "lead": "Wij geloven dat woningeigenaren meer invloed moeten krijgen op hun energie en hun woonlasten.",
     "photo": "spelavond-gezin",
     "photoAlt": "Gezin speelt een bordspel aan een lage tafel in een sfeervol verlichte woonkamer, met thee en kaarsen."
   },
   "why": {
-    "title": "Waarom Grip op Stroom bestaat",
+    "title": "Waarom we bestaan",
     "paragraphs": [
-      "Veel woningeigenaren willen verduurzamen, maar weten niet waar ze moeten beginnen. Ze krijgen losse offertes en adviezen die elkaar tegenspreken.",
-      "Wij kijken naar je hele huis en niet naar één product. Voor alle duurzame installaties kun je bij ons terecht: van kozijnen en isolatie tot zonnepanelen, thuisbatterijen, laadpalen, airco's en warmtepompen. Elke stap bouwt voort op de vorige. Daarom maken we één plan, en jij bepaalt het tempo."
+      "Energieprijzen en de ontwikkelingen op de energiemarkt kun je nauwelijks beïnvloeden. Wat je wél kunt beïnvloeden, is hoeveel energie je woning nodig heeft, wanneer je die energie gebruikt en hoe afhankelijk je blijft van de markt.",
+      "Grip op Stroom helpt je om die invloed stap voor stap te vergroten. Daarom beginnen we niet bij een product, maar bij jouw woning."
     ],
     "story": {
       "_note": "Persoonlijk verhaal van Marco: waarom hij Grip op Stroom begon. Alleen invullen met zijn eigen woorden.",
@@ -25,6 +25,7 @@
   },
   "values": {
     "title": "Hoe we werken",
+    "intro": "We maken eerst een persoonlijk plan en adviseren pas daarna een maatregel. Met het Gripplan brengen we je woning, je energieverbruik en de mogelijkheden in kaart. Daarna bepalen we welke maatregelen zinvol zijn, in welke volgorde en wat ze naar verwachting opleveren. Jij bepaalt het tempo, het Gripplan bewaakt de samenhang en het einddoel.",
     "items": [
       {
         "icon": "route",
@@ -46,6 +47,22 @@
         "title": "Gecertificeerde EP-adviseurs",
         "text": "Een gecertificeerde EP-adviseur neemt je energielabel op."
       }
+    ]
+  },
+  "what": {
+    "title": "Wat we doen",
+    "text": "Vervolgens leveren en begeleiden we de oplossingen die nodig zijn om je plan stap voor stap uit te voeren. We brengen ze samen in één aanpak en zorgen dat ze technisch en financieel op elkaar aansluiten.",
+    "itemsLabel": "Waar we je mee helpen",
+    "items": [
+      "Kozijnen met HR++ glas",
+      "Isolatie",
+      "Zonnepanelen",
+      "Thuisbatterijen",
+      "Laadpalen",
+      "Airco's die ook verwarmen",
+      "Warmtepompen",
+      "Energiemanagement",
+      "Een passend energiecontract"
     ]
   },
   "team": {

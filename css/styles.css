@@ -346,6 +346,10 @@ a:hover .photo img, .photo:hover img { transform: scale(1.03); }
 }
 @media (max-width: 639px) {
   .render__placeholder span { display: none; }
+  /* Op een telefoon is het totaalbeeld laag: kleinere stippen, zodat ze elkaar niet raken (WCAG 2.5.8: minimaal 24 px). */
+  .hotspot { --tx: -16px; min-height: 32px; padding: 0 3px; }
+  .hotspot--left { --tx: calc(-100% + 16px); }
+  .hotspot__nr { width: 26px; height: 26px; font-size: .8125rem; }
 }
 .render__placeholder { padding-top: 56px; }
 .feature-list { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 8px; }
@@ -371,13 +375,22 @@ a:hover .photo img, .photo:hover img { transform: scale(1.03); }
 .feature__title { margin: 0; font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: var(--gos-navy); }
 .feature__title .nr { color: var(--gos-green); margin-right: 6px; }
 .feature__text { margin: 0; }
-/* Het totaalbeeld staat rechtop: op tablets niet over de volle breedte, anders wordt het erg hoog. */
-@media (min-width: 640px) and (max-width: 1023px) { .comfort__visual { max-width: 560px; } }
+@media (min-width: 640px) { .feature-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* Desktop: beeld en intro naast elkaar, de installaties als rij eronder. */
 @media (min-width: 1024px) {
-  .comfort { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 72px; align-items: start; }
-  /* De lijst met installaties is langer dan het beeld: het beeld blijft in beeld tijdens het lezen. */
-  .comfort__visual { position: sticky; top: 96px; }
+  .comfort {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    grid-template-areas: "visual head" "list list" "note note";
+    gap: 0 64px;
+    align-items: center;
+  }
+  .comfort__visual { grid-area: visual; }
+  .comfort__text { display: contents; }
+  .comfort__head { grid-area: head; }
+  .comfort .feature-list { grid-area: list; margin-top: 40px; }
+  .comfort .note { grid-area: note; }
 }
+@media (min-width: 1200px) { .comfort .feature-list { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 
 /* ===== Gripplan-blok (donkerblauw) ===== */
 .gripplan {
@@ -490,6 +503,7 @@ a:hover .photo img, .photo:hover img { transform: scale(1.03); }
 .checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .checklist li { display: flex; gap: 10px; font-weight: 600; color: var(--gos-ink); }
 .checklist .icon { color: var(--gos-green); margin-top: 2px; }
+.checklist--cols { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px 32px; }
 .points { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
 .points__card { background: var(--gos-surface); border-radius: var(--radius-lg); padding: 28px 24px; box-shadow: var(--shadow-soft); }
 .points__label { margin: 18px 0 4px; font-size: .8125rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gos-green); }
@@ -859,10 +873,7 @@ html.js body:not(.is-ready) .site-footer {
    Beelden met een eigen stapnummer en titel krijgen het voorbeeldwoning-label onderin. */
 .render img { object-fit: contain; }
 .has-own-label > .render__label { top: auto; bottom: 16px; }
-.comfort .render.has-own-label { aspect-ratio: 1145 / 1374; }
-@media (max-width: 639px) {
-  .plan-render .render { aspect-ratio: 1 / 1; }
-}
+.comfort .render.has-own-label { aspect-ratio: 16 / 10; }
 .ladder.is-pending .ladder__marker { display: none; }
 @media (max-width: 639px) {
   .render__label { font-size: 11px; padding: 5px 10px; white-space: nowrap; top: 10px; left: 10px; }
