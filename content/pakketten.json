@@ -48,12 +48,13 @@
           "Laadpaal, airco en warmtepomp als je dat wilt"
         ],
         "labelFrom": "C",
-        "labelTo": "A++",
-        "effectText": "Van C naar A++. De extra stappen verlagen vooral je kosten[[nta-8800]]",
+        "labelTo": "A++++",
+        "effectText": "Van C naar A++++ met airco en warmtepomp erbij[[nta-8800]]",
         "id": "volledige-grip",
         "photo": "bank-stel",
         "photoAlt": "Stel ontspant met koffie op de bank in een modern ingerichte woonkamer.",
-        "recalculate": true
+        "recalculate": false,
+        "_note": "Labeleffect A++++ door Marco bevestigd (oktober 2026), gelijk aan stap 7 van het stappenplan."
       }
     ],
     "more": "Bekijk alle pakketten",
