@@ -1,0 +1,4 @@
+# Netlify: alleen de websitebestanden gaan online (zie scripts/build-public.js).
+[build]
+  command = "node scripts/build-public.js"
+  publish = "public"
