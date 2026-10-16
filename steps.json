@@ -203,13 +203,13 @@
       "component": "airco",
       "shortName": "Airco",
       "name": "Airco die ook verwarmt",
-      "label": null,
+      "label": "A+++",
       "energyCostPerYear": 1182,
       "homeValue": 442500,
-      "labelEffect": null,
+      "labelEffect": true,
       "pending": false,
-      "recalculate": true,
-      "labelNote": "Het labeleffect van deze stap wordt nog berekend.",
+      "recalculate": false,
+      "labelNote": "",
       "explanation": "Een airco koelt je huis op warme dagen en kan het ook verwarmen.",
       "sources": {
         "label": [],
@@ -219,9 +219,9 @@
       "validated": false,
       "render": "assets/woning/woning-stap-6-airco.webp",
       "renderHasLabel": true,
-      "labelPending": true,
+      "labelPending": false,
       "costNote": "Je energiekosten dalen met circa € 14 per maand. Die besparing op gas komt uit de bijverwarmingsfunctie van de airco.",
-      "_note": "Bedragen door Marco opgegeven (oktober 2026): energiekosten -€ 14 per maand (-€ 168 per jaar) ten opzichte van de laadpaal-stap, woningwaarde +€ 5.500. Label nog niet bekend (labelPending)."
+      "_note": "Bedragen door Marco opgegeven (oktober 2026): energiekosten -€ 14 per maand (-€ 168 per jaar) ten opzichte van de laadpaal-stap, woningwaarde +€ 5.500. Label A+++ door Marco opgegeven."
     },
     {
       "id": "warmtepomp",
@@ -229,13 +229,13 @@
       "component": "warmtepomp",
       "shortName": "Warmtepomp",
       "name": "Warmtepomp",
-      "label": null,
+      "label": "A++++",
       "energyCostPerYear": 832,
       "homeValue": 450000,
-      "labelEffect": null,
+      "labelEffect": true,
       "pending": false,
-      "recalculate": true,
-      "labelNote": "Het labeleffect van deze stap wordt nog berekend.",
+      "recalculate": false,
+      "labelNote": "",
       "explanation": "Een warmtepomp verwarmt je huis zuinig met elektriciteit. Je gasverbruik daalt sterk. Hij werkt het best in een goed geïsoleerd huis, en je zonnepanelen leveren een deel van de stroom.",
       "sources": {
         "label": [],
@@ -245,8 +245,8 @@
       "validated": false,
       "render": "assets/woning/woning-stap-7-warmtepomp.webp",
       "renderHasLabel": true,
-      "labelPending": true,
-      "_note": "Bedragen door Marco opgegeven (oktober 2026): energiekosten -€ 350 per jaar ten opzichte van de airco-stap, woningwaarde +€ 7.500. Label nog niet bekend (labelPending)."
+      "labelPending": false,
+      "_note": "Bedragen door Marco opgegeven (oktober 2026): energiekosten -€ 350 per jaar ten opzichte van de airco-stap, woningwaarde +€ 7.500. Label A++++ door Marco opgegeven."
     }
   ]
 }
