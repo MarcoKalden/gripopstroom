@@ -67,7 +67,10 @@ if (homeContent.comfort && !exists(homeContent.comfort.render)) add('content/hom
 else if (homeContent.comfort && /\.svg$/.test(homeContent.comfort.render)) add('content/home.json', 'comfort.render', 'nog een schets, geen render');
 // Cijfers die berekend waren met de warmtepomp als stap 3 (nu stap 7), en stappen die nog geen cijfers hebben.
 read('steps.json').steps.filter((st) => st.recalculate).forEach((st) => {
-  add('steps.json', st.id, st.pending ? 'label en bedragen nog berekenen (site toont "Volgt")' : 'label en bedragen opnieuw berekenen (waren berekend met de warmtepomp als stap 3)');
+  const msg = st.pending ? 'label en bedragen nog berekenen (site toont "Volgt")'
+    : st.labelPending ? 'label nog berekenen; bedragen door Marco opgegeven, laten valideren'
+    : 'label en bedragen opnieuw berekenen (waren berekend met de warmtepomp als stap 3)';
+  add('steps.json', st.id, msg);
 });
 const pakketten = read('content/pakketten.json');
 pakketten.packages.items.filter((it) => it.recalculate).forEach((it) => {
