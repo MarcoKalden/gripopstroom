@@ -60,7 +60,7 @@
       "enabled": true,
       "component": "kozijnen",
       "shortName": "Kozijnen",
-      "name": "Kozijnen met HR++ of triple glas",
+      "name": "Kozijnen met HR++ glas",
       "label": "B",
       "energyCostPerYear": 2050,
       "homeValue": 408000,

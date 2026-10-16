@@ -72,7 +72,7 @@
 
     <section class="section" aria-labelledby="values-title" data-wait>
       <div class="container">
-        <div class="section__head"><h2 id="values-title" data-text="values.title"></h2></div>
+        <div class="section__head"><h2 id="values-title" data-text="values.title"></h2><p class="lead" data-text="values.intro"></p></div>
         <ul class="icon-grid icon-grid--4" data-list="values.items">
           <template>
             <li>
@@ -85,7 +85,19 @@
       </div>
     </section>
 
-    <section class="section section--white" aria-labelledby="team-title" data-if="team" hidden>
+    <section class="section section--white" aria-labelledby="what-title" data-wait>
+      <div class="container">
+        <div class="section__head">
+          <h2 id="what-title" data-text="what.title"></h2>
+          <p class="lead" data-text="what.text"></p>
+        </div>
+        <ul class="checklist checklist--cols" data-list="what.items" data-text-aria="what.itemsLabel">
+          <template><li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-tick"></use></svg><span data-item-text="."></span></li></template>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="team-title" data-if="team" hidden>
       <div class="container">
         <div class="section__head"><h2 id="team-title" data-text="team.title"></h2></div>
         <ul class="icon-grid" data-list="team.items">
@@ -100,7 +112,7 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="exec-title" data-if="execution" hidden>
+    <section class="section section--white" aria-labelledby="exec-title" data-if="execution" hidden>
       <div class="container prose">
         <h2 id="exec-title" data-text="execution.title"></h2>
         <p data-text="execution.text"></p>

@@ -12,7 +12,7 @@
         "name": "Ferme grip",
         "summary": "Je woning houdt de warmte beter vast.",
         "measures": [
-          "Kozijnen met HR++ of triple glas",
+          "Kozijnen met HR++ glas",
           "Dak- en vloerisolatie"
         ],
         "labelFrom": "C",
@@ -66,7 +66,7 @@
       "optional": "Als je dat wilt",
       "rows": [
         {
-          "measure": "Kozijnen met HR++ of triple glas",
+          "measure": "Kozijnen met HR++ glas",
           "values": [
             "yes",
             "yes",
