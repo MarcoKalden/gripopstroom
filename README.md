@@ -23,6 +23,26 @@ python3 -m http.server 8000
 # open http://localhost:8000
 ```
 
+## Publiceren
+
+De site staat op Netlify (gratis), gekoppeld aan deze repository. `netlify.toml` zegt wat
+Netlify doet: `node scripts/build-public.js` zet alleen de websitebestanden in `public/` en
+publiceert die map. README's, ontwerpinstructies, originele beelden, de PDF-export, tests,
+scripts en de servercode komen zo niet online. Elke wijziging op de hoofdbranch staat
+binnen een minuut live.
+
+Zolang `siteUrl` in `content/site.json` leeg is, stuurt elke pagina `X-Robots-Tag: noindex`
+mee: de testversie op het `netlify.app`-adres verschijnt dan niet in zoekmachines. Vul
+`siteUrl` pas in als de site echt live gaat (zie Voor livegang) en draai daarna
+`node scripts/sync-partials.js`.
+
+Lokaal controleren wat er online komt:
+
+```sh
+node scripts/build-public.js
+cd public && python3 -m http.server 8000
+```
+
 ## Bestanden
 
 | Bestand | Inhoud |
@@ -175,6 +195,7 @@ Verder:
 - Contactformulier koppelen: `server/contact.js` draaien of een bestaande formulierdienst,
   en de URL in `contactForm.endpoint` zetten.
 - Teksten voor privacy, cookies, voorwaarden, klachten en toegankelijkheid → `content/juridisch.json`.
-- Domein → `content/site.json → siteUrl`, dan `node scripts/sync-partials.js`.
+- Domein koppelen in Netlify, dan `content/site.json → siteUrl` invullen en `node scripts/sync-partials.js` draaien.
+  Daarmee vervalt ook de noindex-kop van de testversie.
 - Hosting met HTTPS, HSTS, compressie en een Content-Security-Policy (het kleine inline
   script in `partials/head.html` met een hash toestaan).
