@@ -230,12 +230,12 @@
       "shortName": "Warmtepomp",
       "name": "Warmtepomp",
       "label": null,
-      "energyCostPerYear": null,
-      "homeValue": null,
+      "energyCostPerYear": 832,
+      "homeValue": 450000,
       "labelEffect": null,
-      "pending": true,
+      "pending": false,
       "recalculate": true,
-      "labelNote": "Het labeleffect en de bedragen van deze stap worden nog berekend.",
+      "labelNote": "Het labeleffect van deze stap wordt nog berekend.",
       "explanation": "Een warmtepomp verwarmt je huis zuinig met elektriciteit. Je gasverbruik daalt sterk. Hij werkt het best in een goed geïsoleerd huis, en je zonnepanelen leveren een deel van de stroom.",
       "sources": {
         "label": [],
@@ -244,7 +244,9 @@
       },
       "validated": false,
       "render": "assets/woning/woning-stap-7-warmtepomp.webp",
-      "renderHasLabel": true
+      "renderHasLabel": true,
+      "labelPending": true,
+      "_note": "Bedragen door Marco opgegeven (oktober 2026): energiekosten -€ 350 per jaar ten opzichte van de airco-stap, woningwaarde +€ 7.500. Label nog niet bekend (labelPending)."
     }
   ]
 }
