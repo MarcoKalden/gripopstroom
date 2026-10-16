@@ -35,6 +35,7 @@
       labelSr: q('[data-label-sr]'),
       labelNote: q('[data-label-note]'),
       cost: q('[data-cost]'),
+      costNote: q('[data-cost-note]'),
       value: q('[data-value]'),
       valueDelta: q('[data-value-delta]'),
       stepName: q('[data-step-name]'),
@@ -277,6 +278,9 @@
       var delta = step.homeValue - first.homeValue;
       this.el.valueDelta.textContent = delta > 0 ? G.template(t.meters.value.deltaText, { delta: G.formatEUR(delta) }) : '';
     }
+    // Toelichting bij de energiekosten, bijvoorbeeld de besparing op brandstof bij de laadpaal.
+    this.el.costNote.textContent = step.costNote || '';
+    this.el.costNote.hidden = pending || !step.costNote;
     this.root.querySelectorAll('.data-card__prefix').forEach(function (el) { el.hidden = pending; });
     ['label', 'cost', 'value'].forEach(function (key) {
       var holder = self.el.refs[key];
@@ -312,6 +316,7 @@
         cost: G.formatEUR(step.energyCostPerYear), value: G.formatEUR(step.homeValue)
       });
       if (step.labelEffect === false) msg += ' ' + t.liveNoLabelEffect;
+      if (step.costNote) msg += ' ' + step.costNote;
       this.el.live.textContent = msg;
     }
   };

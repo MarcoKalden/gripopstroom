@@ -174,10 +174,10 @@
       "shortName": "Laadpaal",
       "name": "Laadpaal",
       "label": "A++",
-      "energyCostPerYear": 750,
-      "homeValue": 432000,
+      "energyCostPerYear": 1350,
+      "homeValue": 437000,
       "labelEffect": false,
-      "labelNote": "Je label blijft A++. Een laadpaal hoort bij je auto en telt niet mee in de energiekosten van je woning.",
+      "labelNote": "Je label blijft A++.",
       "explanation": "Met een laadpaal laad je je auto thuis, het liefst met je eigen zonnestroom.",
       "sources": {
         "label": [
@@ -193,7 +193,9 @@
       "validated": false,
       "render": "assets/woning/woning-stap-5-laadpaal.webp",
       "recalculate": true,
-      "renderHasLabel": true
+      "renderHasLabel": true,
+      "costNote": "Je energiekosten stijgen met circa € 50 per maand, maar je bespaart circa € 100 per maand op brandstof.",
+      "_note": "Bedragen door Marco opgegeven (oktober 2026): energiekosten +€ 50 per maand (+€ 600 per jaar) ten opzichte van de thuisbatterij-stap, woningwaarde +€ 5.000, besparing op brandstof € 100 per maand."
     },
     {
       "id": "airco",
