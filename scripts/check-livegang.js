@@ -72,6 +72,9 @@ read('steps.json').steps.filter((st) => st.recalculate).forEach((st) => {
     : 'label en bedragen opnieuw berekenen (waren berekend met de warmtepomp als stap 3)';
   add('steps.json', st.id, msg);
 });
+read('steps.json').steps.filter((st) => st.labelCheck).forEach((st) => {
+  add('steps.json', st.id, 'label laten controleren (bedragen zonder het effect van de warmtepomp)');
+});
 const pakketten = read('content/pakketten.json');
 pakketten.packages.items.filter((it) => it.recalculate).forEach((it) => {
   add('content/pakketten.json', it.name, 'labeleffect opnieuw berekenen (was berekend met de warmtepomp als vaste stap)');
