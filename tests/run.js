@@ -133,8 +133,11 @@ async function testStappenplan(browser) {
   const wpCost = await wp.page.textContent('[data-cost]');
   const wpImg = await wp.page.$eval('[data-render-stage] img', (i) => i.naturalWidth).catch(() => 0);
   const last = await wp.page.$eval('[data-next]', (b) => b.disabled);
-  if (!/Warmtepomp/.test(sel) || wpCost !== 'Volgt' || !wpImg || !last) fail(`?stap=warmtepomp: ${sel}, kosten ${wpCost}, beeld ${wpImg}px, laatste stap ${last}`);
-  else ok('?stap=warmtepomp: laatste stap, beeld geladen, cijfers "Volgt"');
+  // Verwacht bedrag uit steps.json; "Volgt" zolang de stap nog pending is.
+  const wpStep = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'steps.json'), 'utf8')).steps.find((st) => st.id === 'warmtepomp');
+  const wpExpected = wpStep.pending ? 'Volgt' : '€\u00a0' + wpStep.energyCostPerYear.toLocaleString('nl-NL');
+  if (!/Warmtepomp/.test(sel) || wpCost !== wpExpected || !wpImg || !last) fail(`?stap=warmtepomp: ${sel}, kosten ${wpCost} (verwacht ${wpExpected}), beeld ${wpImg}px, laatste stap ${last}`);
+  else ok(`?stap=warmtepomp: laatste stap, beeld geladen, kosten ${wpCost}`);
   await wp.context.close();
 }
 

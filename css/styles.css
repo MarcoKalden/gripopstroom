@@ -879,3 +879,4 @@ html.js body:not(.is-ready) .site-footer {
   .render__label { font-size: 11px; padding: 5px 10px; white-space: nowrap; top: 10px; left: 10px; }
   .has-own-label > .render__label { bottom: 10px; }
 }
+.data-card__note { margin: 8px 0 0; padding: 8px 10px; border-radius: 10px; background: var(--gos-green-soft); color: var(--gos-green-strong); font-size: .875rem; font-weight: 600; line-height: 1.4; }
