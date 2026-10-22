@@ -420,6 +420,8 @@ async function testBeheer(browser) {
   // De bestaande foto's plus de foto die hierboven vanuit het fotoveld is geüpload.
   if (cards !== fs.readdirSync(path.join(root, 'grip-op-stroom-fotos')).length + 1) fail('fotolijst toont ' + cards + ' foto\'s'); else ok('fotolijst: ' + cards + ' foto\'s');
   const usage = await page.locator('.beheer-photo', { hasText: 'woonkamer-gezin' }).textContent();
+  const bankUsage = await page.locator('.beheer-photo', { hasText: 'bank-stel' }).textContent();
+  if (!/Pakketten: Volledige grip/.test(bankUsage)) fail('gebruik van bank-stel: ' + bankUsage); else ok('fotolijst: korte omschrijving van waar een foto staat');
   if (!/grote foto bovenaan/.test(usage)) fail('gebruik van woonkamer-gezin: ' + usage); else ok('fotolijst toont waar een foto staat');
   await page.click('text=+ Nieuwe foto toevoegen');
   const small = await sharp({ create: { width: 800, height: 1000, channels: 3, background: '#88aa99' } }).jpeg().toBuffer();
@@ -461,7 +463,7 @@ async function testBeheer(browser) {
   await page.locator('.beheer-photo', { hasText: 'bank-stel' }).getByRole('button', { name: /vervangen/i }).click();
   await page.setInputFiles('#upload-file', path.join(root, 'grip-op-stroom-fotos', 'ontbijt-gezin.jpg'));
   await page.waitForSelector('.beheer-upload__result img');
-  await page.click('text=Foto vervangen');
+  await page.click('[data-upload] >> text=Foto vervangen');
   await page.locator('.beheer-photo', { hasText: 'bank-stel' }).locator('.beheer-photo__status', { hasText: 'Verwerkt' }).waitFor({ timeout: 8000 })
     .then(() => ok('vervangen: wacht op de verwerking'), () => fail('vervangen: status "Verwerkt" komt niet'));
   const replaced = puts.find((p) => p.file === 'grip-op-stroom-fotos/bank-stel.jpg');
