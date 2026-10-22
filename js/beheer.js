@@ -197,7 +197,11 @@
       Object.keys(flat).forEach(function (k) {
         var path = JSON.parse(k);
         if (path[path.length - 1] === 'photo' && flat[k] === name) {
-          uses.push(f.title + ': ' + describePath(entry, path.slice(0, -1)).replace(/^$/, 'pagina'));
+          // Kort: het onderdeel plus het item (bijvoorbeeld "Pakketten: Volledige grip").
+          var item = null;
+          path.forEach(function (k, i) { if (typeof k === 'number') item = i; });
+          var where = item === null ? humanize(path[0]) : itemTitle(getAt(entry.data, path.slice(0, item + 1)), path[item]).replace(/^\d+\. /, '');
+          uses.push(f.title + ': ' + where);
         }
       });
     });
@@ -349,8 +353,8 @@
       }
       var replace = document.createElement('button');
       replace.type = 'button';
-      replace.className = 'beheer-mini';
-      replace.textContent = 'Vervangen';
+      replace.className = 'btn btn--outline btn--small beheer-replace';
+      replace.textContent = 'Foto vervangen';
       replace.setAttribute('aria-label', 'Foto ' + photo.name + ' vervangen');
       replace.addEventListener('click', function () { openUpload(photo, li); });
       li.appendChild(replace);
@@ -548,7 +552,32 @@
     row.appendChild(select);
     row.appendChild(thumbHolder);
     row.appendChild(hint);
-    row.appendChild(upload);
+    var replaceBtn = document.createElement('button');
+    replaceBtn.type = 'button';
+    replaceBtn.className = 'beheer-mini beheer-mini--upload';
+    replaceBtn.textContent = 'Deze foto vervangen';
+    replaceBtn.hidden = !value;
+    replaceBtn.addEventListener('click', function () {
+      var current = photoByName(select.value);
+      if (!current) return;
+      openUpload(current, replaceBtn, function (photo, box) {
+        box.textContent = '';
+        var status = document.createElement('p');
+        status.className = 'beheer-photo__status';
+        status.setAttribute('role', 'status');
+        box.appendChild(status);
+        var timer = setInterval(function () {
+          status.textContent = photo.status + ' De foto wordt overal vervangen waar hij staat; publiceren is niet nodig.';
+          if (/^(Verwerkt|Dit duurt)/.test(photo.status)) clearInterval(timer);
+        }, 500);
+      });
+    });
+    select.addEventListener('change', function () { replaceBtn.hidden = !select.value; });
+    var actions = document.createElement('div');
+    actions.className = 'beheer-item-controls';
+    actions.appendChild(upload);
+    actions.appendChild(replaceBtn);
+    row.appendChild(actions);
     row.appendChild(error);
     update();
     return row;
