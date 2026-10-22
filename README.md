@@ -75,6 +75,29 @@ Alle teksten staan in `content/`. Een pagina noemt in `<body data-content="...">
 bestanden hij gebruikt; latere bestanden overschrijven eerdere. Een bronverwijzing schrijf
 je als `[[bron-id]]`, met een id uit `sources.json`.
 
+### Beheerpagina (`/beheer.html`)
+
+Teksten en cijfers aanpassen zonder CMS: ga naar `/beheer.html` op de site. De pagina
+leest de JSON-bestanden uit GitHub, toont ze als invulvelden met een voorbeeld van de
+pagina, en zet een wijziging met **Publiceren** als commit op de standaardbranch. Netlify
+zet de site daarna binnen een minuut opnieuw online. Elke wijziging staat dus in de
+geschiedenis van GitHub en is terug te draaien.
+
+- Inloggen met een fine-grained GitHub-sleutel: alleen deze repo, alleen
+  *Contents: Read and write*. De stappen staan op de inlogpagina. De sleutel blijft in de
+  browser en gaat alleen naar `api.github.com`.
+- Controles voor publiceren: onbekende `[[bron-id]]`, een label buiten de labelschaal en
+  lege getallen houden publiceren tegen. Je ziet eerst een overzicht van was en wordt.
+- Velden die de werking regelen (links, id's, beelden, `recalculate` enzovoort) staan
+  verborgen achter *Technische velden tonen*. De stappen van het stappenplan liggen vast;
+  items met een id kun je alleen verplaatsen.
+- Het voorbeeld laadt de echte pagina in een frame; `js/site.js` neemt dan de teksten uit
+  de editor (`window.parent.GOS_PREVIEW`) in plaats van de bestanden.
+- De pagina staat niet in het menu, niet in zoekmachines (`noindex` en `robots.txt`) en
+  krijgt van `scripts/build-public.js` een strenge Content-Security-Policy.
+- Repo en bestanden staan bovenin `js/beheer.js`. Een nieuw contentbestand voeg je daar
+  toe aan `FILES`.
+
 ### Het `enabled`-patroon
 
 Alles wat nog niet echt bestaat, staat in de JSON met `"enabled": false` en verschijnt

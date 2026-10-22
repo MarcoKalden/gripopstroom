@@ -45,7 +45,7 @@ for (const file of pages) {
 }
 console.log('Bijgewerkt: ' + changed + ' van ' + pages.length + ' pagina\'s');
 
-let robots = 'User-agent: *\nAllow: /\n';
+let robots = 'User-agent: *\nAllow: /\nDisallow: /beheer.html\n';
 if (siteUrl) {
   const urls = indexable.map((u) => '  <url><loc>' + u + '</loc></url>').join('\n');
   fs.writeFileSync(path.join(root, 'sitemap.xml'),

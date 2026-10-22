@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Beheer | Grip op Stroom</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/beheer.css">
+  <script src="js/beheer.js" defer></script>
+</head>
+<body class="beheer">
+  <header class="beheer-bar">
+    <a class="beheer-bar__brand" href="index.html">
+      <img src="assets/logo-gos-small.png" width="42" height="48" alt="">
+      <span>Grip op Stroom <strong>Beheer</strong></span>
+    </a>
+    <div class="beheer-bar__user" data-user hidden>
+      <span data-user-name></span>
+      <button type="button" class="btn btn--outline btn--small" data-logout>Uitloggen</button>
+    </div>
+  </header>
+
+  <noscript><p class="beheer-note">Voor de beheerpagina is JavaScript nodig.</p></noscript>
+
+  <!-- Inloggen -->
+  <main class="beheer-login" data-view="login" hidden>
+    <h1>Teksten van de site beheren</h1>
+    <p class="lead">Log in met je GitHub-sleutel. Daarmee mag deze pagina de teksten van de site aanpassen.</p>
+    <form class="beheer-card" data-login-form novalidate>
+      <label for="token">GitHub-sleutel</label>
+      <input id="token" name="token" type="password" autocomplete="off" spellcheck="false" required aria-describedby="token-hint token-error">
+      <p class="beheer-hint" id="token-hint">Begint met <code>github_pat_</code>.</p>
+      <label class="beheer-check"><input type="checkbox" name="remember"> Onthoud op dit apparaat</label>
+      <p class="beheer-error" id="token-error" data-login-error role="alert"></p>
+      <button type="submit" class="btn btn--primary">Inloggen</button>
+    </form>
+    <details class="beheer-card beheer-howto">
+      <summary>Hoe maak ik een GitHub-sleutel?</summary>
+      <ol>
+        <li>Ga naar <a href="https://github.com/settings/personal-access-tokens/new" rel="noopener" target="_blank">github.com/settings/personal-access-tokens/new</a> (ingelogd als eigenaar van de repo).</li>
+        <li>Naam: bijvoorbeeld <em>Beheer website</em>. Kies een vervaldatum, bijvoorbeeld over een jaar.</li>
+        <li>Bij <strong>Repository access</strong>: kies <em>Only select repositories</em> en dan <em>gripopstroom</em>.</li>
+        <li>Bij <strong>Permissions → Repository permissions</strong>: zet <em>Contents</em> op <em>Read and write</em>. Verder niets.</li>
+        <li>Klik op <strong>Generate token</strong> en kopieer de sleutel. GitHub toont hem maar één keer.</li>
+      </ol>
+      <p>Bewaar de sleutel als een wachtwoord. Kwijt of uitgelekt? Verwijder hem op dezelfde GitHub-pagina en maak een nieuwe.</p>
+    </details>
+  </main>
+
+  <!-- Bewerken -->
+  <main class="beheer-main" data-view="editor" hidden>
+    <div class="beheer-edit">
+      <div class="beheer-toolbar">
+        <label for="file-select">Onderdeel</label>
+        <select id="file-select" data-file-select></select>
+        <label class="beheer-check"><input type="checkbox" data-show-technical> Technische velden tonen</label>
+      </div>
+      <p class="beheer-intro" data-file-intro></p>
+      <form class="beheer-form" data-form novalidate></form>
+    </div>
+
+    <aside class="beheer-side">
+      <div class="beheer-publish">
+        <p class="beheer-status" data-status role="status">Geen wijzigingen.</p>
+        <div class="beheer-publish__buttons">
+          <button type="button" class="btn btn--outline btn--small" data-reset disabled>Wijzigingen wissen</button>
+          <button type="button" class="btn btn--primary btn--small" data-publish disabled>Publiceren</button>
+        </div>
+      </div>
+      <div class="beheer-preview">
+        <div class="beheer-preview__bar">
+          <label for="preview-page">Voorbeeld</label>
+          <select id="preview-page" data-preview-page></select>
+          <button type="button" class="btn btn--outline btn--small" data-preview-reload>Vernieuwen</button>
+        </div>
+        <iframe title="Voorbeeld van de pagina met je wijzigingen" data-preview></iframe>
+      </div>
+      <details class="beheer-card beheer-help">
+        <summary>Bronverwijzingen</summary>
+        <p>Een bron zet je achter een zin als <code>[[bron-id]]</code>. Op de site wordt dat een klein nummer met een link naar de bron. Deze bronnen kun je gebruiken:</p>
+        <ul class="beheer-sources" data-source-ids></ul>
+      </details>
+    </aside>
+  </main>
+
+  <p class="beheer-loading" data-view="loading">Laden…</p>
+
+  <dialog class="beheer-dialog" data-publish-dialog aria-labelledby="publish-title">
+    <form method="dialog">
+      <h2 id="publish-title">Wijzigingen publiceren</h2>
+      <p>Dit gaat live op de site. Over ongeveer een minuut zie je het terug.</p>
+      <div class="beheer-diff" data-diff></div>
+      <p class="beheer-error" data-publish-error role="alert"></p>
+      <label for="publish-message">Korte omschrijving (mag leeg)</label>
+      <input id="publish-message" data-publish-message type="text" maxlength="120" placeholder="Bijvoorbeeld: openingstijden aangepast">
+      <div class="beheer-dialog__buttons">
+        <button type="submit" value="cancel" class="btn btn--outline btn--small">Annuleren</button>
+        <button type="button" class="btn btn--primary btn--small" data-publish-confirm>Ja, publiceren</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>

@@ -9,6 +9,7 @@
    - contactformulier: foutmeldingen en focus; zoeken in de vragen
    - met prefers-reduced-motion beweegt er niets automatisch
    - alles met enabled: false tijdelijk aan (alleen in de test) en dan nog steeds netjes
+   - beheerpagina met een nagebootste GitHub: inloggen, voorbeeld, controles en publiceren
    Schermafdrukken komen in tests/screenshots/.
 
    Gebruik:
@@ -272,6 +273,105 @@ async function testEverythingOn(browser) {
   }
 }
 
+// Beheerpagina met een nagebootste GitHub: inloggen, tekst aanpassen, voorbeeld, controle en publiceren.
+async function testBeheer(browser) {
+  console.log('\nBeheerpagina');
+  const root = path.join(__dirname, '..');
+  const puts = [];
+  const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, reducedMotion: 'reduce' });
+  const page = await context.newPage();
+  const errors = [];
+  page.on('pageerror', (e) => errors.push(e.message));
+  page.on('console', (m) => { if (m.type() === 'error' && !/^Failed to load resource/.test(m.text())) errors.push(m.text()); });
+  await page.route('https://api.github.com/**', async (r) => {
+    const url = new URL(r.request().url());
+    const auth = r.request().headers().authorization;
+    if (auth !== 'Bearer github_pat_test') return r.fulfill({ status: 401, json: { message: 'Bad credentials' } });
+    if (url.pathname === '/repos/MarcoKalden/gripopstroom') return r.fulfill({ json: { default_branch: 'main' } });
+    if (url.pathname === '/user') return r.fulfill({ json: { login: 'testbeheerder' } });
+    const m = url.pathname.match(/^\/repos\/MarcoKalden\/gripopstroom\/contents\/(.+)$/);
+    if (m && r.request().method() === 'GET') {
+      const content = fs.readFileSync(path.join(root, m[1])).toString('base64');
+      return r.fulfill({ json: { sha: 'sha-' + m[1], content } });
+    }
+    if (m && r.request().method() === 'PUT') {
+      puts.push({ file: m[1], body: r.request().postDataJSON() });
+      return r.fulfill({ json: { content: { sha: 'nieuw' } } });
+    }
+    return r.fulfill({ status: 404, json: { message: 'Not Found' } });
+  });
+  await page.goto(BASE + 'beheer.html', { waitUntil: 'networkidle' });
+
+  const axe = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
+  if (axe.violations.length) axe.violations.forEach((v) => fail(`beheer inloggen: ${v.id} ${v.help}`)); else ok('inlogscherm: geen axe-fouten');
+
+  await page.fill('#token', 'fout');
+  await page.click('[data-login-form] button[type="submit"]');
+  await page.waitForSelector('[data-login-error]:not(:empty)');
+  ok('verkeerde sleutel: ' + await page.textContent('[data-login-error]'));
+
+  await page.fill('#token', 'github_pat_test');
+  await page.click('[data-login-form] button[type="submit"]');
+  await page.waitForSelector('[data-view="editor"]:not([hidden])');
+  const user = await page.textContent('[data-user-name]');
+  if (!/testbeheerder/.test(user)) fail('gebruikersnaam: ' + user); else ok('ingelogd: ' + user);
+
+  // Titel van de homepage aanpassen en terugzien in het voorbeeld.
+  const home = JSON.parse(fs.readFileSync(path.join(root, 'content/home.json'), 'utf8'));
+  const field = await page.evaluateHandle((t) => [...document.querySelectorAll('[data-form] input, [data-form] textarea')].find((el) => el.value === t), home.hero.title);
+  if (!field.asElement()) fail('veld met de titel van de homepage niet gevonden');
+  await field.asElement().fill('Testtitel uit beheer');
+  const frame = page.frameLocator('[data-preview]');
+  await frame.locator('h1', { hasText: 'Testtitel uit beheer' }).waitFor({ timeout: 8000 })
+    .then(() => ok('voorbeeld toont de nieuwe titel'), () => fail('voorbeeld toont de nieuwe titel niet'));
+
+  // Onbekende bron blokkeert publiceren.
+  const lead = await page.evaluateHandle((t) => [...document.querySelectorAll('[data-form] textarea')].find((el) => el.value === t), home.hero.lead);
+  await lead.asElement().fill(home.hero.lead + '[[bestaat-niet]]');
+  await page.click('[data-publish]');
+  const blocked = await page.isDisabled('[data-publish-confirm]');
+  const msg = await page.textContent('[data-publish-error]');
+  if (!blocked || !/bestaat-niet/.test(msg)) fail('onbekende bron blokkeert publiceren niet'); else ok('onbekende bron blokkeert publiceren');
+  await page.click('[data-publish-dialog] button[value="cancel"]');
+  await lead.asElement().fill(home.hero.lead);
+
+  // Stappenplan: een label buiten de schaal geeft een fout.
+  await page.selectOption('[data-file-select]', 'steps.json');
+  const label = await page.evaluateHandle(() => {
+    const el = [...document.querySelectorAll('[data-form] input[type="text"]')].find((i) => i.value === 'A++++');
+    for (let d = el && el.closest('details'); d; d = d.parentElement.closest('details')) d.open = true;
+    return el;
+  });
+  await label.asElement().fill('Z');
+  const labelError = await page.evaluate(() => [...document.querySelectorAll('[data-form] .beheer-error')].map((e) => e.textContent).join(' '));
+  if (!/Kies een label/.test(labelError)) fail('label buiten de schaal geeft geen fout'); else ok('label buiten de schaal geeft een fout');
+  await label.asElement().fill('A++++');
+
+  // Publiceren: alleen de homepage, met precies de ene wijziging.
+  await page.click('[data-publish]');
+  const diff = await page.textContent('[data-diff]');
+  if (!/Testtitel uit beheer/.test(diff) || !/Homepage/.test(diff)) fail('overzicht van wijzigingen: ' + diff); else ok('overzicht van wijzigingen klopt');
+  await page.fill('[data-publish-message]', 'Test');
+  await page.click('[data-publish-confirm]');
+  await page.waitForFunction(() => /Gepubliceerd/.test(document.querySelector('[data-status]').textContent));
+  const expected = JSON.parse(JSON.stringify(home));
+  expected.hero.title = 'Testtitel uit beheer';
+  const sent = puts.length === 1 ? Buffer.from(puts[0].body.content, 'base64').toString('utf8') : '';
+  if (puts.length !== 1 || puts[0].file !== 'content/home.json' || puts[0].body.branch !== 'main' || puts[0].body.sha !== 'sha-content/home.json' ||
+      sent !== JSON.stringify(expected, null, 2) + '\n') {
+    fail('publiceren stuurt niet de juiste wijziging: ' + JSON.stringify(puts.map((p) => p.file)));
+  } else ok('publiceren: één commit op content/home.json met alleen de nieuwe titel');
+
+  await page.screenshot({ path: path.join(OUT, 'beheer-1440.png'), fullPage: false });
+  await page.setViewportSize({ width: 390, height: 900 });
+  const sw = await page.evaluate(() => document.documentElement.scrollWidth);
+  if (sw > 390) fail('beheer @390: horizontaal scrollen (' + sw + 'px)'); else ok('beheer @390: geen horizontaal scrollen');
+  const axe2 = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).exclude('[data-preview]').analyze();
+  if (axe2.violations.length) axe2.violations.forEach((v) => fail(`beheer editor: ${v.id} ${v.help} -> ${v.nodes[0].target.join(' ')}`)); else ok('editor: geen axe-fouten');
+  if (errors.length) fail('beheer: ' + errors.join(' | ')); else ok('geen fouten in de console');
+  await context.close();
+}
+
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });
   const browser = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
@@ -283,6 +383,7 @@ async function testEverythingOn(browser) {
     await testForm(browser);
     await testReducedMotion(browser);
     await testEverythingOn(browser);
+    await testBeheer(browser);
   } finally {
     await browser.close();
   }
