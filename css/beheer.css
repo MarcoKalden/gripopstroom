@@ -115,3 +115,5 @@
 .beheer-upload input[type="file"] { font: inherit; }
 .beheer-upload__result { display: grid; gap: 6px; }
 .beheer-warning { margin: 0; font-size: .875rem; font-weight: 600; color: #7A4B00; background: #FFF4D6; border-radius: 8px; padding: 6px 10px; }
+.beheer-field--photo .beheer-mini--upload, .beheer-field--photo .beheer-upload { justify-self: start; }
+.beheer-field--photo .beheer-upload { width: 100%; }

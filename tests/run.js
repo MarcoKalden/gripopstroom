@@ -395,10 +395,30 @@ async function testBeheer(browser) {
     await page.click('[data-reset]');
   }
 
+  // Nieuwe foto uploaden vanuit een fotoveld: na de verwerking staat hij vanzelf in dat veld.
+  let fieldPhotoLive = false;
+  await page.route('**/assets/foto/veld-foto-640.webp*', (r) => (fieldPhotoLive
+    ? r.fulfill({ path: path.join(root, 'assets/foto/keuken-senioren-640.webp'), contentType: 'image/webp' })
+    : r.fulfill({ status: 404, body: '' })));
+  const fieldRow = page.locator('.beheer-field--photo').first();
+  await fieldRow.evaluate((el) => { for (let d = el.closest('details'); d; d = d.parentElement.closest('details')) d.open = true; });
+  await fieldRow.getByRole('button', { name: '+ Nieuwe foto uploaden' }).click();
+  await page.setInputFiles('#upload-file', path.join(root, 'grip-op-stroom-fotos', 'keuken-senioren.jpg'));
+  await page.waitForSelector('.beheer-upload__result img');
+  await page.fill('#upload-name', 'veld-foto');
+  await page.click('[data-upload] >> text=Foto uploaden');
+  await page.waitForFunction(() => /Verwerkt/.test((document.querySelector('[data-upload] .beheer-photo__status') || {}).textContent || ''), null, { timeout: 8000 })
+    .then(() => ok('upload vanuit een fotoveld: toont de voortgang'), () => fail('upload vanuit een fotoveld: geen voortgang'));
+  fieldPhotoLive = true;
+  await page.waitForFunction(() => [...document.querySelectorAll('.beheer-field--photo select')].some((s) => s.value === 'veld-foto'), null, { timeout: 8000 })
+    .then(() => ok('upload vanuit een fotoveld: daarna vanzelf gekozen'), () => fail('upload vanuit een fotoveld: foto niet gekozen'));
+  await page.click('[data-reset]');
+
   // Nieuwe foto: staande, kleine foto geeft waarschuwingen; een bestaande naam wordt geweigerd.
   await page.selectOption('[data-file-select]', '__fotos');
   const cards = await page.locator('.beheer-photo').count();
-  if (cards !== fs.readdirSync(path.join(root, 'grip-op-stroom-fotos')).length) fail('fotolijst toont ' + cards + ' foto\'s'); else ok('fotolijst: ' + cards + ' foto\'s');
+  // De bestaande foto's plus de foto die hierboven vanuit het fotoveld is geüpload.
+  if (cards !== fs.readdirSync(path.join(root, 'grip-op-stroom-fotos')).length + 1) fail('fotolijst toont ' + cards + ' foto\'s'); else ok('fotolijst: ' + cards + ' foto\'s');
   const usage = await page.locator('.beheer-photo', { hasText: 'woonkamer-gezin' }).textContent();
   if (!/grote foto bovenaan/.test(usage)) fail('gebruik van woonkamer-gezin: ' + usage); else ok('fotolijst toont waar een foto staat');
   await page.click('text=+ Nieuwe foto toevoegen');
