@@ -264,6 +264,7 @@
       if (!existing) state.photos.push(photo);
       renderPhotos(true);
       waitForProcessing(photo, before, Date.now());
+      return photo;
     });
   }
 
@@ -360,7 +361,8 @@
   }
 
   // Formulier om een foto toe te voegen of te vervangen, direct onder de knop.
-  function openUpload(photo, anchor) {
+  // onUploaded(photo, box) wordt aangeroepen na het uploaden (bij een fotoveld).
+  function openUpload(photo, anchor, onUploaded) {
     var old = $('[data-upload]');
     if (old) old.remove();
     var box = document.createElement('div');
@@ -468,7 +470,9 @@
       send.disabled = true;
       send.textContent = 'Bezig met uploaden…';
       error.textContent = '';
-      uploadPhoto(name, image, Boolean(photo)).catch(function (err) {
+      uploadPhoto(name, image, Boolean(photo)).then(function (uploaded) {
+        if (onUploaded) onUploaded(uploaded, box);
+      }).catch(function (err) {
         send.disabled = false;
         send.textContent = photo ? 'Foto vervangen' : 'Foto uploaden';
         error.textContent = err.status === 403 || err.status === 404
@@ -498,7 +502,29 @@
     var thumbHolder = document.createElement('div');
     var hint = document.createElement('p');
     hint.className = 'beheer-hint';
-    hint.textContent = 'Een nieuwe foto voeg je toe bij het onderdeel Foto\'s.';
+    hint.textContent = 'Staat de foto die je wilt er niet bij? Upload hem hier. Na de verwerking (een à twee minuten) wordt hij vanzelf gekozen.';
+    var upload = document.createElement('button');
+    upload.type = 'button';
+    upload.className = 'beheer-mini beheer-mini--upload';
+    upload.textContent = '+ Nieuwe foto uploaden';
+    upload.addEventListener('click', function () {
+      openUpload(null, upload, function (photo, box) {
+        // Voortgang tonen tot de foto op de site staat; dan kiezen we hem in dit veld.
+        box.textContent = '';
+        var status = document.createElement('p');
+        status.className = 'beheer-photo__status';
+        status.setAttribute('role', 'status');
+        box.appendChild(status);
+        var timer = setInterval(function () {
+          status.textContent = photo.status;
+          if (!photo.live) return;
+          clearInterval(timer);
+          setAt(entry.data, path, photo.name);
+          changed();
+          render();
+        }, 500);
+      });
+    });
     var error = document.createElement('p');
     error.className = 'beheer-error';
     error.id = id + '-error';
@@ -522,6 +548,7 @@
     row.appendChild(select);
     row.appendChild(thumbHolder);
     row.appendChild(hint);
+    row.appendChild(upload);
     row.appendChild(error);
     update();
     return row;
@@ -918,7 +945,7 @@
     var select = $('[data-file-select]');
     select.textContent = '';
     FILES.forEach(function (f) { select.add(new Option(f.title, f.path)); });
-    select.add(new Option('Foto\'s', PHOTOS));
+    select.add(new Option('Foto\'s: toevoegen en vervangen', PHOTOS));
     var pages = $('[data-preview-page]');
     pages.textContent = '';
     PREVIEW_PAGES.forEach(function (p) { pages.add(new Option(p[1], p[0])); });
