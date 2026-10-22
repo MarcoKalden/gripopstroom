@@ -54,7 +54,7 @@ headers.push(
   '/beheer.html',
   '  X-Robots-Tag: noindex, nofollow',
   '  Cache-Control: no-store',
-  "  Content-Security-Policy: default-src 'self'; connect-src 'self' https://api.github.com; img-src 'self' data:; " +
+  "  Content-Security-Policy: default-src 'self'; connect-src 'self' https://api.github.com; img-src 'self' data: blob:; " +
     "style-src 'self' 'unsafe-inline'; frame-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'"
 );
 fs.writeFileSync(path.join(out, '_headers'), headers.join('\n') + '\n');
