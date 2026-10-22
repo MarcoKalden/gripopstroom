@@ -34,7 +34,19 @@
     });
   }
 
+  // In het voorbeeld van de beheerpagina (beheer.html) komen de teksten uit de editor.
+  function previewJSON(url) {
+    try {
+      var preview = window.parent !== window && window.parent.GOS_PREVIEW;
+      return preview && preview[url] ? JSON.parse(JSON.stringify(preview[url])) : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
   function loadJSON(url) {
+    var preview = previewJSON(url);
+    if (preview) return Promise.resolve(preview);
     return fetch(url).then(function (res) {
       if (!res.ok) throw new Error('Kan ' + url + ' niet laden (' + res.status + ')');
       return res.json();

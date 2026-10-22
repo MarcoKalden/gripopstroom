@@ -49,6 +49,14 @@ const headers = [
   '  X-Frame-Options: SAMEORIGIN',
 ];
 if (!site.siteUrl) headers.push('  X-Robots-Tag: noindex');
+// Beheerpagina: nooit in zoekmachines, niet in een frame, en alleen verbinding met GitHub.
+headers.push(
+  '/beheer.html',
+  '  X-Robots-Tag: noindex, nofollow',
+  '  Cache-Control: no-store',
+  "  Content-Security-Policy: default-src 'self'; connect-src 'self' https://api.github.com; img-src 'self' data:; " +
+    "style-src 'self' 'unsafe-inline'; frame-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'"
+);
 fs.writeFileSync(path.join(out, '_headers'), headers.join('\n') + '\n');
 
 let count = 0;

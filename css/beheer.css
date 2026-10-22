@@ -1,0 +1,101 @@
+/* Grip op Stroom: beheerpagina (beheer.html). Bouwt voort op styles.css. */
+
+.beheer { min-height: 100vh; }
+.beheer code { font-size: .9em; background: var(--gos-sand); padding: 0 .3em; border-radius: 4px; }
+
+.beheer-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  padding: 10px var(--gutter); background: var(--gos-surface); border-bottom: 1px solid var(--gos-line);
+}
+.beheer-bar__brand { display: flex; align-items: center; gap: 12px; color: var(--gos-ink); text-decoration: none; }
+.beheer-bar__brand img { width: 36px; height: auto; }
+.beheer-bar__user { display: flex; align-items: center; gap: 12px; color: var(--gos-muted); font-size: .9375rem; }
+
+.beheer-card { background: var(--gos-surface); border: 1px solid var(--gos-line); border-radius: var(--radius-md); padding: 20px; }
+.beheer-hint { margin: .25rem 0 0; font-size: .875rem; color: var(--gos-muted); }
+.beheer-error { margin: .25rem 0 0; font-size: .875rem; color: var(--gos-error); font-weight: 600; }
+.beheer-error:empty { display: none; }
+.beheer-check { display: flex; align-items: center; gap: 8px; font-weight: 400; }
+.beheer-loading, .beheer-note { padding: 48px var(--gutter); text-align: center; color: var(--gos-muted); }
+
+.beheer input[type="text"], .beheer input[type="password"], .beheer input[type="number"], .beheer textarea, .beheer select {
+  width: 100%; font: inherit; color: var(--gos-ink); background: var(--gos-surface);
+  border: 1px solid var(--gos-field); border-radius: 10px; padding: 8px 12px;
+}
+.beheer textarea { resize: vertical; line-height: 1.5; }
+.beheer input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--gos-green); flex: none; }
+.beheer [aria-invalid="true"] { border-color: var(--gos-error); box-shadow: 0 0 0 1px var(--gos-error); }
+.beheer label { font-weight: 600; color: var(--gos-ink); }
+
+/* Inloggen */
+.beheer-login { max-width: 560px; margin: 0 auto; padding: 48px var(--gutter); display: grid; gap: 20px; }
+.beheer-login h1 { font-size: 2rem; margin: 0; }
+.beheer-login .lead { margin: 0; }
+.beheer-login form { display: grid; gap: 8px; }
+.beheer-login form .btn { justify-self: start; margin-top: 8px; }
+.beheer-howto summary, .beheer-help summary { cursor: pointer; font-weight: 600; color: var(--gos-ink); }
+.beheer-howto ol { padding-left: 1.25rem; display: grid; gap: 6px; }
+
+/* Bewerken */
+.beheer-main { display: grid; gap: 24px; padding: 20px var(--gutter) 48px; }
+@media (min-width: 1100px) {
+  .beheer-main { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); align-items: start; }
+  .beheer-side { position: sticky; top: 16px; }
+}
+.beheer-toolbar { display: grid; gap: 8px; grid-template-columns: 1fr; }
+@media (min-width: 640px) {
+  .beheer-toolbar { grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; }
+}
+.beheer-intro { color: var(--gos-muted); margin: 12px 0 16px; }
+.beheer-intro:empty { display: none; }
+.beheer-form { display: grid; gap: 12px; }
+
+.beheer-group { background: var(--gos-surface); border: 1px solid var(--gos-line); border-radius: var(--radius-sm); }
+.beheer-group > summary { cursor: pointer; padding: 12px 16px; font-weight: 700; color: var(--gos-ink); }
+.beheer-group--0 > summary { font-size: 1.125rem; }
+.beheer-group--1, .beheer-group--2 { background: var(--gos-ground); }
+.beheer-group__body { display: grid; gap: 14px; padding: 4px 16px 16px; }
+.beheer-off { margin-left: 8px; font-size: .8125rem; font-weight: 600; color: var(--gos-muted); background: var(--gos-sand); border-radius: var(--radius-pill); padding: 2px 8px; }
+
+.beheer-field { display: grid; gap: 4px; }
+.beheer-field--check { grid-template-columns: auto 1fr; align-items: center; column-gap: 8px; }
+.beheer-field--check .beheer-error, .beheer-field--check .beheer-item-controls { grid-column: 1 / -1; }
+.beheer-field--technical label::after { content: " (technisch)"; font-weight: 400; color: var(--gos-muted); }
+.beheer-field.is-changed { border-left: 4px solid var(--gos-leaf); padding-left: 10px; margin-left: -14px; }
+.beheer-field.is-changed > label::before { content: "Gewijzigd · "; color: var(--gos-green-strong); font-weight: 600; }
+
+.beheer-list { display: grid; gap: 8px; }
+.beheer-list__title { margin: 0; font-weight: 700; color: var(--gos-ink); }
+.beheer-add { justify-self: start; }
+.beheer-item-controls { display: flex; gap: 6px; flex-wrap: wrap; padding: 0 16px 8px; }
+.beheer-field .beheer-item-controls { padding: 0; }
+.beheer-mini {
+  font: inherit; font-size: .8125rem; color: var(--gos-navy); background: var(--gos-surface);
+  border: 1px solid var(--gos-field); border-radius: var(--radius-pill); padding: 2px 10px; cursor: pointer;
+}
+.beheer-mini:disabled { opacity: .45; cursor: default; }
+
+/* Publiceren en voorbeeld */
+.beheer-side { display: grid; gap: 16px; }
+.beheer-publish { display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  background: var(--gos-surface); border: 1px solid var(--gos-line); border-radius: var(--radius-sm); padding: 12px 16px; }
+.beheer-status { margin: 0; font-weight: 600; color: var(--gos-ink); }
+.beheer-publish__buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+.beheer .btn:disabled { opacity: .45; cursor: default; transform: none; box-shadow: none; }
+.beheer-preview { background: var(--gos-surface); border: 1px solid var(--gos-line); border-radius: var(--radius-sm); overflow: hidden; }
+.beheer-preview__bar { display: flex; gap: 8px; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--gos-line); }
+.beheer-preview__bar select { width: auto; flex: 1; }
+.beheer-preview iframe { display: block; width: 100%; height: 70vh; border: 0; background: var(--gos-ground); }
+.beheer-sources { padding-left: 1.25rem; display: grid; gap: 4px; font-size: .9375rem; }
+
+.beheer-dialog { width: min(720px, calc(100vw - 32px)); border: 0; border-radius: var(--radius-md); padding: 24px; color: var(--gos-text); }
+.beheer-dialog::backdrop { background: rgba(16, 35, 63, .45); }
+.beheer-dialog h2 { margin-top: 0; }
+.beheer-dialog h3 { font-size: 1rem; margin: 16px 0 4px; }
+.beheer-dialog form { display: grid; gap: 8px; }
+.beheer-diff { max-height: 45vh; overflow: auto; }
+.beheer-diff ul { padding-left: 1.25rem; display: grid; gap: 8px; }
+.beheer-diff li { display: grid; gap: 2px; }
+.beheer-diff__old { color: var(--gos-muted); text-decoration: line-through; }
+.beheer-diff__new { color: var(--gos-green-strong); }
+.beheer-dialog__buttons { display: flex; gap: 8px; justify-content: flex-end; margin-top: 8px; }
