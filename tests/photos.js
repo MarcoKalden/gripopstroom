@@ -4,7 +4,9 @@
    iets matter (zwartpunt opgetild), saturatie -15%.
    Levert AVIF, WebP en JPG in 640, 1024 en 1600 px breed in assets/foto/.
    (De bronfoto's zijn 1672 px breed; groter dan dat maken we niet.)
-   Gebruik: cd tests && npm run photos */
+   Gebruik: cd tests && npm run photos
+   Alleen bepaalde foto's: node tests/photos.js grip-op-stroom-fotos/naam.jpg (zo doet de
+   GitHub Action .github/workflows/fotos.yml het na een upload via de beheerpagina). */
 'use strict';
 const fs = require('fs');
 const path = require('path');
@@ -17,7 +19,9 @@ const WIDTHS = [640, 1024, 1600];
 
 (async () => {
   fs.mkdirSync(out, { recursive: true });
-  for (const file of fs.readdirSync(src).filter((f) => /\.jpe?g$/i.test(f))) {
+  const only = process.argv.slice(2).map((f) => path.basename(f));
+  const files = fs.readdirSync(src).filter((f) => /\.jpe?g$/i.test(f) && (!only.length || only.includes(f)));
+  for (const file of files) {
     const name = file.replace(/\.jpe?g$/i, '');
     const base = sharp(path.join(src, file))
       .modulate({ saturation: 0.85 })

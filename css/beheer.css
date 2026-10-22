@@ -99,3 +99,19 @@
 .beheer-diff__old { color: var(--gos-muted); text-decoration: line-through; }
 .beheer-diff__new { color: var(--gos-green-strong); }
 .beheer-dialog__buttons { display: flex; gap: 8px; justify-content: flex-end; margin-top: 8px; }
+
+/* Foto's */
+.beheer-photos { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.beheer-photo { display: grid; gap: 6px; align-content: start; background: var(--gos-surface); border: 1px solid var(--gos-line); border-radius: var(--radius-sm); padding: 12px; }
+.beheer-photo h3 { margin: 4px 0 0; font-size: 1rem; }
+.beheer-photo p { margin: 0; }
+.beheer-photo .beheer-mini { justify-self: start; }
+.beheer-photo__status { font-size: .875rem; font-weight: 600; color: var(--gos-green-strong); }
+.beheer-thumb { display: block; width: 100%; max-width: 480px; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; background: var(--gos-sand); }
+.beheer-thumb--wait { display: grid; place-items: center; color: var(--gos-muted); font-size: .875rem; }
+.beheer-field--photo .beheer-thumb { max-width: 240px; }
+.beheer-upload { display: grid; gap: 8px; margin-top: 8px; }
+.beheer-upload h3 { margin: 0; font-size: 1.0625rem; }
+.beheer-upload input[type="file"] { font: inherit; }
+.beheer-upload__result { display: grid; gap: 6px; }
+.beheer-warning { margin: 0; font-size: .875rem; font-weight: 600; color: #7A4B00; background: #FFF4D6; border-radius: 8px; padding: 6px 10px; }

@@ -1,0 +1,70 @@
+# Verwerkt nieuwe of vervangen foto's uit grip-op-stroom-fotos/ (bijvoorbeeld via de
+# beheerpagina) met tests/photos.js tot AVIF, WebP en JPG in assets/foto/, en zet die
+# terug in de repo. Netlify zet de site daarna opnieuw online.
+name: Foto's verwerken
+
+on:
+  push:
+    paths:
+      - 'grip-op-stroom-fotos/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fotos-${{ github.ref }}
+
+jobs:
+  fotos:
+    if: github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Gereedschap installeren
+        working-directory: tests
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+        run: npm ci --no-audit --no-fund
+
+      - name: Gewijzigde foto's bepalen
+        id: changed
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || ! git cat-file -e "${{ github.event.before }}^{commit}" 2>/dev/null; then
+            files=$(ls grip-op-stroom-fotos/*.jpg grip-op-stroom-fotos/*.jpeg 2>/dev/null || true)
+          else
+            files=$(git diff --name-only --diff-filter=AM "${{ github.event.before }}" "${{ github.sha }}" -- 'grip-op-stroom-fotos/*.jpg' 'grip-op-stroom-fotos/*.jpeg')
+          fi
+          echo "files<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$files" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+          echo "Te verwerken: $files"
+
+      - name: Foto's verwerken
+        if: steps.changed.outputs.files != ''
+        env:
+          FILES: ${{ steps.changed.outputs.files }}
+        run: node tests/photos.js $FILES
+
+      - name: Terugzetten in de repo
+        if: steps.changed.outputs.files != ''
+        env:
+          FILES: ${{ steps.changed.outputs.files }}
+        run: |
+          git add assets/foto
+          if git diff --cached --quiet; then echo "Niets gewijzigd"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Foto's verwerkt: $(for f in $FILES; do basename "$f"; done | tr '\n' ' ')"
+          for i in 1 2 3 4; do
+            git pull --rebase origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}" && exit 0
+            sleep $((i * 5))
+          done
+          exit 1

@@ -9,7 +9,7 @@
    - contactformulier: foutmeldingen en focus; zoeken in de vragen
    - met prefers-reduced-motion beweegt er niets automatisch
    - alles met enabled: false tijdelijk aan (alleen in de test) en dan nog steeds netjes
-   - beheerpagina met een nagebootste GitHub: inloggen, voorbeeld, controles en publiceren
+   - beheerpagina met een nagebootste GitHub: inloggen, voorbeeld, controles, publiceren en foto's
    Schermafdrukken komen in tests/screenshots/.
 
    Gebruik:
@@ -21,6 +21,7 @@ const fs = require('fs');
 const path = require('path');
 const { chromium } = require('playwright');
 const { AxeBuilder } = require('@axe-core/playwright');
+const sharp = require('sharp');
 
 const BASE = process.env.BASE_URL || 'http://localhost:8000/';
 const OUT = path.join(__dirname, 'screenshots');
@@ -278,8 +279,11 @@ async function testBeheer(browser) {
   console.log('\nBeheerpagina');
   const root = path.join(__dirname, '..');
   const puts = [];
+  const processed = new Set(); // foto's die de nagebootste GitHub Action al verwerkt heeft
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, reducedMotion: 'reduce' });
+  await context.addInitScript(() => { window.GOS_BEHEER_POLL_MS = 150; });
   const page = await context.newPage();
+  page.on('dialog', (d) => d.accept());
   const errors = [];
   page.on('pageerror', (e) => errors.push(e.message));
   page.on('console', (m) => { if (m.type() === 'error' && !/^Failed to load resource/.test(m.text())) errors.push(m.text()); });
@@ -290,6 +294,18 @@ async function testBeheer(browser) {
     if (url.pathname === '/repos/MarcoKalden/gripopstroom') return r.fulfill({ json: { default_branch: 'main' } });
     if (url.pathname === '/user') return r.fulfill({ json: { login: 'testbeheerder' } });
     const m = url.pathname.match(/^\/repos\/MarcoKalden\/gripopstroom\/contents\/(.+)$/);
+    if (m && m[1] === 'grip-op-stroom-fotos') {
+      return r.fulfill({ json: fs.readdirSync(path.join(root, m[1])).map((f) => ({ name: f, sha: 'sha-' + m[1] + '/' + f })) });
+    }
+    const variant = m && m[1].match(/^assets\/foto\/(.+)-1600\.jpg$/);
+    if (variant) {
+      // Na een upload is de foto bij de tweede vraag verwerkt.
+      const name = variant[1];
+      if (processed.has(name + ':wacht')) { processed.delete(name + ':wacht'); processed.add(name); }
+      else if (puts.some((p) => p.file === 'grip-op-stroom-fotos/' + name + '.jpg') && !processed.has(name)) processed.add(name + ':wacht');
+      if (processed.has(name)) return r.fulfill({ json: { sha: 'verwerkt-' + name } });
+      return fs.existsSync(path.join(root, m[1])) ? r.fulfill({ json: { sha: 'oud-' + name } }) : r.fulfill({ status: 404, json: { message: 'Not Found' } });
+    }
     if (m && r.request().method() === 'GET') {
       const content = fs.readFileSync(path.join(root, m[1])).toString('base64');
       return r.fulfill({ json: { sha: 'sha-' + m[1], content } });
@@ -362,6 +378,76 @@ async function testBeheer(browser) {
     fail('publiceren stuurt niet de juiste wijziging: ' + JSON.stringify(puts.map((p) => p.file)));
   } else ok('publiceren: één commit op content/home.json met alleen de nieuwe titel');
 
+  // Foto kiezen bij een pakket: keuzelijst met alleen foto's die op de site staan.
+  await page.selectOption('[data-file-select]', 'content/pakketten.json');
+  const photoSelect = await page.evaluateHandle(() => {
+    const el = [...document.querySelectorAll('[data-form] select')].find((s) => s.value === 'ontbijt-gezin');
+    for (let d = el && el.closest('details'); d; d = d.parentElement.closest('details')) d.open = true;
+    return el;
+  });
+  if (!photoSelect.asElement()) fail('fotoveld bij Ferme grip niet gevonden');
+  else {
+    await photoSelect.asElement().selectOption('bank-stel');
+    await page.click('[data-publish]');
+    const photoDiff = await page.textContent('[data-diff]');
+    if (!/ontbijt-gezin/.test(photoDiff) || !/bank-stel/.test(photoDiff)) fail('fotokeuze niet in het overzicht: ' + photoDiff); else ok('foto kiezen bij een pakket');
+    await page.click('[data-publish-dialog] button[value="cancel"]');
+    await page.click('[data-reset]');
+  }
+
+  // Nieuwe foto: staande, kleine foto geeft waarschuwingen; een bestaande naam wordt geweigerd.
+  await page.selectOption('[data-file-select]', '__fotos');
+  const cards = await page.locator('.beheer-photo').count();
+  if (cards !== fs.readdirSync(path.join(root, 'grip-op-stroom-fotos')).length) fail('fotolijst toont ' + cards + ' foto\'s'); else ok('fotolijst: ' + cards + ' foto\'s');
+  const usage = await page.locator('.beheer-photo', { hasText: 'woonkamer-gezin' }).textContent();
+  if (!/grote foto bovenaan/.test(usage)) fail('gebruik van woonkamer-gezin: ' + usage); else ok('fotolijst toont waar een foto staat');
+  await page.click('text=+ Nieuwe foto toevoegen');
+  const small = await sharp({ create: { width: 800, height: 1000, channels: 3, background: '#88aa99' } }).jpeg().toBuffer();
+  await page.setInputFiles('#upload-file', { name: 'Klein staand.jpg', mimeType: 'image/jpeg', buffer: small });
+  await page.waitForSelector('.beheer-warning');
+  const warnings = await page.locator('.beheer-warning').allTextContents();
+  if (!warnings.some((w) => /staande foto/.test(w)) || !warnings.some((w) => /800 pixels/.test(w))) fail('waarschuwingen: ' + warnings.join(' | ')); else ok('waarschuwing voor een staande en te kleine foto');
+  await page.screenshot({ path: path.join(OUT, 'beheer-fotos-1440.png'), fullPage: false });
+  const suggested = await page.inputValue('#upload-name');
+  if (suggested !== 'klein-staand') fail('voorgestelde naam: ' + suggested); else ok('naam voorgesteld uit de bestandsnaam');
+  await page.fill('#upload-name', 'bank-stel');
+  await page.click('text=Foto uploaden');
+  if (!/al een foto met deze naam/.test(await page.textContent('#upload-error'))) fail('bestaande naam niet geweigerd'); else ok('bestaande naam geweigerd');
+
+  // Uploaden: JPG in 16:9 naar grip-op-stroom-fotos/, wachten op verwerking, daarna op de site.
+  await page.setInputFiles('#upload-file', path.join(root, 'grip-op-stroom-fotos', 'keuken-senioren.jpg'));
+  await page.waitForSelector('.beheer-upload__result img');
+  await page.fill('#upload-name', 'test-foto');
+  let testPhotoLive = false;
+  await page.route('**/assets/foto/test-foto-640.webp*', (r) => (testPhotoLive
+    ? r.fulfill({ path: path.join(root, 'assets/foto/keuken-senioren-640.webp'), contentType: 'image/webp' })
+    : r.fulfill({ status: 404, body: '' })));
+  await page.click('text=Foto uploaden');
+  await page.locator('.beheer-photo', { hasText: 'test-foto' }).locator('.beheer-photo__status', { hasText: 'Verwerkt' }).waitFor({ timeout: 8000 })
+    .then(() => ok('upload: wacht op de verwerking door GitHub'), () => fail('upload: status "Verwerkt" komt niet'));
+  testPhotoLive = true;
+  await page.locator('.beheer-photo', { hasText: 'test-foto' }).locator('.beheer-photo__status', { hasText: 'Klaar' }).waitFor({ timeout: 8000 })
+    .then(() => ok('upload: daarna op de site en te kiezen'), () => fail('upload: status "Klaar" komt niet'));
+  const upload = puts.find((p) => p.file === 'grip-op-stroom-fotos/test-foto.jpg');
+  if (!upload) fail('geen upload naar grip-op-stroom-fotos/test-foto.jpg');
+  else {
+    const meta = await sharp(Buffer.from(upload.body.content, 'base64')).metadata();
+    if (meta.format !== 'jpeg' || Math.abs(meta.width / meta.height - 16 / 9) > 0.01 || upload.body.sha || upload.body.branch !== 'main') {
+      fail(`upload: ${meta.format} ${meta.width}x${meta.height}, sha ${upload.body.sha}, branch ${upload.body.branch}`);
+    } else ok(`upload: JPG ${meta.width}x${meta.height} (16:9), nieuw bestand op main`);
+  }
+
+  // Vervangen: zelfde naam, met de sha van het oude bestand.
+  await page.locator('.beheer-photo', { hasText: 'bank-stel' }).getByRole('button', { name: /vervangen/i }).click();
+  await page.setInputFiles('#upload-file', path.join(root, 'grip-op-stroom-fotos', 'ontbijt-gezin.jpg'));
+  await page.waitForSelector('.beheer-upload__result img');
+  await page.click('text=Foto vervangen');
+  await page.locator('.beheer-photo', { hasText: 'bank-stel' }).locator('.beheer-photo__status', { hasText: 'Verwerkt' }).waitFor({ timeout: 8000 })
+    .then(() => ok('vervangen: wacht op de verwerking'), () => fail('vervangen: status "Verwerkt" komt niet'));
+  const replaced = puts.find((p) => p.file === 'grip-op-stroom-fotos/bank-stel.jpg');
+  if (!replaced || replaced.body.sha !== 'sha-grip-op-stroom-fotos/bank-stel.jpg') fail('vervangen stuurt niet de sha van het oude bestand mee'); else ok('vervangen: overschrijft bank-stel.jpg');
+
+  await page.selectOption('[data-file-select]', 'content/home.json');
   await page.screenshot({ path: path.join(OUT, 'beheer-1440.png'), fullPage: false });
   await page.setViewportSize({ width: 390, height: 900 });
   const sw = await page.evaluate(() => document.documentElement.scrollWidth);

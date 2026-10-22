@@ -95,6 +95,10 @@ geschiedenis van GitHub en is terug te draaien.
   de editor (`window.parent.GOS_PREVIEW`) in plaats van de bestanden.
 - De pagina staat niet in het menu, niet in zoekmachines (`noindex` en `robots.txt`) en
   krijgt van `scripts/build-public.js` een strenge Content-Security-Policy.
+- Foto's: bij elk fotoveld een keuzelijst met alleen foto's die al op de site staan. Onder
+  *Foto's* vervang je een foto of voeg je er een toe (zie [Foto's](#fotos)). De pagina wacht
+  tot de GitHub Action de foto verwerkt heeft en hij op de site staat. Blijft een foto op
+  "Wordt verwerkt" staan, kijk dan in GitHub bij **Actions** naar *Foto's verwerken*.
 - Repo en bestanden staan bovenin `js/beheer.js`. Een nieuw contentbestand voeg je daar
   toe aan `FILES`.
 
@@ -122,6 +126,13 @@ Dat trekt de set naar de huisstijl (minder warm, iets naar blauw en groen, satur
 zwartpunt licht opgetild) en levert drie breedtes. De pagina-achtergrond (`--gos-ground`,
 `--gos-sand`, `--gos-line`) is daar op afgestemd: koel lichtgrijs-groen in plaats van crème.
 De bronnen zijn 1672 px breed; 2400 px uit REDESIGN.md kan pas met grotere bronbestanden.
+
+Foto's vervangen of toevoegen kan ook via de beheerpagina (onderdeel *Foto's*). Die zet de foto
+bijgesneden tot 16:9 (hooguit 2400 px breed) als JPG in `grip-op-stroom-fotos/`. De GitHub
+Action `.github/workflows/fotos.yml` draait dan `tests/photos.js` voor alleen die foto en zet
+de versies in `assets/foto/` terug in de repo. `node tests/photos.js grip-op-stroom-fotos/naam.jpg`
+doet hetzelfde met de hand. De grote foto bovenaan de homepage (`woonkamer-gezin`) staat vast
+in `index.html`; die verander je door hem te vervangen.
 
 ### Beelden van de voorbeeldwoning
 
