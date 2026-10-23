@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visitekaartje Alexander van Hattum</title>
+<!--
+  Visitekaartje Grip op Stroom, 85 x 55 mm.
+  Afdrukken/PDF: elke pagina is 91 x 61 mm (3 mm afloop rondom).
+  Kleuren en lettertype volgen css/styles.css (--gos-*, Figtree).
+-->
+<style>
+  @font-face { font-family: "Figtree"; src: url("../../assets/fonts/figtree-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+  @font-face { font-family: "Figtree"; src: url("../../assets/fonts/figtree-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+  @font-face { font-family: "Figtree"; src: url("../../assets/fonts/figtree-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+  @font-face { font-family: "Figtree"; src: url("../../assets/fonts/figtree-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+
+  :root {
+    --gos-navy: #0A2A5E;
+    --gos-ink: #10233F;
+    --gos-text: #3A4A60;
+    --gos-ground: #F2F6F5;
+    --gos-sand: #E3ECEA;
+    --gos-line: #D3DFDC;
+    --gos-green: #1F7A63;
+    --gos-leaf: #7FB069;
+    --gos-wave: #48B4BA;
+    --gos-on-navy: #D6DEEA;
+    --gos-on-navy-accent: #9FD3BF;
+    --bleed: 3mm;
+    --safe: 4mm;
+  }
+
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: "Figtree", system-ui, sans-serif; background: var(--gos-sand); color: var(--gos-ink);
+         -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  /* Schermweergave: kaart op snijmaat, afloop weggesneden */
+  .preview { min-height: 100vh; display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: center; padding: 32px 16px; }
+  .preview figure { display: grid; gap: 10px; justify-items: center; }
+  .preview figcaption { font-size: 13px; color: var(--gos-text); }
+  .trim { width: 85mm; height: 55mm; overflow: hidden; border-radius: 3mm; box-shadow: 0 2px 6px rgba(16,35,63,.05), 0 10px 30px rgba(16,35,63,.12); }
+  .trim .sheet { margin: calc(var(--bleed) * -1); }
+
+  .sheet { width: 91mm; height: 61mm; position: relative; overflow: hidden; }
+  .card { position: absolute; inset: 0; padding: calc(var(--bleed) + var(--safe)); }
+
+  /* ---------- Voorkant ---------- */
+  .front { background: #fff; display: grid; grid-template-columns: 27mm 1fr; column-gap: 5mm; align-items: center;
+           padding-left: 0; }
+  .front__brand { align-self: stretch; margin: calc((var(--bleed) + var(--safe)) * -1) 0; padding-left: var(--bleed);
+                  background: var(--gos-ground); display: grid; place-items: center; }
+  .front__brand img { width: 19mm; height: auto; display: block; }
+  .front__name { font-size: 11.5pt; font-weight: 700; color: var(--gos-navy); letter-spacing: -.01em; line-height: 1.1; }
+  .front__role { font-size: 7.5pt; font-weight: 600; color: var(--gos-green); margin-top: .8mm; letter-spacing: .04em; text-transform: uppercase; }
+  .front__rule { width: 8mm; height: .6mm; border-radius: 1mm; background: var(--gos-leaf); margin: 3mm 0 2.6mm; }
+  .contact { list-style: none; padding: 0; display: grid; gap: 1.5mm; font-size: 7pt; line-height: 1.3; color: var(--gos-text); }
+  .contact li { display: grid; grid-template-columns: 3.2mm 1fr; column-gap: 1.8mm; align-items: start; }
+  .contact svg { width: 3.2mm; height: 3.2mm; color: var(--gos-green); margin-top: .1mm; }
+  .contact strong { font-weight: 600; color: var(--gos-ink); }
+  .front__wave { position: absolute; right: 0; bottom: 1.5mm; width: 34mm; height: 9mm; }
+
+  /* ---------- Achterkant ---------- */
+  .back { background: var(--gos-navy); color: #fff; display: grid; grid-template-columns: 1fr 26mm; column-gap: 5mm; align-items: center; }
+  .back__payoff { font-size: 12.5pt; font-weight: 700; line-height: 1.15; letter-spacing: -.01em; }
+  .back__payoff span { color: var(--gos-on-navy-accent); }
+  .back__hint { font-size: 6.8pt; line-height: 1.35; color: var(--gos-on-navy); margin-top: 3mm; max-width: 40mm; }
+  .back__url { font-size: 7pt; font-weight: 600; color: #fff; margin-top: 4.5mm; letter-spacing: .02em; }
+  .qr { background: #fff; border-radius: 2.5mm; padding: 1.2mm; width: 26mm; }
+  .qr__code { display: block; width: 100%; height: auto; }
+  .back__wave { position: absolute; left: 0; bottom: 1.5mm; width: 100%; height: 10mm; opacity: .5; }
+
+  @page { size: 91mm 61mm; margin: 0; }
+  @media print {
+    body { background: none; }
+    .preview { display: block; padding: 0; min-height: 0; }
+    .preview figure { display: block; break-after: page; }
+    .preview figcaption { display: none; }
+    .trim { width: auto; height: auto; overflow: visible; border-radius: 0; box-shadow: none; }
+    .trim .sheet { margin: 0; }
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></symbol><symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /><rect x="2" y="4" width="20" height="16" rx="2" /></symbol><symbol id="i-map" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></symbol>
+</svg>
+
+<main class="preview">
+  <figure>
+    <div class="trim">
+      <div class="sheet">
+        <section class="card front" aria-label="Voorkant">
+          <div class="front__brand"><img src="../../assets/logo-gos.png" alt="Grip op Stroom"></div>
+          <div>
+            <h1 class="front__name">Alexander van Hattum</h1>
+            <p class="front__role">CEO</p>
+            <div class="front__rule"></div>
+            <ul class="contact">
+              <li><svg aria-hidden="true"><use href="#i-phone"/></svg><strong>+31 (0)6 33853790</strong></li>
+              <li><svg aria-hidden="true"><use href="#i-mail"/></svg>alexander@gripopstroom.nl</li>
+              <li><svg aria-hidden="true"><use href="#i-globe"/></svg>gripopstroom.nl</li>
+              <li><svg aria-hidden="true"><use href="#i-map"/></svg><span>Handelsweg 14<br>7041 GX 's-Heerenberg</span></li>
+            </ul>
+          </div>
+          <svg class="front__wave" viewBox="0 0 340 90" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 62 C 60 40, 110 82, 170 62 S 280 40, 340 54" fill="none" stroke="#48B4BA" stroke-width="7" stroke-linecap="round" opacity=".35"/>
+            <path d="M40 80 C 100 58, 150 98, 210 80 S 300 60, 340 70" fill="none" stroke="#48B4BA" stroke-width="7" stroke-linecap="round" opacity=".2"/>
+          </svg>
+        </section>
+      </div>
+    </div>
+    <figcaption>Voorkant</figcaption>
+  </figure>
+
+  <figure>
+    <div class="trim">
+      <div class="sheet">
+        <section class="card back" aria-label="Achterkant">
+          <div>
+            <p class="back__payoff">Jouw huis,<br>jouw pad,<br><span>jouw tempo.</span></p>
+            <p class="back__hint">Scan de code en zet mijn gegevens direct in je contacten.</p>
+            <p class="back__url">gripopstroom.nl</p>
+          </div>
+          <div class="qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 73 73" class="qr__code" role="img" aria-label="QR-code met contactgegevens van Alexander van Hattum" class="segno"><path fill="#fff" d="M0 0h73v73h-73z"/><path class="qrline" stroke="#0a2a5e" d="M4 4.5h7m3 0h1m2 0h3m1 0h1m3 0h2m1 0h1m2 0h2m1 0h2m3 0h1m1 0h4m1 0h2m2 0h1m1 0h1m1 0h2m3 0h1m2 0h7m-65 1h1m5 0h1m1 0h2m1 0h1m6 0h2m3 0h1m7 0h1m3 0h1m3 0h1m2 0h2m3 0h2m1 0h3m3 0h1m1 0h1m5 0h1m-65 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h2m3 0h1m1 0h2m4 0h1m1 0h1m2 0h2m1 0h2m5 0h1m3 0h1m2 0h1m3 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-65 1h1m1 0h3m1 0h1m1 0h1m3 0h1m4 0h1m2 0h3m1 0h1m1 0h5m1 0h1m2 0h3m1 0h4m1 0h1m3 0h1m2 0h5m2 0h1m1 0h3m1 0h1m-65 1h1m1 0h3m1 0h1m2 0h4m3 0h1m3 0h1m1 0h1m1 0h2m4 0h5m6 0h4m2 0h3m2 0h1m3 0h1m1 0h1m1 0h3m1 0h1m-65 1h1m5 0h1m5 0h2m4 0h1m3 0h1m1 0h1m1 0h5m3 0h1m1 0h1m1 0h2m2 0h1m5 0h1m2 0h1m1 0h2m3 0h1m5 0h1m-65 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-57 1h1m1 0h3m3 0h1m1 0h1m1 0h1m1 0h1m4 0h4m3 0h3m5 0h1m1 0h1m1 0h1m2 0h1m1 0h4m1 0h1m-57 1h1m5 0h1m1 0h2m2 0h5m1 0h1m2 0h3m1 0h1m1 0h2m1 0h8m3 0h3m1 0h4m4 0h6m2 0h3m-63 1h4m2 0h2m5 0h2m5 0h1m1 0h1m3 0h9m1 0h2m2 0h2m2 0h2m2 0h3m1 0h6m4 0h1m-63 1h2m1 0h4m1 0h2m3 0h2m1 0h1m3 0h3m3 0h2m1 0h1m2 0h1m4 0h3m2 0h3m2 0h1m1 0h1m1 0h2m1 0h1m1 0h3m2 0h1m-62 1h2m1 0h1m2 0h1m3 0h1m1 0h3m1 0h2m1 0h3m1 0h2m2 0h5m7 0h1m1 0h3m5 0h6m1 0h1m-58 1h1m3 0h1m1 0h2m1 0h2m4 0h1m3 0h1m3 0h2m1 0h8m2 0h3m1 0h2m2 0h3m1 0h1m1 0h1m1 0h1m2 0h1m4 0h1m3 0h1m-65 1h1m1 0h1m2 0h1m1 0h1m1 0h2m1 0h2m1 0h1m1 0h1m3 0h1m3 0h3m2 0h3m4 0h1m1 0h4m6 0h1m1 0h1m2 0h2m1 0h1m2 0h2m-62 1h1m3 0h1m1 0h1m1 0h1m2 0h2m1 0h1m1 0h4m3 0h1m1 0h1m4 0h2m1 0h3m4 0h1m4 0h2m1 0h3m2 0h1m3 0h1m3 0h2m-63 1h4m1 0h1m3 0h1m6 0h1m1 0h1m2 0h1m1 0h6m1 0h1m1 0h2m1 0h1m2 0h2m5 0h2m1 0h1m1 0h4m1 0h2m4 0h4m-65 1h1m2 0h5m4 0h1m2 0h1m1 0h3m1 0h1m1 0h2m2 0h1m2 0h2m1 0h2m1 0h4m1 0h1m5 0h2m5 0h3m1 0h1m1 0h2m1 0h2m-64 1h1m1 0h2m2 0h6m2 0h1m3 0h1m3 0h1m1 0h3m1 0h2m4 0h2m3 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m2 0h2m1 0h1m-58 1h1m3 0h3m1 0h1m3 0h2m2 0h2m2 0h1m3 0h1m2 0h2m1 0h5m1 0h1m3 0h1m2 0h1m1 0h7m5 0h3m1 0h1m2 0h1m-65 1h5m2 0h1m1 0h1m3 0h1m2 0h3m2 0h5m1 0h5m5 0h2m1 0h1m1 0h3m1 0h2m4 0h1m1 0h2m2 0h1m2 0h1m1 0h2m-65 1h1m5 0h2m1 0h2m2 0h1m2 0h4m5 0h1m1 0h5m2 0h1m1 0h4m1 0h1m1 0h1m3 0h2m1 0h1m2 0h2m1 0h5m2 0h1m-62 1h3m3 0h2m3 0h3m1 0h4m5 0h5m3 0h1m2 0h6m1 0h4m1 0h2m2 0h11m-64 1h2m2 0h4m1 0h2m3 0h2m2 0h1m2 0h2m3 0h2m1 0h2m1 0h1m1 0h3m1 0h1m1 0h2m1 0h1m2 0h2m3 0h1m5 0h1m2 0h1m-61 1h2m1 0h3m2 0h1m3 0h3m2 0h5m1 0h2m3 0h1m1 0h6m4 0h2m3 0h2m1 0h1m3 0h1m1 0h1m1 0h1m1 0h1m1 0h2m-59 1h1m2 0h1m1 0h2m3 0h2m1 0h1m5 0h2m2 0h3m2 0h4m1 0h1m1 0h1m1 0h2m2 0h1m2 0h4m1 0h2m1 0h3m1 0h2m3 0h1m-65 1h1m1 0h2m1 0h1m1 0h2m1 0h5m3 0h1m1 0h2m1 0h1m1 0h3m3 0h1m3 0h3m3 0h2m1 0h2m1 0h3m2 0h4m1 0h1m1 0h3m1 0h2m-65 1h1m2 0h1m1 0h6m4 0h1m2 0h2m1 0h1m1 0h2m2 0h1m1 0h1m2 0h2m1 0h2m2 0h2m3 0h4m1 0h2m1 0h1m2 0h1m3 0h1m1 0h1m-59 1h1m3 0h2m2 0h3m1 0h1m2 0h3m1 0h3m3 0h1m1 0h5m1 0h1m1 0h2m1 0h1m2 0h14m2 0h3m1 0h1m-65 1h5m1 0h1m2 0h1m1 0h6m1 0h2m1 0h2m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h2m1 0h3m1 0h1m1 0h3m3 0h2m2 0h1m2 0h1m1 0h1m-61 1h1m1 0h2m2 0h1m1 0h3m2 0h3m2 0h2m5 0h3m2 0h2m1 0h3m2 0h5m4 0h1m1 0h1m1 0h3m1 0h1m1 0h3m1 0h1m-64 1h2m1 0h8m3 0h3m1 0h1m1 0h1m2 0h1m2 0h2m2 0h5m2 0h1m1 0h1m1 0h4m2 0h1m1 0h1m1 0h3m1 0h6m1 0h3m-65 1h5m3 0h3m1 0h4m1 0h2m1 0h1m2 0h2m2 0h2m1 0h1m3 0h3m5 0h2m1 0h2m1 0h2m2 0h1m1 0h3m3 0h2m1 0h1m-60 1h1m1 0h1m1 0h1m2 0h5m2 0h2m2 0h1m5 0h3m1 0h1m1 0h1m1 0h1m4 0h1m1 0h1m1 0h4m7 0h1m1 0h1m1 0h1m2 0h1m-64 1h1m1 0h1m1 0h1m3 0h1m1 0h3m1 0h2m2 0h1m1 0h2m3 0h1m2 0h3m3 0h3m1 0h1m2 0h2m2 0h2m3 0h5m1 0h1m3 0h2m2 0h1m-65 1h3m1 0h6m2 0h1m1 0h1m1 0h1m2 0h1m3 0h4m1 0h1m1 0h5m1 0h1m2 0h1m2 0h1m1 0h2m5 0h1m4 0h5m-61 1h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m3 0h3m2 0h1m1 0h1m1 0h2m2 0h1m1 0h2m3 0h2m1 0h2m1 0h3m1 0h1m1 0h1m1 0h6m1 0h2m-60 1h2m3 0h4m2 0h1m1 0h2m4 0h1m1 0h3m3 0h5m2 0h1m1 0h2m2 0h1m3 0h1m1 0h5m1 0h2m1 0h2m6 0h2m-63 1h2m1 0h1m1 0h2m1 0h1m1 0h2m1 0h4m5 0h1m2 0h1m3 0h1m1 0h1m5 0h1m1 0h5m2 0h1m2 0h4m1 0h3m1 0h1m2 0h2m-65 1h2m1 0h1m1 0h2m3 0h1m2 0h3m3 0h1m1 0h1m2 0h1m3 0h2m2 0h1m2 0h1m1 0h2m3 0h2m4 0h1m2 0h1m2 0h4m1 0h2m2 0h1m-54 1h1m1 0h1m2 0h1m1 0h2m3 0h1m2 0h9m1 0h1m1 0h1m2 0h2m3 0h3m1 0h2m4 0h2m2 0h1m1 0h3m-64 1h1m4 0h2m1 0h2m1 0h1m1 0h1m2 0h1m1 0h3m1 0h3m3 0h2m1 0h3m2 0h1m1 0h2m2 0h1m2 0h5m4 0h1m2 0h1m2 0h5m-63 1h1m2 0h1m6 0h2m1 0h4m1 0h1m3 0h1m1 0h1m3 0h2m1 0h1m3 0h1m1 0h1m1 0h3m1 0h1m2 0h2m3 0h5m1 0h2m1 0h3m-65 1h1m4 0h3m1 0h1m1 0h1m4 0h2m2 0h3m2 0h4m1 0h2m1 0h5m3 0h1m3 0h2m1 0h1m2 0h3m2 0h1m1 0h1m1 0h1m3 0h1m-65 1h2m3 0h1m1 0h2m1 0h1m1 0h1m1 0h4m2 0h1m1 0h2m1 0h1m1 0h4m1 0h2m6 0h2m1 0h2m2 0h1m4 0h1m2 0h2m1 0h3m-61 1h1m1 0h2m2 0h1m1 0h2m3 0h2m1 0h9m2 0h1m2 0h1m3 0h3m1 0h1m2 0h1m1 0h1m1 0h1m1 0h2m11 0h3m-63 1h1m4 0h1m2 0h1m1 0h4m1 0h3m1 0h4m2 0h4m2 0h1m6 0h1m2 0h3m1 0h3m2 0h1m1 0h3m2 0h4m3 0h1m-65 1h7m5 0h1m3 0h1m4 0h2m2 0h4m3 0h2m1 0h1m2 0h2m3 0h2m2 0h2m1 0h1m3 0h1m4 0h1m-58 1h1m2 0h1m2 0h1m3 0h1m1 0h1m2 0h1m3 0h1m4 0h1m1 0h2m1 0h5m3 0h2m1 0h5m1 0h2m1 0h1m3 0h2m1 0h1m4 0h1m-64 1h1m5 0h2m2 0h3m1 0h3m1 0h3m5 0h4m1 0h1m1 0h4m2 0h2m2 0h4m1 0h1m1 0h1m1 0h1m2 0h3m1 0h2m2 0h2m-65 1h1m1 0h1m1 0h1m2 0h1m2 0h4m5 0h2m2 0h1m3 0h1m3 0h1m4 0h1m2 0h1m2 0h1m2 0h1m1 0h2m4 0h5m1 0h2m-58 1h4m1 0h3m1 0h1m1 0h1m1 0h2m6 0h2m1 0h1m2 0h1m1 0h1m4 0h3m1 0h1m1 0h3m1 0h1m1 0h2m2 0h3m3 0h1m2 0h1m-63 1h1m1 0h2m1 0h1m2 0h1m6 0h1m2 0h4m2 0h2m1 0h2m1 0h1m1 0h2m1 0h3m3 0h3m2 0h1m3 0h2m1 0h1m1 0h1m2 0h1m2 0h2m-58 1h2m1 0h2m1 0h1m1 0h1m2 0h4m3 0h1m1 0h3m1 0h3m2 0h4m4 0h2m1 0h1m1 0h2m7 0h2m1 0h1m3 0h2m-65 1h4m3 0h1m1 0h3m4 0h1m2 0h7m1 0h1m2 0h2m1 0h1m5 0h7m2 0h2m1 0h7m2 0h2m1 0h2m-63 1h2m1 0h2m7 0h1m1 0h1m3 0h2m2 0h1m2 0h3m2 0h3m2 0h1m5 0h3m1 0h3m2 0h2m4 0h1m3 0h1m1 0h1m-65 1h1m2 0h1m3 0h2m2 0h2m1 0h2m3 0h2m4 0h2m2 0h2m1 0h1m4 0h1m1 0h3m1 0h4m1 0h1m3 0h1m2 0h2m1 0h1m1 0h2m-61 1h2m1 0h1m1 0h1m3 0h1m4 0h5m2 0h1m2 0h12m5 0h1m3 0h1m1 0h3m2 0h2m1 0h5m1 0h1m-55 1h1m1 0h1m1 0h2m2 0h1m2 0h3m1 0h1m2 0h1m1 0h1m1 0h1m3 0h1m1 0h5m1 0h1m2 0h2m2 0h8m3 0h2m1 0h1m-64 1h7m2 0h3m2 0h1m1 0h2m2 0h1m2 0h8m1 0h1m1 0h4m4 0h5m1 0h4m1 0h1m2 0h1m1 0h1m1 0h2m-62 1h1m5 0h1m3 0h1m3 0h1m1 0h4m1 0h2m1 0h1m1 0h3m1 0h1m3 0h1m1 0h2m1 0h2m2 0h1m2 0h1m1 0h2m3 0h1m1 0h2m3 0h1m2 0h1m-64 1h1m1 0h3m1 0h1m2 0h1m5 0h3m1 0h1m1 0h4m3 0h1m1 0h7m1 0h5m1 0h1m2 0h2m3 0h13m-65 1h1m1 0h3m1 0h1m2 0h1m1 0h3m3 0h3m3 0h1m1 0h2m2 0h2m2 0h1m2 0h2m2 0h3m1 0h1m2 0h2m2 0h4m2 0h2m2 0h2m-63 1h1m1 0h3m1 0h1m11 0h1m1 0h1m2 0h2m9 0h1m1 0h1m1 0h1m1 0h1m4 0h3m2 0h2m1 0h1m1 0h1m2 0h6m-64 1h1m5 0h1m2 0h3m3 0h2m4 0h1m1 0h1m4 0h2m1 0h2m1 0h1m1 0h2m1 0h2m1 0h2m1 0h2m1 0h2m3 0h1m2 0h3m3 0h1m1 0h1m-65 1h7m1 0h1m2 0h1m1 0h3m1 0h4m1 0h1m1 0h1m1 0h1m1 0h1m1 0h3m1 0h2m2 0h1m2 0h2m2 0h1m2 0h2m4 0h2"/></svg>
+</div>
+          <svg class="back__wave" viewBox="0 0 910 100" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M-10 70 C 150 30, 300 100, 460 66 S 760 30, 920 58" fill="none" stroke="#48B4BA" stroke-width="6" stroke-linecap="round" opacity=".55"/>
+            <path d="M-10 90 C 170 52, 320 118, 480 86 S 780 52, 920 80" fill="none" stroke="#48B4BA" stroke-width="6" stroke-linecap="round" opacity=".3"/>
+          </svg>
+        </section>
+      </div>
+    </div>
+    <figcaption>Achterkant</figcaption>
+  </figure>
+</main>
+</body>
+</html>

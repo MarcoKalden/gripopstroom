@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:van Hattum;Alexander
+FN:Alexander van Hattum
+ORG:Grip op Stroom B.V.
+TITLE:CEO
+TEL;TYPE=CELL:+31633853790
+EMAIL:alexander@gripopstroom.nl
+URL:https://gripopstroom.nl
+ADR;TYPE=WORK:;;Handelsweg 14;'s-Heerenberg;;7041 GX;Nederland
+END:VCARD
