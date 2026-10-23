@@ -182,6 +182,15 @@ die de inzending mailt naar `CONTACT_TO` (instellingen staan bovenin het bestand
 - Een klik op een bronnummer klapt de bronnenlijst in de footer open.
 - Met `prefers-reduced-motion: reduce` beweegt er niets en staat Afspelen uit.
 
+## Offline versie en back-up
+
+`node scripts/build-offline.js [map]` maakt een versie van de site die zonder internet en
+zonder server werkt: dubbelklik `index.html` (standaard in `offline/`, staat in .gitignore).
+De teksten, de iconen en het lettertype zitten daarin in de pagina's zelf, omdat browsers
+ze vanaf de harde schijf niet los laden. Het contactformulier werkt offline niet; de
+beheerpagina gaat niet mee. Voor een volledige back-up: die offline versie plus alle
+bestanden uit GitHub (*Code → Download ZIP*).
+
 ## Testen
 
 ```sh
