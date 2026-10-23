@@ -1,0 +1,24 @@
+Logo Grip op Stroom
+===================
+
+Varianten
+- kleur        volkleur, voor witte en lichte achtergronden (standaard)
+- diapositief  huis en tekst wit, blad en golven in kleur, voor donkere achtergronden
+- blauw        alles merkblauw, voor drukwerk in één kleur
+- wit          alles wit, voor folie, borduren, gravure op donker
+
+Bestandstypen
+- .svg          website en digitaal (schaalbaar)
+- .png          Word, PowerPoint, e-mail, social (2000 px breed, transparant)
+- .pdf          drukwerk, RGB
+- -cmyk.pdf     drukwerk in full colour (CMYK)
+- -pantone.pdf  drukwerk in steunkleuren (Pantone 281 C, 7489 C, 7466 C)
+
+Kleuren
+- Merkblauw #0A2A5E  ·  Pantone 281 C   ·  CMYK 100 85 5 36
+- Blad      #7FB069  ·  Pantone 7489 C  ·  CMYK 55 5 75 0
+- Golf      #48B4BA  ·  Pantone 7466 C  ·  CMYK 65 5 30 0
+
+Gebruik: vrije ruimte rondom minimaal 1/4 van de logobreedte.
+Minimaal 18 mm breed in druk, 64 px hoog op scherm.
+Niet vervormen, draaien, herkleuren of "B.V." toevoegen.
