@@ -9,9 +9,9 @@
     "home": "index.html",
     "gripscan": "index.html#contact",
     "howItWorks": "zo-werkt-het.html",
-    "privacy": "privacy.html",
+    "privacy": "assets/documenten/privacyverklaring-grip-op-stroom.pdf",
     "cookies": "cookies.html",
-    "terms": "voorwaarden.html",
+    "terms": "assets/documenten/algemene-voorwaarden-grip-op-stroom.pdf",
     "complaints": "klachten.html",
     "accessibility": "toegankelijkheid.html",
     "about": "over-ons.html",
@@ -105,8 +105,8 @@
     "details": [
       {
         "label": "KvK-nummer",
-        "value": "",
-        "enabled": false
+        "value": "42167139",
+        "enabled": true
       },
       {
         "label": "Btw-nummer",
@@ -164,7 +164,7 @@
     "legal": [
       {
         "text": "Privacyverklaring",
-        "href": "privacy.html"
+        "href": "assets/documenten/privacyverklaring-grip-op-stroom.pdf"
       },
       {
         "text": "Cookieverklaring",
@@ -172,7 +172,7 @@
       },
       {
         "text": "Algemene voorwaarden",
-        "href": "voorwaarden.html"
+        "href": "assets/documenten/algemene-voorwaarden-grip-op-stroom.pdf"
       },
       {
         "text": "Klachten",

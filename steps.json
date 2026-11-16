@@ -12,7 +12,8 @@
     },
     "renders": "Beelden per stap in assets/woning/ (originelen in grip-op-stroom-renders/). Alle stappen en het totaalbeeld zijn aangeleverde beelden. renderHasLabel: het beeld heeft zelf al een stapnummer en titel.",
     "recalculate": "De warmtepomp was eerst stap 3 en is nu stap 7. Het effect van de warmtepomp is uit stap 3 t/m 5 gehaald met de bedragen van stap 7 (energiekosten -€ 350 per jaar, woningwaarde +€ 7.500). De labels van stap 3 t/m 5 moeten nog door een EP-adviseur gecontroleerd worden (labelCheck: true).",
-    "pending": "pending: true betekent dat label en bedragen van die stap nog berekend moeten worden; de site toont dan 'Volgt' in plaats van cijfers. labelPending: true betekent dat alleen het label nog berekend moet worden; de bedragen staan er wel."
+    "pending": "pending: true betekent dat label en bedragen van die stap nog berekend moeten worden; de site toont dan 'Volgt' in plaats van cijfers. labelPending: true betekent dat alleen het label nog berekend moet worden; de bedragen staan er wel.",
+    "costModel": "Energiekosten per stap volgen uit export/grip-op-stroom-berekeningen-v4.xlsx (versie 4, november 2026): stroombalans met 30% netonafhankelijkheid met alleen zonnepanelen en 60% met zonnepanelen en thuisbatterij; opwek, extra verbruik en gasbesparing uit het rekenmodel van SolarisPrime; stap 1 en 2 schattingen. Bedragen afgerond op hele euro's."
   },
   "labelScale": [
     "A++++",
@@ -35,7 +36,7 @@
       "shortName": "Start",
       "name": "Uitgangssituatie",
       "label": "C",
-      "energyCostPerYear": 2300,
+      "energyCostPerYear": 2295,
       "homeValue": 400000,
       "labelEffect": null,
       "labelNote": "",
@@ -53,7 +54,8 @@
         ]
       },
       "validated": false,
-      "render": "assets/woning/woning-stap-0-start.webp"
+      "render": "assets/woning/woning-stap-0-start.webp",
+      "_note": "Energiekosten: 2.700 kWh stroom en 1.100 m³ gas per jaar (rekenblad versie 3, november 2026)."
     },
     {
       "id": "kozijnen",
@@ -62,7 +64,7 @@
       "shortName": "Kozijnen",
       "name": "Kozijnen met HR++ glas",
       "label": "B",
-      "energyCostPerYear": 2050,
+      "energyCostPerYear": 2045,
       "homeValue": 408000,
       "labelEffect": true,
       "labelNote": "",
@@ -80,7 +82,8 @@
       },
       "validated": false,
       "render": "assets/woning/woning-stap-1-kozijnen.webp",
-      "renderHasLabel": true
+      "renderHasLabel": true,
+      "_note": "Energiekosten: schatting -€ 250 per jaar; SolarisPrime heeft hier geen module (rekenblad versie 3)."
     },
     {
       "id": "isolatie",
@@ -89,7 +92,7 @@
       "shortName": "Isolatie",
       "name": "Dak- en vloerisolatie",
       "label": "A",
-      "energyCostPerYear": 1750,
+      "energyCostPerYear": 1745,
       "homeValue": 416000,
       "labelEffect": true,
       "labelNote": "",
@@ -107,7 +110,8 @@
       },
       "validated": false,
       "render": "assets/woning/woning-stap-2-isolatie.webp",
-      "renderHasLabel": true
+      "renderHasLabel": true,
+      "_note": "Energiekosten: schatting -€ 300 per jaar; SolarisPrime heeft hier geen module (rekenblad versie 3)."
     },
     {
       "id": "zonnepanelen",
@@ -116,7 +120,7 @@
       "shortName": "Zonnepanelen",
       "name": "Zonnepanelen",
       "label": "A++",
-      "energyCostPerYear": 1300,
+      "energyCostPerYear": 955,
       "homeValue": 424500,
       "labelEffect": true,
       "labelNote": "",
@@ -126,7 +130,9 @@
           "nta-8800"
         ],
         "cost": [
-          "milieu-centraal"
+          "solarisprime",
+          "pv-opbrengst",
+          "saldering"
         ],
         "value": [
           "kadaster"
@@ -137,7 +143,7 @@
       "recalculate": false,
       "renderHasLabel": true,
       "labelCheck": true,
-      "_note": "Effect van de warmtepomp eruit gehaald (oktober 2026, besluit Marco): energiekosten +€ 350 per jaar en woningwaarde -€ 7.500, dezelfde bedragen als bij stap 7 warmtepomp. Label nog laten controleren."
+      "_note": "Energiekosten versie 4 (november 2026): stroombalans, 30% netonafhankelijk zonder batterij: 1.890 kWh ingekocht, 5.468 kWh teruggeleverd (opwek 6.278 kWh, 15 panelen). Stroom € 0,30, teruglevering € 0,10, gas € 1,35. Woningwaarde: correctie -€ 7.500 omdat de labelinschatting uitging van een warmtepomp. Label nog laten controleren."
     },
     {
       "id": "batterij",
@@ -146,7 +152,7 @@
       "shortName": "Batterij",
       "name": "Thuisbatterij met energiemanagement en dynamisch contract",
       "label": "A++",
-      "energyCostPerYear": 1100,
+      "energyCostPerYear": 793,
       "homeValue": 424500,
       "labelEffect": false,
       "labelNote": "Je label blijft A++. Deze stap verlaagt vooral je kosten.",
@@ -156,7 +162,7 @@
           "nta-8800"
         ],
         "cost": [
-          "milieu-centraal"
+          "solarisprime"
         ],
         "value": [
           "kadaster"
@@ -167,7 +173,7 @@
       "recalculate": false,
       "renderHasLabel": true,
       "labelCheck": true,
-      "_note": "Effect van de warmtepomp eruit gehaald (oktober 2026, besluit Marco): energiekosten +€ 350 per jaar en woningwaarde -€ 7.500, dezelfde bedragen als bij stap 7 warmtepomp. Label nog laten controleren."
+      "_note": "Energiekosten versie 4 (november 2026): stroombalans, 60% netonafhankelijk met zonnepanelen en thuisbatterij (opgegeven door Marco): 40% van 2.700 kWh ingekocht. Label nog laten controleren."
     },
     {
       "id": "laadpaal",
@@ -178,7 +184,7 @@
       "shortName": "Laadpaal",
       "name": "Laadpaal",
       "label": "A++",
-      "energyCostPerYear": 1700,
+      "energyCostPerYear": 1221,
       "homeValue": 429500,
       "labelEffect": false,
       "labelNote": "Je label blijft A++.",
@@ -188,7 +194,7 @@
           "nta-8800"
         ],
         "cost": [
-          "milieu-centraal"
+          "solarisprime"
         ],
         "value": [
           "kadaster"
@@ -198,8 +204,8 @@
       "render": "assets/woning/woning-stap-5-laadpaal.webp",
       "recalculate": false,
       "renderHasLabel": true,
-      "costNote": "Je energiekosten stijgen met circa € 50 per maand, maar je bespaart circa € 100 per maand op brandstof.",
-      "_note": "Bedragen door Marco opgegeven (oktober 2026): energiekosten +€ 50 per maand (+€ 600 per jaar) ten opzichte van de thuisbatterij-stap, woningwaarde +€ 5.000, besparing op brandstof € 100 per maand. Effect van de warmtepomp eruit gehaald (oktober 2026, besluit Marco): energiekosten +€ 350 per jaar en woningwaarde -€ 7.500, dezelfde bedragen als bij stap 7 warmtepomp. Label nog laten controleren.",
+      "costNote": "Je energiekosten stijgen, maar je bespaart circa € 100 per maand op brandstof.",
+      "_note": "Energiekosten versie 4 (november 2026): stroombalans, 60% netonafhankelijk; laadpaal +2.376 kWh per jaar (15.000 km, 80% thuis). Besparing op brandstof € 100 per maand en woningwaarde +€ 5.000 door Marco opgegeven. Label nog laten controleren.",
       "labelCheck": true
     },
     {
@@ -209,7 +215,7 @@
       "shortName": "Airco",
       "name": "Airco die ook verwarmt",
       "label": "A+++",
-      "energyCostPerYear": 1532,
+      "energyCostPerYear": 1201,
       "homeValue": 435000,
       "labelEffect": true,
       "pending": false,
@@ -218,40 +224,45 @@
       "explanation": "Een airco koelt je huis op warme dagen en kan het ook verwarmen.",
       "sources": {
         "label": [],
-        "cost": [],
+        "cost": [
+          "solarisprime"
+        ],
         "value": []
       },
       "validated": false,
       "render": "assets/woning/woning-stap-6-airco.webp",
       "renderHasLabel": true,
       "labelPending": false,
-      "costNote": "Je energiekosten dalen met circa € 14 per maand. Die besparing op gas komt uit de bijverwarmingsfunctie van de airco.",
-      "_note": "Bedragen door Marco opgegeven (oktober 2026): energiekosten -€ 14 per maand (-€ 168 per jaar) ten opzichte van de laadpaal-stap, woningwaarde +€ 5.500. Label A+++ door Marco opgegeven."
+      "costNote": "Je energiekosten dalen iets: de airco verwarmt bij, zodat je minder gas gebruikt.",
+      "_note": "Energiekosten versie 4 (november 2026): stroombalans, 60% netonafhankelijk; airco +338 kWh stroom, -60 m³ gas: -€ 20 per jaar. Woningwaarde +€ 5.500 en label A+++ door Marco opgegeven."
     },
     {
       "id": "warmtepomp",
       "enabled": true,
       "component": "warmtepomp",
       "shortName": "Warmtepomp",
-      "name": "Warmtepomp",
+      "name": "Hybride warmtepomp",
       "label": "A++++",
-      "energyCostPerYear": 1182,
+      "energyCostPerYear": 872,
       "homeValue": 442500,
       "labelEffect": true,
       "pending": false,
       "recalculate": false,
       "labelNote": "",
-      "explanation": "Een warmtepomp verwarmt je huis zuinig met elektriciteit. Je gasverbruik daalt sterk. Hij werkt het best in een goed geïsoleerd huis, en je zonnepanelen leveren een deel van de stroom.",
+      "explanation": "Een hybride warmtepomp verwarmt je huis grotendeels met elektriciteit; de cv-ketel springt alleen bij als het echt koud is. Je gasverbruik voor verwarming daalt met circa 60 tot 70%[[hybride-wp]]. Hij werkt het best in een goed geïsoleerd huis, en je zonnepanelen leveren een deel van de stroom.",
       "sources": {
         "label": [],
-        "cost": [],
+        "cost": [
+          "solarisprime",
+          "hybride-wp"
+        ],
         "value": []
       },
       "validated": false,
       "render": "assets/woning/woning-stap-7-warmtepomp.webp",
       "renderHasLabel": true,
       "labelPending": false,
-      "_note": "Bedragen door Marco opgegeven (oktober 2026): energiekosten -€ 350 per jaar ten opzichte van de airco-stap, woningwaarde +€ 7.500. Label A++++ door Marco opgegeven."
+      "_note": "Energiekosten versie 4 (november 2026): stroombalans, 60% netonafhankelijk; hybride warmtepomp +637 kWh stroom, -329 m³ gas: -€ 330 per jaar. Woningwaarde +€ 7.500 en label A++++ door Marco opgegeven."
     }
   ]
 }

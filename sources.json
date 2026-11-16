@@ -64,6 +64,34 @@
       "publisher": "Nationaal Warmtefonds",
       "url": "https://www.warmtefonds.nl",
       "validated": false
+    },
+    {
+      "id": "solarisprime",
+      "title": "Energy Advisor Model: rekenregels en aannames voor zonnepanelen, thuisbatterij, laadpaal, airco en hybride warmtepomp (november 2026)",
+      "publisher": "SolarisPrime",
+      "url": "",
+      "validated": false
+    },
+    {
+      "id": "saldering",
+      "title": "Salderingsregeling stopt per 1 januari 2027",
+      "publisher": "Rijksoverheid",
+      "url": "https://www.rijksoverheid.nl/themas/klimaat-milieu-en-natuur/energie-thuis/salderingsregeling",
+      "validated": false
+    },
+    {
+      "id": "pv-opbrengst",
+      "title": "Kosten en opbrengst zonnepanelen",
+      "publisher": "Milieu Centraal",
+      "url": "https://www.milieucentraal.nl/energie-besparen/zonnepanelen/kosten-en-opbrengst-zonnepanelen/",
+      "validated": false
+    },
+    {
+      "id": "hybride-wp",
+      "title": "Hybride warmtepomp: bespaart circa 60 tot 70% aardgas",
+      "publisher": "Milieu Centraal",
+      "url": "https://www.milieucentraal.nl/energie-besparen/duurzaam-verwarmen-en-koelen/hybride-warmtepomp/",
+      "validated": false
     }
   ]
 }

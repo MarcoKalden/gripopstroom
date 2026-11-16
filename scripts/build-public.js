@@ -59,6 +59,14 @@ headers.push(
 );
 fs.writeFileSync(path.join(out, '_headers'), headers.join('\n') + '\n');
 
+// Oude adressen van de juridische pagina's: die teksten staan nu als pdf in assets/documenten/.
+fs.writeFileSync(path.join(out, '_redirects'), [
+  '/privacy.html     /assets/documenten/privacyverklaring-grip-op-stroom.pdf     301',
+  '/privacy          /assets/documenten/privacyverklaring-grip-op-stroom.pdf     301',
+  '/voorwaarden.html /assets/documenten/algemene-voorwaarden-grip-op-stroom.pdf  301',
+  '/voorwaarden      /assets/documenten/algemene-voorwaarden-grip-op-stroom.pdf  301'
+].join('\n') + '\n');
+
 let count = 0;
 (function walk(dir) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {

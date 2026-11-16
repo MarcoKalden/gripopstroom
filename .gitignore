@@ -2,3 +2,4 @@ tests/node_modules/
 tests/screenshots/
 tests/lighthouse/
 public/
+offline/

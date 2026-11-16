@@ -12,7 +12,9 @@ geen npm-afhankelijkheden in de site zelf. Vormgeving volgens `REDESIGN.md`
 | `vragen.html` | Alle vragen, gegroepeerd, met zoekveld |
 | `over-ons.html` | Waarom we bestaan, hoe we werken, wat we doen, team en uitvoering (staan uit tot er gegevens zijn) |
 | `contact.html` | Adres, telefoon, bereikbaarheid en contactformulier |
-| `privacy.html`, `cookies.html`, `voorwaarden.html`, `klachten.html`, `toegankelijkheid.html` | Sjablonen. De tekst volgt; tot die tijd `noindex` |
+| `cookies.html`, `toegankelijkheid.html` | Sjablonen. De tekst volgt; tot die tijd `noindex` |
+| `klachten.html` | Klachtenregeling (uit de algemene voorwaarden) met klachtenformulier: naam, klantnummer, adres en klacht. Het formulier gebruikt Netlify Forms (formuliernaam `klacht`); stel bij Netlify onder *Forms* een e-mailmelding naar klantenservice@gripopstroom.nl in |
+| `assets/documenten/` | Privacyverklaring en algemene voorwaarden als pdf (versie 16 november 2026). De links in de footer en bij het contactformulier openen ze in een nieuw tabblad; oude adressen (`privacy.html`, `voorwaarden.html`) sturen door via `_redirects` |
 
 ## Bekijken
 
@@ -182,6 +184,15 @@ die de inzending mailt naar `CONTACT_TO` (instellingen staan bovenin het bestand
 - Een klik op een bronnummer klapt de bronnenlijst in de footer open.
 - Met `prefers-reduced-motion: reduce` beweegt er niets en staat Afspelen uit.
 
+## Offline versie en back-up
+
+`node scripts/build-offline.js [map]` maakt een versie van de site die zonder internet en
+zonder server werkt: dubbelklik `index.html` (standaard in `offline/`, staat in .gitignore).
+De teksten, de iconen en het lettertype zitten daarin in de pagina's zelf, omdat browsers
+ze vanaf de harde schijf niet los laden. Het contactformulier werkt offline niet; de
+beheerpagina gaat niet mee. Voor een volledige back-up: die offline versie plus alle
+bestanden uit GitHub (*Code → Download ZIP*).
+
 ## Testen
 
 ```sh
@@ -228,7 +239,8 @@ Verder:
   twee vragen over Grippunten in `content/vragen.json` in en zet ze aan.
 - Contactformulier koppelen: `server/contact.js` draaien of een bestaande formulierdienst,
   en de URL in `contactForm.endpoint` zetten.
-- Teksten voor privacy, cookies, voorwaarden, klachten en toegankelijkheid → `content/juridisch.json`.
+- Teksten voor cookies en toegankelijkheid → `content/juridisch.json`. Privacyverklaring en
+  algemene voorwaarden staan als pdf in `assets/documenten/`; vervang die bij een nieuwe versie.
 - Domein koppelen in Netlify, dan `content/site.json → siteUrl` invullen en `node scripts/sync-partials.js` draaien.
   Daarmee vervalt ook de noindex-kop van de testversie.
 - Hosting met HTTPS, HSTS, compressie en een Content-Security-Policy (het kleine inline

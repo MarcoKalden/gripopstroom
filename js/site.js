@@ -245,6 +245,19 @@
   }
 
   // Een klik op een bronnummer klapt de bronnenlijst in de footer open.
+  // Pdf's (privacyverklaring, algemene voorwaarden) openen in een nieuw tabblad; schermlezers horen dat.
+  function setupDocumentLinks() {
+    document.querySelectorAll('a[href$=".pdf"]').forEach(function (a) {
+      a.target = '_blank';
+      a.rel = 'noopener';
+      if (a.querySelector('.sr-only')) return;
+      var hint = document.createElement('span');
+      hint.className = 'sr-only';
+      hint.textContent = ' (pdf, opent in een nieuw tabblad)';
+      a.appendChild(hint);
+    });
+  }
+
   function setupSourceLinks() {
     var details = document.getElementById('bronnen');
     if (!details) return;
@@ -470,6 +483,63 @@
     });
   }
 
+  // Klachtenformulier (klachten.html). Verstuurt naar Netlify Forms (formuliernaam "klacht");
+  // Netlify mailt de klacht door naar klantenservice (instelling bij Netlify).
+  var COMPLAINT_REQUIRED = ['naam', 'klantnummer', 'email', 'straat', 'postcode', 'plaats', 'klacht'];
+
+  function setupComplaintForms(content) {
+    var cfg = content.klachten && content.klachten.form;
+    if (!cfg) return;
+    document.querySelectorAll('[data-complaint-form]').forEach(function (form) {
+      var status = form.querySelector('[data-form-status]');
+      var button = form.querySelector('button[type="submit"]');
+      var fields = COMPLAINT_REQUIRED.concat('telefoon');
+      var check = function (name) {
+        var input = form.elements[name];
+        var v = input.value.trim();
+        var ok = name === 'telefoon' ? (v === '' || PATTERNS.telefoon.test(v))
+          : v !== '' && (!PATTERNS[name] || PATTERNS[name].test(v));
+        var err = form.querySelector('[data-error-for="' + name + '"]');
+        input.setAttribute('aria-invalid', ok ? 'false' : 'true');
+        err.textContent = ok ? '' : cfg.errors[name];
+        err.hidden = ok;
+        return ok;
+      };
+      fields.forEach(function (name) {
+        var input = form.elements[name];
+        input.addEventListener('input', function () {
+          if (input.getAttribute('aria-invalid') === 'true') check(name);
+        });
+      });
+      var setStatus = function (msg, kind) {
+        status.textContent = msg;
+        status.className = 'form-status is-' + kind;
+        status.hidden = !msg;
+      };
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var firstBad = null;
+        fields.forEach(function (name) { if (!check(name) && !firstBad) firstBad = form.elements[name]; });
+        if (firstBad) { setStatus(cfg.summary, 'error'); firstBad.focus(); return; }
+        if (form.elements.website.value) return; // honeypot: stil negeren
+        var body = new URLSearchParams();
+        body.append('form-name', form.getAttribute('name'));
+        fields.forEach(function (name) { body.append(name, form.elements[name].value.trim()); });
+        button.disabled = true;
+        var label = button.textContent;
+        button.textContent = cfg.sending;
+        fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() })
+          .then(function (res) {
+            if (!res.ok) throw new Error(res.status);
+            form.reset();
+            setStatus(cfg.success, 'success');
+          })
+          .catch(function () { setStatus(cfg.failure, 'error'); })
+          .then(function () { button.disabled = false; button.textContent = label; });
+      });
+    });
+  }
+
   /* ---------- Structured data ---------- */
 
   function addJSONLD(data) {
@@ -566,7 +636,9 @@
       markCurrentNav();
       setupHeader();
       setupSourceLinks();
+      setupDocumentLinks();
       setupContactForms(content);
+      setupComplaintForms(content);
       body.classList.add('is-ready');
       resolveReady({ content: content, steps: stepsConfig, sources: sources });
     }).catch(function (err) {

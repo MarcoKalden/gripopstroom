@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Klachten | Grip op Stroom</title>
   <meta name="description" content="Zo dien je een klacht in bij Grip op Stroom.">
-  <meta name="robots" content="noindex">
   <link rel="preload" href="content/site.json" as="fetch" crossorigin>
   <link rel="preload" href="content/juridisch.json" as="fetch" crossorigin>
   <link rel="preload" href="steps.json" as="fetch" crossorigin>
@@ -60,14 +59,85 @@
     </section>
 
     <section class="section section--white" aria-label="Inhoud" data-wait>
-      <div class="container">
-        <div class="notice" data-if-not="klachten.ready">
-          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-clock"></use></svg>
-          <p><span data-text="pending"></span> <a href="contact.html" data-text="contactLink"></a></p>
+      <div class="container complaint">
+        <div>
+          <div class="notice" data-if-not="klachten.ready">
+            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-clock"></use></svg>
+            <p><span data-text="pending"></span> <a href="contact.html" data-text="contactLink"></a></p>
+          </div>
+          <div class="prose" data-if="klachten.ready" data-list="klachten.body" hidden>
+            <template><section><h2 data-item-text="heading"></h2><p data-item-rich="text"></p></section></template>
+          </div>
+          <ul class="contact-lines complaint__links" data-if="klachten.ready" hidden>
+            <li>
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-mail"></use></svg>
+              <div><strong data-text="klachten.email.label">Mail je klacht naar</strong><a href="mailto:klantenservice@gripopstroom.nl" data-href="klachten.email.href" data-text="klachten.email.display">klantenservice@gripopstroom.nl</a></div>
+            </li>
+            <li>
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-check"></use></svg>
+              <div><a href="assets/documenten/algemene-voorwaarden-grip-op-stroom.pdf" data-href="links.terms" data-text="klachten.termsLink">Lees de algemene voorwaarden</a></div>
+            </li>
+          </ul>
         </div>
-        <div class="prose" data-if="klachten.ready" data-list="klachten.body" hidden>
-          <template><section><h2 data-item-text="heading"></h2><p data-item-rich="text"></p></section></template>
-        </div>
+
+        <form class="form-card" name="klacht" method="POST" data-netlify="true" netlify-honeypot="website" data-complaint-form data-if="klachten.ready" novalidate hidden>
+          <input type="hidden" name="form-name" value="klacht">
+          <h2 data-text="klachten.form.title">Klachtenformulier</h2>
+          <p class="form-card__intro" data-text="klachten.form.intro">Velden met een * zijn verplicht.</p>
+          <div class="form-grid">
+            <div class="field">
+              <label for="kf-naam" data-text="klachten.form.fields.naam">Naam *</label>
+              <input id="kf-naam" name="naam" type="text" autocomplete="name" required aria-describedby="kf-naam-err">
+              <p class="field__error" id="kf-naam-err" data-error-for="naam" hidden></p>
+            </div>
+            <div class="field">
+              <label for="kf-klantnummer" data-text="klachten.form.fields.klantnummer">Klantnummer *</label>
+              <input id="kf-klantnummer" name="klantnummer" type="text" required aria-describedby="kf-klantnummer-hint kf-klantnummer-err">
+              <p class="field__hint" id="kf-klantnummer-hint" data-text="klachten.form.hints.klantnummer">Staat op je offerte, opdrachtbevestiging of factuur.</p>
+              <p class="field__error" id="kf-klantnummer-err" data-error-for="klantnummer" hidden></p>
+            </div>
+            <div class="field">
+              <label for="kf-email" data-text="klachten.form.fields.email">E-mail *</label>
+              <input id="kf-email" name="email" type="email" autocomplete="email" required aria-describedby="kf-email-err">
+              <p class="field__error" id="kf-email-err" data-error-for="email" hidden></p>
+            </div>
+            <div class="field">
+              <label for="kf-telefoon" data-text="klachten.form.fields.telefoon">Telefoon</label>
+              <input id="kf-telefoon" name="telefoon" type="tel" autocomplete="tel" aria-describedby="kf-telefoon-err">
+              <p class="field__error" id="kf-telefoon-err" data-error-for="telefoon" hidden></p>
+            </div>
+            <div class="field field--full">
+              <label for="kf-straat" data-text="klachten.form.fields.straat">Straat en huisnummer *</label>
+              <input id="kf-straat" name="straat" type="text" autocomplete="street-address" required aria-describedby="kf-straat-hint kf-straat-err">
+              <p class="field__hint" id="kf-straat-hint" data-text="klachten.form.hints.straat">Het adres waar we hebben gewerkt.</p>
+              <p class="field__error" id="kf-straat-err" data-error-for="straat" hidden></p>
+            </div>
+            <div class="field">
+              <label for="kf-postcode" data-text="klachten.form.fields.postcode">Postcode *</label>
+              <input id="kf-postcode" name="postcode" type="text" autocomplete="postal-code" required aria-describedby="kf-postcode-err">
+              <p class="field__error" id="kf-postcode-err" data-error-for="postcode" hidden></p>
+            </div>
+            <div class="field">
+              <label for="kf-plaats" data-text="klachten.form.fields.plaats">Plaats *</label>
+              <input id="kf-plaats" name="plaats" type="text" autocomplete="address-level2" required aria-describedby="kf-plaats-err">
+              <p class="field__error" id="kf-plaats-err" data-error-for="plaats" hidden></p>
+            </div>
+            <div class="field field--full">
+              <label for="kf-klacht" data-text="klachten.form.fields.klacht">Omschrijving van je klacht *</label>
+              <textarea id="kf-klacht" name="klacht" rows="6" required aria-describedby="kf-klacht-err"></textarea>
+              <p class="field__error" id="kf-klacht-err" data-error-for="klacht" hidden></p>
+            </div>
+            <div class="honeypot" aria-hidden="true">
+              <label for="kf-website">Laat dit veld leeg</label>
+              <input id="kf-website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <p class="form-status" data-form-status role="status" aria-live="polite" hidden></p>
+            <div class="form-foot">
+              <button class="btn btn--primary" type="submit" data-cta="klachtenformulier" data-text="klachten.form.submit">Klacht versturen</button>
+              <p><span data-text="klachten.form.privacy">We gebruiken je gegevens alleen om je klacht te behandelen.</span> <a href="assets/documenten/privacyverklaring-grip-op-stroom.pdf" data-href="links.privacy" data-text="contactForm.privacyLink">Lees de privacyverklaring</a></p>
+            </div>
+          </div>
+        </form>
       </div>
     </section>
 
@@ -116,9 +186,9 @@
           <h2 data-text="footer.legalTitle">Goed om te weten</h2>
           <ul data-list="footer.legal">
             <template><li><a data-item-href="href" data-item-text="text"></a></li></template>
-            <li><a href="privacy.html">Privacyverklaring</a></li>
+            <li><a href="assets/documenten/privacyverklaring-grip-op-stroom.pdf">Privacyverklaring</a></li>
             <li><a href="cookies.html">Cookieverklaring</a></li>
-            <li><a href="voorwaarden.html">Algemene voorwaarden</a></li>
+            <li><a href="assets/documenten/algemene-voorwaarden-grip-op-stroom.pdf">Algemene voorwaarden</a></li>
             <li><a href="klachten.html">Klachten</a></li>
             <li><a href="toegankelijkheid.html">Toegankelijkheid</a></li>
           </ul>

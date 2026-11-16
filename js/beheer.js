@@ -43,15 +43,15 @@
       intro: 'De contactgegevens zelf staan bij Algemeen.' },
     { path: 'content/site.json', title: 'Algemeen: menu, contactgegevens en footer', preview: 'index.html',
       intro: 'Teksten die op elke pagina staan: menu, contactgegevens, bedrijfsgegevens, footer en het contactformulier.' },
-    { path: 'content/juridisch.json', title: 'Juridische pagina\'s', preview: 'privacy.html',
-      intro: 'Privacy, cookies, voorwaarden, klachten en toegankelijkheid.' },
+    { path: 'content/juridisch.json', title: 'Juridische pagina\'s', preview: 'cookies.html',
+      intro: 'Cookies, klachten en toegankelijkheid. De privacyverklaring en de algemene voorwaarden staan als pdf op de site; een nieuwe versie vervang je in GitHub in de map assets/documenten/ (zelfde bestandsnaam).' },
     { path: 'sources.json', title: 'Bronnen', preview: 'zo-werkt-het.html',
       intro: 'De bronnen waar de site naar verwijst met [[bron-id]].' }
   ];
   var PREVIEW_PAGES = [
     ['index.html', 'Homepage'], ['zo-werkt-het.html', 'Zo werkt het'], ['pakketten.html', 'Pakketten'],
     ['vragen.html', 'Vragen'], ['over-ons.html', 'Over ons'], ['contact.html', 'Contact'],
-    ['privacy.html', 'Privacyverklaring'], ['cookies.html', 'Cookieverklaring'], ['voorwaarden.html', 'Algemene voorwaarden'],
+    ['cookies.html', 'Cookieverklaring'],
     ['klachten.html', 'Klachten'], ['toegankelijkheid.html', 'Toegankelijkheid']
   ];
 

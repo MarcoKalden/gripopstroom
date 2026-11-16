@@ -1,17 +1,7 @@
 {
-  "_note": "Juridische pagina's. De teksten volgen van Marco of een jurist. Schrijf hier geen juridische tekst zonder controle. Zet een pagina op ready: true en vul body in zodra de tekst er is; haal dan ook de noindex-regel uit de HTML.",
+  "_note": "Juridische pagina's. De teksten volgen van Marco of een jurist. Schrijf hier geen juridische tekst zonder controle. Zet een pagina op ready: true en vul body in zodra de tekst er is; haal dan ook de noindex-regel uit de HTML. De privacyverklaring en de algemene voorwaarden staan als pdf in assets/documenten/ (versie 16 november 2026); de links in de footer en bij het contactformulier openen die pdf's.",
   "pending": "Deze tekst volgt. Heb je nu een vraag? Neem dan contact met ons op.",
   "contactLink": "Naar contact",
-  "privacy": {
-    "meta": {
-      "title": "Privacyverklaring | Grip op Stroom",
-      "description": "Hoe Grip op Stroom omgaat met je persoonsgegevens."
-    },
-    "title": "Privacyverklaring",
-    "lead": "Hoe we omgaan met je gegevens: welke gegevens we gebruiken, waarom, hoe lang we ze bewaren en wat je rechten zijn.",
-    "ready": false,
-    "body": []
-  },
   "cookies": {
     "meta": {
       "title": "Cookieverklaring | Grip op Stroom",
@@ -22,25 +12,73 @@
     "ready": false,
     "body": []
   },
-  "voorwaarden": {
-    "meta": {
-      "title": "Algemene voorwaarden | Grip op Stroom",
-      "description": "De algemene voorwaarden van Grip op Stroom."
-    },
-    "title": "Algemene voorwaarden",
-    "lead": "De afspraken die gelden als je met ons een opdracht aangaat.",
-    "ready": false,
-    "body": []
-  },
   "klachten": {
+    "_note": "Gebaseerd op de algemene voorwaarden van 16 november 2026 (artikel 3.4, 3.8 en 10). Het formulier gebruikt Netlify Forms (formuliernaam 'klacht'); de meldingen per e-mail naar klantenservice@gripopstroom.nl stel je in bij Netlify: Forms > klacht > Form notifications.",
     "meta": {
       "title": "Klachten | Grip op Stroom",
-      "description": "Zo dien je een klacht in bij Grip op Stroom."
+      "description": "Zo dien je een klacht in bij Grip op Stroom: per e-mail of met het klachtenformulier."
     },
     "title": "Klachten",
-    "lead": "Ben je ergens niet tevreden over? Hier lees je hoe je een klacht indient en wat je kunt doen als we er samen niet uitkomen.",
-    "ready": false,
-    "body": []
+    "lead": "Ben je ergens niet tevreden over? Dat horen we graag, zodat we het kunnen oplossen. Hier lees je hoe je een klacht indient en wat je van ons kunt verwachten.",
+    "ready": true,
+    "body": [
+      {
+        "heading": "Zo dien je een klacht in",
+        "text": "Gebruik het klachtenformulier op deze pagina of mail naar klantenservice@gripopstroom.nl. Vermeld je naam, het adres waar we hebben gewerkt, je klantnummer en een duidelijke omschrijving van je klacht. Je klantnummer staat op je offerte, opdrachtbevestiging of factuur."
+      },
+      {
+        "heading": "Wat wij met je klacht doen",
+        "text": "We bevestigen dat we je klacht hebben ontvangen en reageren binnen 14 dagen inhoudelijk. Hebben we meer tijd nodig, dan laten we je binnen die 14 dagen weten wanneer je een antwoord kunt verwachten."
+      },
+      {
+        "heading": "Gebrek aan je installatie?",
+        "text": "Meld een gebrek zo snel mogelijk nadat je het hebt ontdekt. Een melding binnen twee maanden na ontdekking is in ieder geval op tijd. Je wettelijke garantie blijft altijd gelden."
+      },
+      {
+        "heading": "Komen we er samen niet uit?",
+        "text": "Grip op Stroom is niet aangesloten bij een geschillencommissie. Komen we er samen niet uit, dan kun je het geschil voorleggen aan de bevoegde rechter. Dit staat in artikel 3.8 en artikel 10 van onze algemene voorwaarden."
+      }
+    ],
+    "email": {
+      "label": "Mail je klacht naar",
+      "display": "klantenservice@gripopstroom.nl",
+      "href": "mailto:klantenservice@gripopstroom.nl"
+    },
+    "termsLink": "Lees de algemene voorwaarden",
+    "form": {
+      "title": "Klachtenformulier",
+      "intro": "Velden met een * zijn verplicht.",
+      "fields": {
+        "naam": "Naam *",
+        "email": "E-mail *",
+        "telefoon": "Telefoon",
+        "straat": "Straat en huisnummer *",
+        "postcode": "Postcode *",
+        "plaats": "Plaats *",
+        "klantnummer": "Klantnummer *",
+        "klacht": "Omschrijving van je klacht *"
+      },
+      "hints": {
+        "klantnummer": "Staat op je offerte, opdrachtbevestiging of factuur.",
+        "straat": "Het adres waar we hebben gewerkt."
+      },
+      "errors": {
+        "naam": "Vul je naam in.",
+        "email": "Vul een geldig e-mailadres in, bijvoorbeeld naam@voorbeeld.nl.",
+        "telefoon": "Vul een geldig telefoonnummer in, of laat het veld leeg.",
+        "straat": "Vul je straat en huisnummer in.",
+        "postcode": "Vul een geldige postcode in, bijvoorbeeld 1234 AB.",
+        "plaats": "Vul je woonplaats in.",
+        "klantnummer": "Vul je klantnummer in.",
+        "klacht": "Beschrijf kort waar je klacht over gaat."
+      },
+      "submit": "Klacht versturen",
+      "sending": "Bezig met verzenden…",
+      "summary": "Controleer de velden met een melding.",
+      "success": "Bedankt. We hebben je klacht ontvangen. Je hoort binnen 14 dagen inhoudelijk van ons.",
+      "failure": "Versturen lukte niet. Mail je klacht naar klantenservice@gripopstroom.nl of bel ons op 026 205 6179.",
+      "privacy": "We gebruiken je gegevens alleen om je klacht te behandelen."
+    }
   },
   "toegankelijkheid": {
     "meta": {
