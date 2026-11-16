@@ -30,7 +30,7 @@
         "title": "Energiekosten per jaar",
         "prefix": "circa",
         "howTitle": "Hoe rekenen we dit?",
-        "how": "Het verbruik van de voorbeeldwoning is een gemiddelde voor een vergelijkbare woning[[milieu-centraal]]. We rekenen met een stroomprijs van € 0,30 per kWh, een gasprijs van € 1,35 per m³ en een terugleververgoeding van € 0,10 per kWh, omdat salderen per 1 januari 2027 stopt[[saldering]]. Het effect van zonnepanelen, thuisbatterij, laadpaal, airco en warmtepomp volgt uit het rekenmodel van SolarisPrime[[solarisprime]]; die effecten kunnen elkaar deels overlappen. Jouw kosten hangen af van je verbruik, je huishouden en je contract. De bedragen zijn afgerond. De balk begint bij nul."
+        "how": "Het verbruik van de voorbeeldwoning is een gemiddelde voor een vergelijkbare woning[[milieu-centraal]]. Met alleen zonnepanelen haal je circa 30% van je stroom uit eigen opwek; met een thuisbatterij erbij circa 60%. De rest koop je in, en wat je over hebt lever je terug. We rekenen met een stroomprijs van € 0,30 per kWh, een gasprijs van € 1,35 per m³ en een terugleververgoeding van € 0,10 per kWh, omdat salderen per 1 januari 2027 stopt[[saldering]]. De opwek en het extra verbruik van laadpaal, airco en warmtepomp volgen uit het rekenmodel van SolarisPrime[[solarisprime]]. Jouw kosten hangen af van je verbruik, je huishouden en je contract. De bedragen zijn afgerond. De balk begint bij nul."
       },
       "value": {
         "title": "Indicatieve woningwaarde",

@@ -12,7 +12,8 @@ geen npm-afhankelijkheden in de site zelf. Vormgeving volgens `REDESIGN.md`
 | `vragen.html` | Alle vragen, gegroepeerd, met zoekveld |
 | `over-ons.html` | Waarom we bestaan, hoe we werken, wat we doen, team en uitvoering (staan uit tot er gegevens zijn) |
 | `contact.html` | Adres, telefoon, bereikbaarheid en contactformulier |
-| `cookies.html`, `klachten.html`, `toegankelijkheid.html` | Sjablonen. De tekst volgt; tot die tijd `noindex` |
+| `cookies.html`, `toegankelijkheid.html` | Sjablonen. De tekst volgt; tot die tijd `noindex` |
+| `klachten.html` | Klachtenregeling (uit de algemene voorwaarden) met klachtenformulier: naam, klantnummer, adres en klacht. Het formulier gebruikt Netlify Forms (formuliernaam `klacht`); stel bij Netlify onder *Forms* een e-mailmelding naar klantenservice@gripopstroom.nl in |
 | `assets/documenten/` | Privacyverklaring en algemene voorwaarden als pdf (versie 16 november 2026). De links in de footer en bij het contactformulier openen ze in een nieuw tabblad; oude adressen (`privacy.html`, `voorwaarden.html`) sturen door via `_redirects` |
 
 ## Bekijken
@@ -238,7 +239,7 @@ Verder:
   twee vragen over Grippunten in `content/vragen.json` in en zet ze aan.
 - Contactformulier koppelen: `server/contact.js` draaien of een bestaande formulierdienst,
   en de URL in `contactForm.endpoint` zetten.
-- Teksten voor cookies, klachten en toegankelijkheid → `content/juridisch.json`. Privacyverklaring en
+- Teksten voor cookies en toegankelijkheid → `content/juridisch.json`. Privacyverklaring en
   algemene voorwaarden staan als pdf in `assets/documenten/`; vervang die bij een nieuwe versie.
 - Domein koppelen in Netlify, dan `content/site.json → siteUrl` invullen en `node scripts/sync-partials.js` draaien.
   Daarmee vervalt ook de noindex-kop van de testversie.

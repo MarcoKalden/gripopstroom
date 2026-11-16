@@ -880,3 +880,17 @@ html.js body:not(.is-ready) .site-footer {
   .has-own-label > .render__label { bottom: 10px; }
 }
 .data-card__note { margin: 8px 0 0; padding: 8px 10px; border-radius: 10px; background: var(--gos-green-soft); color: var(--gos-green-strong); font-size: .875rem; font-weight: 600; line-height: 1.4; }
+
+/* Klachten: uitleg naast het klachtenformulier */
+.complaint { display: grid; gap: 40px; }
+@media (min-width: 1024px) {
+  .complaint { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+}
+.complaint .prose h2:first-child, .complaint .prose section:first-child h2 { margin-top: 0; }
+.complaint__links { margin-top: 28px; }
+.complaint__links strong { color: var(--gos-ink); }
+.complaint__links .icon { color: var(--gos-green); }
+.complaint__links a { color: var(--gos-green-strong); font-weight: 600; }
+.form-card h2 { font-size: 1.5rem; margin: 0 0 6px; }
+.form-card__intro { margin: 0 0 20px; font-size: .875rem; color: var(--gos-muted); }
+.field__hint { margin: 0; font-size: .875rem; color: var(--gos-muted); }

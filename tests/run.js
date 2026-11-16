@@ -7,6 +7,7 @@
    - homepage: een hotspot per installatie, Grippunten (geen abonnement), structured data,
      maximaal vijf vragen, menu op smalle schermen
    - contactformulier: foutmeldingen en focus; zoeken in de vragen
+   - klachtenformulier: verplichte velden, adres en klantnummer, versturen naar Netlify Forms
    - met prefers-reduced-motion beweegt er niets automatisch
    - alles met enabled: false tijdelijk aan (alleen in de test) en dan nog steeds netjes
    - beheerpagina met een nagebootste GitHub: inloggen, voorbeeld, controles, publiceren en foto's
@@ -480,6 +481,42 @@ async function testBeheer(browser) {
   await context.close();
 }
 
+// Klachtenformulier: verplichte velden, adres en klantnummer, en wat er naar Netlify Forms gaat.
+async function testComplaint(browser) {
+  console.log('\nKlachtenformulier');
+  const { context, page, errors } = await openPage(browser, 'klachten.html', { width: 1440, height: 900 });
+  let posted = null;
+  await page.route(BASE, (r) => {
+    if (r.request().method() !== 'POST') return r.continue();
+    posted = new URLSearchParams(r.request().postData());
+    return r.fulfill({ status: 200, body: 'ok' });
+  });
+  await page.click('[data-complaint-form] button[type="submit"]');
+  const shown = await page.locator('[data-complaint-form] .field__error:not([hidden])').count();
+  if (shown !== 7) fail(`leeg versturen: ${shown} meldingen (verwacht 7)`); else ok('leeg versturen: 7 verplichte velden gemeld, telefoon optioneel');
+  const focused = await page.evaluate(() => document.activeElement.id);
+  if (focused !== 'kf-naam') fail('focus na fout: ' + focused); else ok('focus op het eerste foute veld');
+  await page.fill('#kf-naam', 'Test Persoon');
+  await page.fill('#kf-klantnummer', 'GOS-1234');
+  await page.fill('#kf-email', 'test@voorbeeld.nl');
+  await page.fill('#kf-straat', 'Teststraat 1');
+  await page.fill('#kf-postcode', '1234 AB');
+  await page.fill('#kf-plaats', 'Teststad');
+  await page.fill('#kf-klacht', 'Testklacht');
+  await page.click('[data-complaint-form] button[type="submit"]');
+  await page.waitForSelector('[data-complaint-form] .form-status.is-success', { timeout: 5000 }).catch(() => {});
+  const okText = await page.textContent('[data-complaint-form] [data-form-status]');
+  if (!posted || posted.get('form-name') !== 'klacht' || posted.get('klantnummer') !== 'GOS-1234' || posted.get('straat') !== 'Teststraat 1' ||
+      posted.get('postcode') !== '1234 AB' || posted.get('plaats') !== 'Teststad') {
+    fail('verstuurd: ' + (posted ? posted.toString() : 'niets'));
+  } else ok('verstuurt naam, klantnummer, adres en klacht naar Netlify Forms ("klacht")');
+  if (!/ontvangen/.test(okText)) fail('bevestiging: ' + okText); else ok('bevestiging na verzenden');
+  const mail = await page.getAttribute('a[href^="mailto:"][data-href="klachten.email.href"]', 'href');
+  if (mail !== 'mailto:klantenservice@gripopstroom.nl') fail('mailadres klachten: ' + mail); else ok('mailadres: klantenservice@gripopstroom.nl');
+  if (errors.length) fail('klachten: ' + errors.join(' | '));
+  await context.close();
+}
+
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });
   const browser = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
@@ -489,6 +526,7 @@ async function testBeheer(browser) {
     await testStappenplan(browser);
     await testHome(browser);
     await testForm(browser);
+    await testComplaint(browser);
     await testReducedMotion(browser);
     await testEverythingOn(browser);
     await testBeheer(browser);
