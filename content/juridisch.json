@@ -1,17 +1,7 @@
 {
-  "_note": "Juridische pagina's. De teksten volgen van Marco of een jurist. Schrijf hier geen juridische tekst zonder controle. Zet een pagina op ready: true en vul body in zodra de tekst er is; haal dan ook de noindex-regel uit de HTML.",
+  "_note": "Juridische pagina's. De teksten volgen van Marco of een jurist. Schrijf hier geen juridische tekst zonder controle. Zet een pagina op ready: true en vul body in zodra de tekst er is; haal dan ook de noindex-regel uit de HTML. De privacyverklaring en de algemene voorwaarden staan als pdf in assets/documenten/ (versie 16 november 2026); de links in de footer en bij het contactformulier openen die pdf's.",
   "pending": "Deze tekst volgt. Heb je nu een vraag? Neem dan contact met ons op.",
   "contactLink": "Naar contact",
-  "privacy": {
-    "meta": {
-      "title": "Privacyverklaring | Grip op Stroom",
-      "description": "Hoe Grip op Stroom omgaat met je persoonsgegevens."
-    },
-    "title": "Privacyverklaring",
-    "lead": "Hoe we omgaan met je gegevens: welke gegevens we gebruiken, waarom, hoe lang we ze bewaren en wat je rechten zijn.",
-    "ready": false,
-    "body": []
-  },
   "cookies": {
     "meta": {
       "title": "Cookieverklaring | Grip op Stroom",
@@ -19,16 +9,6 @@
     },
     "title": "Cookieverklaring",
     "lead": "Welke cookies en vergelijkbare technieken deze website gebruikt.",
-    "ready": false,
-    "body": []
-  },
-  "voorwaarden": {
-    "meta": {
-      "title": "Algemene voorwaarden | Grip op Stroom",
-      "description": "De algemene voorwaarden van Grip op Stroom."
-    },
-    "title": "Algemene voorwaarden",
-    "lead": "De afspraken die gelden als je met ons een opdracht aangaat.",
     "ready": false,
     "body": []
   },

@@ -26,7 +26,7 @@ const sharp = require('sharp');
 const BASE = process.env.BASE_URL || 'http://localhost:8000/';
 const OUT = path.join(__dirname, 'screenshots');
 const PAGES = ['index.html', 'zo-werkt-het.html', 'pakketten.html', 'vragen.html', 'over-ons.html', 'contact.html',
-  'privacy.html', 'cookies.html', 'voorwaarden.html', 'klachten.html', 'toegankelijkheid.html'];
+  'cookies.html', 'klachten.html', 'toegankelijkheid.html'];
 const WIDTHS = [390, 768, 1024, 1440];
 // Renders die nog niet bestaan geven een 404; de site toont dan een gelabelde placeholder.
 const EXPECTED_MISSING = /\/assets\/woning\//;
@@ -260,7 +260,7 @@ async function testEverythingOn(browser) {
     if (json.contactForm) json.contactForm.endpoint = '';
     await r.fulfill({ response: res, json });
   };
-  for (const file of ['index.html', 'pakketten.html', 'over-ons.html', 'contact.html', 'privacy.html']) {
+  for (const file of ['index.html', 'pakketten.html', 'over-ons.html', 'contact.html', 'cookies.html']) {
     for (const width of [390, 1440]) {
       const { context, page, errors } = await openPage(browser, file, { width, height: 900 }, { route });
       await scrollThrough(page);

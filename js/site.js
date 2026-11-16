@@ -245,6 +245,19 @@
   }
 
   // Een klik op een bronnummer klapt de bronnenlijst in de footer open.
+  // Pdf's (privacyverklaring, algemene voorwaarden) openen in een nieuw tabblad; schermlezers horen dat.
+  function setupDocumentLinks() {
+    document.querySelectorAll('a[href$=".pdf"]').forEach(function (a) {
+      a.target = '_blank';
+      a.rel = 'noopener';
+      if (a.querySelector('.sr-only')) return;
+      var hint = document.createElement('span');
+      hint.className = 'sr-only';
+      hint.textContent = ' (pdf, opent in een nieuw tabblad)';
+      a.appendChild(hint);
+    });
+  }
+
   function setupSourceLinks() {
     var details = document.getElementById('bronnen');
     if (!details) return;
@@ -566,6 +579,7 @@
       markCurrentNav();
       setupHeader();
       setupSourceLinks();
+      setupDocumentLinks();
       setupContactForms(content);
       body.classList.add('is-ready');
       resolveReady({ content: content, steps: stepsConfig, sources: sources });
