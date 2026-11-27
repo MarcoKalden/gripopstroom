@@ -56,6 +56,7 @@ cd public && python3 -m http.server 8000
 | `steps.json` | Stappen van het stappenplan: naam, label, bedragen, bronnen en render (placeholders, `"validated": false`) |
 | `sources.json` | Bronnenlijst. Elke pagina toont alleen de bronnen die hij aanhaalt, in de footer onder "Bronnen" |
 | `js/site.js` | Laadt en vult alle pagina's, header, bronnen, contactformulier, structured data |
+| `js/content-rules.js` | Regels voor de inhoud: bel-, mail- en applinks uit het nummer of adres, openingstijden voor zoekmachines, `{telefoon}` |
 | `js/stappenplan.js` | Het stappenplan op Zo werkt het |
 | `js/home.js`, `js/pakketten.js`, `js/vragen.js` | Hotspots, vergelijkingstabel, zoeken in de vragen |
 | `css/styles.css` | Design tokens (`:root`) en opmaak van alle pagina's |
@@ -103,6 +104,23 @@ geschiedenis van GitHub en is terug te draaien.
   "Wordt verwerkt" staan, kijk dan in GitHub bij **Actions** naar *Foto's verwerken*.
 - Repo en bestanden staan bovenin `js/beheer.js`. Een nieuw contentbestand voeg je daar
   toe aan `FILES`.
+- Footer, menu en contactgegevens staan bij *Algemeen*. De links in menu en footer kies je
+  uit een lijst met de pagina's van de site en de pdf's in `assets/documenten/`.
+- Telefoon en e-mail: je wijzigt alleen het nummer of adres zoals het op de site staat. De
+  link om te bellen, mailen of appen en het nummer voor zoekmachines maakt
+  `js/content-rules.js` daaruit. Schrijf `{telefoon}` in een tekst (bijvoorbeeld een
+  foutmelding van het formulier) om het telefoonnummer te tonen.
+- Openingstijden: de zin op de site (`text`) en de tijden voor zoekmachines (`days`,
+  `opens`, `closes`). De beheerpagina houdt publiceren tegen als ze niet overeenkomen.
+- De grote foto bovenaan de homepage kies je bij *Homepage › Bovenste blok*.
+
+### Teksten in de HTML bij publiceren
+
+`scripts/build-public.js` zet bij elke publicatie de teksten uit `content/` in de HTML van
+`public/` (`scripts/bake-content.js`): tekst bij `data-text`, links bij `data-href`, de
+grote foto, titel en omschrijving. Een wijziging uit de beheerpagina staat zo ook in de
+HTML die zoekmachines en bezoekers zonder JavaScript zien. De bron-HTML blijft gelijk; de
+tekst daarin is alleen een reserve.
 
 ### Het `enabled`-patroon
 

@@ -43,7 +43,8 @@ sources.sources.forEach((s) => {
   if (!s.url) add('sources.json', s.id, 'bron heeft geen URL');
 });
 
-const site = read('content/site.json');
+// De links om te bellen en mailen maakt js/content-rules.js uit "display".
+const site = require('../js/content-rules.js').prepare(read('content/site.json'));
 if (!site.siteUrl) add('content/site.json', 'siteUrl', 'leeg: nodig voor canonical, og:url en sitemap.xml');
 if (!/^https?:\/\//.test(site.links.gripscan)) add('content/site.json', 'links.gripscan', 'nog geen echte link naar de Gripscan');
 site.company.details.forEach((d, i) => {
@@ -51,7 +52,7 @@ site.company.details.forEach((d, i) => {
 });
 ['phone', 'email'].forEach((c) => {
   const v = site.contact[c];
-  if (v.enabled === false || !v.display || !v.href) add('content/site.json', 'contact.' + c, 'nog niet ingevuld of uitgeschakeld');
+  if (v.enabled === false || !v.display || !v.href) add('content/site.json', 'contact.' + c, 'nog niet ingevuld, uitgeschakeld of geen geldig nummer/adres');
 });
 if (!site.contact.address || site.contact.address.enabled === false) add('content/site.json', 'contact.address', 'vestigingsadres staat uit');
 if (!site.contactForm.endpoint) add('content/site.json', 'contactForm.endpoint', 'formulier nog niet gekoppeld (zie server/contact.js)');

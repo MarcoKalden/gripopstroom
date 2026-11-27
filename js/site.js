@@ -371,7 +371,17 @@
       if (v != null && v !== '') el.setAttribute('href', v);
     });
     root.querySelectorAll('[data-photo]').forEach(function (el) {
-      if (el.querySelector('picture')) return; // staat al in de HTML
+      // Staat de foto al in de HTML (snelle grote foto bovenaan), dan alleen de beschrijving bijwerken,
+      // tenzij er in de beheerpagina een andere foto is gekozen.
+      var pic = el.querySelector('picture');
+      if (pic) {
+        var want = getPath(content, el.getAttribute('data-photo'));
+        var alt = getPath(content, el.getAttribute('data-photo-alt'));
+        if (!want || want === el.getAttribute('data-photo-current')) {
+          if (alt != null) pic.querySelector('img').alt = alt;
+          return;
+        }
+      }
       buildPicture(el, getPath(content, el.getAttribute('data-photo')), getPath(content, el.getAttribute('data-photo-alt')),
         el.getAttribute('data-sizes') || '100vw', el.hasAttribute('data-eager'));
     });
@@ -605,6 +615,8 @@
       loadJSON(FILES.sources)
     ]).then(function (results) {
       var content = results[1].reduce(merge, results[0]);
+      // Links om te bellen en mailen, openingstijden voor zoekmachines en {telefoon} (js/content-rules.js).
+      if (window.GOSRules) content = window.GOSRules.prepare(content);
       var stepsConfig = results[2];
       allSources = results[3].sources;
       indexSources(allSources);
