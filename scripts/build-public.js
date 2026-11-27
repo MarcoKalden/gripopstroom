@@ -40,6 +40,9 @@ for (const f of pages.concat(FILES)) {
 }
 for (const d of DIRS) copyDir(path.join(root, d), path.join(out, d));
 
+// De teksten uit content/ (ook wat in de beheerpagina is gewijzigd) in de HTML zetten.
+const baked = require('./bake-content.js').bakeDir(root, out);
+
 // Kopregels voor de hosting (Netlify leest public/_headers).
 const site = JSON.parse(fs.readFileSync(path.join(root, 'content', 'site.json'), 'utf8'));
 const headers = [
@@ -73,5 +76,5 @@ let count = 0;
     if (e.isDirectory()) walk(path.join(dir, e.name)); else count++;
   }
 })(out);
-console.log(`public/ klaar: ${pages.length} pagina's, ${count} bestanden` +
+console.log(`public/ klaar: ${pages.length} pagina's, ${count} bestanden, ${baked} teksten uit content/ in de HTML gezet` +
   (site.siteUrl ? '' : ' (testversie: noindex, want siteUrl is leeg)'));

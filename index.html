@@ -29,6 +29,7 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <!-- head:end -->
+  <script src="js/content-rules.js" defer></script>
   <script src="js/site.js" defer></script>
   <script src="js/home.js" defer></script>
 </head>
@@ -61,7 +62,7 @@
     <!-- 1. Waarom: hero met foto en crème kaart -->
     <section class="hero" aria-labelledby="hero-title">
       <div class="container hero__media">
-        <div class="photo hero__photo">
+        <div class="photo hero__photo" data-photo="hero.photo" data-photo-alt="hero.photoAlt" data-photo-current="woonkamer-gezin" data-eager data-sizes="(min-width: 1304px) 1240px, calc(100vw - 32px)">
           <picture>
             <source type="image/avif" srcset="assets/foto/woonkamer-gezin-640.avif 640w, assets/foto/woonkamer-gezin-1024.avif 1024w, assets/foto/woonkamer-gezin-1600.avif 1600w" sizes="(min-width: 1304px) 1240px, calc(100vw - 32px)">
             <source type="image/webp" srcset="assets/foto/woonkamer-gezin-640.webp 640w, assets/foto/woonkamer-gezin-1024.webp 1024w, assets/foto/woonkamer-gezin-1600.webp 1600w" sizes="(min-width: 1304px) 1240px, calc(100vw - 32px)">
@@ -275,7 +276,7 @@
               </li>
               <li data-if="contact.hours">
                 <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-clock"></use></svg>
-                <div><span data-text="contact.hours.text">Iedere werkdag van 08:00 tot 17:00</span></div>
+                <div><span data-text="contact.hours.text">Iedere werkdag van 10:00 tot 16:00</span></div>
               </li>
             </ul>
           </div>
@@ -379,7 +380,7 @@
           <ul>
             <li data-if="contact.phone"><a href="tel:+31262056179" data-href="contact.phone.href" data-text="contact.phone.display">026 205 6179</a></li>
             <li data-if="contact.email" hidden><a data-href="contact.email.href" data-text="contact.email.display"></a></li>
-            <li data-if="contact.hours"><span data-text="contact.hours.text">Iedere werkdag van 08:00 tot 17:00</span></li>
+            <li data-if="contact.hours"><span data-text="contact.hours.text">Iedere werkdag van 10:00 tot 16:00</span></li>
           </ul>
           <dl class="site-footer__details" data-list="company.details">
             <template><div><dt data-item-text="label"></dt><dd data-item-text="value"></dd></div></template>

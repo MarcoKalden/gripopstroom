@@ -41,8 +41,7 @@
     ],
     "email": {
       "label": "Mail je klacht naar",
-      "display": "klantenservice@gripopstroom.nl",
-      "href": "mailto:klantenservice@gripopstroom.nl"
+      "display": "klantenservice@gripopstroom.nl"
     },
     "termsLink": "Lees de algemene voorwaarden",
     "form": {
@@ -76,7 +75,7 @@
       "sending": "Bezig met verzenden…",
       "summary": "Controleer de velden met een melding.",
       "success": "Bedankt. We hebben je klacht ontvangen. Je hoort binnen 14 dagen inhoudelijk van ons.",
-      "failure": "Versturen lukte niet. Mail je klacht naar klantenservice@gripopstroom.nl of bel ons op 026 205 6179.",
+      "failure": "Versturen lukte niet. Mail je klacht naar klantenservice@gripopstroom.nl of bel ons op {telefoon}.",
       "privacy": "We gebruiken je gegevens alleen om je klacht te behandelen."
     }
   },

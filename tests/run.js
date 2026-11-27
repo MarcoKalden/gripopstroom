@@ -161,8 +161,11 @@ async function testHome(browser) {
   if (faq > 5 || faq === 0) fail(faq + ' vragen op de homepage'); else ok(faq + ' vragen op de homepage');
   const ld = await page.$$eval('script[type="application/ld+json"]', (s) => s.map((x) => JSON.parse(x.textContent)));
   const biz = ld.find((x) => x['@type'] === 'HomeAndConstructionBusiness');
-  if (!biz || !biz.address || !biz.telephone || !ld.find((x) => x['@type'] === 'FAQPage')) fail('structured data onvolledig');
-  else ok(`structured data: ${biz.address.streetAddress}, ${biz.telephone}, FAQPage`);
+  const hoursCfg = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'content/site.json'), 'utf8')).contact.hours;
+  const wantHours = hoursCfg.days + ' ' + hoursCfg.opens + '-' + hoursCfg.closes;
+  if (!biz || !biz.address || !/^\+31\d{9}$/.test(biz.telephone || '') || JSON.stringify(biz.openingHours) !== JSON.stringify([wantHours]) ||
+      !ld.find((x) => x['@type'] === 'FAQPage')) fail('structured data onvolledig: ' + JSON.stringify(biz));
+  else ok(`structured data: ${biz.address.streetAddress}, ${biz.telephone}, ${biz.openingHours}, FAQPage`);
   // Het abonnement is vervangen door Grippunten.
   const pointCards = await page.$$eval('#grippunten .points__card', (c) => c.length);
   const mainText = await page.textContent('main');
@@ -295,7 +298,7 @@ async function testBeheer(browser) {
     if (url.pathname === '/repos/MarcoKalden/gripopstroom') return r.fulfill({ json: { default_branch: 'main' } });
     if (url.pathname === '/user') return r.fulfill({ json: { login: 'testbeheerder' } });
     const m = url.pathname.match(/^\/repos\/MarcoKalden\/gripopstroom\/contents\/(.+)$/);
-    if (m && m[1] === 'grip-op-stroom-fotos') {
+    if (m && fs.existsSync(path.join(root, m[1])) && fs.statSync(path.join(root, m[1])).isDirectory()) {
       return r.fulfill({ json: fs.readdirSync(path.join(root, m[1])).map((f) => ({ name: f, sha: 'sha-' + m[1] + '/' + f })) });
     }
     const variant = m && m[1].match(/^assets\/foto\/(.+)-1600\.jpg$/);
@@ -364,6 +367,29 @@ async function testBeheer(browser) {
   if (!/Kies een label/.test(labelError)) fail('label buiten de schaal geeft geen fout'); else ok('label buiten de schaal geeft een fout');
   await label.asElement().fill('A++++');
 
+  // Algemeen: openingstijden, telefoonnummer en links in menu en footer.
+  await page.selectOption('[data-file-select]', 'content/site.json');
+  const site = JSON.parse(fs.readFileSync(path.join(root, 'content/site.json'), 'utf8'));
+  await page.evaluate(() => document.querySelectorAll('[data-form] details').forEach((d) => { d.open = true; }));
+  const byValue = (v) => page.evaluateHandle((v) => [...document.querySelectorAll('[data-form] input, [data-form] textarea')].find((el) => el.value === v), v);
+  const errorsNow = () => page.evaluate(() => [...document.querySelectorAll('[data-form] .beheer-error')].map((e) => e.textContent).join(' '));
+  const opens = await byValue(site.contact.hours.opens);
+  await opens.asElement().fill('09:00');
+  if (!/andere tijden/.test(await errorsNow())) fail('openingstijd zonder passende tekst geeft geen fout'); else ok('openingstijden: tijden en tekst moeten overeenkomen');
+  await opens.asElement().fill(site.contact.hours.opens);
+  if (/andere tijden/.test(await errorsNow())) fail('fout bij openingstijden blijft staan na herstel'); else ok('openingstijden: fout verdwijnt na herstel');
+  const daysChoice = await page.locator('[data-form] select option[value="Mo-Sa"]').count();
+  if (!daysChoice) fail('geen keuzelijst voor de dagen'); else ok('openingstijden: dagen kies je uit een lijst');
+  const pdfChoices = await page.locator('[data-form] select option', { hasText: '(pdf)' }).count();
+  if (pdfChoices < 2) fail('footerlinks: geen pdf\'s om te kiezen (' + pdfChoices + ')'); else ok('menu- en footerlinks kies je uit de pagina\'s en pdf\'s');
+  const phone = await byValue(site.contact.phone.display);
+  await phone.asElement().fill('12');
+  if (!/geldig telefoonnummer/.test(await errorsNow())) fail('ongeldig telefoonnummer geeft geen fout'); else ok('ongeldig telefoonnummer geeft een fout');
+  await phone.asElement().fill('020 123 4567');
+  await frame.locator('.site-footer a[href="tel:+31201234567"]', { hasText: '020 123 4567' }).waitFor({ state: 'attached', timeout: 8000 })
+    .then(() => ok('nieuw telefoonnummer: ook de bel-link in het voorbeeld past zich aan'), () => fail('bel-link volgt het nieuwe nummer niet'));
+  await phone.asElement().fill(site.contact.phone.display);
+
   // Publiceren: alleen de homepage, met precies de ene wijziging.
   await page.click('[data-publish]');
   const diff = await page.textContent('[data-diff]');
@@ -423,7 +449,7 @@ async function testBeheer(browser) {
   const usage = await page.locator('.beheer-photo', { hasText: 'woonkamer-gezin' }).textContent();
   const bankUsage = await page.locator('.beheer-photo', { hasText: 'bank-stel' }).textContent();
   if (!/Pakketten: Volledige grip/.test(bankUsage)) fail('gebruik van bank-stel: ' + bankUsage); else ok('fotolijst: korte omschrijving van waar een foto staat');
-  if (!/grote foto bovenaan/.test(usage)) fail('gebruik van woonkamer-gezin: ' + usage); else ok('fotolijst toont waar een foto staat');
+  if (!/Homepage: Bovenste blok/.test(usage)) fail('gebruik van woonkamer-gezin: ' + usage); else ok('fotolijst toont waar een foto staat');
   await page.click('text=+ Nieuwe foto toevoegen');
   const small = await sharp({ create: { width: 800, height: 1000, channels: 3, background: '#88aa99' } }).jpeg().toBuffer();
   await page.setInputFiles('#upload-file', { name: 'Klein staand.jpg', mimeType: 'image/jpeg', buffer: small });

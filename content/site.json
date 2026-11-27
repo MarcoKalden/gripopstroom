@@ -58,7 +58,7 @@
     "cta": "Start je Gripscan"
   },
   "contact": {
-    "_note": "Gegevens volgens REDESIGN.md §7, e-mailadres bevestigd door Marco.",
+    "_note": "Gegevens volgens REDESIGN.md §7, e-mailadres bevestigd door Marco. De links om te bellen, mailen en appen maakt de site zelf uit het nummer of adres onder \"display\".",
     "address": {
       "enabled": true,
       "name": "Grip op Stroom B.V.",
@@ -69,29 +69,25 @@
     "phone": {
       "enabled": true,
       "label": "Bel ons",
-      "display": "026 205 6179",
-      "href": "tel:+31262056179",
-      "e164": "+31262056179",
-      "hours": "Iedere werkdag van 08:00 tot 17:00"
+      "display": "026 205 6179"
     },
     "email": {
       "enabled": true,
       "label": "Mail ons",
-      "display": "info@gripopstroom.nl",
-      "href": "mailto:info@gripopstroom.nl"
+      "display": "info@gripopstroom.nl"
     },
     "whatsapp": {
       "enabled": false,
       "label": "App ons via WhatsApp",
-      "display": "",
-      "href": ""
+      "display": ""
     },
     "hours": {
       "enabled": true,
-      "text": "Iedere werkdag van 08:00 tot 17:00",
-      "schema": [
-        "Mo-Fr 08:00-17:00"
-      ]
+      "text": "Iedere werkdag van 10:00 tot 16:00",
+      "days": "Mo-Fr",
+      "opens": "10:00",
+      "closes": "16:00",
+      "_note": "text staat op de site. days, opens en closes gaan naar zoekmachines (openingHours) en moeten met text overeenkomen; de beheerpagina controleert dat."
     },
     "responseTime": {
       "enabled": false,
@@ -189,7 +185,7 @@
   },
   "payoff": "Jouw huis, jouw pad, jouw tempo.",
   "contactForm": {
-    "_note": "endpoint: URL die de inzending ontvangt (zie server/contact.js). Leeg = formulier nog niet gekoppeld.",
+    "_note": "endpoint: URL die de inzending ontvangt (zie server/contact.js). Leeg = formulier nog niet gekoppeld. {telefoon} in een tekst wordt het telefoonnummer uit Contactgegevens.",
     "endpoint": "",
     "title": "Stuur ons een bericht",
     "fields": {
@@ -212,8 +208,8 @@
     },
     "summary": "Controleer de velden met een melding.",
     "success": "Bedankt. We hebben je bericht ontvangen en nemen contact met je op.",
-    "failure": "Versturen lukte niet. Probeer het later opnieuw of bel ons op 026 205 6179.",
-    "notConnected": "Het formulier is nog niet gekoppeld. Bel ons op 026 205 6179, dan helpen we je direct."
+    "failure": "Versturen lukte niet. Probeer het later opnieuw of bel ons op {telefoon}.",
+    "notConnected": "Het formulier is nog niet gekoppeld. Bel ons op {telefoon}, dan helpen we je direct."
   },
   "ctaBand": {
     "title": "Benieuwd wat dit voor jouw woning betekent?",

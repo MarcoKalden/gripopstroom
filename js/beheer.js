@@ -20,7 +20,9 @@
   var PHOTOS = '__fotos';
   var PHOTO_DIR = 'grip-op-stroom-fotos/';
   // Foto's die vast in de HTML staan in plaats van in een contentbestand.
-  var FIXED_PHOTOS = { 'woonkamer-gezin': 'Homepage: grote foto bovenaan' };
+  var FIXED_PHOTOS = {};
+  var DOC_DIR = 'assets/documenten';
+  var RULES = window.GOSRules;
   var MIN_WIDTH = 1600;
   var MAX_WIDTH = 2400;
   var POLL_MS = window.GOS_BEHEER_POLL_MS || 5000;
@@ -42,7 +44,9 @@
     { path: 'content/contact.json', title: 'Contact', preview: 'contact.html',
       intro: 'De contactgegevens zelf staan bij Algemeen.' },
     { path: 'content/site.json', title: 'Algemeen: menu, contactgegevens en footer', preview: 'index.html',
-      intro: 'Teksten die op elke pagina staan: menu, contactgegevens, bedrijfsgegevens, footer en het contactformulier.' },
+      intro: 'Teksten die op elke pagina staan: menu, contactgegevens, openingstijden, bedrijfsgegevens, footer en het contactformulier. ' +
+        'De links om te bellen en te mailen past de site zelf aan als je het nummer of adres wijzigt. ' +
+        'Schrijf {telefoon} in een tekst om het telefoonnummer te tonen; dan klopt die tekst ook na een nieuw nummer.' },
     { path: 'content/juridisch.json', title: 'Juridische pagina\'s', preview: 'cookies.html',
       intro: 'Cookies, klachten en toegankelijkheid. De privacyverklaring en de algemene voorwaarden staan als pdf op de site; een nieuwe versie vervang je in GitHub in de map assets/documenten/ (zelfde bestandsnaam).' },
     { path: 'sources.json', title: 'Bronnen', preview: 'zo-werkt-het.html',
@@ -84,12 +88,26 @@
     reassurance: 'Geruststelling', more: 'Meer', allLink: 'Link naar alles', credentials: 'Keurmerken', verifyText: 'Tekst controleren',
     privacy: 'Privacyverklaring', cookies: 'Cookieverklaring', voorwaarden: 'Algemene voorwaarden', klachten: 'Klachten',
     toegankelijkheid: 'Toegankelijkheid', pending: 'Nog niet klaar', publisher: 'Uitgever', sources: 'Bronnen',
-    ui: 'Kleine teksten', links: 'Links', brand: 'Merk', shortText: 'Korte tekst', priceNote: 'Toelichting prijs'
+    ui: 'Kleine teksten', links: 'Links', brand: 'Merk', shortText: 'Korte tekst', priceNote: 'Toelichting prijs',
+    days: 'Dagen', opens: 'Open vanaf', closes: 'Open tot', href: 'Link naar', whatsapp: 'WhatsApp',
+    notConnected: 'Bericht als het formulier nog niet gekoppeld is', responseTime: 'Reactietijd', enabled: 'Tonen op de site'
   };
+  // Links die je kiest uit de pagina's en documenten van de site (menu, footer, vaste links).
+  var LINK_FIELD = function (file, path) {
+    if (file !== 'content/site.json') return false;
+    var last = path[path.length - 1];
+    return (path[0] === 'links' && path.length === 2) ||
+      (last === 'href' && ((path[0] === 'nav' && path[1] === 'items') || (path[0] === 'footer' && path[1] === 'legal')));
+  };
+  var LINK_PAGES = [
+    ['index.html', 'Homepage'], ['index.html#contact', 'Homepage: contactblok (Gripscan)'], ['zo-werkt-het.html', 'Zo werkt het'],
+    ['pakketten.html', 'Pakketten'], ['vragen.html', 'Vragen'], ['over-ons.html', 'Over ons'], ['contact.html', 'Contact'],
+    ['cookies.html', 'Cookieverklaring'], ['klachten.html', 'Klachten'], ['toegankelijkheid.html', 'Toegankelijkheid']
+  ];
   // Velden die de werking regelen en geen tekst zijn. Alleen zichtbaar met "Technische velden tonen".
   var TECHNICAL = /^(id|href|url|labelScale|icon|render|component|endpoint|e164|schema|x|y|validated|recalculate|labelPending|labelCheck|labelEffect|renderHasLabel|countsTowardHomeEnergy|siteUrl|platform|platformUrl|verifyUrl|logo|ctaHref|ctaSecondaryHref|contactLink|privacyLink|whatsapp|valueRule|renders|type|buildYear|floorArea|startLabel|ready|live|liveNoLabelEffect|livePending|stepCounter)$|Href$|Url$/;
 
-  var state = { token: null, branch: null, files: {}, photos: [], current: null, showTechnical: false, open: {} };
+  var state = { token: null, branch: null, files: {}, photos: [], documents: [], current: null, showTechnical: false, open: {} };
 
   var $ = function (sel, root) { return (root || document).querySelector(sel); };
   var views = document.querySelectorAll('[data-view]');
@@ -159,8 +177,15 @@
     return api(repoPath('')).then(function (repo) {
       state.branch = repo.default_branch;
       api('/user').then(function (user) { $('[data-user-name]').textContent = 'Ingelogd als ' + user.login; }).catch(function () {});
-      return Promise.all(FILES.map(loadFile).concat(loadPhotos()));
+      return Promise.all(FILES.map(loadFile).concat(loadPhotos(), loadDocuments()));
     });
+  }
+
+  // De pdf's in assets/documenten (privacyverklaring, algemene voorwaarden) voor de linkkeuze.
+  function loadDocuments() {
+    return api(repoPath('/contents/' + DOC_DIR + '?ref=' + encodeURIComponent(state.branch))).then(function (list) {
+      state.documents = list.filter(function (f) { return /\.pdf$/i.test(f.name); }).map(function (f) { return DOC_DIR + '/' + f.name; });
+    }, function () { state.documents = []; });
   }
 
   /* ---------- Foto's ---------- */
@@ -648,7 +673,66 @@
       }
     }
     if (typeof value === 'number' && !isFinite(value)) return 'Vul een getal in.';
+    if (typeof value === 'string' && RULES) {
+      var last = path[path.length - 1];
+      var parent = path[path.length - 2];
+      if (last === 'display' && (parent === 'phone' || parent === 'whatsapp' || parent === 'email')) {
+        var msg = RULES.contactError(parent, value.trim());
+        if (msg) return msg;
+      }
+      if (parent === 'hours' && (last === 'opens' || last === 'closes')) return RULES.contactError('time', value.trim());
+      if (parent === 'hours' && last === 'text' && state.files[state.current]) {
+        return RULES.hoursError(getAt(state.files[state.current].data, path.slice(0, -1)));
+      }
+      if (LINK_FIELD(state.current, path) && !value.trim()) return 'Kies waar de link naartoe gaat.';
+    }
     return '';
+  }
+
+  // Keuzes voor een link: de pagina's en documenten van de site, plus de huidige waarde.
+  function linkOptions(value) {
+    var opts = LINK_PAGES.slice();
+    state.documents.forEach(function (d) {
+      var name = d.split('/').pop().replace(/\.pdf$/i, '').replace(/-grip-op-stroom$/, '').replace(/-/g, ' ');
+      opts.push([d, name.charAt(0).toUpperCase() + name.slice(1) + ' (pdf)']);
+    });
+    if (value && !opts.some(function (o) { return o[0] === value; })) opts.unshift([value, value]);
+    return opts;
+  }
+
+  // Keuzelijst voor een tekstveld met vaste keuzes (links, dagen).
+  function renderChoiceField(entry, path, value, options) {
+    var id = 'f' + (++fieldCount);
+    var row = document.createElement('div');
+    row.className = 'beheer-field';
+    var label = document.createElement('label');
+    label.htmlFor = id;
+    label.textContent = humanize(path[path.length - 1]);
+    var select = document.createElement('select');
+    select.id = id;
+    options.forEach(function (o) { select.add(new Option(o[1], o[0])); });
+    select.value = value;
+    var error = document.createElement('p');
+    error.className = 'beheer-error';
+    error.id = id + '-error';
+    select.setAttribute('aria-describedby', error.id);
+    var orig = getAt(entry.orig, path);
+    var mark = function () {
+      row.classList.toggle('is-changed', select.value !== orig);
+      var msg = fieldError(path, select.value);
+      error.textContent = msg;
+      select.setAttribute('aria-invalid', msg ? 'true' : 'false');
+    };
+    select.addEventListener('change', function () {
+      setAt(entry.data, path, select.value);
+      mark();
+      changed();
+    });
+    row.appendChild(label);
+    row.appendChild(select);
+    row.appendChild(error);
+    mark();
+    return row;
   }
 
   function render() {
@@ -668,8 +752,14 @@
   function renderNode(entry, path, value, key, depth) {
     if (typeof key === 'string' && key.charAt(0) === '_') return null;
     if (value === null || value === undefined) return null;
-    if (isTechnical(key) && !state.showTechnical && (typeof value !== 'object' || Array.isArray(value))) return null;
+    if (isTechnical(key) && !state.showTechnical && (typeof value !== 'object' || Array.isArray(value)) && !LINK_FIELD(entry.file.path, path)) return null;
     if (key === 'photo' && typeof value === 'string') return renderPhotoField(entry, path, value);
+    if (typeof value === 'string' && LINK_FIELD(entry.file.path, path)) return renderChoiceField(entry, path, value, linkOptions(value));
+    if (key === 'days' && path[path.length - 2] === 'hours' && RULES) {
+      return renderChoiceField(entry, path, value, Object.keys(RULES.DAYS).map(function (d) {
+        return [d, RULES.DAYS[d].charAt(0).toUpperCase() + RULES.DAYS[d].slice(1)];
+      }));
+    }
     if (Array.isArray(value)) return renderList(entry, path, value, key, depth);
     if (typeof value === 'object') return renderGroup(entry, path, value, humanize(key), depth);
     return renderField(entry, path, value, key);
@@ -812,7 +902,16 @@
       setAt(entry.data, path, v);
       mark(v);
       changed();
+      // Tijden gewijzigd: kijk opnieuw of de zin over de bereikbaarheid nog klopt.
+      if (path[path.length - 2] === 'hours' && key !== 'text') {
+        var textInput = row.parentNode && row.parentNode.querySelector('[data-hours-text]');
+        if (textInput) textInput.dispatchEvent(new Event('recheck'));
+      }
     });
+    if (path[path.length - 2] === 'hours' && key === 'text') {
+      input.setAttribute('data-hours-text', '');
+      input.addEventListener('recheck', function () { mark(getAt(entry.data, path)); });
+    }
     mark(value);
     if (typeof value === 'boolean') { row.appendChild(input); row.appendChild(label); }
     else { row.appendChild(label); row.appendChild(input); }
